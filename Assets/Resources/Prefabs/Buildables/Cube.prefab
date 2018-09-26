@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114897937619971104}
   - component: {fileID: 114435190489706424}
   - component: {fileID: 114424518018144150}
+  - component: {fileID: 114266807974211502}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -159,6 +160,18 @@ MonoBehaviour:
   m_VoxelSize: 0.05
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: cc0e1df8e1e62314caa74d32982701b7, type: 2}
+--- !u!114 &114266807974211502
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1316982060600010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9901572aad2848741955aeeaa549593e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 100
 --- !u!114 &114358887819170390
 MonoBehaviour:
   m_ObjectHideFlags: 1
