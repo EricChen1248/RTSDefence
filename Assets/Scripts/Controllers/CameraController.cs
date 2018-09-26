@@ -41,7 +41,7 @@ namespace Controllers
             if (transform.eulerAngles.x + scrollChange <= 80 && transform.eulerAngles.x + scrollChange >= 20)
             {
                 transform.RotateAround(transform.position, transform.right, scrollChange);
-                _camera.orthographicSize += scrollChange / 6f;
+                _camera.orthographicSize += scrollChange / 2f;
             }
 
             // Keyboard commands
