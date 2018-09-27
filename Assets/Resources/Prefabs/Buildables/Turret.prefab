@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4642056263872704}
   - component: {fileID: 33725719507913494}
   - component: {fileID: 23170691459461164}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: TurretCanon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4159335863882056}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 114962015282979004}
   - component: {fileID: 114374339988829380}
   - component: {fileID: 114280909692545918}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 33718456263780794}
   - component: {fileID: 23658287246034378}
   - component: {fileID: 208670221435258282}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: TurretBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,6 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8842313c5d943db449ce4007c7310f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GhostModel: {fileID: 0}
   ReloadSpeed: 1
   ReloadTime: 100
   CurrentReload: 0
@@ -246,8 +247,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a0dcd5c0b2672a43b69edeab640619b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ViewRadius: 0
-  ViewAngle: 0
+  ViewRadius: 10
+  ViewAngle: 30
   TargetMask:
     serializedVersion: 2
     m_Bits: 0
