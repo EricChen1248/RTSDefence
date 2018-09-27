@@ -14,13 +14,13 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Ground Enemy
+  - Flying Enemy
+  - Static Defence
+  - Active Defence
+  - Traps
+  - Bullet
   - 
   - 
   - 
