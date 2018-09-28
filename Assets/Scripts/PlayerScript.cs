@@ -3,19 +3,18 @@ using Interface;
 using UnityEngine;
 using UnityEngine.AI;
 
+[DefaultExecutionOrder(0)]
 public class PlayerScript : MonoBehaviour, IClickable
 {
     public float Speed = 3.5f;
     private NavMeshAgent _agent;
 
 	// Use this for initialization
-	void Start () {
+	private void Start ()
+	{
+	    _agent = GetComponent<NavMeshAgent>();
+	    _agent.enabled = true;
 	}
-
-    public void Awake()
-    {
-        _agent = GetComponent<NavMeshAgent>();
-    }
     
     public void MoveToLocation(Vector3 target)
     {
