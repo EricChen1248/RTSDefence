@@ -38,10 +38,10 @@ namespace Controllers
             // Mouse scroll
             var scrollChange = Input.mouseScrollDelta.y * -2f;
             // Clamp to top and bottom angle
-            if (transform.eulerAngles.x + scrollChange <= 80 && transform.eulerAngles.x + scrollChange >= 20)
+            if (transform.eulerAngles.x + scrollChange <= 80 && transform.eulerAngles.x + scrollChange >= 30)
             {
                 transform.RotateAround(transform.position, transform.right, scrollChange);
-                _camera.orthographicSize += scrollChange / 2f;
+                _camera.orthographicSize += scrollChange;
             }
 
             // Keyboard commands
