@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 114962015282979004}
   - component: {fileID: 114374339988829380}
   - component: {fileID: 114280909692545918}
+  - component: {fileID: 208895876143696778}
   m_Layer: 13
   m_Name: Turret
   m_TagString: Untagged
@@ -72,7 +73,6 @@ GameObject:
   - component: {fileID: 4657990990856094}
   - component: {fileID: 33718456263780794}
   - component: {fileID: 23658287246034378}
-  - component: {fileID: 208670221435258282}
   m_Layer: 13
   m_Name: TurretBase
   m_TagString: Untagged
@@ -87,7 +87,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1509503812733168}
   m_LocalRotation: {x: -0.38268343, y: 8.4836825e-12, z: 2.0481422e-11, w: 0.92387956}
-  m_LocalPosition: {x: -0, y: 0.91, z: -0.01}
+  m_LocalPosition: {x: 0, y: 1.16, z: -0.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4642056263872704}
@@ -127,7 +127,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1624472901852362}
   m_LocalRotation: {x: 0.0012299692, y: -0.0015183295, z: 0.00068797654, w: 0.9999979}
-  m_LocalPosition: {x: -12.886395, y: -3.4356864e-17, z: 7.7364783}
+  m_LocalPosition: {x: -0.52182347, y: 2.6697629e-18, z: -6.0117717}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4657990990856094}
@@ -232,7 +232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GhostModel: {fileID: 0}
   ReloadSpeed: 1
-  ReloadTime: 100
+  ReloadTime: 5
   CurrentReload: 0
   FirePoint: {fileID: 4159335863882056}
   Bullet: {fileID: 1047773337326742, guid: 2d574cb504579404f853c70a94120f34, type: 2}
@@ -277,18 +277,18 @@ CapsuleCollider:
   m_Height: 5
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!208 &208670221435258282
+--- !u!208 &208895876143696778
 NavMeshObstacle:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1631023154176814}
+  m_GameObject: {fileID: 1624472901852362}
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 0.5, y: 1, z: 0.5}
+  m_Extents: {x: 1.2, y: 1.5, z: 1.2}
   m_MoveThreshold: 0.1
   m_Carve: 1
-  m_CarveOnlyStationary: 0
+  m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
