@@ -25,7 +25,7 @@ namespace Entity_Components
                 var ray = new Ray(transform.position, target.transform.position - transform.position);
                 RaycastHit hit;
                 if (!Physics.Raycast(ray, out hit)) continue;
-                if (hit.transform.gameObject.layer != LayerMask.NameToLayer("Player")) continue;
+                if (!InLayerMask(TargetMask, hit.transform.gameObject.layer)) continue;
 
                 closestTarget = target;
                 closest = dirToTarget.sqrMagnitude;
@@ -38,6 +38,11 @@ namespace Entity_Components
         {
             var dirToTarget = Vector3.ProjectOnPlane(target - transform.position, Vector3.up);
             return (Vector3.Angle(transform.forward, dirToTarget.normalized) < ViewAngle / 2);
+        }
+
+        private static bool InLayerMask(LayerMask layerMask, int layer)
+        {
+            return layerMask == (layerMask | (1 << layer));
         }
     }
 }
