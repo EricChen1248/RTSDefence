@@ -20,9 +20,10 @@ namespace Controllers
             if (Input.GetMouseButtonDown(1))
             {
                 Vector3 clickPos;
-                if (RaycastHelper.TryMouseRaycast(out clickPos))
+                if (RaycastHelper.TryMouseRaycastToGrid(out clickPos, RaycastHelper.LayerMaskDictionary["Walkable Surface"]))
                 {
                     FocusedItem?.RightClick(clickPos);
+                    print(clickPos);
                 }
             }
         }

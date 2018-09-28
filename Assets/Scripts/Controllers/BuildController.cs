@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using Buildable_Components;
+using Navigation;
 using UnityEngine;
 
 namespace Controllers
 {
     public class BuildController : MonoBehaviour
     {
+        public Camera MainCamera;
         public GameObject CurrentGameObject;
         public GameObject CurrentGhostModel;
         public bool IsBuilding { get; private set; }
@@ -14,6 +16,7 @@ namespace Controllers
         // Use this for initialization
         private void Start ()
         {
+            MainCamera = Camera.main;
             enabled = false;
         }
 	
@@ -31,6 +34,12 @@ namespace Controllers
                 {
                     Build();
                 }
+                else
+                {
+                    Vector3 mouseLocation;
+                    RaycastHelper.TryMouseRaycast(out mouseLocation,
+                        RaycastHelper.LayerMaskDictionary["Buildable Surface"]);
+                }
             } 
             else
             {
@@ -42,7 +51,6 @@ namespace Controllers
         {
             CurrentGameObject = selectedGameObject;
             GetComponent<MouseController>().enabled = false;
-
             enabled = true;
         }
 
@@ -52,6 +60,7 @@ namespace Controllers
             IsBuilding = false;
 
             CurrentGameObject = null;
+            Destroy(CurrentGhostModel);
             CurrentGhostModel = null;
 
             enabled = false;
@@ -59,12 +68,13 @@ namespace Controllers
 
         private void CreateGhostModel()
         {
-            Instantiate(CurrentGameObject.GetComponent<Buildable>().GhostModel);
+            CurrentGhostModel = Instantiate(CurrentGameObject.GetComponent<Buildable>().Data.GhostModel);
         }
 
         private void Build()
         {
             Instantiate(CurrentGameObject);
+            // TODO : Get recipe and remove resources
             DeselectBuild();
         }
         
