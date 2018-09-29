@@ -8,6 +8,11 @@ namespace Scriptable_Objects
     {
         public string Name;
         public GameObject GhostModel;
+
+        public Vector3 Offset;
+        public bool CanRotateHorizontal;
+        public bool CanRotateVertical;
+
         public RecipeItem[] Recipe;
     }
 

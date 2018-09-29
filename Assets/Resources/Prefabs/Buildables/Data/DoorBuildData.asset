@@ -13,4 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Doors
   GhostModel: {fileID: 0}
+  Offset: {x: 0, y: 0, z: 0}
+  CanRotateHorizontal: 1
+  CanRotateVertical: 0
   Recipe: []

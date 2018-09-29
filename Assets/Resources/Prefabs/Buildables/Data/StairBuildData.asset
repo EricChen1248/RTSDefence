@@ -13,4 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Stairs
   GhostModel: {fileID: 1732552712364700, guid: 29cce01636a4e1e43a4e2bf70a20f6a2, type: 2}
+  Offset: {x: 0, y: 0, z: 0}
+  CanRotateHorizontal: 1
+  CanRotateVertical: 0
   Recipe: []

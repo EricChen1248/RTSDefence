@@ -11,6 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 584233384e22c2c42bafa39ac866ae61, type: 3}
   m_Name: BlockBuildData
   m_EditorClassIdentifier: 
-  Name: 
-  GhostModel: {fileID: 0}
+  Name: Block
+  GhostModel: {fileID: 1831496399549416, guid: 73442d6432a466e47ae62d410af38ebd, type: 2}
+  Offset: {x: 1, y: 0, z: 0}
+  CanRotateHorizontal: 1
+  CanRotateVertical: 0
   Recipe: []

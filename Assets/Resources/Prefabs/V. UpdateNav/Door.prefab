@@ -41,6 +41,8 @@ GameObject:
   - component: {fileID: 114581198087191912}
   - component: {fileID: 114304489883877474}
   - component: {fileID: 114041539786808464}
+  - component: {fileID: 114654830867507894}
+  - component: {fileID: 114718228308847410}
   m_Layer: 12
   m_Name: Door
   m_TagString: Untagged
@@ -285,7 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f9207281b7c3714b8a0fd33abbacd11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaitTime: 0
+  WaitTime: 10
 --- !u!114 &114499561682982034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -318,7 +320,7 @@ MonoBehaviour:
   ChangePivot: {fileID: 4987412804479284}
   ChangeAmount: 90
   ChangeSpeed: 2
-  PauseTime: 20
+  PauseTime: 25
 --- !u!114 &114622647114925904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -336,7 +338,31 @@ MonoBehaviour:
   ChangePivot: {fileID: 4607822283633370}
   ChangeAmount: 90
   ChangeSpeed: 2
-  PauseTime: 20
+  PauseTime: 25
+--- !u!114 &114654830867507894
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1319262166712184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9901572aad2848741955aeeaa549593e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 100
+--- !u!114 &114718228308847410
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1319262166712184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04bf2f2740365d34ba36c7288d3346d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 11400000, guid: c7213ec91727ddb478fe3ac208c78403, type: 2}
 --- !u!114 &114935019880613698
 MonoBehaviour:
   m_ObjectHideFlags: 1

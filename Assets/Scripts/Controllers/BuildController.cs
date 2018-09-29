@@ -2,6 +2,7 @@
 using System.Runtime.Serialization;
 using Buildable_Components;
 using Navigation;
+using Scriptable_Objects;
 using UnityEngine;
 
 namespace Controllers
@@ -11,6 +12,7 @@ namespace Controllers
         public Camera MainCamera;
         public GameObject CurrentGameObject;
         public GameObject CurrentGhostModel;
+        private BuildData _currentData;
 
         // Use this for initialization
         private void Start ()
@@ -22,6 +24,10 @@ namespace Controllers
         // Update is called once per frame
         private void Update ()
         {
+            var screenRect = new Rect(0, 0, Screen.width, Screen.height);
+            if (!screenRect.Contains(Input.mousePosition))
+                return;
+
             // If right clicked
             if (Input.GetMouseButtonDown(1))
             {
@@ -36,14 +42,25 @@ namespace Controllers
             }
             else if (Input.GetKeyDown(KeyCode.E))
             {
-                CurrentGhostModel.transform.Rotate(Vector3.up, 90);
+                if (_currentData.CanRotateHorizontal)
+                {
+                    CurrentGhostModel.transform.Rotate(Vector3.up, 90);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Q))
+            {
+                if (_currentData.CanRotateVertical)
+                {
+                    CurrentGhostModel.transform.Rotate(Vector3.left, 90);
+                }
             }
             else
             {
                 Vector3 mouseLocation;
                 if (RaycastHelper.TryMouseRaycastToGrid(out mouseLocation, RaycastHelper.LayerMaskDictionary["Buildable Surface"]))
                 {
-                    CurrentGhostModel.transform.position = mouseLocation + Vector3.up * CurrentGhostModel.transform.localScale.y / 2 - new Vector3(0.5f,0,0.5f);
+                    
+                    CurrentGhostModel.transform.position = mouseLocation - new Vector3(0.5f, -0.5f, 0.5f) - CurrentGhostModel.transform.rotation * _currentData.Offset;
                 }
             }
         }
@@ -51,6 +68,8 @@ namespace Controllers
         public void EnableBuildMode(GameObject selectedGameObject)
         {
             CurrentGameObject = selectedGameObject;
+            _currentData = CurrentGameObject.GetComponent<Buildable>().Data;
+
             CoreController.MouseController.enabled = false;
             enabled = true;
 
@@ -70,7 +89,7 @@ namespace Controllers
 
         private void CreateGhostModel()
         {
-            CurrentGhostModel = Instantiate(CurrentGameObject.GetComponent<Buildable>().Data.GhostModel);
+            CurrentGhostModel = Instantiate(_currentData.GhostModel);
         }
 
         private void Build()
@@ -83,6 +102,5 @@ namespace Controllers
             DeselectBuild();
         }
         
-
     }
 }
