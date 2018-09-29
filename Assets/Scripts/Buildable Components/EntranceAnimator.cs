@@ -7,11 +7,12 @@ namespace Buildable_Components
 {
     public class EntranceAnimator : MonoBehaviour
     {
-
+        public GameObject GameObject;
+        [Space]
         public MoverType MoveType;
         public DirectionType Direction;
-        public GameObject GameObject;
         public Transform ChangePivot;
+        [Space]
         public int ChangeAmount;
         public int ChangeSpeed;
         public int PauseTime;
@@ -23,8 +24,6 @@ namespace Buildable_Components
         // Update is called once per frame
         private void OnTriggerEnter (Collider other)
         {
-            print("TriggerEnter");
-
             if (_openRoutine != null)
             {
                 StopCoroutine(_openRoutine);
@@ -79,7 +78,7 @@ namespace Buildable_Components
                 yield return new WaitForFixedUpdate();
             }
 
-            for (int i = 0; i < PauseTime; i++)
+            for (var i = 0; i < PauseTime; i++)
             {
                 yield return new WaitForFixedUpdate();
             }

@@ -6,26 +6,24 @@ namespace Controllers
 {
     public class MouseController : MonoBehaviour
     {
-        public IClickable FocusedItem { get; private set; }
+        private IClickable _focusedItem;
 
         public void SetFocus(IClickable click)
         {
-            FocusedItem?.LostFocus();
-            FocusedItem = click;
+            _focusedItem?.LostFocus();
+            _focusedItem = click;
         }
 
         private void Update()
         {
             // Right click
-            if (Input.GetMouseButtonDown(1))
-            {
-                Vector3 clickPos;
-                if (RaycastHelper.TryMouseRaycastToGrid(out clickPos, RaycastHelper.LayerMaskDictionary["Walkable Surface"]))
-                {
-                    FocusedItem?.RightClick(clickPos);
-                    print(clickPos);
-                }
-            }
+            if (!Input.GetMouseButtonDown(1)) return;
+
+            Vector3 clickPos;
+            if (!RaycastHelper.TryMouseRaycastToGrid(out clickPos,
+                RaycastHelper.LayerMaskDictionary["Walkable Surface"])) return;
+
+            _focusedItem?.RightClick(clickPos);
         }
     }
 }

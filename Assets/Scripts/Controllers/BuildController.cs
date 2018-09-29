@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Serialization;
 using Buildable_Components;
 using Navigation;
 using Scriptable_Objects;
@@ -9,15 +8,13 @@ namespace Controllers
 {
     public class BuildController : MonoBehaviour
     {
-        public Camera MainCamera;
-        public GameObject CurrentGameObject;
-        public GameObject CurrentGhostModel;
+        private GameObject _currentGameObject;
+        private GameObject _currentGhostModel;
         private BuildData _currentData;
 
         // Use this for initialization
         private void Start ()
         {
-            MainCamera = Camera.main;
             enabled = false;
         }
 	
@@ -35,7 +32,7 @@ namespace Controllers
             }
             else if (Input.GetMouseButtonDown(0))
             {
-                if (CurrentGhostModel.GetComponent<GhostModelScript>().CanBuild())
+                if (_currentGhostModel.GetComponent<GhostModelScript>().CanBuild())
                 {
                     Build();
                 }
@@ -44,14 +41,14 @@ namespace Controllers
             {
                 if (_currentData.CanRotateHorizontal)
                 {
-                    CurrentGhostModel.transform.Rotate(Vector3.up, 90);
+                    _currentGhostModel.transform.Rotate(Vector3.up, 90);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.Q))
             {
                 if (_currentData.CanRotateVertical)
                 {
-                    CurrentGhostModel.transform.Rotate(Vector3.left, 90);
+                    _currentGhostModel.transform.Rotate(Vector3.left, 90);
                 }
             }
             else
@@ -59,16 +56,15 @@ namespace Controllers
                 Vector3 mouseLocation;
                 if (RaycastHelper.TryMouseRaycastToGrid(out mouseLocation, RaycastHelper.LayerMaskDictionary["Buildable Surface"]))
                 {
-                    
-                    CurrentGhostModel.transform.position = mouseLocation - new Vector3(0.5f, -0.5f, 0.5f) - CurrentGhostModel.transform.rotation * _currentData.Offset;
+                    _currentGhostModel.transform.position = mouseLocation - new Vector3(0, -0.5f, 0) - _currentGhostModel.transform.rotation * _currentData.Offset;
                 }
             }
         }
 
         public void EnableBuildMode(GameObject selectedGameObject)
         {
-            CurrentGameObject = selectedGameObject;
-            _currentData = CurrentGameObject.GetComponent<Buildable>().Data;
+            _currentGameObject = selectedGameObject;
+            _currentData = _currentGameObject.GetComponent<Buildable>().Data;
 
             CoreController.MouseController.enabled = false;
             enabled = true;
@@ -80,23 +76,23 @@ namespace Controllers
         {
             GetComponent<MouseController>().enabled = true;
 
-            CurrentGameObject = null;
-            Destroy(CurrentGhostModel);
-            CurrentGhostModel = null;
+            _currentGameObject = null;
+            Destroy(_currentGhostModel);
+            _currentGhostModel = null;
 
             enabled = false;
         }
 
         private void CreateGhostModel()
         {
-            CurrentGhostModel = Instantiate(_currentData.GhostModel);
+            _currentGhostModel = Instantiate(_currentData.GhostModel);
         }
 
         private void Build()
         {
-            var go = Instantiate(CurrentGameObject);
-            go.transform.position = CurrentGhostModel.transform.position;
-            go.transform.rotation = CurrentGhostModel.transform.rotation;
+            var go = Instantiate(_currentGameObject);
+            go.transform.position = _currentGhostModel.transform.position;
+            go.transform.rotation = _currentGhostModel.transform.rotation;
 
             // TODO : Get recipe and remove resources
             DeselectBuild();
