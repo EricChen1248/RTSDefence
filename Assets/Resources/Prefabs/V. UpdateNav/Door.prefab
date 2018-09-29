@@ -40,7 +40,6 @@ GameObject:
   - component: {fileID: 114622647114925904}
   - component: {fileID: 114581198087191912}
   - component: {fileID: 114304489883877474}
-  - component: {fileID: 114041539786808464}
   - component: {fileID: 114654830867507894}
   - component: {fileID: 114718228308847410}
   m_Layer: 12
@@ -264,18 +263,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114041539786808464
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1319262166712184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04bf2f2740365d34ba36c7288d3346d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Data: {fileID: 0}
 --- !u!114 &114304489883877474
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -314,9 +301,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 980e3fe6459e79344bb662663990a787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameObject: {fileID: 1755792815714254}
   MoveType: 0
   Direction: 1
-  GameObject: {fileID: 1755792815714254}
   ChangePivot: {fileID: 4987412804479284}
   ChangeAmount: 90
   ChangeSpeed: 2
@@ -332,9 +319,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 980e3fe6459e79344bb662663990a787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameObject: {fileID: 1665385587930100}
   MoveType: 0
   Direction: 0
-  GameObject: {fileID: 1665385587930100}
   ChangePivot: {fileID: 4607822283633370}
   ChangeAmount: 90
   ChangeSpeed: 2
