@@ -11,7 +11,6 @@ namespace Controllers
         public Camera MainCamera;
         public GameObject CurrentGameObject;
         public GameObject CurrentGhostModel;
-        public bool IsBuilding { get; private set; }
 
         // Use this for initialization
         private void Start ()
@@ -23,41 +22,44 @@ namespace Controllers
         // Update is called once per frame
         private void Update ()
         {
-            if (IsBuilding)
+            // If right clicked
+            if (Input.GetMouseButtonDown(1))
             {
-                // If right clicked
-                if (Input.GetMouseButtonDown(1))
-                {
-                    DeselectBuild();
-                }
-                else if (Input.GetMouseButtonDown(0))
+                DeselectBuild();
+            }
+            else if (Input.GetMouseButtonDown(0))
+            {
+                if (CurrentGhostModel.GetComponent<GhostModelScript>().CanBuild())
                 {
                     Build();
                 }
-                else
-                {
-                    Vector3 mouseLocation;
-                    RaycastHelper.TryMouseRaycast(out mouseLocation,
-                        RaycastHelper.LayerMaskDictionary["Buildable Surface"]);
-                }
-            } 
+            }
+            else if (Input.GetKeyDown(KeyCode.E))
+            {
+                CurrentGhostModel.transform.Rotate(Vector3.up, 90);
+            }
             else
             {
-                throw new BuildControllerException("Build controller is active when it shouldn't be");
+                Vector3 mouseLocation;
+                if (RaycastHelper.TryMouseRaycastToGrid(out mouseLocation, RaycastHelper.LayerMaskDictionary["Buildable Surface"]))
+                {
+                    CurrentGhostModel.transform.position = mouseLocation + Vector3.up * CurrentGhostModel.transform.localScale.y / 2 - new Vector3(0.5f,0,0.5f);
+                }
             }
         }
 
         public void EnableBuildMode(GameObject selectedGameObject)
         {
             CurrentGameObject = selectedGameObject;
-            GetComponent<MouseController>().enabled = false;
+            CoreController.MouseController.enabled = false;
             enabled = true;
+
+            CreateGhostModel();
         }
 
         private void DeselectBuild()
         {
             GetComponent<MouseController>().enabled = true;
-            IsBuilding = false;
 
             CurrentGameObject = null;
             Destroy(CurrentGhostModel);
@@ -73,33 +75,14 @@ namespace Controllers
 
         private void Build()
         {
-            Instantiate(CurrentGameObject);
+            var go = Instantiate(CurrentGameObject);
+            go.transform.position = CurrentGhostModel.transform.position;
+            go.transform.rotation = CurrentGhostModel.transform.rotation;
+
             // TODO : Get recipe and remove resources
             DeselectBuild();
         }
         
 
-    }
-
-    [Serializable]
-    public class BuildControllerException : Exception
-    {
-        public BuildControllerException()
-        {
-        }
-
-        public BuildControllerException(string message) : base(message)
-        {
-        }
-
-        public BuildControllerException(string message, Exception inner) : base(message, inner)
-        {
-        }
-
-        protected BuildControllerException(
-            SerializationInfo info,
-            StreamingContext context) : base(info, context)
-        {
-        }
     }
 }

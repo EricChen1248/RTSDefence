@@ -36,9 +36,9 @@ namespace Navigation
         public static bool TryMouseRaycastToGrid(out Vector3 results, LayerMask layerMask)
         {
             var success = TryMouseRaycast(out results, layerMask);
-            results.x = (int) results.x;
-            results.y = (int) results.y;
-            results.z = (int) results.z;
+            results.x = Mathf.Round(results.x);
+            results.y = Mathf.Round(results.y);
+            results.z = Mathf.Round(results.z);
             return success;
         }
     
