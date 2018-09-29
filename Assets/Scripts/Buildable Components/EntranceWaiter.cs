@@ -12,17 +12,17 @@ namespace Buildable_Components
             StartCoroutine(WaitAndEnter(other));
         }
 
-        private IEnumerator WaitAndEnter(Collider other)
+        private IEnumerator WaitAndEnter(Component other)
         {
             var agent = other.GetComponentInParent<NavMeshAgent>();
-            var endPos = transform.position +
+            var waitPos = transform.position +
                     ((other.transform.position - transform.position + transform.forward).sqrMagnitude > (other.transform.position - transform.position - transform.forward).sqrMagnitude
                     ? transform.forward
-                    : -transform.forward);
+                    : -transform.forward) * 1.1f;
 
             var originalDest = agent.destination;
 
-            agent.destination = endPos;
+            agent.destination = waitPos;
             while (agent.remainingDistance > 0)
             {
                 yield return null;
@@ -33,8 +33,15 @@ namespace Buildable_Components
                 yield return new WaitForFixedUpdate();
             }
 
-            agent.destination = originalDest;
-
+            if ((originalDest - transform.position).sqrMagnitude < 2.56)
+            {
+                var otherSide = transform.position + (transform.position - waitPos) * 1.45f;
+                agent.destination = otherSide;
+            }
+            else
+            {
+                agent.destination = originalDest;
+            }
         }
     }
 }
