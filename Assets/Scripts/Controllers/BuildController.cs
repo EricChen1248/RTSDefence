@@ -3,6 +3,7 @@ using Buildable_Components;
 using Navigation;
 using Scriptable_Objects;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Controllers
 {
@@ -21,12 +22,13 @@ namespace Controllers
         // Update is called once per frame
         private void Update ()
         {
+            if (EventSystem.current.IsPointerOverGameObject()) return;
+
             var screenRect = new Rect(0, 0, Screen.width, Screen.height);
             if (!screenRect.Contains(Input.mousePosition))
                 return;
-
-            // If right clicked
-            if (Input.GetMouseButtonDown(1))
+                // If right clicked
+                if (Input.GetMouseButtonDown(1))
             {
                 DeselectBuild();
             }
@@ -85,6 +87,7 @@ namespace Controllers
 
         private void CreateGhostModel()
         {
+            if (_currentGhostModel != null) Destroy(_currentGhostModel);
             _currentGhostModel = Instantiate(_currentData.GhostModel);
         }
 
@@ -95,7 +98,8 @@ namespace Controllers
             go.transform.rotation = _currentGhostModel.transform.rotation;
 
             // TODO : Get recipe and remove resources
-            DeselectBuild();
+            // DeselectBuild();
+
         }
         
     }
