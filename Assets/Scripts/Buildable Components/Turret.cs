@@ -1,10 +1,10 @@
 ﻿using System.Runtime.InteropServices.WindowsRuntime;
+using Buildable_Components;
 using UnityEngine;
 
 namespace Entity_Components
 {
     
-    [RequireComponent(typeof(HealthComponent))]
     [RequireComponent(typeof(FieldOfViewComponent))]
     public class Turret : MonoBehaviour
     {
@@ -18,13 +18,13 @@ namespace Entity_Components
         private FieldOfViewComponent _fovComponent;
 
         // Use this for initialization
-        void Start ()
+        protected void Start ()
         {
             _fovComponent = GetComponent<FieldOfViewComponent>();
         }
 	
         // Update is called once per frame
-        void FixedUpdate ()
+        private void FixedUpdate ()
         {
             if (CurrentReload > 0)
             {
@@ -52,7 +52,6 @@ namespace Entity_Components
             }
             if (!_fovComponent.TargetInField(col.transform.position)) return;
             var bullet = Instantiate(Bullet, FirePoint.position, Quaternion.identity);
-            bullet.transform.parent = transform;
             bullet.GetComponent<BulletScript>().Target = col.transform;
             CurrentReload = ReloadTime;
         }
