@@ -97,6 +97,7 @@ namespace Controllers
             go.transform.position = _currentGhostModel.transform.position;
             go.transform.rotation = _currentGhostModel.transform.rotation;
 
+            NavigationBaker.Instance.Rebuild();
             // TODO : Get recipe and remove resources
             // DeselectBuild();
 
