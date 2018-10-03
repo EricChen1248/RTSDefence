@@ -10,6 +10,8 @@ namespace Navigation
     {
         public static NavigationBaker Instance { get; private set; }
         private NavMeshSurface[] _surface;
+
+        private AsyncOperation[] _updateOps;
         
         private int _updateFrequency;
         public int Mod = 5;
@@ -19,6 +21,8 @@ namespace Navigation
             Instance = this;
             _surface = GetComponents<NavMeshSurface>();
             Build();
+
+            _updateOps = new AsyncOperation[_surface.Length];
         }
 
         private void Update()
@@ -31,9 +35,13 @@ namespace Navigation
 
         public void Rebuild()
         {
-            foreach (var navMeshSurface in _surface)
+            for (int i = 0; i < _surface.Length; i++)
             {
-                navMeshSurface.UpdateNavMesh(navMeshSurface.navMeshData);
+                if (_updateOps[i] != null && !_updateOps[i].isDone) return;
+                var op = _surface[i].UpdateNavMesh(_surface[i].navMeshData);
+                op.priority = 10000;
+                _updateOps[i] = op;
+
             }
         }
         
