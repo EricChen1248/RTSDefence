@@ -21,7 +21,7 @@ namespace Navigation
             Build();
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (_updateFrequency++ % Mod == 0)
             {
