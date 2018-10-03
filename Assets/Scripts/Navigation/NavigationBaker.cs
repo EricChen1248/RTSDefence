@@ -21,11 +21,11 @@ namespace Navigation
             Build();
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
-            if (_updateFrequency++ % Mod == 0)
+            //if (_updateFrequency++ % Mod == 0)
             {
-                Rebuild();
+                //Rebuild();
             }
         }   
 
