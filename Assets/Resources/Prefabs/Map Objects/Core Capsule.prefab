@@ -22,8 +22,9 @@ GameObject:
   - component: {fileID: 33055489288649350}
   - component: {fileID: 23704245938877848}
   - component: {fileID: 136830651279684412}
-  - component: {fileID: 208795381166348514}
-  m_Layer: 0
+  - component: {fileID: 208076125558350766}
+  - component: {fileID: 114450407428366674}
+  m_Layer: 18
   m_Name: Core Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +43,7 @@ GameObject:
   - component: {fileID: 23348955336489886}
   - component: {fileID: 114227614999026756}
   - component: {fileID: 114670800648055804}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +71,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1926393311221912}
   m_LocalRotation: {x: 0.31972188, y: 0.86337274, z: -0.38441777, w: 0.06773787}
-  m_LocalPosition: {x: 0, y: 0.56499994, z: 0}
+  m_LocalPosition: {x: 0, y: 0.4, z: 0}
   m_LocalScale: {x: 0.33333334, y: 0.3333334, z: 0.3333335}
   m_Children: []
   m_Father: {fileID: 4369917661615428}
@@ -173,6 +174,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RotationSpeed: 1.5
   Rotation: {x: 0, y: 1, z: 0}
+--- !u!114 &114450407428366674
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1701627973450166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9901572aad2848741955aeeaa549593e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 1000
 --- !u!114 &114670800648055804
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -199,7 +212,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!208 &208795381166348514
+--- !u!208 &208076125558350766
 NavMeshObstacle:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}

@@ -16,4 +16,15 @@ MonoBehaviour:
   Offset: {x: 0, y: 0, z: -1}
   CanRotateHorizontal: 1
   CanRotateVertical: 1
-  Recipe: []
+  Health: 100
+  Recipe:
+  - GameObject: {fileID: 0}
+    Amount: 0
+  - GameObject: {fileID: 0}
+    Amount: 0
+  - GameObject: {fileID: 0}
+    Amount: 0
+  - GameObject: {fileID: 0}
+    Amount: 0
+  - GameObject: {fileID: 0}
+    Amount: 0

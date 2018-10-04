@@ -16,4 +16,5 @@ MonoBehaviour:
   Offset: {x: -0.5, y: -0.5, z: 0}
   CanRotateHorizontal: 1
   CanRotateVertical: 0
+  Health: 80
   Recipe: []
