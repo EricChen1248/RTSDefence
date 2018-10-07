@@ -81,7 +81,8 @@ MonoBehaviour:
   ActiveDefences: []
   ResourceCollectors: []
   StaticDefences: []
-  Traps: []
+  Traps:
+  - {fileID: 11400000, guid: 492bfe6c30c880342bfbaa8f89171952, type: 2}
 --- !u!114 &114943725802021552
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -23,8 +23,9 @@ GameObject:
   - component: {fileID: 23704245938877848}
   - component: {fileID: 136830651279684412}
   - component: {fileID: 114450407428366674}
-  - component: {fileID: 54432828986648298}
   - component: {fileID: 208130126755398646}
+  - component: {fileID: 54427083537992908}
+  - component: {fileID: 114650267546659386}
   m_Layer: 18
   m_Name: Core Capsule
   m_TagString: Untagged
@@ -162,7 +163,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1926393311221912}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54432828986648298
+--- !u!54 &54427083537992908
 Rigidbody:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,7 +176,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &114227614999026756
 MonoBehaviour:
@@ -202,6 +203,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 1000
+--- !u!114 &114650267546659386
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1701627973450166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03da9d1440147e240a234d14b626fbc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114670800648055804
 MonoBehaviour:
   m_ObjectHideFlags: 1
