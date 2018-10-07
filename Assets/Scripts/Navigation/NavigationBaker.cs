@@ -12,9 +12,6 @@ namespace Navigation
         private NavMeshSurface[] _surface;
 
         private AsyncOperation[] _updateOps;
-        
-        private int _updateFrequency;
-        public int Mod = 5;
 
         public void Start ()
         {
@@ -25,26 +22,15 @@ namespace Navigation
             _updateOps = new AsyncOperation[_surface.Length];
         }
 
-        private void Update()
-        {
-            //if (_updateFrequency++ % Mod == 0)
-            {
-                //Rebuild();
-            }
-        }   
-
         public void Rebuild()
         {
-            for (int i = 0; i < _surface.Length; i++)
+            for (var i = 0; i < _surface.Length; i++)
             {
                 if (_updateOps[i] != null && !_updateOps[i].isDone) return;
                 var op = _surface[i].UpdateNavMesh(_surface[i].navMeshData);
-                op.priority = 10000;
                 _updateOps[i] = op;
-
             }
         }
-        
 
         public void Build()
         {
@@ -53,7 +39,5 @@ namespace Navigation
                 navMeshSurface.BuildNavMesh();
             }
         }
-
-        
     }
 }
