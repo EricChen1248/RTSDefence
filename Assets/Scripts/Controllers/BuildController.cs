@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Buildable_Components;
 using Navigation;
-using Scriptable_Objects;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using BuildData = Scriptable_Objects.BuildData;
@@ -97,6 +94,17 @@ namespace Controllers
         }
 
 
+        public void EnableBuildMode(GameObject selectedGameObject)
+        {
+            _currentGameObject = selectedGameObject;
+            _currentData = _currentGameObject.GetComponent<Buildable>().Data;
+
+            CoreController.MouseController.enabled = false;
+            enabled = true;
+
+            CreateGhostModel();
+        }
+
         private void InitializeBuildDictionary()
         {
             BuiltObjects = new Dictionary<ScriptableObject, Dictionary<int, GameObject>>();
@@ -125,17 +133,6 @@ namespace Controllers
             {
                 BuiltObjects[trap] = new Dictionary<int, GameObject>();
             }
-        }
-
-        public void EnableBuildMode(GameObject selectedGameObject)
-        {
-            _currentGameObject = selectedGameObject;
-            _currentData = _currentGameObject.GetComponent<Buildable>().Data;
-
-            CoreController.MouseController.enabled = false;
-            enabled = true;
-
-            CreateGhostModel();
         }
 
         private void DeselectBuild()
