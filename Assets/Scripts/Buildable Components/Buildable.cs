@@ -9,10 +9,12 @@ namespace Buildable_Components
     public class Buildable : MonoBehaviour
     {
         public BuildData Data;
+        public int ID;
 
-        public void Start()
+        public virtual void Start()
         {
             GetComponent<HealthComponent>().Health = Data.Health;
+            ID = GetInstanceID();
         }
     }
 }

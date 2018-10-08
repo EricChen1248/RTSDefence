@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 114943725802021552}
   - component: {fileID: 114816458675779788}
   - component: {fileID: 114648529806152340}
-  - component: {fileID: 114227939815130884}
   m_Layer: 0
   m_Name: CoreController
   m_TagString: Untagged
@@ -44,17 +43,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114227939815130884
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1775495577561964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e0252ec0f2f59544ab199d5dd0f66a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114516716130377454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -90,6 +78,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e0252ec0f2f59544ab199d5dd0f66a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ActiveDefences: []
+  ResourceCollectors: []
+  StaticDefences: []
+  Traps:
+  - {fileID: 11400000, guid: 492bfe6c30c880342bfbaa8f89171952, type: 2}
 --- !u!114 &114943725802021552
 MonoBehaviour:
   m_ObjectHideFlags: 1

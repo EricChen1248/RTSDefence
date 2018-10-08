@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Controllers;
+﻿using Controllers;
 using UnityEngine;
 
 [DefaultExecutionOrder(-99)]

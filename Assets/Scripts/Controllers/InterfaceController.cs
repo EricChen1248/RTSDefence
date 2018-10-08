@@ -13,13 +13,9 @@ namespace Controllers
 		private MenuButton _activeMenu;
 
 		// Use this for initialization
-		void Start () {
+		void Start ()
+		{
 			Instance = this;	
-		}
-		
-		// Update is called once per frame
-		void Update () {
-			
 		}
 
 		public void ClickMenu(MenuButton menu)
