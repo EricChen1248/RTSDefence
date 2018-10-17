@@ -1,17 +1,37 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Entity_Components.Ais
 {
+    [RequireComponent(typeof(NavMeshAgent))]
     public class Patroller : MonoBehaviour
     {
         public List<PatrolPoint> PatrolPoints;
         private int _currentPoint;
+        private NavMeshAgent _agent;
 
         // Use this for initialization
         public void Start ()
         {
             PatrolPoints = new List<PatrolPoint>();
+            _agent = GetComponent<NavMeshAgent>();
+        }
+
+        public void Update()
+        {
+            switch (_agent.pathStatus)
+            {
+                case NavMeshPathStatus.PathComplete:
+                case NavMeshPathStatus.PathInvalid:
+                    _agent.destination = GetNextPatrol();
+                    break;
+                case NavMeshPathStatus.PathPartial:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         public Vector3 GetNextPatrol()
