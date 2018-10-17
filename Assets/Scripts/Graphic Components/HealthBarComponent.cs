@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.IO;
 using UnityEngine;
 
 namespace Graphic_Components
@@ -9,15 +8,14 @@ namespace Graphic_Components
         public GameObject CurrentHealthBar;
         private Camera _camera;
 
-        private float _previous = 1;
         // Use this for initialization
-        void Start()
+        private void Start()
         {
             _camera = Camera.main;
             StartCoroutine(UpdateRotation());
         }
 
-        IEnumerator UpdateRotation()
+        private IEnumerator UpdateRotation()
         {
             while (true)
             {

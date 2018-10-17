@@ -23,7 +23,6 @@ namespace Entity_Components.Ais
 
         private void OnTriggerEnter(Collider other)
         {
-            print(other);
             if (!InLayerMask(TargetingLayers, other.gameObject.layer)) return;
             Agent.isStopped = true;
             Target = other.gameObject;
