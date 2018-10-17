@@ -16,6 +16,7 @@ namespace Entity_Components
         public EnemyData Data;
 
         public float Radius;
+        public bool FindGroup;
 
         // Use this for initialization
         public void Start()
@@ -29,6 +30,7 @@ namespace Entity_Components
             _ai.ReloadTime = Data.ReloadTime;
 
             Radius = Data.Radius;
+            FindGroup = Data.FindGroup;
 
             GetComponent<SphereCollider>().radius = Radius;
             _ai.FindTarget();

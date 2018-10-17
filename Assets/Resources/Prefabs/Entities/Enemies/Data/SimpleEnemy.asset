@@ -13,7 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 100
   Radius: 5
-  ReloadTime: 1
   TargetLayers:
     serializedVersion: 2
     m_Bits: 274944
+  ReloadTime: 1
+  FindGroup: 1
