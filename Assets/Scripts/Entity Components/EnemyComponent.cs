@@ -37,7 +37,13 @@ namespace Entity_Components
             Radius = Data.Radius;
 
             GetComponent<SphereCollider>().radius = Radius;
-            _ai.FindTarget();
+            if(!_gf.enabled){
+                //Use single simple AI
+                print("Uraaaa");
+                _ai.FindTarget();
+            }else{
+                print("Listen to the commander!");
+            }
         }
     }
 }
