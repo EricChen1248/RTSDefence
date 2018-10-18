@@ -12,11 +12,11 @@ namespace Entity_Components
     {
         private AiBase _ai;
         private NavMeshAgent _agent;
+        private GroupFinder _gf;
 
         public EnemyData Data;
 
         public float Radius;
-        public bool FindGroup;
 
         // Use this for initialization
         public void Start()
@@ -29,8 +29,12 @@ namespace Entity_Components
             _ai.TargetingLayers = Data.TargetLayers;
             _ai.ReloadTime = Data.ReloadTime;
 
+            _gf = GetComponent<GroupFinder>();
+            if(Data.FindGroup){
+                _gf.enabled = true;
+            }
+
             Radius = Data.Radius;
-            FindGroup = Data.FindGroup;
 
             GetComponent<SphereCollider>().radius = Radius;
             _ai.FindTarget();

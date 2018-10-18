@@ -8,10 +8,7 @@ namespace Entity_Components{
 		private GameObject Group;
 		// Use this for initialization
 		public void Start () {
-			_active = GetComponent<EnemyComponent>().FindGroup;
-			if(_active){
-				Search();
-			}
+			print(1);
 		}
 		
 		//search for an existing group
