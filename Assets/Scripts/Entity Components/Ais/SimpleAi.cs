@@ -23,10 +23,11 @@ namespace Entity_Components.Ais
 
         private void OnTriggerEnter(Collider other)
         {
-            print(other);
             if (!InLayerMask(TargetingLayers, other.gameObject.layer)) return;
             Agent.isStopped = true;
             Target = other.gameObject;
+            var health = Target.GetComponent<HealthComponent>();
+            health.OnDeath += OnTargetDeath;
             StartCoroutine(Attack());
         }
 
@@ -40,6 +41,11 @@ namespace Entity_Components.Ais
 
                 yield return new WaitForSeconds(ReloadTime);
             }
+        }
+
+        private void OnTargetDeath(HealthComponent target)
+        {
+               print(GetInstanceID());
         }
     }
 }
