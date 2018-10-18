@@ -1,4 +1,5 @@
 ﻿using Controllers;
+using Entity_Components.Job;
 using Interface;
 using UnityEngine;
 using UnityEngine.AI;
@@ -9,13 +10,16 @@ namespace Entity_Components
     public class PlayerComponent : MonoBehaviour, IClickable
     {
         public float Speed = 3.5f;
-        private NavMeshAgent _agent;
+        public NavMeshAgent Agent { get; private set; }
+
+        public IJob CurrentJob;
+        public bool DoingJob;
 
         // Use this for initialization
         private void Start ()
         {
-            _agent = GetComponent<NavMeshAgent>();
-            _agent.enabled = true;
+            Agent = GetComponent<NavMeshAgent>();
+            Agent.enabled = true;
         }
     
         public void MoveToLocation(Vector3 target)
@@ -24,15 +28,22 @@ namespace Entity_Components
             target.y = Mathf.Round(target.y);
             target.z = Mathf.Round(target.z);
 
-            _agent.destination = target;
-            _agent.isStopped = false;
+            Agent.destination = target;
+            Agent.isStopped = false;
         }
 
         private void OnMouseDown()
         {
             CoreController.MouseController.SetFocus(this);
         }
-    
+
+        private void FixedUpdate()
+        {
+            if (!DoingJob)
+            {
+                StartCoroutine(CurrentJob?.DoJob(this));   
+            }
+        }
 
         private static int IndexFromMask(int mask)
         {
