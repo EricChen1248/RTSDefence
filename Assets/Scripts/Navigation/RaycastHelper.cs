@@ -48,14 +48,23 @@ namespace Navigation
 
             // Declare a raycast hit to store information about what our raycast has hit
             RaycastHit hit;
-
             // Check if our raycast has hit anything
             var success = Physics.Raycast(rayOrigin, out hit, float.PositiveInfinity, mask);
-            print(hit.transform);
             go = success ? hit.transform.gameObject : null;
             return success;
         }
-    
+
+        public static int IndexFromMask(int mask)
+        {
+            for (var i = 0; i < 32; ++i)
+            {
+                if (1 << i == mask)
+                    return i;
+            }
+            return -1;
+        }
+
+
     }
 
     [Serializable]

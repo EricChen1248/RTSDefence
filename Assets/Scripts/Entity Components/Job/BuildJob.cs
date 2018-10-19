@@ -8,13 +8,12 @@ using Helpers;
 using Scriptable_Objects;
 using UnityEngine;
 using UnityEngine.AI;
-using Object = System.Object;
 
 namespace Entity_Components.Job
 {
     public class BuildJob : IJob
     {
-        private readonly Queue<RecipeItem> recipe = new Queue<RecipeItem>();
+        private readonly Queue<RecipeItem> _recipe = new Queue<RecipeItem>();
         private readonly PlayerComponent _sender;
         private readonly GhostModelScript _ghost;
         private readonly int _buildTime;
@@ -32,6 +31,8 @@ namespace Entity_Components.Job
             _currentPhase = BuildJobPhase.CollectingResources;
         }
 
+        #region IJob Interface Methods
+
         public IEnumerator DoJob()
         {
             switch (_currentPhase)
@@ -47,6 +48,15 @@ namespace Entity_Components.Job
             }
         }
 
+        public void CancelJob()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region Sub Jobs
+
         private IEnumerator DeliveringResource()
         {
             _sender.Agent.destination = _ghost.transform.position;
@@ -58,12 +68,12 @@ namespace Entity_Components.Job
             }
 
             _sender.DoingJob = false;
-            _currentPhase = recipe.Count > 0 ? BuildJobPhase.CollectingResources : BuildJobPhase.Building;
+            _currentPhase = _recipe.Count > 0 ? BuildJobPhase.CollectingResources : BuildJobPhase.Building;
         }
 
         private IEnumerator CollectingResources()
         {
-            if (recipe.Count > 0)
+            if (_recipe.Count > 0)
             {
                 _sender.Agent.destination = CoreController.Instance.CoreGameObject.transform.position;
                 while (true)
@@ -79,13 +89,10 @@ namespace Entity_Components.Job
                 _resourceHolder = Pool.Spawn("Resource Holder");
                 if (_resourceHolder == null)
                 {
-                    _resourceHolder = UnityEngine.Object.Instantiate(Resources.Load("Prefabs/Entities/Resource Holder")) as GameObject;
+                    _resourceHolder = UnityEngine.Object.Instantiate(Resources.Load<GameObject>("Prefabs/Entities/Resource Holder"));
                 }
                 
-                if (_resourceHolder != null)
-                {
-                    _resourceHolder.GetComponent<ResourceHolderComponent>().SetRecipeItem(recipe.Dequeue());
-                }
+                _resourceHolder.GetComponent<ResourceHolderComponent>().SetRecipeItem(_recipe.Dequeue());
             }
 
             _sender.DoingJob = false;
@@ -110,10 +117,7 @@ namespace Entity_Components.Job
             _sender.CurrentJob = null;
         }
         
-        public void CancelJob()
-        {
-            throw new System.NotImplementedException();
-        }
+        #endregion
 
         private enum BuildJobPhase
         {

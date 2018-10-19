@@ -1,4 +1,5 @@
 ﻿using Buildable_Components;
+using Entity_Components.Friendlies;
 using Interface;
 using Navigation;
 using UnityEngine;
@@ -18,12 +19,12 @@ namespace Controllers
 
         private void Update()
         {
-            // Right click
             if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2))
             {
                 if (EventSystem.current.IsPointerOverGameObject()) return;
             }
 
+            // Right click
             if (Input.GetMouseButtonDown(1))
             {
 
@@ -34,17 +35,36 @@ namespace Controllers
                 _focusedItem?.RightClick(clickPos);
                 return;
             }
+            HandleLeftClicks();
 
-            // Left click
-            if (Input.GetMouseButtonDown(0))
-            {
-                GameObject go;
-                if (RaycastHelper.RaycastGameObject(out go, RaycastHelper.LayerMaskDictionary["Ghost Models"]))
-                {
-                    go.GetComponent<GhostModelScript>().Clicked();
-                }
-            }
-            
         }
+
+        #region Left Clicks
+
+        private void HandleLeftClicks()
+        {
+            if (!Input.GetMouseButtonDown(0)) return;
+
+            if (GhostModelLeftClick()) return;
+            if (PlayerLeftClick()) return;
+        }
+
+        private static bool GhostModelLeftClick()
+        {
+            GameObject go;
+            if (!RaycastHelper.RaycastGameObject(out go, 1 << LayerMask.NameToLayer("GhostModel"))) return false;
+            go.GetComponent<GhostModelScript>().Clicked();
+            return true;
+        }
+
+        private bool PlayerLeftClick()
+        {
+            GameObject player;
+            if (!RaycastHelper.RaycastGameObject(out player, 1 << LayerMask.NameToLayer("Player"))) return false;
+            SetFocus(player.GetComponent<PlayerComponent>());
+            return true;
+        }
+
+        #endregion
     }
 }
