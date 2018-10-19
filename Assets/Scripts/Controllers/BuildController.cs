@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Buildable_Components;
 using Navigation;
+using Scriptable_Objects;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using BuildData = Scriptable_Objects.BuildData;
@@ -53,9 +54,12 @@ namespace Controllers
             }
             else if (Input.GetMouseButtonDown(0))
             {
-                if (_currentGhostModel.GetComponent<GhostModelScript>().CanBuild())
+                var script = _currentGhostModel.GetComponent<GhostModelScript>();
+                if (script.CanBuild())
                 {
-                    Build();
+                    _currentGhostModel = null;
+                    script.Activate();
+                    CreateGhostModel();
                 }
             }
             else if (Input.GetKeyDown(KeyCode.E))
@@ -150,13 +154,15 @@ namespace Controllers
         {
             if (_currentGhostModel != null) Destroy(_currentGhostModel);
             _currentGhostModel = Instantiate(_currentData.GhostModel);
+            var script = _currentGhostModel.GetComponent<GhostModelScript>();
+            script.AssignData(_currentData, _currentGameObject);
         }
 
-        private void Build()
+        public void Build(GameObject ghostModel)
         {
-            var go = Instantiate(_currentGameObject);
-            go.transform.position = _currentGhostModel.transform.position;
-            go.transform.rotation = _currentGhostModel.transform.rotation;
+            var go = Instantiate(ghostModel.GetComponent<GhostModelScript>().OriginalGameObject);
+            go.transform.position = ghostModel.transform.position;
+            go.transform.rotation = ghostModel.transform.rotation;
 
             // Add newly built object to the dictionary list
             if (!BuiltObjects.ContainsKey(_currentData))
@@ -166,6 +172,8 @@ namespace Controllers
             BuiltObjects[_currentData][go.GetInstanceID()] = go;
 
             NavigationBaker.Instance.Rebuild();
+
+            Destroy(ghostModel);
             // TODO : Get recipe and remove resources
             // DeselectBuild();
         }

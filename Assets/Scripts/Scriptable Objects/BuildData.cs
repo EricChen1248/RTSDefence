@@ -15,6 +15,7 @@ namespace Scriptable_Objects
         public bool CanRotateHorizontal;
         public bool CanRotateVertical;
 
+        public int BuildTime;
         public RecipeItem[] Recipe;
     }
 

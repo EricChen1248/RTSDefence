@@ -41,6 +41,20 @@ namespace Navigation
             results.z = Mathf.Round(results.z);
             return success;
         }
+
+        public static bool RaycastGameObject(out GameObject go, LayerMask mask)
+        {
+            var rayOrigin = _camera.ScreenPointToRay(Input.mousePosition);
+
+            // Declare a raycast hit to store information about what our raycast has hit
+            RaycastHit hit;
+
+            // Check if our raycast has hit anything
+            var success = Physics.Raycast(rayOrigin, out hit, float.PositiveInfinity, mask);
+            print(hit.transform);
+            go = success ? hit.transform.gameObject : null;
+            return success;
+        }
     
     }
 

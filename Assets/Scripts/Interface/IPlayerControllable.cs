@@ -2,7 +2,7 @@
 
 namespace Interface
 {
-    public interface IClickable
+    public interface IPlayerControllable
     {
         bool HasFocus { get; }
 

@@ -27,6 +27,7 @@ namespace Entity_Components.Ais
             Agent.isStopped = true;
             Target = other.gameObject;
             var health = Target.GetComponent<HealthComponent>();
+            print(Target);
             health.OnDeath += OnTargetDeath;
             StartCoroutine(Attack());
         }

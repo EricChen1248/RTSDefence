@@ -1,16 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Scriptable_Objects;
 using UnityEngine;
 
-public class ResourceHolderComponent : MonoBehaviour {
+public class ResourceHolderComponent : MonoBehaviour
+{
+    public RecipeItem CurrentItem { get; private set; }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public void SetRecipeItem(RecipeItem item)
+    {
+        CurrentItem = item;
+    }
 }

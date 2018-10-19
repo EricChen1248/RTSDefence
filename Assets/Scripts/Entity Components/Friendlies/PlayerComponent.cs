@@ -4,10 +4,10 @@ using Interface;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Entity_Components
+namespace Entity_Components.Friendlies
 {
     [DefaultExecutionOrder(0)]
-    public class PlayerComponent : MonoBehaviour, IClickable
+    public class PlayerComponent : MonoBehaviour, IPlayerControllable
     {
         public float Speed = 3.5f;
         public NavMeshAgent Agent { get; private set; }
@@ -41,7 +41,10 @@ namespace Entity_Components
         {
             if (!DoingJob)
             {
-                StartCoroutine(CurrentJob?.DoJob(this));   
+                if (CurrentJob != null)
+                {
+                    StartCoroutine(CurrentJob.DoJob());   
+                }
             }
         }
 

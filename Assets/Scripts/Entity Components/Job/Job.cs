@@ -4,7 +4,7 @@ namespace Entity_Components.Job
 {
     public interface IJob
     {
-        IEnumerator DoJob(PlayerComponent sender);
-        IEnumerator ResumeJob(PlayerComponent sender);
+        IEnumerator DoJob();
+        void CancelJob();
     }
 }
