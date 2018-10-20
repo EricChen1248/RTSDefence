@@ -23,7 +23,7 @@ namespace Entity_Components{
 			SearchFailed();
 		}
 
-		public void SearchFailed(){
+		private void SearchFailed(){
 			print("No commander... I can only Uraaaa!");
 			GetComponent<AiBase>().FindTarget();
 			//this.enabled = false;
