@@ -5,9 +5,14 @@ using Entity_Components.Ais;
 
 namespace Entity_Components{
 	public class GroupFinder : MonoBehaviour {
-		private GameObject _group;
+		private Transform _group;
+		private static Transform _groupsPool; //point to "Groups" which is parent of all group
 		// Use this for initialization
 		public void Start () {
+			// Is this a good way?
+			if(_groupsPool == null){
+				_groupsPool = GameObject.Find("Groups")?.transform;
+			}
 			Search();
 		}
 
@@ -17,8 +22,18 @@ namespace Entity_Components{
 		
 		//search for an existing group
 		public void Search () {
-			_group = this.gameObject; //test
-			//_group.?? += KickedOut;
+			int? NumOfGroups = _groupsPool?.childCount;
+			if(NumOfGroups != null){
+				for(int i = 0;i < NumOfGroups;i++){
+					print("Apply for Group No." + i.ToString());
+					Transform Group = _groupsPool.GetChild(i);
+					//bool Success = Group.GetComponent<>().Apply();
+					//if(Success){
+					//	_group = Group;
+					//	_group.?? += KickedOut;
+					//}
+				}
+			}
 			// if failed:
 			SearchFailed();
 		}
