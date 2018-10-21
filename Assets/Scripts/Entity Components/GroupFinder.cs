@@ -23,11 +23,8 @@ namespace Entity_Components{
 		
 		//search for an existing group
 		public void Search () {
-			int? NumOfGroups = _groupsPool?.childCount;
-			if(NumOfGroups != null){
-				for(int i = 0;i < NumOfGroups;i++){
-					print("Apply for Group No." + i.ToString());
-					Transform Group = _groupsPool.GetChild(i);
+			if(_groupsPool != null){
+				foreach(Transform Group in _groupsPool.GetComponent<GroupsComponent>().Children()){
 					bool Success = Group.GetComponent<GroupComponent>().Apply(this.gameObject);
 					if(Success){
 						_group = Group;
