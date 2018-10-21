@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Entity_Components.Ais;
+using Controllers;
 
 namespace Entity_Components{
 	public class GroupFinder : MonoBehaviour {
@@ -11,7 +12,7 @@ namespace Entity_Components{
 		public void Start () {
 			// Is this a good way?
 			if(_groupsPool == null){
-				_groupsPool = GameObject.Find("Groups")?.transform;
+				_groupsPool = CoreController.Instance.GroupsGameObject?.transform;
 			}
 			Search();
 		}
@@ -27,11 +28,12 @@ namespace Entity_Components{
 				for(int i = 0;i < NumOfGroups;i++){
 					print("Apply for Group No." + i.ToString());
 					Transform Group = _groupsPool.GetChild(i);
-					//bool Success = Group.GetComponent<>().Apply();
-					//if(Success){
-					//	_group = Group;
-					//	_group.?? += KickedOut;
-					//}
+					bool Success = Group.GetComponent<GroupComponent>().Apply(this.gameObject);
+					if(Success){
+						_group = Group;
+						//_group.?? += KickedOut;
+						return;
+					}
 				}
 			}
 			// if failed:

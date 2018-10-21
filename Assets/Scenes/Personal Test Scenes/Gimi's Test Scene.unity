@@ -296,6 +296,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 631855897}
+  - component: {fileID: 631855898}
   m_Layer: 0
   m_Name: Groups
   m_TagString: Untagged
@@ -317,6 +318,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &631855898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 631855896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61d066a44346b3c4d812170c45b74f39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &954759729
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,6 +662,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1371630532}
   - component: {fileID: 1371630533}
+  - component: {fileID: 1371630534}
   m_Layer: 0
   m_Name: AttackGroup
   m_TagString: Untagged
@@ -679,6 +692,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9be7b9bcb9149b1429ee8051c366a66e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 0}
+  ReloadTime: 0
+  TargetingLayers:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &1371630534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1371630531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f9daccb0c8c894f8bd2be4fea1efef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1372977639

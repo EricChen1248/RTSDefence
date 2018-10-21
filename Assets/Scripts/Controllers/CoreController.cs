@@ -9,6 +9,7 @@ namespace Controllers
         public static MouseController MouseController { get; private set; }
 
         public GameObject CoreGameObject;
+        public GameObject GroupsGameObject;
 
         public void Start()
         {
