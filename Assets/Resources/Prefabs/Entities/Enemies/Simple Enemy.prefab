@@ -61,6 +61,7 @@ GameObject:
   - component: {fileID: 195226906356467166}
   - component: {fileID: 114382947028844778}
   - component: {fileID: 114810184942262016}
+  - component: {fileID: 114816285419017172}
   - component: {fileID: 114853331497024666}
   m_Layer: 10
   m_Name: Simple Enemy
@@ -263,6 +264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: 0aae9067f3e4861478f70a197fd4990a, type: 2}
   Radius: 0
+  FindGroup: 0
 --- !u!114 &114810184942262016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -279,6 +281,17 @@ MonoBehaviour:
   TargetingLayers:
     serializedVersion: 2
     m_Bits: 0
+--- !u!114 &114816285419017172
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1880466369813282}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03945c6b4c1f33343acd59f7cec7bc95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114853331497024666
 MonoBehaviour:
   m_ObjectHideFlags: 1

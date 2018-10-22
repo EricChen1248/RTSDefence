@@ -8,5 +8,6 @@ namespace Scriptable_Objects
         public float Radius;
         public LayerMask TargetLayers;
         public float ReloadTime;
+        public bool FindGroup;
     }
 }
