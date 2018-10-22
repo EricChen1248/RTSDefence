@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using Entity_Components.Ais;
 using Controllers;
 
@@ -17,7 +18,27 @@ namespace Entity_Components{
 			Search();
 		}
 
+		//register
+		public void SetGroup(Transform Group){
+			if(_group != null){
+				KickedOut();
+			}
+			_group = Group;
+			if(_group == null){
+				return;
+			}
+			var group_component = Group.GetComponent<GroupComponent>();
+			print(group_component);
+			group_component.Member.Add(transform);
+		}
+
+		//de-register
 		public void KickedOut(){
+			if(_group == null){
+				return;
+			}
+			var group_component = _group.GetComponent<GroupComponent>();
+			group_component.Member.Remove(transform);
 			_group = null;
 		}
 		
@@ -27,8 +48,7 @@ namespace Entity_Components{
 				foreach(Transform Group in _groupsPool.GetComponent<GroupsComponent>().Children()){
 					bool Success = Group.GetComponent<GroupComponent>().Apply(this.gameObject);
 					if(Success){
-						_group = Group;
-						//_group.?? += KickedOut;
+						SetGroup(Group);
 						return;
 					}
 				}
