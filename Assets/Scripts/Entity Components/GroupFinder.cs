@@ -28,8 +28,8 @@ namespace Entity_Components{
 				return;
 			}
 			var group_component = Group.GetComponent<GroupComponent>();
-			print(group_component);
 			group_component.Member.Add(transform);
+			Group.GetComponent<GroupAiBase>().FirstCommand(transform);
 		}
 
 		//de-register
@@ -39,6 +39,7 @@ namespace Entity_Components{
 			}
 			var group_component = _group.GetComponent<GroupComponent>();
 			group_component.Member.Remove(transform);
+			_group.GetComponent<GroupAiBase>().LastCommand(transform);
 			_group = null;
 		}
 		
@@ -61,6 +62,10 @@ namespace Entity_Components{
 			print("No commander... I can only Uraaaa!");
 			GetComponent<AiBase>().FindTarget();
 			//this.enabled = false;
+		}
+
+		void OnDestroy(){
+			KickedOut();
 		}
 	}
 }

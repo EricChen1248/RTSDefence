@@ -24,5 +24,9 @@ namespace Entity_Components{
 				member.GetComponent<GroupFinder>().KickedOut();
 			}
 		}
+
+		void OnDestroy(){
+			ClearMember();
+		}
 	}
 }
