@@ -829,6 +829,11 @@ Prefab:
       propertyPath: Radius
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114810184942262016, guid: 3a4335ef4766aca44b3f473c8cf3f99a,
+        type: 2}
+      propertyPath: ReloadTime
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a4335ef4766aca44b3f473c8cf3f99a, type: 2}
   m_IsPrefabAsset: 0
