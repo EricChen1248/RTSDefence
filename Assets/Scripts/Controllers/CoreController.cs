@@ -7,6 +7,7 @@ namespace Controllers
         public static CoreController Instance { get; private set; }
         public static BuildController BuildController { get; private set; }
         public static MouseController MouseController { get; private set; }
+        public static CameraController CameraController { get; set; }
 
         public GameObject CoreGameObject;
         public GameObject GroupsGameObject;

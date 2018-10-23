@@ -1,8 +1,7 @@
-﻿using System.Runtime.InteropServices.WindowsRuntime;
-using Buildable_Components;
+﻿using Entity_Components;
 using UnityEngine;
 
-namespace Entity_Components
+namespace Buildable_Components
 {
     
     [RequireComponent(typeof(FieldOfViewComponent))]

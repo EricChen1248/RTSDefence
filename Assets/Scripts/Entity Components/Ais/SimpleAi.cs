@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Controllers;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,9 +10,13 @@ namespace Entity_Components.Ais
     [DefaultExecutionOrder(-1)]
     public class SimpleAi : AiBase
     {
+        private GameObject _tempTarget;
+        private EnemyComponent _enemyComponent;
+
         public void Start()
         {
             Agent = GetComponent<NavMeshAgent>();
+            _enemyComponent = GetComponent<EnemyComponent>();
         }
 
         public override void FindTarget()
@@ -25,17 +30,25 @@ namespace Entity_Components.Ais
         {
             if (!InLayerMask(TargetingLayers, other.gameObject.layer)) return;
             Agent.isStopped = true;
-            Target = other.gameObject;
-            var health = Target.GetComponent<HealthComponent>();
+            _tempTarget = other.gameObject;
+            var health = _tempTarget.GetComponent<HealthComponent>();
             health.OnDeath += OnTargetDeath;
             StartCoroutine(Attack());
         }
 
         private IEnumerator Attack()
         {
-            var health = Target.GetComponent<HealthComponent>();
+            var health = _tempTarget.GetComponent<HealthComponent>();
             while (health.Health > 0)
             {
+                print((_tempTarget.transform.position - transform.position).sqrMagnitude);
+                if ((_tempTarget.transform.position - transform.position).sqrMagnitude >= Math.Pow(_enemyComponent.Radius + 1,2))
+                {
+                    _tempTarget = null;
+                    health.OnDeath -= OnTargetDeath;
+                    Agent.isStopped = false;
+                    break;
+                }
                 // Attack
                 health.Damage(1);
 
@@ -45,7 +58,7 @@ namespace Entity_Components.Ais
 
         private void OnTargetDeath(HealthComponent target)
         {
-               print(GetInstanceID());
+            print(GetInstanceID());
         }
     }
 }

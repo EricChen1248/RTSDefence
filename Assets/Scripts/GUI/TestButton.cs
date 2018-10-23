@@ -15,6 +15,7 @@ namespace GUI{
 			//call one method
 			LeadAllGroup();
 		}
+
 		public void LeadAllGroup(){
 			foreach(Transform Group in CoreController.Instance.GroupsGameObject.GetComponent<GroupsComponent>().Children()){
 				Group.GetComponent<GroupAiBase>().LeadMemberTo(V);

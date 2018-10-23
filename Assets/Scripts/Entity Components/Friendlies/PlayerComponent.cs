@@ -4,10 +4,10 @@ using Interface;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Entity_Components
+namespace Entity_Components.Friendlies
 {
     [DefaultExecutionOrder(0)]
-    public class PlayerComponent : MonoBehaviour, IClickable
+    public class PlayerComponent : MonoBehaviour, IPlayerControllable
     {
         public float Speed = 3.5f;
         public NavMeshAgent Agent { get; private set; }
@@ -15,13 +15,6 @@ namespace Entity_Components
         public IJob CurrentJob;
         public bool DoingJob;
 
-        // Use this for initialization
-        private void Start ()
-        {
-            Agent = GetComponent<NavMeshAgent>();
-            Agent.enabled = true;
-        }
-    
         public void MoveToLocation(Vector3 target)
         {
             target.x = Mathf.Round(target.x);
@@ -32,28 +25,26 @@ namespace Entity_Components
             Agent.isStopped = false;
         }
 
-        private void OnMouseDown()
-        {
-            CoreController.MouseController.SetFocus(this);
-        }
 
+        #region Unity Callbacks
+
+        private void Start()
+        {
+            Agent = GetComponent<NavMeshAgent>();
+            Agent.enabled = true;
+        }
+        
         private void FixedUpdate()
         {
-            if (!DoingJob)
+            if (!DoingJob && CurrentJob != null)
             {
-                StartCoroutine(CurrentJob?.DoJob(this));   
+                StartCoroutine(CurrentJob.DoJob());   
             }
         }
 
-        private static int IndexFromMask(int mask)
-        {
-            for (var i = 0; i < 32; ++i)
-            {
-                if (1 << i == mask)
-                    return i;
-            }
-            return -1;
-        }
+        #endregion
+
+        #region Focus
 
         public bool HasFocus { get; private set; }
         public void Focus()
@@ -65,10 +56,13 @@ namespace Entity_Components
         {
             HasFocus = false;
         }
-
+        
         public void RightClick(Vector3 clickPosition)
         {
             MoveToLocation(clickPosition);
         }
+
+        #endregion
+
     }
 }

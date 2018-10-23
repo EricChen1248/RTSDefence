@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Helpers;
 using UnityEngine;
 
 namespace GUI{
@@ -10,7 +11,9 @@ namespace GUI{
 		public int PosZLowerBound = -10;
 		public int PosZUpperBound = 10;
 		public static System.Random rnd = new System.Random();
-		public void ClickEvent(){
+
+		public void ClickEvent()
+		{
 			//...
 			Vector3 v = new Vector3(rnd.Next(PosXLowerBound, PosXUpperBound), (float)0.75, rnd.Next(PosZLowerBound, PosZUpperBound));
 			Instantiate(SpawnObject, v, Quaternion.identity);

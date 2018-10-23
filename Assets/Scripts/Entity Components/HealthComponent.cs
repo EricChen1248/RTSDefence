@@ -17,25 +17,29 @@ namespace Entity_Components
         {
             _healthBarComponent = GetComponentInChildren<HealthBarComponent>();
             Health = MaxHealth;
+
+            ReportHealth();
         }
 
         public void Damage(int damage)
         {
             Health -= damage;
-            _healthBarComponent.ReportProgress(((float)Health)/MaxHealth);
-
+            ReportHealth();
             if (Health <= 0)
             {
                 Death();
             }
         }
-
-
+        
         private void Death()
         {
-            // Kill of object;
+            // Kill off object;
             OnDeath?.Invoke(this);
         }
-        
+
+        private void ReportHealth()
+        {
+            _healthBarComponent.ReportProgress((float)Health / MaxHealth);
+        }
     }
 }
