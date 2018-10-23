@@ -12,6 +12,8 @@ namespace Scripts.Entity_Components.Ais{
 		private static int PosZUpperBound = 10;
 
 		public override void FindTarget(){}
+		public override void FirstCommand(Transform Member){}
+		public override void LastCommand(Transform Member){}
 		public override void LeadMemberTo(Vector3 Vector){
 			foreach(Transform member in _groupData.Member){
 				member.GetComponent<NavMeshAgent>().destination = Vector + new Vector3(rnd.Next(PosXLowerBound, PosXUpperBound), 0, rnd.Next(PosZLowerBound, PosZUpperBound));
