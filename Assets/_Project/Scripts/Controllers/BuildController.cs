@@ -9,6 +9,12 @@ namespace Scripts.Controllers
 {
     public class BuildController : MonoBehaviour
     {
+        #region Cheat Variables
+
+        public bool NoGhost;
+
+        #endregion
+
         #region Public Variables
 
         public BuildData[] ActiveDefences;
@@ -56,8 +62,16 @@ namespace Scripts.Controllers
                 var script = _currentGhostModel.GetComponent<GhostModelScript>();
                 if (script.CanBuild())
                 {
-                    _currentGhostModel = null;
-                    script.Activate();
+                    if (NoGhost)
+                    {
+                        Build(_currentGhostModel);
+                        Destroy(_currentGhostModel);
+                    }
+                    else
+                    {
+                        _currentGhostModel = null;
+                        script.Activate();
+                    }
                     CreateGhostModel();
                 }
             }

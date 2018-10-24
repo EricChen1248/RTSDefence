@@ -14,8 +14,8 @@ namespace Scripts.GUI{
 		}
 
 		public void LeadAllGroup(){
-			foreach(Transform Group in CoreController.Instance.GroupsGameObject.GetComponent<GroupsComponent>().Children()){
-				Group.GetComponent<GroupAiBase>().LeadMemberTo(V);
+			foreach(var @group in CoreController.Instance.GroupsGameObject.GetComponent<GroupManager>().Children()){
+				@group.GetComponent<GroupAiBase>().LeadMemberTo(V);
 			}
 		}
 		//Add some methods if you want...

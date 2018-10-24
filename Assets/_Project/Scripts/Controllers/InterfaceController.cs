@@ -10,7 +10,7 @@ namespace Scripts.Controllers
 		private MenuButton _activeMenu;
 
 		// Use this for initialization
-		void Start ()
+	    private void Start ()
 		{
 			Instance = this;	
 		}

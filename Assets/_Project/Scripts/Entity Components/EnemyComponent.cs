@@ -30,7 +30,8 @@ namespace Scripts.Entity_Components
             _ai.ReloadTime = Data.ReloadTime;
 
             _gf = GetComponent<GroupFinder>();
-            if(Data.FindGroup){
+            if (Data.FindGroup)
+            {
                 _gf.enabled = true;
             }
 

@@ -94,9 +94,6 @@ namespace Scripts.Controllers
 
         private IEnumerator MoveEnumerator(float xChange, float yChange)
         {
-            //xChange /= 10;
-            //yChange /= 10;
-
             var startPos = transform.position;
             var endPos = transform.position + transform.right * xChange +
                          Vector3.Normalize(transform.forward - new Vector3(0, transform.forward.y, 0)) * 2 * yChange;

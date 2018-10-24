@@ -62,13 +62,11 @@ namespace Scripts.Entity_Components.Job
         private IEnumerator DeliveringResource()
         {
             _sender.Agent.destination = _ghost.transform.position;
-            while (true)
+            while ((_sender.transform.position - _ghost.transform.position).sqrMagnitude > 2.5f)
             {
-                if (_sender.Agent.pathStatus == NavMeshPathStatus.PathComplete &&
-                    Math.Abs(_sender.Agent.remainingDistance) < 0.1f) break;
                 yield return new WaitForFixedUpdate();
             }
-
+            _sender.Stop();
             _sender.DoingJob = false;
             _currentPhase = _recipe.Count > 0 ? BuildJobPhase.CollectingResources : BuildJobPhase.Building;
         }
@@ -81,7 +79,7 @@ namespace Scripts.Entity_Components.Job
                 while (true)
                 {
                     if (_sender.Agent.pathStatus == NavMeshPathStatus.PathComplete &&
-                        Math.Abs(_sender.Agent.remainingDistance) < 0.1f) break;
+                        Math.Abs(_sender.Agent.remainingDistance) < 0.2f) break;
                     yield return new WaitForFixedUpdate();
                 }
 

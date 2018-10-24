@@ -9,8 +9,8 @@ namespace Scripts.Entity_Components.Ais
     [DefaultExecutionOrder(-1)]
     public class SimpleAi : AiBase
     {
-        private GameObject _tempTarget;
         private EnemyComponent _enemyComponent;
+        private GameObject _tempTarget;
 
         public void Start()
         {
@@ -41,13 +41,15 @@ namespace Scripts.Entity_Components.Ais
             while (health.Health > 0)
             {
                 print((_tempTarget.transform.position - transform.position).sqrMagnitude);
-                if ((_tempTarget.transform.position - transform.position).sqrMagnitude >= Math.Pow(_enemyComponent.Radius + 1,2))
+                if ((_tempTarget.transform.position - transform.position).sqrMagnitude >=
+                    Math.Pow(_enemyComponent.Radius + 1, 2))
                 {
                     _tempTarget = null;
                     health.OnDeath -= OnTargetDeath;
                     Agent.isStopped = false;
                     break;
                 }
+
                 // Attack
                 health.Damage(1);
 

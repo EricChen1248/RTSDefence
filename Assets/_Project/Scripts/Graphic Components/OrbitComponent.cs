@@ -29,7 +29,7 @@ namespace Scripts.Graphic_Components
         
         }
 
-        IEnumerator ChangeNormal()
+        private IEnumerator ChangeNormal()
         {
             while (true)
             {

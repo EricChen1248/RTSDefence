@@ -9,7 +9,7 @@ namespace Scripts.GUI
 		public void Select()
 		{
 			InterfaceController.Instance.ClickMenu(this);
-			// Todo menu button click;
+			// TODO : menu button click;
 		}
 
 		public void Deselect()

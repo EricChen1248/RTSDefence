@@ -5,17 +5,19 @@ using UnityEngine;
 namespace Scripts
 {
     [DefaultExecutionOrder(-99)]
-    public class GroupsComponent : MonoBehaviour {
-
+    public class GroupManager : MonoBehaviour
+    {
         // Use this for initialization
-        private void Start ()
+        private void Start()
         {
             CoreController.Instance.GroupsGameObject = gameObject;
         }
-	
-        public IEnumerable<Transform> Children(){
-            for(int i = 0;i < transform.childCount;i++){
-                print("Apply for Group No." + i.ToString());
+
+        public IEnumerable<Transform> Children()
+        {
+            for (var i = 0; i < transform.childCount; i++)
+            {
+                print("Apply for Group No." + i);
                 yield return transform.GetChild(i);
             }
         }
