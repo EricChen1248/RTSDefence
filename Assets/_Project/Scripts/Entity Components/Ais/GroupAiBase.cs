@@ -22,6 +22,7 @@ namespace Scripts.Entity_Components.Ais{
 		//Maybe it will be useful when a group perishes.
 		//"Member" of group component does not contain this member.
 		public abstract void LastCommand(Transform member);
+		public abstract void StopAll();
 		public abstract void LeadMemberTo(Vector3 vector);
 	}
 }
