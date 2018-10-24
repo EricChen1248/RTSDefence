@@ -16,11 +16,11 @@ namespace Scripts.Entity_Components.Ais{
 		//the AI of the group may send a command
 		//to make it stop, to have a party for its initiation, or whatever.
 		//This method gets called when an enemy set its group.
-		//DO NOT expect "Member" of group component contains this member.
+		//"Member" of group component does not contain this member.
 		public abstract void FirstCommand(Transform member);
-		//And that is what needs to be done when a member get kicked out.
+		//And that is what needs to be done when a member gets kicked out.
 		//Maybe it will be useful when a group perishes.
-		//DO NOT expect "Member" of group component contains this member.
+		//"Member" of group component does not contain this member.
 		public abstract void LastCommand(Transform member);
 		public abstract void LeadMemberTo(Vector3 vector);
 	}

@@ -8,7 +8,7 @@ namespace Scripts.Entity_Components
     {
         private Transform _group;
         private static Transform _groupsPool; //point to "Groups" which is parent of all group
-                                              // Use this for initialization
+        
         public void Start()
         {
             // Is this a good way?
@@ -29,9 +29,9 @@ namespace Scripts.Entity_Components
             _group = group;
             if (_group == null) return;
 
+            group.GetComponent<GroupAiBase>().FirstCommand(transform);
             var groupComponent = group.GetComponent<GroupComponent>();
             groupComponent.Member.Add(transform);
-            group.GetComponent<GroupAiBase>().FirstCommand(transform);
         }
 
         //de-register
