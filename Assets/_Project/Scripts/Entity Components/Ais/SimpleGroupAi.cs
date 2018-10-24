@@ -20,7 +20,9 @@ namespace Scripts.Entity_Components.Ais
         {
             foreach (var member in GroupData.Member)
             {
-                member.GetComponent<NavMeshAgent>().destination = vector + new Vector3(Rnd.Next(PosXLowerBound, PosXUpperBound), 0, Rnd.Next(PosZLowerBound, PosZUpperBound));
+                var agent = member.GetComponent<NavMeshAgent>();
+                agent.isStopped = false;
+                agent.destination = vector + new Vector3(Rnd.Next(PosXLowerBound, PosXUpperBound), 0, Rnd.Next(PosZLowerBound, PosZUpperBound));
             }
         }
     }
