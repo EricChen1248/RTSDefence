@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Scripts.Entity_Components
 {
+    [DefaultExecutionOrder(-2)]
     public class GroupComponent : MonoBehaviour
     {
         //Member is modified by GroupFinder, not by GroupComponent itself.
@@ -41,7 +42,7 @@ namespace Scripts.Entity_Components
 
         private void OnDestroy()
         {
-            ClearMember();
+            //ClearMember(); //only call from GroupFinder
         }
     }
 }

@@ -35,16 +35,20 @@ namespace Scripts.Entity_Components
         }
 
         //de-register
-        public void KickedOut()
+        public void KickedOut(bool selfDestroy = false)
         {
             if (_group == null)
             {
                 return;
             }
             var groupComponent = _group.GetComponent<GroupComponent>();
-            groupComponent.Member.Remove(transform);
+            groupComponent.Member?.Remove(transform);
             _group.GetComponent<GroupAiBase>().LastCommand(transform);
             _group = null;
+            if(!selfDestroy){
+                GetComponent<AiBase>().FindTarget();
+                Search();
+            }
         }
 
         //search for an existing group
@@ -73,7 +77,7 @@ namespace Scripts.Entity_Components
 
         private void OnDestroy()
         {
-            KickedOut();
+            KickedOut(selfDestroy: true);
         }
     }
 }

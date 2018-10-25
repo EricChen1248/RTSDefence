@@ -1,8 +1,23 @@
 using UnityEngine;
+using System;
 
 namespace Scripts.Entity_Components.Ais{
 	[RequireComponent(typeof(GroupComponent))]
 	public abstract class GroupAiBase : AiBase {
+		//Provide a prototype of states.
+		//Implementation will be in subclasses.
+		public abstract class State{
+			protected readonly Transform _transform;
+			public State(Transform t){
+				_transform = t;
+			}
+			public abstract String Identifier{get;}
+            public abstract void Enter();
+            public abstract void Update();
+            public abstract void Leave();
+            public abstract void FirstCommand(Transform member);
+            public abstract void LastCommand(Transform member);
+        }
 		protected GroupComponent GroupData;
 
 		// Use this for initialization
