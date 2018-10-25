@@ -43,7 +43,7 @@ namespace Scripts.Entity_Components
             }
             var groupComponent = _group.GetComponent<GroupComponent>();
             groupComponent.Member?.Remove(transform);
-            _group.GetComponent<GroupAiBase>().LastCommand(transform);
+            _group.GetComponent<GroupAiBase>().LastCommand(transform, selfDestroy);
             _group = null;
             if(!selfDestroy){
                 GetComponent<AiBase>().FindTarget();

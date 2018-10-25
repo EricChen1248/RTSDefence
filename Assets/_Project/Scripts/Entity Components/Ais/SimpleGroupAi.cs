@@ -24,8 +24,8 @@ namespace Scripts.Entity_Components.Ais
         public override void FirstCommand(Transform member){
             _state?.FirstCommand(member);
         }
-        public override void LastCommand(Transform member){
-            _state?.LastCommand(member);
+        public override void LastCommand(Transform member, bool selfDestroy){
+            _state?.LastCommand(member, selfDestroy);
             //member.GetComponent<AiBase>().FindTarget(); //This will be done in GroupFinder
         }
         public override void StopAll(){
@@ -61,10 +61,10 @@ namespace Scripts.Entity_Components.Ais
             public override void FirstCommand(Transform member){
                 member.GetComponent<NavMeshAgent>().isStopped = true;
             }
-            public override void LastCommand(Transform member){
-                //It may possibly raise error when an enemy is OnDestroy
-                //because the agent has been deactivated before.
-                member.GetComponent<NavMeshAgent>().isStopped = false;
+            public override void LastCommand(Transform member, bool selfDestroy){
+                if(!selfDestroy){
+                    member.GetComponent<NavMeshAgent>().isStopped = false;
+                }
             }
         }
 
@@ -81,7 +81,7 @@ namespace Scripts.Entity_Components.Ais
             public override void Update(){}
             public override void Leave(){}
             public override void FirstCommand(Transform member){}
-            public override void LastCommand(Transform member){}
+            public override void LastCommand(Transform member, bool selfDestroy){}
         }
 
         protected class MoveState : State{
@@ -150,7 +150,7 @@ namespace Scripts.Entity_Components.Ais
                     agent.destination = _vector;
                 }
             }
-            public override void LastCommand(Transform member){}
+            public override void LastCommand(Transform member, bool selfDestroy){}
         }
 
         protected class TargetingState : State{
@@ -160,7 +160,7 @@ namespace Scripts.Entity_Components.Ais
             public override void Update(){}
             public override void Leave(){}
             public override void FirstCommand(Transform member){}
-            public override void LastCommand(Transform member){}
+            public override void LastCommand(Transform member, bool selfDestroy){}
         }
     }
 }

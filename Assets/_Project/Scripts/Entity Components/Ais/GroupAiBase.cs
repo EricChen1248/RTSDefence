@@ -16,7 +16,7 @@ namespace Scripts.Entity_Components.Ais{
             public abstract void Update();
             public abstract void Leave();
             public abstract void FirstCommand(Transform member);
-            public abstract void LastCommand(Transform member);
+            public abstract void LastCommand(Transform member, bool selfDestroy);
         }
 		protected GroupComponent GroupData;
 
@@ -36,7 +36,7 @@ namespace Scripts.Entity_Components.Ais{
 		//And that is what needs to be done when a member gets kicked out.
 		//Maybe it will be useful when a group perishes.
 		//"Member" of group component does not contain this member.
-		public abstract void LastCommand(Transform member);
+		public abstract void LastCommand(Transform member, bool selfDestroy);
 		public abstract void StopAll();
 		public abstract void LeadMemberTo(Vector3 vector);
 	}
