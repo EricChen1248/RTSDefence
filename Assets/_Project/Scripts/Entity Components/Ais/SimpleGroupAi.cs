@@ -62,6 +62,8 @@ namespace Scripts.Entity_Components.Ais
                 member.GetComponent<NavMeshAgent>().isStopped = true;
             }
             public override void LastCommand(Transform member){
+                //It may possibly raise error when an enemy is OnDestroy
+                //because the agent has been deactivated before.
                 member.GetComponent<NavMeshAgent>().isStopped = false;
             }
         }
@@ -111,7 +113,7 @@ namespace Scripts.Entity_Components.Ais
                 if(_step == 0){
                     foreach (var member in GroupData.Member)
                     {
-                        if(Vector3.Distance(member.position, member.GetComponent<NavMeshAgent>().destination) < 1){
+                        if(Vector3.Distance(member.position, member.GetComponent<NavMeshAgent>().destination) < 10){
                             _step = 1;
                         }
                         break;
@@ -122,6 +124,14 @@ namespace Scripts.Entity_Components.Ais
                             member.GetComponent<NavMeshAgent>().destination = _vector;
                         }
                     }
+                }else{
+                    /*foreach (var member in GroupData.Member)
+                    {
+                        if(Vector3.Distance(member.position, _vector) < 3){
+                            _transform.GetComponent<SimpleGroupAi>().StopAll();
+                        }
+                        break;
+                    }*/
                 }
             }
             public override void Leave(){
