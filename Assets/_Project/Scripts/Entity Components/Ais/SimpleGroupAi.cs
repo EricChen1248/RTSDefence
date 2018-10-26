@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.AI;
 using System;
+using System.Collections.Generic;
 
 namespace Scripts.Entity_Components.Ais
 {
@@ -92,13 +93,22 @@ namespace Scripts.Entity_Components.Ais
             private const int PosZLowerBound = -10;
             private const int PosZUpperBound = 10;
 
+            protected const int _step0bond = 10;
+            protected const int _step1bond = 8;
             protected readonly Vector3 _vector;
             protected readonly GroupComponent GroupData;
-            protected int _step;
+            protected byte _step;
+            public byte Step{
+                get{return _step;}
+            }
+            protected HashSet<Transform> _notStopped;
+            private List<Transform> _toBeRemoved;
             public MoveState(Transform t, Vector3 vector) : base(t){
                 _vector = vector;
                 GroupData = _transform.GetComponent<GroupComponent>();
                 _step = 0;
+                _notStopped = new HashSet<Transform>();
+                _toBeRemoved = new List<Transform>();
             }
             public override String Identifier{get{return "Move";}}
             public override void Enter(){
@@ -109,11 +119,15 @@ namespace Scripts.Entity_Components.Ais
                     agent.destination = _vector + new Vector3(Rnd.Next(PosXLowerBound, PosXUpperBound), 0, Rnd.Next(PosZLowerBound, PosZUpperBound));
                 }
             }
+            /*
+            Q: Performance good??
+            A: Use _notStopped to reduce the demand on detecting the distances of all members every frame.
+            */
             public override void Update(){
                 if(_step == 0){
                     foreach (var member in GroupData.Member)
                     {
-                        if(Vector3.Distance(member.position, member.GetComponent<NavMeshAgent>().destination) < 10){
+                        if(Vector3.Distance(member.position, member.GetComponent<NavMeshAgent>().destination) < _step0bond){
                             _step = 1;
                         }
                         break;
@@ -121,17 +135,28 @@ namespace Scripts.Entity_Components.Ais
                     if(_step == 1){
                         print("set correct place");
                         foreach (var member in GroupData.Member){
-                            member.GetComponent<NavMeshAgent>().destination = _vector;
+                            if(Vector3.Distance(member.position, _vector) < _step1bond){
+                                member.GetComponent<NavMeshAgent>().ResetPath();
+                            }else{
+                                member.GetComponent<NavMeshAgent>().destination = _vector;
+                                _notStopped.Add(member);
+                            }
                         }
                     }
                 }else{
-                    /*foreach (var member in GroupData.Member)
+                    foreach (var member in _notStopped)
                     {
-                        if(Vector3.Distance(member.position, _vector) < 3){
-                            _transform.GetComponent<SimpleGroupAi>().StopAll();
+                        if(Vector3.Distance(member.position, _vector) < _step1bond){
+                            //_transform.GetComponent<SimpleGroupAi>().StopAll();
+                            member.GetComponent<NavMeshAgent>().ResetPath();
+                            _toBeRemoved.Add(member);
                         }
-                        break;
-                    }*/
+                    }
+                    foreach(var member in _toBeRemoved){
+                        print("Move Stop " + member.GetInstanceID());
+                        _notStopped.Remove(member);
+                    }
+                    _toBeRemoved.Clear();
                 }
             }
             public override void Leave(){
@@ -148,9 +173,12 @@ namespace Scripts.Entity_Components.Ais
                     agent.destination = _vector + new Vector3(Rnd.Next(PosXLowerBound, PosXUpperBound), 0, Rnd.Next(PosZLowerBound, PosZUpperBound));
                 }else{
                     agent.destination = _vector;
+                    _notStopped.Add(member);
                 }
             }
-            public override void LastCommand(Transform member, bool selfDestroy){}
+            public override void LastCommand(Transform member, bool selfDestroy){
+                _notStopped?.Remove(member);
+            }
         }
 
         protected class TargetingState : State{
