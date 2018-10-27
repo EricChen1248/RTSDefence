@@ -7,12 +7,13 @@ using UnityEngine;
 public class ArrowScript : MonoBehaviour {
 
     public Transform Target;
-
+    public float height = 20f;
+    public float acceleration = 0.01f;
     private IEnumerator _currentCoroutine;
 	// Use this for initialization
 	private void Start ()
     {
-        Fire(Vector3.zero, Target.position);
+        Fire(transform.position, Target.position);
 	}
 	
     public void Fire(Vector3 startPos, Vector3 endPos)
@@ -22,28 +23,35 @@ public class ArrowScript : MonoBehaviour {
         StartCoroutine(_currentCoroutine);
     }
     
-
     private IEnumerator FireRoutine(Vector3 startPos, Vector3 endPos)
     {
-        var distance = Vector3.Distance(startPos, endPos);
+        var max_height = 0f;
 
-        var midPoint = (startPos + endPos) / 2;
-
-        var xDir = midPoint - startPos;
-        var yDir = Vector3.up * distance / 2;
-
-        var times = distance * 60;
-        
-        for (var i = 0; i <= times; i++)
+        if (startPos.y >= endPos.y)
         {
-            var radians = (i / times) * Mathf.PI;
-            transform.position = midPoint + Mathf.Sin(radians) * xDir + Mathf.Cos(radians) * yDir;
-            yield return new WaitForFixedUpdate();
+            max_height = startPos.y + height;
+        }
+        else
+        {
+            max_height = endPos.y + height;
         }
 
-        // Explosion
+        var time = Mathf.Sqrt((max_height - startPos.y) / acceleration) + Mathf.Sqrt((max_height - endPos.y) / acceleration);
 
-        Pool.ReturnToPool("Arrow", gameObject);
+        var velocity_v = acceleration * Mathf.Sqrt((max_height - startPos.y) / acceleration);
+
+        var velocity_h = new Vector3(endPos.x - startPos.x , 0 , endPos.z - startPos.z) / time;
+
+        for (var i = 0f; i <= Mathf.Ceil(time) + 5; i++)
+        {
+            velocity_v = velocity_v - acceleration;
+            transform.position = transform.position + velocity_h + velocity_v * Vector3.up;
+            yield return new WaitForFixedUpdate();
+        }
+    
+       // Explosion
+
+       Pool.ReturnToPool("Arrow", gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
