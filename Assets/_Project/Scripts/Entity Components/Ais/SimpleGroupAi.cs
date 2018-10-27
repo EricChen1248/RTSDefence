@@ -39,6 +39,10 @@ namespace Scripts.Entity_Components.Ais
         protected void Update(){
             _state?.Update();
         }
+        private void OnDestroy(){
+            _state?.Leave();
+            _state = null;
+        }
 
         //Define All Kinds of States
         protected class StopState : State{
@@ -95,7 +99,10 @@ namespace Scripts.Entity_Components.Ais
 
             protected const int _step0bond = 10;
             protected const int _step1bond = 8;
-            protected readonly Vector3 _vector;
+            protected Vector3 _vector{
+                get{return _transform.position;}
+                set{_transform.position = value;}
+            }
             protected readonly GroupComponent GroupData;
             protected byte _step;
             public byte Step{
@@ -182,12 +189,30 @@ namespace Scripts.Entity_Components.Ais
         }
 
         protected class TargetingState : State{
-            public TargetingState(Transform t) : base(t){}
+            public Transform Target;
+            public TargetingState(Transform t, Transform target) : base(t){
+                Target = target; //This one will be usually used.
+                t.GetComponent<GroupAiBase>().Target = target.gameObject; //This one is just to match AiBase.
+            }
             public override String Identifier{get{return "Targeting";}}
-            public override void Enter(){}
+            public override void Enter(){
+                foreach (var member in _transform.GetComponent<GroupComponent>().Member)
+                {
+                    var agent = member.GetComponent<NavMeshAgent>();
+                    agent.isStopped = false;
+                    agent.destination = Target.position;
+                }
+                //Target.GetComponent<HealthComponent>().OnDeath += ???.
+            }
             public override void Update(){}
-            public override void Leave(){}
-            public override void FirstCommand(Transform member){}
+            public override void Leave(){
+                //Target.GetComponent<HealthComponent>().OnDeath -= ???.
+            }
+            public override void FirstCommand(Transform member){
+                var agent = member.GetComponent<NavMeshAgent>();
+                agent.isStopped = false;
+                agent.destination = Target.position;
+            }
             public override void LastCommand(Transform member, bool selfDestroy){}
         }
     }
