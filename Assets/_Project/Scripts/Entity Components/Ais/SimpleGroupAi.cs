@@ -21,7 +21,11 @@ namespace Scripts.Entity_Components.Ais
             _state = state;
             _state?.Enter();
         }
-        public override void FindTarget() { }
+        public override void FindTarget(){
+            SwitchState(new StopState(transform));
+            //if find:
+            //SwitchState(new TargetingState(transform, target));
+        }
         public override void FirstCommand(Transform member){
             _state?.FirstCommand(member);
         }
@@ -192,21 +196,22 @@ namespace Scripts.Entity_Components.Ais
             public Transform Target;
             public TargetingState(Transform t, Transform target) : base(t){
                 Target = target; //This one will be usually used.
-                t.GetComponent<GroupAiBase>().Target = target.gameObject; //This one is just to match AiBase.
             }
             public override String Identifier{get{return "Targeting";}}
             public override void Enter(){
+                _transform.GetComponent<GroupAiBase>().Target = Target.gameObject; //This one is just to match AiBase.
                 foreach (var member in _transform.GetComponent<GroupComponent>().Member)
                 {
                     var agent = member.GetComponent<NavMeshAgent>();
                     agent.isStopped = false;
                     agent.destination = Target.position;
                 }
-                //Target.GetComponent<HealthComponent>().OnDeath += ???.
+                Target.GetComponent<HealthComponent>().OnDeath += OnTargetDeath;
             }
             public override void Update(){}
             public override void Leave(){
-                //Target.GetComponent<HealthComponent>().OnDeath -= ???.
+                _transform.GetComponent<GroupAiBase>().Target = null;
+                Target.GetComponent<HealthComponent>().OnDeath -= OnTargetDeath;
             }
             public override void FirstCommand(Transform member){
                 var agent = member.GetComponent<NavMeshAgent>();
@@ -214,6 +219,11 @@ namespace Scripts.Entity_Components.Ais
                 agent.destination = Target.position;
             }
             public override void LastCommand(Transform member, bool selfDestroy){}
+            protected void OnTargetDeath(HealthComponent th){
+                //FindTarget will switch state and therefore Leave will be called. Unsubscribing will happen.
+                //In C# it is safe for the method to unsubscribe the event when the event is invoking the method.
+                _transform.GetComponent<GroupAiBase>().FindTarget();
+            }
         }
     }
 }
