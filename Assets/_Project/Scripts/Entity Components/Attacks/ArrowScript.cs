@@ -36,15 +36,16 @@ public class ArrowScript : MonoBehaviour {
             max_height = endPos.y + height;
         }
 
-        var time = Mathf.Sqrt((max_height - startPos.y) / acceleration) + Mathf.Sqrt((max_height - endPos.y) / acceleration);
+        var time = Mathf.Sqrt(2 * (max_height - startPos.y) / acceleration) + Mathf.Sqrt(2 * (max_height - endPos.y) / acceleration);
 
-        var velocity_v = acceleration * Mathf.Sqrt((max_height - startPos.y) / acceleration);
+        var velocity_v = acceleration * Mathf.Sqrt(2 * (max_height - startPos.y) / acceleration);
 
         var velocity_h = new Vector3(endPos.x - startPos.x , 0 , endPos.z - startPos.z) / time;
 
         for (var i = 0f; i <= Mathf.Ceil(time) + 5; i++)
         {
             velocity_v = velocity_v - acceleration;
+            transform.rotation = Quaternion.LookRotation(new Vector3(velocity_h.x,velocity_v,velocity_h.z));
             transform.position = transform.position + velocity_h + velocity_v * Vector3.up;
             yield return new WaitForFixedUpdate();
         }
@@ -59,7 +60,7 @@ public class ArrowScript : MonoBehaviour {
         if(other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             var health = other.GetComponent<HealthComponent>();
-            health.Damage(10);
+            health.Damage(50);
         }
 
         StopCoroutine(_currentCoroutine);
