@@ -77,9 +77,9 @@ namespace Scripts.Buildable_Components
             }
 
             ui.transform.position = transform.position + Vector3.up;
-            var texts = new List<string>{"B"};
+            var images = new List<Sprite> { UnityEngine.Resources.Load<Sprite>("Sprites/Collection Button") };
             var jobs = new List<FloatingUIMenu.ClickEvent> {AssignJobToPlayer};
-            ui.GetComponent<FloatingUIMenu>().AssignButton(texts, jobs);
+            ui.GetComponent<FloatingUIMenu>().AssignButton(images, jobs);
         }
 
         private void AssignJobToPlayer()
