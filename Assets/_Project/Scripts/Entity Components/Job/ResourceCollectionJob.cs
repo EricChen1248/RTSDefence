@@ -102,7 +102,7 @@ namespace Scripts.Entity_Components.Job
             _rhp.GetComponent<ResourceHolderComponent>().MoveTo(_rhp.transform.position, CoreController.Instance.CoreGameObject.transform.position, 1.5f);
             yield return new WaitForSeconds(2);
 
-            ResourceController.ResourceCount[HeldResourceType] += HeldCount;
+            ResourceController.AddResource(HeldResourceType, HeldCount);
             Object.Destroy(_rhp);
             _sender.DoingJob = false;
             _sender.CurrentJob = null;
