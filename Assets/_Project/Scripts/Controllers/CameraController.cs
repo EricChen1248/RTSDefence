@@ -98,11 +98,28 @@ namespace Scripts.Controllers
             var endPos = transform.position + transform.right * xChange +
                          Vector3.Normalize(transform.forward - new Vector3(0, transform.forward.y, 0)) * 2 * yChange;
 
-            for (float i = 0; i < 10; i++)
+            for (float i = 0; i <= 10; i++)
             {
                 transform.position = Vector3.Lerp(startPos, endPos, i / 10);
                 yield return new WaitForFixedUpdate();
             }
         }
+
+        private IEnumerator MoveEnumerator(Vector3 endPos)
+        {
+            var startPos = transform.position;
+
+            for (float i = 0; i <= 10; i++)
+            {
+                transform.position = Vector3.Lerp(startPos, endPos, i / 10);
+                yield return new WaitForFixedUpdate();
+            }
+        }
+
+        public void MoveTo(Vector3 location)
+        {
+            StartCoroutine(MoveEnumerator(location));
+        }
+        
     }
 }
