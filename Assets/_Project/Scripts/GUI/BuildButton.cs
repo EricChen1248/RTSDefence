@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Scripts.GUI
 {
-    public class ObjectButton : MonoBehaviour {
+    public class BuildButton : MonoBehaviour {
 
         public GameObject GameObject;
 

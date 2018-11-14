@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using Scripts.GUI;
 using Scripts.Resources;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Scripts.Controllers
 {
@@ -10,11 +12,16 @@ namespace Scripts.Controllers
     {
         public static ResourceController Instance;
         public GameObject ResouceHolderPrefab;
-        private static ResourceManager _manager;
 
         [SerializeField]
         public ModelLink[] ModelLinks;
+        [SerializeField]
+        public ResourceLink[] ResourceLinks;
+
+        public ResourceGroupComponent ResourceGroup;
+
         public static Dictionary<ResourceTypes, GameObject> ModelDictionary { get; private set; }
+        public Dictionary<ResourceTypes, Sprite> SpriteDictionary { get; private set; }
 
         public static Dictionary<ResourceTypes, int> ResourceCount { get; private set; }
         public void Start()
@@ -31,9 +38,12 @@ namespace Scripts.Controllers
                 ResourceCount[resourceType] = 0;
             }
 
-            _manager = GetComponent<ResourceManager>();
+            foreach (var resourceLink in ResourceLinks)
+            {
+                SpriteDictionary[resourceLink.Type] = resourceLink.Obj;
+            }
+            
         }
-
 
         [Serializable]
         public struct ModelLink
@@ -42,39 +52,17 @@ namespace Scripts.Controllers
             public GameObject Model;
         }
 
+        [Serializable]
+        public struct ResourceLink
+        {
+            public ResourceTypes Type;
+            public Sprite Obj;
+        }
+
         public static void AddResource(ResourceTypes type, int count)
         {
             ResourceCount[type] += count;
-            UpdateGUI();
-
-        }
-
-        private static void UpdateGUI()
-        {
-            foreach (var item in ResourceCount)
-            {
-                var key = item.Key;
-                var value = item.Value;
-                switch (key)
-                {
-                    case ResourceTypes.Rock:
-                        _manager.rock = value;
-                        break;
-                    case ResourceTypes.Wood:
-                        _manager.wood = value;
-                        break;
-                    case ResourceTypes.Gold:
-                        _manager.gold = value;
-                        break;
-                    case ResourceTypes.Coal:
-                        _manager.coal = value;
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
-
-            _manager.UpdateGUI();
+            Instance.ResourceGroup.UpdateGui(ResourceCount);
         }
     }
 }
