@@ -29,9 +29,9 @@ namespace Scripts.Resources
             }
 
             ui.transform.position = transform.position + Vector3.up;
-            var texts = new List<string> { "C" };
+            var images = new List<Sprite> { UnityEngine.Resources.Load<Sprite>("Sprites/Collection Button") };
             var jobs = new List<FloatingUIMenu.ClickEvent> { AssignJobToPlayer };
-            ui.GetComponent<FloatingUIMenu>().AssignButton(texts, jobs);
+            ui.GetComponent<FloatingUIMenu>().AssignButton(images, jobs);
         }
 
         public float GatherResource()

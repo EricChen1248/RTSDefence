@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Scripts.Entity_Components
 {
+    [DefaultExecutionOrder(-2)]
     public class GroupComponent : MonoBehaviour
     {
         //Member is modified by GroupFinder, not by GroupComponent itself.
@@ -20,6 +21,15 @@ namespace Scripts.Entity_Components
             return true;
         }
 
+        public void ApplyFunc<T>(System.Func<Transform, T> func)
+        {
+            //func cannot modify Member
+            foreach (var member in Member)
+            {
+                func(member);
+            }
+        }
+
         public void ClearMember()
         {
             //make a copy MemberList so that KickedOut() can modify Member
@@ -32,7 +42,7 @@ namespace Scripts.Entity_Components
 
         private void OnDestroy()
         {
-            ClearMember();
+            //ClearMember(); //only call from GroupFinder
         }
     }
 }

@@ -37,5 +37,12 @@ namespace Scripts.Controllers
             public ResourceTypes Resource;
             public GameObject Model;
         }
+
+        public static void AddResource(ResourceTypes type, int count)
+        {
+            ResourceCount[type] += count;
+
+
+        }
     }
 }
