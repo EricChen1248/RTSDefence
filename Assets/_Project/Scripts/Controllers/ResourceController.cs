@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Scripts.GUI;
 using Scripts.Resources;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Scripts.Controllers
 {
+    [DefaultExecutionOrder(0)]
     public class ResourceController : MonoBehaviour
     {
         public static ResourceController Instance;
@@ -12,7 +15,13 @@ namespace Scripts.Controllers
 
         [SerializeField]
         public ModelLink[] ModelLinks;
+        [SerializeField]
+        public ResourceLink[] ResourceLinks;
+
+        public ResourceGroupComponent ResourceGroup;
+
         public static Dictionary<ResourceTypes, GameObject> ModelDictionary { get; private set; }
+        public Dictionary<ResourceTypes, Sprite> SpriteDictionary { get; private set; }
 
         public static Dictionary<ResourceTypes, int> ResourceCount { get; private set; }
         public void Start()
@@ -28,8 +37,13 @@ namespace Scripts.Controllers
             {
                 ResourceCount[resourceType] = 0;
             }
-        }
 
+            foreach (var resourceLink in ResourceLinks)
+            {
+                SpriteDictionary[resourceLink.Type] = resourceLink.Obj;
+            }
+            
+        }
 
         [Serializable]
         public struct ModelLink
@@ -38,11 +52,17 @@ namespace Scripts.Controllers
             public GameObject Model;
         }
 
+        [Serializable]
+        public struct ResourceLink
+        {
+            public ResourceTypes Type;
+            public Sprite Obj;
+        }
+
         public static void AddResource(ResourceTypes type, int count)
         {
             ResourceCount[type] += count;
-
-
+            Instance.ResourceGroup.UpdateGui(ResourceCount);
         }
     }
 }
