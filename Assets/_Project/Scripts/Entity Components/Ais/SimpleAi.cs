@@ -7,20 +7,24 @@ using UnityEngine.AI;
 namespace Scripts.Entity_Components.Ais
 {
     [DefaultExecutionOrder(-1)]
-    public class SimpleAi : AiBase
+    public class SimpleAi : SingularAiBase
     {
         private EnemyComponent _enemyComponent;
-        private GameObject _tempTarget;
 
         public void Start()
         {
             Agent = GetComponent<NavMeshAgent>();
             _enemyComponent = GetComponent<EnemyComponent>();
+            _stopTemp = false;
         }
 
         public override void FindTarget()
         {
             TargetTo(CoreController.Instance.CoreGameObject, force: true);
+        }
+
+        public override void StopTempTarget(){
+            _stopTemp = true;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -39,10 +43,12 @@ namespace Scripts.Entity_Components.Ais
             while (health.Health > 0)
             {
                 print((_tempTarget.transform.position - transform.position).sqrMagnitude);
-                if ((_tempTarget.transform.position - transform.position).sqrMagnitude >=
+                if (_stopTemp ||
+                    (_tempTarget.transform.position - transform.position).sqrMagnitude >=
                     Math.Pow(_enemyComponent.Radius + 1, 2))
                 {
                     _tempTarget = null;
+                    _stopTemp = false;
                     health.OnDeath -= OnTargetDeath;
                     Agent.isStopped = false;
                     break;

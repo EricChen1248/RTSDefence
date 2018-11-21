@@ -38,7 +38,7 @@ namespace Scripts.Entity_Components.Ais
         }
         public override void LastCommand(Transform member, bool selfDestroy){
             _state?.LastCommand(member, selfDestroy);
-            //member.GetComponent<AiBase>().FindTarget(); //This will be done in GroupFinder
+            //member.GetComponent<SingularAiBase>().FindTarget(); //This will be done in GroupFinder
         }
         public override void StopAll(){
             SwitchState(new StopState(transform));
@@ -91,7 +91,7 @@ namespace Scripts.Entity_Components.Ais
                 var group_data = _transform.GetComponent<GroupComponent>();
                 foreach (var member in group_data.Member)
                 {
-                    member.GetComponent<AiBase>().FindTarget();
+                    member.GetComponent<SingularAiBase>().FindTarget();
                 }
             }
             public override void Update(){}

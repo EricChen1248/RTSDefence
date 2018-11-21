@@ -7,7 +7,7 @@ namespace Scripts.Entity_Components
 {
     [DefaultExecutionOrder(0)]
     [RequireComponent(typeof(HealthComponent))]
-    [RequireComponent(typeof(AiBase))]
+    [RequireComponent(typeof(SingularAiBase))]
     public class EnemyComponent : MonoBehaviour
     {
         private AiBase _ai;
