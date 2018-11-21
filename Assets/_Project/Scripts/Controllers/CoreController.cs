@@ -3,7 +3,8 @@
 namespace Scripts.Controllers
 {
     [DefaultExecutionOrder(-100)]
-    public class CoreController : MonoBehaviour {
+    public class CoreController : MonoBehaviour
+    {
         public static CoreController Instance { get; private set; }
         public static BuildController BuildController { get; private set; }
         public static MouseController MouseController { get; private set; }
@@ -18,7 +19,5 @@ namespace Scripts.Controllers
             BuildController = GetComponent<BuildController>();
             MouseController = GetComponent<MouseController>();
         }
-
-
     }
 }

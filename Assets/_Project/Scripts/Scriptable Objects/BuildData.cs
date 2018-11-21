@@ -1,5 +1,6 @@
 ﻿using System;
 using Scripts.Resources;
+using Scripts.Buildable_Components;
 using UnityEngine;
 
 namespace Scripts.Scriptable_Objects
@@ -18,6 +19,8 @@ namespace Scripts.Scriptable_Objects
 
         public int BuildTime;
         public RecipeItem[] Recipe;
+
+        public DefenceType[] Types;
     }
 
     [Serializable]
