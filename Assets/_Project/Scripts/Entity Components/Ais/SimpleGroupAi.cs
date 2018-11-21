@@ -114,7 +114,7 @@ namespace Scripts.Entity_Components.Ais
                 get{return _transform.position;}
                 set{_transform.position = value;}
             }
-            protected readonly GroupComponent GroupData;
+            protected readonly GroupComponent _groupComponent;
             protected byte _step;
             public byte Step{
                 get{return _step;}
@@ -123,14 +123,14 @@ namespace Scripts.Entity_Components.Ais
             private List<Transform> _toBeRemoved;
             public MoveState(Transform t, Vector3 vector) : base(t){
                 _vector = vector;
-                GroupData = _transform.GetComponent<GroupComponent>();
+                _groupComponent = _transform.GetComponent<GroupComponent>();
                 _step = 0;
                 _notStopped = new HashSet<Transform>();
                 _toBeRemoved = new List<Transform>();
             }
             public override String Identifier{get{return "Move";}}
             public override void Enter(){
-                foreach (var member in GroupData.Member)
+                foreach (var member in _groupComponent.Member)
                 {
                     var agent = member.GetComponent<NavMeshAgent>();
                     agent.isStopped = false;
@@ -143,7 +143,7 @@ namespace Scripts.Entity_Components.Ais
             */
             public override void Update(){
                 if(_step == 0){
-                    foreach (var member in GroupData.Member)
+                    foreach (var member in _groupComponent.Member)
                     {
                         if(Vector3.Distance(member.position, member.GetComponent<NavMeshAgent>().destination) < _step0bond){
                             _step = 1;
@@ -152,7 +152,7 @@ namespace Scripts.Entity_Components.Ais
                     }
                     if(_step == 1){
                         print("set correct place");
-                        foreach (var member in GroupData.Member){
+                        foreach (var member in _groupComponent.Member){
                             if(Vector3.Distance(member.position, _vector) < _step1bond){
                                 member.GetComponent<NavMeshAgent>().ResetPath();
                             }else{
@@ -178,7 +178,7 @@ namespace Scripts.Entity_Components.Ais
                 }
             }
             public override void Leave(){
-                foreach (var member in GroupData.Member)
+                foreach (var member in _groupComponent.Member)
                 {
                     var agent = member.GetComponent<NavMeshAgent>();
                     agent.ResetPath();

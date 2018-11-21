@@ -18,11 +18,16 @@ namespace Scripts.Entity_Components.Ais{
             public abstract void FirstCommand(Transform member);
             public abstract void LastCommand(Transform member, bool selfDestroy);
         }
-		protected GroupComponent GroupData;
+        public class GroupAIProperty{
+        	//...
+        }
+		protected GroupComponent _groupComponent;
+		protected GroupAIProperty _aiProperty;
 
 		// Use this for initialization
 		protected void Start () {
-			GroupData = GetComponent<GroupComponent>();
+			_groupComponent = GetComponent<GroupComponent>();
+			_groupComponent.Data?.CompileAIProperty(out _aiProperty);
 		}
 
 		//No matter if an enemy would find a group or not,
