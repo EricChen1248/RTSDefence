@@ -1,0 +1,659 @@
+fileFormatVersion: 2
+guid: fae297ecdb11a684c953c1e2d5c465e7
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: '1) '
+    100002: 4-Lati
+    100004: 4-Lati.1
+    100006: 4-Lati.2
+    100008: a
+    100010: a.2
+    100012: a.3
+    100014: b
+    100016: b.1
+    100018: b.1.2
+    100020: b.2
+    100022: b.3
+    100024: b.4
+    100026: centro/stondatura
+    100028: Cerchio
+    100030: Cerchio.1
+    100032: Cerchio.1.2
+    100034: Cerchio.2
+    100036: Cerchio.2.2
+    100038: Cerchio.2.3
+    100040: Cerchio.3
+    100042: Cerchio.3.2
+    100044: Cerchio.3.3
+    100046: Cerchio.3.4
+    100048: Cerchio.4
+    100050: Cerchio.4.2
+    100052: Cerchio.5
+    100054: Cerchio.6
+    100056: Cisterna
+    100058: Cubo
+    100060: Cubo.1
+    100062: Cubo.2
+    100064: Cubo.3
+    100066: Cubo.4
+    100068: Cubo.5
+    100070: Cubo.6
+    100072: Cubo.7
+    100074: Cubo.8
+    100076: fine
+    100078: fine.2
+    100080: Guardia
+    100082: inizio
+    100084: inizio.1
+    100086: inizio.10
+    100088: inizio.11
+    100090: inizio.12
+    100092: inizio.13
+    100094: inizio.14
+    100096: inizio.15
+    100098: inizio.2
+    100100: inizio.2.2
+    100102: inizio.3
+    100104: inizio.3.2
+    100106: inizio.4
+    100108: inizio.5
+    100110: inizio.6
+    100112: inizio.7
+    100114: inizio.8
+    100116: inizio.9
+    100118: //RootNode
+    100120: Lama
+    100122: Loft NURBS
+    100124: Loft NURBS.1
+    100126: Loft NURBS.10
+    100128: Loft NURBS.11
+    100130: Loft NURBS.12
+    100132: Loft NURBS.13
+    100134: Loft NURBS.14
+    100136: Loft NURBS.15
+    100138: Loft NURBS.16
+    100140: Loft NURBS.17
+    100142: Loft NURBS.18
+    100144: Loft NURBS.2
+    100146: Loft NURBS.2.2
+    100148: Loft NURBS.3
+    100150: Loft NURBS.4
+    100152: Loft NURBS.5
+    100154: Loft NURBS.6
+    100156: Loft NURBS.7
+    100158: Loft NURBS.8
+    100160: Loft NURBS.9
+    100162: Manico
+    100164: Nullo.2
+    100166: Nullo.3
+    100168: Nullo.4
+    100170: Out1
+    100172: Out1.1
+    100174: Out1.10
+    100176: Out1.11
+    100178: Out1.12
+    100180: Out1.13
+    100182: Out1.14
+    100184: Out1.15
+    100186: Out1.16
+    100188: Out1.17
+    100190: Out1.18
+    100192: Out1.19
+    100194: Out1.2
+    100196: Out1.20
+    100198: Out1.21
+    100200: Out1.22
+    100202: Out1.23
+    100204: Out1.24
+    100206: Out1.25
+    100208: Out1.26
+    100210: Out1.27
+    100212: Out1.28
+    100214: Out1.29
+    100216: Out1.3
+    100218: Out1.30
+    100220: Out1.31
+    100222: Out1.4
+    100224: Out1.5
+    100226: Out1.6
+    100228: Out1.7
+    100230: Out1.8
+    100232: Out1.9
+    100234: Schiera
+    100236: Tappo 1
+    100238: Tappo 1.10
+    100240: Tappo 1.11
+    100242: Tappo 1.12
+    100244: Tappo 1.13
+    100246: Tappo 1.14
+    100248: Tappo 1.15
+    100250: Tappo 1.16
+    100252: Tappo 1.17
+    100254: Tappo 1.18
+    100256: Tappo 1.19
+    100258: Tappo 1.2
+    100260: Tappo 1.20
+    100262: Tappo 1.21
+    100264: Tappo 1.22
+    100266: Tappo 1.23
+    100268: Tappo 1.3
+    100270: Tappo 1.4
+    100272: Tappo 1.5
+    100274: Tappo 1.6
+    100276: Tappo 1.7
+    100278: Tappo 1.8
+    100280: Tappo 1.9
+    100282: Tappo 2
+    100284: Tappo 2.10
+    100286: Tappo 2.11
+    100288: Tappo 2.12
+    100290: Tappo 2.13
+    100292: Tappo 2.14
+    100294: Tappo 2.15
+    100296: Tappo 2.16
+    100298: Tappo 2.17
+    100300: Tappo 2.18
+    100302: Tappo 2.19
+    100304: Tappo 2.2
+    100306: Tappo 2.20
+    100308: Tappo 2.21
+    100310: Tappo 2.22
+    100312: Tappo 2.23
+    100314: Tappo 2.3
+    100316: Tappo 2.4
+    100318: Tappo 2.5
+    100320: Tappo 2.6
+    100322: Tappo 2.7
+    100324: Tappo 2.8
+    100326: Tappo 2.9
+    400000: '1) '
+    400002: 4-Lati
+    400004: 4-Lati.1
+    400006: 4-Lati.2
+    400008: a
+    400010: a.2
+    400012: a.3
+    400014: b
+    400016: b.1
+    400018: b.1.2
+    400020: b.2
+    400022: b.3
+    400024: b.4
+    400026: centro/stondatura
+    400028: Cerchio
+    400030: Cerchio.1
+    400032: Cerchio.1.2
+    400034: Cerchio.2
+    400036: Cerchio.2.2
+    400038: Cerchio.2.3
+    400040: Cerchio.3
+    400042: Cerchio.3.2
+    400044: Cerchio.3.3
+    400046: Cerchio.3.4
+    400048: Cerchio.4
+    400050: Cerchio.4.2
+    400052: Cerchio.5
+    400054: Cerchio.6
+    400056: Cisterna
+    400058: Cubo
+    400060: Cubo.1
+    400062: Cubo.2
+    400064: Cubo.3
+    400066: Cubo.4
+    400068: Cubo.5
+    400070: Cubo.6
+    400072: Cubo.7
+    400074: Cubo.8
+    400076: fine
+    400078: fine.2
+    400080: Guardia
+    400082: inizio
+    400084: inizio.1
+    400086: inizio.10
+    400088: inizio.11
+    400090: inizio.12
+    400092: inizio.13
+    400094: inizio.14
+    400096: inizio.15
+    400098: inizio.2
+    400100: inizio.2.2
+    400102: inizio.3
+    400104: inizio.3.2
+    400106: inizio.4
+    400108: inizio.5
+    400110: inizio.6
+    400112: inizio.7
+    400114: inizio.8
+    400116: inizio.9
+    400118: //RootNode
+    400120: Lama
+    400122: Loft NURBS
+    400124: Loft NURBS.1
+    400126: Loft NURBS.10
+    400128: Loft NURBS.11
+    400130: Loft NURBS.12
+    400132: Loft NURBS.13
+    400134: Loft NURBS.14
+    400136: Loft NURBS.15
+    400138: Loft NURBS.16
+    400140: Loft NURBS.17
+    400142: Loft NURBS.18
+    400144: Loft NURBS.2
+    400146: Loft NURBS.2.2
+    400148: Loft NURBS.3
+    400150: Loft NURBS.4
+    400152: Loft NURBS.5
+    400154: Loft NURBS.6
+    400156: Loft NURBS.7
+    400158: Loft NURBS.8
+    400160: Loft NURBS.9
+    400162: Manico
+    400164: Nullo.2
+    400166: Nullo.3
+    400168: Nullo.4
+    400170: Out1
+    400172: Out1.1
+    400174: Out1.10
+    400176: Out1.11
+    400178: Out1.12
+    400180: Out1.13
+    400182: Out1.14
+    400184: Out1.15
+    400186: Out1.16
+    400188: Out1.17
+    400190: Out1.18
+    400192: Out1.19
+    400194: Out1.2
+    400196: Out1.20
+    400198: Out1.21
+    400200: Out1.22
+    400202: Out1.23
+    400204: Out1.24
+    400206: Out1.25
+    400208: Out1.26
+    400210: Out1.27
+    400212: Out1.28
+    400214: Out1.29
+    400216: Out1.3
+    400218: Out1.30
+    400220: Out1.31
+    400222: Out1.4
+    400224: Out1.5
+    400226: Out1.6
+    400228: Out1.7
+    400230: Out1.8
+    400232: Out1.9
+    400234: Schiera
+    400236: Tappo 1
+    400238: Tappo 1.10
+    400240: Tappo 1.11
+    400242: Tappo 1.12
+    400244: Tappo 1.13
+    400246: Tappo 1.14
+    400248: Tappo 1.15
+    400250: Tappo 1.16
+    400252: Tappo 1.17
+    400254: Tappo 1.18
+    400256: Tappo 1.19
+    400258: Tappo 1.2
+    400260: Tappo 1.20
+    400262: Tappo 1.21
+    400264: Tappo 1.22
+    400266: Tappo 1.23
+    400268: Tappo 1.3
+    400270: Tappo 1.4
+    400272: Tappo 1.5
+    400274: Tappo 1.6
+    400276: Tappo 1.7
+    400278: Tappo 1.8
+    400280: Tappo 1.9
+    400282: Tappo 2
+    400284: Tappo 2.10
+    400286: Tappo 2.11
+    400288: Tappo 2.12
+    400290: Tappo 2.13
+    400292: Tappo 2.14
+    400294: Tappo 2.15
+    400296: Tappo 2.16
+    400298: Tappo 2.17
+    400300: Tappo 2.18
+    400302: Tappo 2.19
+    400304: Tappo 2.2
+    400306: Tappo 2.20
+    400308: Tappo 2.21
+    400310: Tappo 2.22
+    400312: Tappo 2.23
+    400314: Tappo 2.3
+    400316: Tappo 2.4
+    400318: Tappo 2.5
+    400320: Tappo 2.6
+    400322: Tappo 2.7
+    400324: Tappo 2.8
+    400326: Tappo 2.9
+    2100000: No Name
+    2100002: Nuovo.2
+    2100004: Nuovo.2.1
+    2300000: '1) '
+    2300002: a
+    2300004: b.1
+    2300006: b.2
+    2300008: Cisterna
+    2300010: Cubo.1
+    2300012: Cubo.2
+    2300014: Cubo.3
+    2300016: Cubo.4
+    2300018: Cubo.5
+    2300020: Cubo.6
+    2300022: Cubo.7
+    2300024: Cubo.8
+    2300026: Guardia
+    2300028: Loft NURBS
+    2300030: Loft NURBS.1
+    2300032: Loft NURBS.10
+    2300034: Loft NURBS.11
+    2300036: Loft NURBS.12
+    2300038: Loft NURBS.13
+    2300040: Loft NURBS.14
+    2300042: Loft NURBS.15
+    2300044: Loft NURBS.16
+    2300046: Loft NURBS.17
+    2300048: Loft NURBS.18
+    2300050: Loft NURBS.2
+    2300052: Loft NURBS.2.2
+    2300054: Loft NURBS.3
+    2300056: Loft NURBS.4
+    2300058: Loft NURBS.5
+    2300060: Loft NURBS.6
+    2300062: Loft NURBS.7
+    2300064: Loft NURBS.8
+    2300066: Loft NURBS.9
+    2300068: Tappo 1
+    2300070: Tappo 1.10
+    2300072: Tappo 1.11
+    2300074: Tappo 1.12
+    2300076: Tappo 1.13
+    2300078: Tappo 1.14
+    2300080: Tappo 1.15
+    2300082: Tappo 1.16
+    2300084: Tappo 1.17
+    2300086: Tappo 1.18
+    2300088: Tappo 1.19
+    2300090: Tappo 1.2
+    2300092: Tappo 1.20
+    2300094: Tappo 1.21
+    2300096: Tappo 1.22
+    2300098: Tappo 1.23
+    2300100: Tappo 1.3
+    2300102: Tappo 1.4
+    2300104: Tappo 1.5
+    2300106: Tappo 1.6
+    2300108: Tappo 1.7
+    2300110: Tappo 1.8
+    2300112: Tappo 1.9
+    2300114: Tappo 2
+    2300116: Tappo 2.10
+    2300118: Tappo 2.11
+    2300120: Tappo 2.12
+    2300122: Tappo 2.13
+    2300124: Tappo 2.14
+    2300126: Tappo 2.15
+    2300128: Tappo 2.16
+    2300130: Tappo 2.17
+    2300132: Tappo 2.18
+    2300134: Tappo 2.19
+    2300136: Tappo 2.2
+    2300138: Tappo 2.20
+    2300140: Tappo 2.21
+    2300142: Tappo 2.22
+    2300144: Tappo 2.23
+    2300146: Tappo 2.3
+    2300148: Tappo 2.4
+    2300150: Tappo 2.5
+    2300152: Tappo 2.6
+    2300154: Tappo 2.7
+    2300156: Tappo 2.8
+    2300158: Tappo 2.9
+    3300000: '1) '
+    3300002: a
+    3300004: b.1
+    3300006: b.2
+    3300008: Cisterna
+    3300010: Cubo.1
+    3300012: Cubo.2
+    3300014: Cubo.3
+    3300016: Cubo.4
+    3300018: Cubo.5
+    3300020: Cubo.6
+    3300022: Cubo.7
+    3300024: Cubo.8
+    3300026: Guardia
+    3300028: Loft NURBS
+    3300030: Loft NURBS.1
+    3300032: Loft NURBS.10
+    3300034: Loft NURBS.11
+    3300036: Loft NURBS.12
+    3300038: Loft NURBS.13
+    3300040: Loft NURBS.14
+    3300042: Loft NURBS.15
+    3300044: Loft NURBS.16
+    3300046: Loft NURBS.17
+    3300048: Loft NURBS.18
+    3300050: Loft NURBS.2
+    3300052: Loft NURBS.2.2
+    3300054: Loft NURBS.3
+    3300056: Loft NURBS.4
+    3300058: Loft NURBS.5
+    3300060: Loft NURBS.6
+    3300062: Loft NURBS.7
+    3300064: Loft NURBS.8
+    3300066: Loft NURBS.9
+    3300068: Tappo 1
+    3300070: Tappo 1.10
+    3300072: Tappo 1.11
+    3300074: Tappo 1.12
+    3300076: Tappo 1.13
+    3300078: Tappo 1.14
+    3300080: Tappo 1.15
+    3300082: Tappo 1.16
+    3300084: Tappo 1.17
+    3300086: Tappo 1.18
+    3300088: Tappo 1.19
+    3300090: Tappo 1.2
+    3300092: Tappo 1.20
+    3300094: Tappo 1.21
+    3300096: Tappo 1.22
+    3300098: Tappo 1.23
+    3300100: Tappo 1.3
+    3300102: Tappo 1.4
+    3300104: Tappo 1.5
+    3300106: Tappo 1.6
+    3300108: Tappo 1.7
+    3300110: Tappo 1.8
+    3300112: Tappo 1.9
+    3300114: Tappo 2
+    3300116: Tappo 2.10
+    3300118: Tappo 2.11
+    3300120: Tappo 2.12
+    3300122: Tappo 2.13
+    3300124: Tappo 2.14
+    3300126: Tappo 2.15
+    3300128: Tappo 2.16
+    3300130: Tappo 2.17
+    3300132: Tappo 2.18
+    3300134: Tappo 2.19
+    3300136: Tappo 2.2
+    3300138: Tappo 2.20
+    3300140: Tappo 2.21
+    3300142: Tappo 2.22
+    3300144: Tappo 2.23
+    3300146: Tappo 2.3
+    3300148: Tappo 2.4
+    3300150: Tappo 2.5
+    3300152: Tappo 2.6
+    3300154: Tappo 2.7
+    3300156: Tappo 2.8
+    3300158: Tappo 2.9
+    4300000: a
+    4300002: Tappo 1
+    4300004: Tappo 2
+    4300006: b.1
+    4300008: b.2
+    4300010: Guardia
+    4300012: Tappo 1.2
+    4300014: Tappo 2.2
+    4300016: Cubo.8
+    4300018: Cubo.7
+    4300020: Cubo.6
+    4300022: Cubo.5
+    4300024: Cubo.4
+    4300026: Cubo.3
+    4300028: Cubo.2
+    4300030: Cubo.1
+    4300032: Cisterna
+    4300034: Loft NURBS.18
+    4300036: Tappo 1.3
+    4300038: Tappo 2.3
+    4300040: Loft NURBS.17
+    4300042: Tappo 1.4
+    4300044: Tappo 2.4
+    4300046: Loft NURBS.16
+    4300048: Tappo 1.5
+    4300050: Tappo 2.5
+    4300052: Loft NURBS.15
+    4300054: Tappo 1.6
+    4300056: Tappo 2.6
+    4300058: Loft NURBS.14
+    4300060: Tappo 1.7
+    4300062: Tappo 2.7
+    4300064: Loft NURBS.13
+    4300066: Tappo 1.8
+    4300068: Tappo 2.8
+    4300070: Loft NURBS.12
+    4300072: Tappo 1.9
+    4300074: Tappo 2.9
+    4300076: Loft NURBS.11
+    4300078: Tappo 1.10
+    4300080: Tappo 2.10
+    4300082: Loft NURBS.10
+    4300084: Tappo 1.11
+    4300086: Tappo 2.11
+    4300088: Loft NURBS.9
+    4300090: Tappo 1.12
+    4300092: Tappo 2.12
+    4300094: Loft NURBS.8
+    4300096: Tappo 1.13
+    4300098: Tappo 2.13
+    4300100: Loft NURBS.7
+    4300102: Tappo 1.14
+    4300104: Tappo 2.14
+    4300106: Loft NURBS.6
+    4300108: Tappo 1.15
+    4300110: Tappo 2.15
+    4300112: Loft NURBS.5
+    4300114: Tappo 1.16
+    4300116: Tappo 2.16
+    4300118: Loft NURBS.4
+    4300120: Tappo 1.17
+    4300122: Tappo 2.17
+    4300124: Loft NURBS.3
+    4300126: Tappo 1.18
+    4300128: Tappo 2.18
+    4300130: Loft NURBS.2
+    4300132: Tappo 1.19
+    4300134: Tappo 2.19
+    4300136: Loft NURBS.1
+    4300138: Tappo 1.20
+    4300140: Tappo 2.20
+    4300142: Loft NURBS
+    4300144: Tappo 1.21
+    4300146: Tappo 2.21
+    4300148: Loft NURBS.2.2
+    4300150: Tappo 1.22
+    4300152: Tappo 2.22
+    4300154: '1) '
+    4300156: Tappo 1.23
+    4300158: Tappo 2.23
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
