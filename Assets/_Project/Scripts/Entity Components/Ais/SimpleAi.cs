@@ -20,9 +20,7 @@ namespace Scripts.Entity_Components.Ais
 
         public override void FindTarget()
         {
-            Target = CoreController.Instance.CoreGameObject;
-
-            Agent.destination = Target.transform.position;
+            TargetTo(CoreController.Instance.CoreGameObject, force: true);
         }
 
         private void OnTriggerEnter(Collider other)

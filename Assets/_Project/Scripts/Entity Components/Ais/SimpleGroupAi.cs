@@ -24,7 +24,14 @@ namespace Scripts.Entity_Components.Ais
         public override void FindTarget(){
             SwitchState(new StopState(transform));
             //if find:
-            //SwitchState(new TargetingState(transform, target));
+            //TargetTo(target.gameObject, force: true);
+        }
+        public override bool TargetTo(GameObject obj, bool force){
+            if (!InLayerMask(TargetingLayers, obj.layer) && !force){
+                return false;
+            }
+            SwitchState(new TargetingState(transform, obj.transform));
+            return true;
         }
         public override void FirstCommand(Transform member){
             _state?.FirstCommand(member);
