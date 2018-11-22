@@ -12,6 +12,7 @@ namespace Scripts.Entity_Components.Ais
         private EnemyComponent _enemyComponent;
         private GameObject _tempTarget;
 
+        private bool _stopAttack;
         public void Start()
         {
             Agent = GetComponent<NavMeshAgent>();
@@ -32,29 +33,33 @@ namespace Scripts.Entity_Components.Ais
             _tempTarget = other.gameObject;
             var health = _tempTarget.GetComponent<HealthComponent>();
             health.OnDeath += OnTargetDeath;
+            _stopAttack = false;
             StartCoroutine(Attack());
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (_stopAttack) return;
+            _stopAttack = (other.gameObject == _tempTarget);
         }
 
         private IEnumerator Attack()
         {
             var health = _tempTarget.GetComponent<HealthComponent>();
-            while (health.Health > 0)
+            while (health.Health > 0 && !_stopAttack)
             {
-                print((_tempTarget.transform.position - transform.position).sqrMagnitude);
-                if ((_tempTarget.transform.position - transform.position).sqrMagnitude >=
-                    Math.Pow(_enemyComponent.Radius + 1, 2))
-                {
-                    _tempTarget = null;
-                    health.OnDeath -= OnTargetDeath;
-                    Agent.isStopped = false;
-                    break;
-                }
-
                 // Attack
                 health.Damage(1);
 
                 yield return new WaitForSeconds(ReloadTime);
             }
+
+            health.OnDeath -= OnTargetDeath;
+
+            Agent.isStopped = false;
+
+            _stopAttack = true;
+            _tempTarget = null;
         }
 
         private void OnTargetDeath(HealthComponent target)
