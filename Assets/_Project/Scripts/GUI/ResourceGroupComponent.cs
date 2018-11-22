@@ -22,7 +22,7 @@ namespace Scripts.GUI
             foreach (ResourceTypes resourceType in Enum.GetValues(typeof(ResourceTypes)))
             {
                 var go = Instantiate(ResourceGuiPrefab);
-                go.transform.parent = transform;
+                go.transform.SetParent(transform);
                 var comp = go.GetComponent<ResourcePanelComponent>();
                 _panelLinks[resourceType] = comp;
                 // comp.AssignImage(ResourceController.Instance.SpriteDictionary[resourceType]);
