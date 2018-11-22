@@ -60,11 +60,13 @@ namespace Scripts.Entity_Components.Friendlies
         public bool HasFocus { get; private set; }
         public void Focus()
         {
+            gameObject.AddComponent<PathDrawer>();
             HasFocus = true;
         }
 
         public void LostFocus()
         {
+            Destroy(GetComponent<PathDrawer>());
             HasFocus = false;
         }
         

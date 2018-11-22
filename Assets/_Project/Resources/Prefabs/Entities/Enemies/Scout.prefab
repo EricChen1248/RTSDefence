@@ -41,8 +41,8 @@ GameObject:
   - component: {fileID: 195907687292494318}
   - component: {fileID: 114780335584259956}
   - component: {fileID: 114744732351458012}
-  - component: {fileID: 114566318133041524}
   - component: {fileID: 120013460655195110}
+  - component: {fileID: 114906979861464472}
   m_Layer: 10
   m_Name: Scout
   m_TagString: Untagged
@@ -278,22 +278,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentHealthBar: {fileID: 1467782508606642}
---- !u!114 &114566318133041524
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1080053786728032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72f4363480b4a9943aea2ebc075e05c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  ReloadTime: 1
-  TargetingLayers:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &114744732351458012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -305,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71d56a959534ea43b7eddaac6e14d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 11400000, guid: 0aae9067f3e4861478f70a197fd4990a, type: 2}
+  Data: {fileID: 11400000, guid: 9427a3b198cd0a44481abf96d796d3a4, type: 2}
   Radius: 5
 --- !u!114 &114780335584259956
 MonoBehaviour:
@@ -320,6 +304,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 100
   Health: 100
+--- !u!114 &114906979861464472
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1080053786728032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22445ab0ec0e8d6429e3f97af1cf6c54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 0}
+  ReloadTime: 0
+  TargetingLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &114955959995072000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -346,7 +346,7 @@ LineRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: f9bd88b1d6cd2ca4e8f055ac0369fa3e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -442,7 +442,7 @@ NavMeshAgent:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1080053786728032}
   m_Enabled: 0
-  m_AgentTypeID: -334000983
+  m_AgentTypeID: -1372625422
   m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8

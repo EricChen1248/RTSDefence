@@ -31,6 +31,8 @@ namespace Scripts.Controllers
         public IEnumerator WaitForWave()
         {
             yield return new WaitForSeconds(WaveTime[CurrentWave]);
+
+            StartNewWave();
         }
 
         public void AddScore(int score)
