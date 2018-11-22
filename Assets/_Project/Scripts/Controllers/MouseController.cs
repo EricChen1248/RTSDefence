@@ -14,8 +14,10 @@ namespace Scripts.Controllers
 
         public void SetFocus(IPlayerControllable click)
         {
+            if (FocusedItem == click) return;
             FocusedItem?.LostFocus();
             FocusedItem = click;
+            FocusedItem.Focus();
         }
 
         private void Update()
