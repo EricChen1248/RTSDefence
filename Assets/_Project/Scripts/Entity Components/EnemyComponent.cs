@@ -6,8 +6,9 @@ using UnityEngine.AI;
 namespace Scripts.Entity_Components
 {
     [DefaultExecutionOrder(0)]
-    [RequireComponent(typeof(HealthComponent))]
     [RequireComponent(typeof(AiBase))]
+    [RequireComponent(typeof(NavMeshAgent))]
+    [RequireComponent(typeof(HealthComponent))]
     public class EnemyComponent : MonoBehaviour
     {
         private AiBase _ai;
@@ -21,17 +22,17 @@ namespace Scripts.Entity_Components
         // Use this for initialization
         public void Start()
         {
-
             _agent = GetComponent<NavMeshAgent>();
+            _agent.speed = Data.MovementSpeed;
             _agent.enabled = true;
 
             _ai = GetComponent<AiBase>();
             _ai.TargetingLayers = Data.TargetLayers;
             _ai.ReloadTime = Data.ReloadTime;
-
-            _gf = GetComponent<GroupFinder>();
+            
             if (Data.FindGroup)
             {
+                _gf = GetComponent<GroupFinder>();
                 _gf.enabled = true;
             }
 

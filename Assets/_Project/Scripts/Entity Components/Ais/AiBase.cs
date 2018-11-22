@@ -3,6 +3,7 @@ using UnityEngine.AI;
 
 namespace Scripts.Entity_Components.Ais
 {
+    [DefaultExecutionOrder(-1)]
     [RequireComponent(typeof(NavMeshAgent))]
     public abstract class AiBase : MonoBehaviour
     {
