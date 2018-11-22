@@ -62,17 +62,17 @@ namespace Scripts.Controllers
                 var script = _currentGhostModel.GetComponent<GhostModelScript>();
                 if (script.CanBuild())
                 {
+                    var newGhost = Instantiate(_currentGhostModel);
                     if (NoGhost)
                     {
                         Build(_currentGhostModel);
-                        Destroy(_currentGhostModel);
                     }
                     else
                     {
-                        _currentGhostModel = null;
                         script.Activate();
                     }
-                    CreateGhostModel();
+
+                    _currentGhostModel = newGhost;
                 }
             }
             else if (Input.GetKeyDown(KeyCode.E))
