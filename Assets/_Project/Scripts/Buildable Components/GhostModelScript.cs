@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
-using Scripts.Controllers;
-using Scripts.Entity_Components.Friendlies;
+﻿using Scripts.Entity_Components.Friendlies;
 using Scripts.Entity_Components.Job;
-using Scripts.GUI;
-using Scripts.Helpers;
 using Scripts.Scriptable_Objects;
+using Scripts.Controllers;
+using Scripts.Navigation;
+using Scripts.Helpers;
+using Scripts.GUI;
+
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Scripts.Buildable_Components
@@ -64,7 +66,7 @@ namespace Scripts.Buildable_Components
 
         public bool CanBuild()
         {
-            return Physics.OverlapBox(transform.position, transform.localScale * 0.49f, transform.rotation).Length == 0;
+            return Physics.OverlapBox(transform.position, transform.localScale * 0.49f, transform.rotation, RaycastHelper.LayerMaskDictionary["Non Buildables"]).Length == 0;
         }
 
         public void Clicked()
