@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Scripts.Controllers;
 using UnityEngine;
 
 namespace Scripts.GUI
@@ -27,6 +28,11 @@ namespace Scripts.GUI
         }
 
         public void ChangeMenu()
+        {
+            MenuController.Instance.MenuClicked(this);
+        }
+
+        public void Animate()
         {
             if (_heightRoutine != null) StopCoroutine(_heightRoutine);
             _heightRoutine = _isUp ? Lower() : Raise();
