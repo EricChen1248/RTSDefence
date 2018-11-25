@@ -1,5 +1,5 @@
 ﻿using Scripts.Entity_Components.Friendlies;
-using Scripts.Entity_Components.Job;
+using Scripts.Entity_Components.Jobs;
 using Scripts.Scriptable_Objects;
 using Scripts.Controllers;
 using Scripts.Navigation;
@@ -7,6 +7,7 @@ using Scripts.Helpers;
 using Scripts.GUI;
 
 using System.Collections.Generic;
+using Scripts.Resources;
 using UnityEngine;
 
 namespace Scripts.Buildable_Components
@@ -21,10 +22,12 @@ namespace Scripts.Buildable_Components
         public BuildData Data { get; private set; }
         public List<RecipeItem> Recipe { get; private set; }
         public int WorkLeft { get; private set; }
-        public PlayerComponent AssignedTo { get; private set; }
         public GameObject OriginalGameObject { get; private set; }
 
         public bool ActiveGhost;
+        private Dictionary<ResourceTypes, int> _droppedResources;
+
+        private BuildJob _job;
 
         private void OnDisable()
         {
@@ -32,20 +35,25 @@ namespace Scripts.Buildable_Components
             GetComponent<BoxCollider>().enabled = false;
         }
 
-        public BuildJob GenerateJob(PlayerComponent player)
-        {
-            AssignedTo = player;
-
-            var job = new BuildJob(player, WorkLeft, this);
-            return job;
-        }
-
         public void Activate()
         {
             ActiveGhost = true;
             GetComponent<BoxCollider>().enabled = true;
+            _droppedResources = new Dictionary<ResourceTypes, int>();
+            _job = new BuildJob(this);
+            JobController.AddJob(_job);
         }
 
+        public void DepositResources(ResourceTypes type, int count)
+        {
+            if (!_droppedResources.ContainsKey(type))
+            {
+                _droppedResources[type] = 0;
+            }
+
+            _droppedResources[type] += count;
+        }
+        
         public void AssignData(BuildData data, GameObject original)
         {
             Data = data;
@@ -59,40 +67,32 @@ namespace Scripts.Buildable_Components
             --WorkLeft;
         }
 
-        public void JobCancel()
-        {
-            
-        }
-
-        public bool CanBuild()
-        {
-            return Physics.OverlapBox(transform.position, transform.localScale * 0.49f, transform.rotation, RaycastHelper.LayerMaskDictionary["Non Buildables"]).Length == 0;
-        }
+        public bool CanBuild() => Physics.OverlapBox(transform.position, transform.localScale * 0.49f, transform.rotation, RaycastHelper.LayerMaskDictionary["Non Buildables"]).Length == 0;
 
         public void Clicked()
         {
             if (!ActiveGhost) return;
-            var ui = Pool.Spawn("FloatingUI");
-            if (ui == null)
-            {
-                ui = Instantiate(UnityEngine.Resources.Load<GameObject>("Prefabs/GUI/Floating UI"));
-            }
+            var omg = ObjectMenuGroupComponent.Instance;
 
-            ui.transform.position = transform.position + Vector3.up;
-            var images = new List<Sprite> { UnityEngine.Resources.Load<Sprite>("Sprites/Collection Button") };
-            var jobs = new List<FloatingUIMenu.ClickEvent> {AssignJobToPlayer};
-            ui.GetComponent<FloatingUIMenu>().AssignButton(images, jobs);
+            omg.ResetButtons();
+            omg.SetButton(0, "Cancel", Cancel);
+            omg.SetButton(1, "Prioritize", Prioritize);
+            omg.Show();
         }
 
-        private void AssignJobToPlayer()
+        public void Cancel()
         {
-            var player = CoreController.MouseController.FocusedItem as PlayerComponent;
-            if (player == null) return;
-
-            AssignedTo = player;
-            var job = GenerateJob(player);
-            player.CurrentJob = job;
-            player.DoingJob = false;
+            foreach (var droppedResource in _droppedResources)
+            {
+                ResourceController.AddResource(droppedResource.Key, droppedResource.Value);
+            }
+            JobController.CancelJob(_job);
         }
+
+        public void Prioritize()
+        {
+            JobController.Prioritize(_job);
+        }
+
     }
 }

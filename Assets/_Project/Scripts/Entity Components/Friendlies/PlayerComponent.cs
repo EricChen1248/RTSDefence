@@ -1,5 +1,6 @@
 ﻿using System;
-using Scripts.Entity_Components.Job;
+using System.Collections;
+using Scripts.Entity_Components.Jobs;
 using Scripts.Interface;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,7 +13,7 @@ namespace Scripts.Entity_Components.Friendlies
         public float Speed = 3.5f;
         public NavMeshAgent Agent { get; private set; }
 
-        public IJob CurrentJob;
+        public Jobs.Job CurrentJob;
         public bool DoingJob;
 
         public void MoveToLocationOnGrid(Vector3 target)
@@ -38,19 +39,20 @@ namespace Scripts.Entity_Components.Friendlies
 
         #region Unity Callbacks
 
-        private void Start()
+        public virtual void Start()
         {
             Agent = GetComponent<NavMeshAgent>();
             Agent.enabled = true;
         }
-        
-        private void FixedUpdate()
+
+        public IEnumerator CheckJob()
         {
-            if (!DoingJob && CurrentJob != null)
+            while(DoingJob || CurrentJob == null)
             {
-                DoingJob = true;
-                StartCoroutine(CurrentJob.DoJob());   
+                yield return new WaitForFixedUpdate();
             }
+            DoingJob = true;
+            StartCoroutine(CurrentJob.DoJob());
         }
 
         #endregion

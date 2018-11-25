@@ -4,12 +4,11 @@ using Scripts.Controllers;
 using Scripts.Entity_Components.Friendlies;
 using Scripts.Resources;
 using UnityEngine;
-using UnityEngine.AI;
 using Object = UnityEngine.Object;
 
-namespace Scripts.Entity_Components.Job
+namespace Scripts.Entity_Components.Jobs
 {
-    public class ResourceCollectionJob : IJob
+    public class ResourceCollectionJob : Job
     {
         // private resource collection;
         private readonly PlayerComponent _sender;
@@ -31,7 +30,7 @@ namespace Scripts.Entity_Components.Job
             _currentPhase = JobPhase.MovingToResource;
         }
 
-        public IEnumerator DoJob()
+        public override IEnumerator DoJob()
         {
             Debug.Log(_currentPhase);
             switch (_currentPhase)
@@ -50,7 +49,7 @@ namespace Scripts.Entity_Components.Job
         }
         
 
-        public void CancelJob()
+        public override void CancelJob()
         {
             throw new NotImplementedException();
         }
@@ -78,7 +77,7 @@ namespace Scripts.Entity_Components.Job
             _rhp = Object.Instantiate(ResourceController.Instance.ResouceHolderPrefab, _sender.transform);
             _rhp.transform.localPosition = new Vector3(0, 2, 0);
             var component = _rhp.GetComponent<ResourceHolderComponent>();
-            component.ChangeResources(HeldResourceType);
+            component.ChangeResources(HeldResourceType, 0);
             while (_hasResources)
             {
                 var time = _node.GatherResource();

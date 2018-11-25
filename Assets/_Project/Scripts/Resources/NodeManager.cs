@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Scripts.Controllers;
 using Scripts.Entity_Components.Friendlies;
-using Scripts.Entity_Components.Job;
+using Scripts.Entity_Components.Jobs;
 using Scripts.GUI;
 using Scripts.Helpers;
 using UnityEngine;

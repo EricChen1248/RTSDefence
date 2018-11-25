@@ -15,13 +15,15 @@ namespace Scripts.Controllers
 
         public void MenuClicked(MenuButton currentMenuButton)
         {
-            if (_currentMenu != null) _currentMenu.Lower();
+            if (_currentMenu != currentMenuButton) _currentMenu?.Animate();
             _currentMenu = currentMenuButton;
+            _currentMenu.Animate();
+            ObjectMenuGroupComponent.Instance.Hide();
         }
 
         public void MenuLowered()
         {
-            _currentMenu.Lower();
+            if (_currentMenu != null) _currentMenu.Animate();
             _currentMenu = null;
         }
 

@@ -60,20 +60,21 @@ namespace Scripts.Controllers
             else if (Input.GetMouseButtonDown(0))
             {
                 var script = _currentGhostModel.GetComponent<GhostModelScript>();
-                if (script.CanBuild())
+                print(script.transform.position);
+                if (!script.CanBuild()) return;
+                var ghost = _currentGhostModel;
+                if (NoGhost)
                 {
-                    var newGhost = Instantiate(_currentGhostModel);
-                    if (NoGhost)
-                    {
-                        Build(_currentGhostModel);
-                    }
-                    else
-                    {
-                        script.Activate();
-                    }
-
-                    _currentGhostModel = newGhost;
+                    Build(_currentGhostModel);
                 }
+                else
+                {
+                    script.Activate();
+                }
+
+                _currentGhostModel = null;
+                CreateGhostModel();
+                _currentGhostModel.transform.rotation = ghost.transform.rotation;
             }
             else if (Input.GetKeyDown(KeyCode.E))
             {

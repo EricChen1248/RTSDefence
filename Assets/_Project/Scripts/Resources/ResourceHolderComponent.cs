@@ -12,10 +12,10 @@ namespace Scripts.Resources
 
         public int HeldCount;
 
-        public void ChangeResources(ResourceTypes type)
+        public void ChangeResources(ResourceTypes type, int count)
         {
             HeldResource = type;
-            HeldCount = 0;
+            HeldCount = count;
             foreach (Transform child in ModelHolder.transform)
             {
                 Destroy(child.gameObject);

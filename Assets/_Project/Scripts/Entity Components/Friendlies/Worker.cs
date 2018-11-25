@@ -1,7 +1,39 @@
-﻿namespace Scripts.Entity_Components.Friendlies
+﻿using System;
+using System.Collections;
+using Scripts.Controllers;
+using Scripts.Entity_Components.Jobs;
+
+namespace Scripts.Entity_Components.Friendlies
 {
     public class Worker : PlayerComponent
     {
+        public override void Start()
+        {
+            base.Start();
+            CompleteJob();
+        }
 
+        public void DoWork(Job job)
+        {
+            job.Worker = this;
+            StartCoroutine(job.DoJob());
+        }
+        
+
+        public void CompleteJob()
+        {
+            var job = JobController.GetJob();
+
+            if (job == null)
+            {
+                JobController.FreeWorker(this);
+
+                // Return to core
+                Agent.destination = CoreController.Instance.CoreGameObject.transform.position;
+                return;
+            }
+
+            DoWork(job);
+        }
     }
 }
