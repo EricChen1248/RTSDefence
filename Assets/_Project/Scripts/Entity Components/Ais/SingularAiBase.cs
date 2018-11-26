@@ -9,5 +9,8 @@ namespace Scripts.Entity_Components.Ais
         protected bool _stopTemp;
 
         public abstract void StopTempTarget();
+        public bool HasTempTarget(){
+            return _tempTarget != null;
+        }
     }
 }

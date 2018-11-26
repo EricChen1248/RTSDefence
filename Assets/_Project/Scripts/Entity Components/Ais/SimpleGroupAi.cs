@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Scripts.Entity_Components.Ais
@@ -9,10 +10,12 @@ namespace Scripts.Entity_Components.Ais
     public class SimpleGroupAi : GroupAiBase
     {
         protected State _state;
+        protected HashSet<SingularAiBase> _hasTempTarget;
 
         protected new void Start(){
             base.Start();
             _state = null;
+            _hasTempTarget = new HashSet<SingularAiBase>();
             SwitchState(new SelfDecideState(transform));
         }
         protected void SwitchState(State state){
@@ -49,6 +52,23 @@ namespace Scripts.Entity_Components.Ais
         }
         protected void Update(){
             _state?.Update();
+            CommonUpdate();
+        }
+        protected void CommonUpdate(){
+            if(_aiProperty.CheckTempTarget){
+                foreach (var member in _groupComponent.Member){
+                    var singularAI = member.GetComponent<SingularAiBase>();
+                    if(singularAI.HasTempTarget() && !_hasTempTarget.Contains(singularAI)){
+                        _hasTempTarget.Add(singularAI);
+                        StartCoroutine(StopMemberTempTarget(singularAI));
+                    }
+                }
+            }
+        }
+        protected IEnumerator StopMemberTempTarget(SingularAiBase singularAI){
+            yield return new WaitForSeconds(_aiProperty.TimeToClearTempTarget);
+            singularAI.StopTempTarget();
+            _hasTempTarget.Remove(singularAI);
         }
         private void OnDestroy(){
             _state?.Leave();

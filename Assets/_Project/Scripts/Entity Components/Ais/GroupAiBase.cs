@@ -19,7 +19,8 @@ namespace Scripts.Entity_Components.Ais{
             public abstract void LastCommand(Transform member, bool selfDestroy);
         }
         public class GroupAIProperty{
-        	//...
+        	public bool CheckTempTarget;
+        	public float TimeToClearTempTarget;
         }
 		protected GroupComponent _groupComponent;
 		protected GroupAIProperty _aiProperty;

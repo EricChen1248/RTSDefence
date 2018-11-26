@@ -4,6 +4,7 @@ using Scripts.Entity_Components.Ais;
 
 namespace Scripts.Scriptable_Objects
 {
+	[CreateAssetMenu]
 	public class GroupData : ScriptableObject
 	{
 		#region Used By GroupComponent
@@ -22,11 +23,11 @@ namespace Scripts.Scriptable_Objects
 		public void CompileAIProperty(out GroupAiBase.GroupAIProperty p){
 			p = new GroupAiBase.GroupAIProperty();
 			if(TimeToClearTempTarget <= 0){
-				// ?? = false;
-				// ?? = null?
+				p.CheckTempTarget = false;
+				p.TimeToClearTempTarget = 0;
 			}else{
-				// ?? = true;
-				// ?? = TimeToClearTempTarget;
+				p.CheckTempTarget = true;
+				p.TimeToClearTempTarget = TimeToClearTempTarget;
 			}
 		}
 

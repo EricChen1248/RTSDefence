@@ -32,6 +32,7 @@ namespace Scripts.Entity_Components.Ais
             if (!InLayerMask(TargetingLayers, other.gameObject.layer)) return;
             Agent.isStopped = true;
             _tempTarget = other.gameObject;
+            _stopTemp = false;
             var health = _tempTarget.GetComponent<HealthComponent>();
             health.OnDeath += OnTargetDeath;
             StartCoroutine(Attack());
