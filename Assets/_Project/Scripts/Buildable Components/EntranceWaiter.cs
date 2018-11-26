@@ -18,12 +18,12 @@ namespace Scripts.Buildable_Components
             var waitPos = transform.position +
                     ((other.transform.position - transform.position + transform.forward).sqrMagnitude > (other.transform.position - transform.position - transform.forward).sqrMagnitude
                     ? transform.forward
-                    : -transform.forward) * 1.1f;
+                    : -transform.forward) * 0.9f;
 
             var originalDest = agent.destination;
 
             agent.destination = waitPos;
-            while (agent.remainingDistance > 0)
+            while (agent.remainingDistance > 0.5f)
             {
                 yield return null;
             }
@@ -33,7 +33,7 @@ namespace Scripts.Buildable_Components
                 yield return new WaitForFixedUpdate();
             }
 
-            if ((originalDest - transform.position).sqrMagnitude < 2.56)
+            if ((originalDest - transform.position).sqrMagnitude < 1.5f)
             {
                 var otherSide = transform.position + (transform.position - waitPos) * 1.45f;
                 agent.destination = otherSide;
