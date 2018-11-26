@@ -60,7 +60,6 @@ namespace Scripts.Controllers
             else if (Input.GetMouseButtonDown(0))
             {
                 var script = _currentGhostModel.GetComponent<GhostModelScript>();
-                print(script.transform.position);
                 if (!script.CanBuild()) return;
                 var ghost = _currentGhostModel;
                 if (NoGhost)
@@ -185,11 +184,9 @@ namespace Scripts.Controllers
             }
             BuiltObjects[_currentData][go.GetInstanceID()] = go;
 
-            NavigationBaker.Instance.Rebuild();
-
             Destroy(ghostModel);
-            // TODO : Get recipe and remove resources
-            // DeselectBuild();
+
+            NavigationBaker.Instance.Rebuild();
         }
 
         public void Destroy(Buildable building)

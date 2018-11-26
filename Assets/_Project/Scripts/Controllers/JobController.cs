@@ -23,7 +23,6 @@ namespace Scripts.Controllers
         public static void FreeWorker(Worker worker)
         {
             _instance._workers.Enqueue(worker);
-            print(worker);
         }
 
         public static void AddJob(Job job)
@@ -56,7 +55,6 @@ namespace Scripts.Controllers
                 var worker = _workers.Dequeue();
                 worker.CompleteJob();
             }
-
         }
 
         private Job GetJobInstance()
