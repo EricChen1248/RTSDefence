@@ -9,17 +9,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 584233384e22c2c42bafa39ac866ae61, type: 3}
-  m_Name: DoorBuildData
+  m_Name: Archery
   m_EditorClassIdentifier: 
-  Name: Doors
-  GhostModel: {fileID: 1703699168684218, guid: 8cb5d4841493beb4da304059fdbe2e4d, type: 2}
-  Health: 80
-  Offset: {x: -0.5, y: -0.5, z: 0}
-  Size: {x: 2, y: 2, z: 2}
+  Name: Archery
+  GhostModel: {fileID: 1380719608947222, guid: d3e9b139f621c034a9f4d7c5a0a5f8d5, type: 2}
+  Health: 0
+  Offset: {x: 0, y: 0, z: 0}
+  Size: {x: 3, y: 3, z: 3}
   CanRotateHorizontal: 1
   CanRotateVertical: 0
-  BuildTime: 0
+  BuildTime: 5
   Recipe:
   - Resource: 0
-    Amount: 1
+    Amount: 5
   Types: 

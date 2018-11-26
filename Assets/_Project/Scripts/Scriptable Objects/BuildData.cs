@@ -14,6 +14,7 @@ namespace Scripts.Scriptable_Objects
         public int Health;
 
         public Vector3 Offset;
+        public Vector3 Size;
         public bool CanRotateHorizontal;
         public bool CanRotateVertical;
 

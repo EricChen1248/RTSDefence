@@ -9,6 +9,7 @@ using Scripts.GUI;
 using System.Collections.Generic;
 using Scripts.Resources;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Scripts.Buildable_Components
 {
@@ -29,17 +30,13 @@ namespace Scripts.Buildable_Components
 
         private BuildJob _job;
 
-        private void OnDisable()
-        {
-            ActiveGhost = false;
-            GetComponent<BoxCollider>().enabled = false;
-        }
-
         public void Activate()
         {
             ActiveGhost = true;
             GetComponent<BoxCollider>().enabled = true;
             _droppedResources = new Dictionary<ResourceTypes, int>();
+
+            // Generate new build job for ghost
             _job = new BuildJob(this);
             JobController.AddJob(_job);
         }
@@ -67,7 +64,16 @@ namespace Scripts.Buildable_Components
             --WorkLeft;
         }
 
-        public bool CanBuild() => Physics.OverlapBox(transform.position, transform.localScale * 0.49f, transform.rotation, RaycastHelper.LayerMaskDictionary["Non Buildables"]).Length == 0;
+        public bool CanBuild()
+        {
+            var overlap = Physics.OverlapBox(transform.position, Data.Size / 2f * 0.9f, transform.rotation, RaycastHelper.LayerMaskDictionary["Non Buildables"]);
+            foreach (var item in overlap)
+            {
+                print(item);
+                return false;
+            }
+            return true;
+        }
 
         public void Clicked()
         {
@@ -94,5 +100,13 @@ namespace Scripts.Buildable_Components
             JobController.Prioritize(_job);
         }
 
+        public void OnTriggerEnter(Collider other)
+        {
+            Debug.Log(other);
+            if (other.gameObject == _job.Worker.gameObject)
+            {
+                _job.AtDestination = true;
+            }
+        }
     }
 }

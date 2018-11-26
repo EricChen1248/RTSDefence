@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,13 +32,16 @@ namespace Scripts.Helpers
 
         public static GameObject Spawn(string key)
         {
-            CheckPoolExists(key);
-            var go = ObjectPool[key].Count > 0 ? ObjectPool[key].Pop() : null;
+            try
+            {
+                var go = ObjectPool[key].Pop();
+                go.SetActive(true);
+                return go;
+            }
+            catch (InvalidOperationException) {}
+            catch (KeyNotFoundException) {}
 
-            if (go == null) return null;
-            go.SetActive(true);
-            return go;
-
+            return null;
         }
     
         private static void CheckPoolExists(string key)

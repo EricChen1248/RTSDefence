@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Scripts.Buildable_Components;
 using Scripts.Controllers;
-using Scripts.Helpers;
 using Scripts.Resources;
 using Scripts.Scriptable_Objects;
 using UnityEngine;
+using Object = UnityEngine.Object;
+
 namespace Scripts.Entity_Components.Jobs
 {
     public class BuildJob : Job
@@ -17,6 +17,8 @@ namespace Scripts.Entity_Components.Jobs
 
         private BuildJobPhase _currentPhase;
         private GameObject _resourceHolder;
+
+        public bool AtDestination;
         
         public BuildJob(GhostModelScript ghost)
         {
@@ -29,7 +31,6 @@ namespace Scripts.Entity_Components.Jobs
 
         public override IEnumerator DoJob()
         {
-            Debug.Log(_currentPhase);
             switch (_currentPhase)
             {
                 case BuildJobPhase.Building:
@@ -56,22 +57,23 @@ namespace Scripts.Entity_Components.Jobs
         private IEnumerator DeliveringResource()
         {
             Worker.Agent.destination = _ghost.transform.position;
-            while (true)
-            {
-                var distanceToTarget = (Worker.transform.position - Worker.Agent.destination).sqrMagnitude;
-                if (distanceToTarget < 2f) break;
+            AtDestination = false;
 
+            while (!AtDestination)
+            {
                 yield return new WaitForFixedUpdate();
             }
 
-            Worker.Agent.destination = Worker.Agent.nextPosition;
+            Worker.Agent.isStopped = true;
+            yield return new WaitForSeconds(1);
 
             var comp = _resourceHolder.GetComponent<ResourceHolderComponent>();
             _ghost.DepositResources(comp.HeldResource, comp.HeldCount);
-            Pool.ReturnToPool("Resource Holder", _resourceHolder);
+            Object.Destroy(_resourceHolder);
 
             _currentPhase = _recipe.Count > 0 ? BuildJobPhase.CollectingResources : BuildJobPhase.Building;
             Worker.DoWork(this);
+            Worker.Agent.isStopped = false;
         }
 
         private IEnumerator CollectingResources()
@@ -81,19 +83,16 @@ namespace Scripts.Entity_Components.Jobs
                 Worker.Agent.destination = CoreController.Instance.CoreGameObject.transform.position;
                 while (true)
                 {
-                    var distanceToTarget = (Worker.transform.position - Worker.Agent.destination).sqrMagnitude;
-                    if (distanceToTarget < 2f) break;
+                    var distanceToTarget = (Worker.transform.position - CoreController.Instance.CoreGameObject.transform.position).sqrMagnitude;
+                    if (distanceToTarget < 4f) break;
 
                     yield return new WaitForFixedUpdate();
                 }
+
                 yield return new WaitForSeconds(1);
 
                 // TODO : Add Take Resource.
-                _resourceHolder = Pool.Spawn("Resource Holder");
-                if (_resourceHolder == null)
-                {
                     _resourceHolder = UnityEngine.Object.Instantiate(UnityEngine.Resources.Load<GameObject>("Prefabs/Entities/Resource Holder"));
-                }
 
                 var res = _recipe.Dequeue();
                 _resourceHolder.GetComponent<ResourceHolderComponent>().ChangeResources(res.Resource, res.Amount);
@@ -110,7 +109,8 @@ namespace Scripts.Entity_Components.Jobs
         {
             if (_resourceHolder != null)
             {
-                Pool.ReturnToPool("Resource Holder", _resourceHolder);
+                Object.Destroy(_resourceHolder);
+                Object.Destroy(_resourceHolder);
                 _resourceHolder = null;
             }
 

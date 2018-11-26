@@ -105,7 +105,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1319262166712184}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.202118, y: 1, z: -12.305618}
+  m_LocalPosition: {x: 7.4604797, y: 1.132, z: -4.9098587}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4298777225103864}
@@ -122,7 +122,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1665385587930100}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0, z: 0}
+  m_LocalPosition: {x: -0.5, y: 0, z: 0.4}
   m_LocalScale: {x: 1, y: 2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 4233594940607124}
@@ -135,7 +135,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1198680963557616}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: 0, z: 0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4233594940607124}
@@ -148,7 +148,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1755792815714254}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0, z: 0.4}
   m_LocalScale: {x: 1, y: 2, z: 0.19999999}
   m_Children: []
   m_Father: {fileID: 4233594940607124}
@@ -161,7 +161,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1915473641807516}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: 0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4233594940607124}
@@ -261,7 +261,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
+  m_Size: {x: 2, y: 2, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114304489883877474
 MonoBehaviour:
@@ -337,6 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9901572aad2848741955aeeaa549593e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHealth: 100
   Health: 100
 --- !u!114 &114718228308847410
 MonoBehaviour:
@@ -350,6 +351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: c7213ec91727ddb478fe3ac208c78403, type: 2}
+  ID: 0
 --- !u!114 &114935019880613698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -361,7 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1d7e0f6a474ea146ae2d7f6bdef39a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Size: {x: 2, y: 2, z: 2}
+  m_Size: {x: 2, y: 2, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
   m_Area: 4
   m_AffectedAgents: ffffffff
