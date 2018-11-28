@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TrackingSys : MonoBehaviour
+public class TrackingSystem : MonoBehaviour
 {
     public float speed = 3.0f;
 
