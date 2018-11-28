@@ -46,7 +46,7 @@ namespace Scripts.Entity_Components
             _group.GetComponent<GroupAiBase>().LastCommand(transform, selfDestroy);
             _group = null;
             if(!selfDestroy){
-                GetComponent<AiBase>().FindTarget();
+                GetComponent<SingularAiBase>().FindTarget();
                 Search();
             }
         }
@@ -71,7 +71,7 @@ namespace Scripts.Entity_Components
         private void SearchFailed()
         {
             print("No commander... I can only Uraaaa!");
-            GetComponent<AiBase>().FindTarget();
+            GetComponent<SingularAiBase>().FindTarget();
             //this.enabled = false;
         }
 

@@ -9,6 +9,7 @@ namespace Scripts.Entity_Components
     [RequireComponent(typeof(AiBase))]
     [RequireComponent(typeof(NavMeshAgent))]
     [RequireComponent(typeof(HealthComponent))]
+    [RequireComponent(typeof(SingularAiBase))]
     public class EnemyComponent : MonoBehaviour
     {
         private AiBase _ai;

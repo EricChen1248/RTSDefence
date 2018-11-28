@@ -7,7 +7,7 @@ using UnityEngine.AI;
 namespace Scripts.Entity_Components.Ais
 {
     [DefaultExecutionOrder(-1)]
-    public class SimpleAi : AiBase
+    public class SimpleAi : SingularAiBase
     {
         private EnemyComponent _enemyComponent;
         private GameObject _tempTarget;
@@ -19,13 +19,16 @@ namespace Scripts.Entity_Components.Ais
             Agent = GetComponent<NavMeshAgent>();
             _enemyComponent = GetComponent<EnemyComponent>();
             _animation = GetComponentInChildren<Animation>();
+            _stopTemp = false;
         }
 
         public override void FindTarget()
         {
-            Target = CoreController.Instance.CoreGameObject;
+            TargetTo(CoreController.Instance.CoreGameObject, force: true);
+        }
 
-            Agent.destination = Target.transform.position;
+        public override void StopTempTarget(){
+            _stopTemp = true;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -33,6 +36,7 @@ namespace Scripts.Entity_Components.Ais
             if (!InLayerMask(TargetingLayers, other.gameObject.layer)) return;
             Agent.isStopped = true;
             _tempTarget = other.gameObject;
+            _stopTemp = false;
             var health = _tempTarget.GetComponent<HealthComponent>();
             health.OnDeath += OnTargetDeath;
             print("starting routine");
@@ -65,6 +69,7 @@ namespace Scripts.Entity_Components.Ais
                 {
                     print("stopping attack");
                     _tempTarget = null;
+                    _stopTemp = false;
                     health.OnDeath -= OnTargetDeath;
                     Agent.isStopped = false;
                     break;

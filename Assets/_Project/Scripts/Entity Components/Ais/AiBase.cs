@@ -15,7 +15,14 @@ namespace Scripts.Entity_Components.Ais
         public LayerMask TargetingLayers;
 
         public abstract void FindTarget();
-
+        public virtual bool TargetTo(GameObject obj, bool force){
+            if (!InLayerMask(TargetingLayers, obj.layer) && !force){
+                return false;
+            }
+            Target = obj;
+            Agent.destination = Target.transform.position;
+            return true;
+        }
 
         protected static bool InLayerMask(LayerMask layerMask, int layer)
         {

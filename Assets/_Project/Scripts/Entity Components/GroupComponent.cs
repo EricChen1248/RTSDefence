@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Scripts.Scriptable_Objects;
 using UnityEngine;
 
 namespace Scripts.Entity_Components
@@ -6,13 +7,26 @@ namespace Scripts.Entity_Components
     [DefaultExecutionOrder(-2)]
     public class GroupComponent : MonoBehaviour
     {
+        public GroupData Data;
+
         //Member is modified by GroupFinder, not by GroupComponent itself.
         public HashSet<Transform> Member;
+
+        public class GroupDataProperty{
+            public String Characteristics;
+        }
+
+        private GroupDataProperty _groupProperty;
+
+        public String Characteristics(){
+            return _groupProperty.Characteristics;
+        }
 
         // Use this for initialization
         public void Start()
         {
             Member = new HashSet<Transform>();
+            Data?.CompileGroupProperty(out _groupProperty);
         }
 
         public bool Apply(GameObject enemy)
