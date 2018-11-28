@@ -13,10 +13,14 @@ namespace Scripts.Entity_Components
         public HashSet<Transform> Member;
 
         public class GroupDataProperty{
-            //...
+            public String Characteristics;
         }
 
         private GroupDataProperty _groupProperty;
+
+        public String Characteristics(){
+            return _groupProperty.Characteristics;
+        }
 
         // Use this for initialization
         public void Start()

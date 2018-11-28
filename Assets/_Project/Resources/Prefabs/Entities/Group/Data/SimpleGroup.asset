@@ -11,4 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2d10c0ec4c0d040ac67a8be502f7c9, type: 3}
   m_Name: SimpleGroup
   m_EditorClassIdentifier: 
+  Characteristics: simple aggressive
   TimeToClearTempTarget: 3

@@ -9,8 +9,11 @@ namespace Scripts.Scriptable_Objects
 	{
 		#region Used By GroupComponent
 
+		public String Characteristics;
+
 		public void CompileGroupProperty(out GroupComponent.GroupDataProperty p){
 			p = new GroupComponent.GroupDataProperty();
+			p.Characteristics = Characteristics;
 		}
 
 		#endregion
