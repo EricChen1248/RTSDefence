@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Name: SimpleEnemy
   m_EditorClassIdentifier: 
   Health: 100
-  Radius: 5
-  MovementSpeed: 3.5
+  Radius: 1
+  MovementSpeed: 7
   TargetLayers:
     serializedVersion: 2
-    m_Bits: 274944
-  ReloadTime: 1
-  FindGroup: 1
-  Types: 
+    m_Bits: 537088
+  ReloadTime: 0
+  FindGroup: 0
+  Types: 00000000

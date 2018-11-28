@@ -38,7 +38,6 @@ GameObject:
   - component: {fileID: 4828281803733666}
   - component: {fileID: 33346704870560102}
   - component: {fileID: 23468159256018642}
-  - component: {fileID: 114898153647418458}
   m_Layer: 0
   m_Name: Archer Tower Ghost
   m_TagString: Untagged
@@ -139,16 +138,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActiveGhost: 0
---- !u!114 &114898153647418458
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1788202444943108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f71fe7ce636c74055a5d1a6a668591b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  m_target: {fileID: 0}

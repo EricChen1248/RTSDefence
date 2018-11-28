@@ -10,7 +10,7 @@ namespace Scripts.Entity_Components.Ais
 {
     public static class Targetter
     {
-        public enum BuildType { ActiveDefence, StaticDefence, ResourceCollectors, Traps}
+        public enum BuildType { ActiveDefence, StaticDefence, Structure, Traps}
 
         public static Transform GetClosestBuildable(Vector3 position, BuildType type)
         {
@@ -25,8 +25,8 @@ namespace Scripts.Entity_Components.Ais
                 case BuildType.StaticDefence:
                     list = builder.StaticDefences;
                     break;
-                case BuildType.ResourceCollectors:
-                    list = builder.ResourceCollectors;
+                case BuildType.Structure:
+                    list = builder.Structure;
                     break;
                 case BuildType.Traps:
                     list = builder.Traps;
@@ -57,8 +57,8 @@ namespace Scripts.Entity_Components.Ais
                 case BuildType.StaticDefence:
                     list = builder.StaticDefences;
                     break;
-                case BuildType.ResourceCollectors:
-                    list = builder.ResourceCollectors;
+                case BuildType.Structure:
+                    list = builder.Structure;
                     break;
                 case BuildType.Traps:
                     list = builder.Traps;

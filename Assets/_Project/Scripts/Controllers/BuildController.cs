@@ -18,8 +18,8 @@ namespace Scripts.Controllers
         #region Public Variables
 
         public BuildData[] ActiveDefences;
-        public BuildData[] ResourceCollectors;
         public BuildData[] StaticDefences;
+        public BuildData[] Structure;
         public BuildData[] Traps;
         
         public Dictionary<ScriptableObject, Dictionary<int, GameObject>> BuiltObjects;
@@ -127,8 +127,8 @@ namespace Scripts.Controllers
             BuiltObjects = new Dictionary<ScriptableObject, Dictionary<int, GameObject>>();
 
             ActiveDefences = UnityEngine.Resources.LoadAll<BuildData>("Prefabs/Buildables/Data/Active Defence");
-            ResourceCollectors = UnityEngine.Resources.LoadAll<BuildData>("Prefabs/Buildables/Data/Resource Collector");
             StaticDefences = UnityEngine.Resources.LoadAll<BuildData>("Prefabs/Buildables/Data/Static Defence");
+            Structure = UnityEngine.Resources.LoadAll<BuildData>("Prefabs/Buildables/Data/Structure");
             Traps = UnityEngine.Resources.LoadAll<BuildData>("Prefabs/Buildables/Data/Traps");
 
             foreach (var activeDefence in ActiveDefences)
@@ -136,14 +136,14 @@ namespace Scripts.Controllers
                 BuiltObjects[activeDefence] = new Dictionary<int, GameObject>();
             }
 
-            foreach (var resourceCollector in ResourceCollectors)
-            {
-                BuiltObjects[resourceCollector] = new Dictionary<int, GameObject>();
-            }
-
             foreach (var staticDefence in StaticDefences)
             {
                 BuiltObjects[staticDefence] = new Dictionary<int, GameObject>();
+            }
+
+            foreach (var resourceCollector in Structure)
+            {
+                BuiltObjects[resourceCollector] = new Dictionary<int, GameObject>();
             }
 
             foreach (var trap in Traps)
