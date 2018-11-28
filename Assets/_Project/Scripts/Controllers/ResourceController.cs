@@ -38,6 +38,7 @@ namespace Scripts.Controllers
                 ResourceCount[resourceType] = 0;
             }
 
+            SpriteDictionary = new Dictionary<ResourceTypes, Sprite>();
             foreach (var resourceLink in ResourceLinks)
             {
                 SpriteDictionary[resourceLink.Type] = resourceLink.Obj;
