@@ -7,6 +7,26 @@ namespace Scripts.Entity_Components
     public class GroupFinder : MonoBehaviour
     {
         private Transform _group;
+
+        public Transform Group
+        {
+            public get { return _group; }
+            private set
+            {
+                if (_group != null)
+                {
+                    KickedOut();
+                }
+
+                _group = value;
+                if (_group == null) return;
+
+                value.GetComponent<GroupAiBase>().FirstCommand(transform);
+                var groupComponent = value.GetComponent<GroupComponent>();
+                groupComponent.Member.Add(transform);
+            }
+
+        }
         private static Transform _groupsPool; //point to "Groups" which is parent of all group
         
         public void Start()
@@ -14,26 +34,11 @@ namespace Scripts.Entity_Components
             // Is this a good way?
             if (_groupsPool == null)
             {
-                _groupsPool = CoreController.Instance.GroupsGameObject?.transform;
+                _groupsPool = CoreController.Instance.GroupsGameObject.transform;
             }
             Search();
         }
-
-        //register
-        public void SetGroup(Transform group)
-        {
-            if (_group != null)
-            {
-                KickedOut();
-            }
-            _group = group;
-            if (_group == null) return;
-
-            group.GetComponent<GroupAiBase>().FirstCommand(transform);
-            var groupComponent = group.GetComponent<GroupComponent>();
-            groupComponent.Member.Add(transform);
-        }
-
+        
         //de-register
         public void KickedOut(bool selfDestroy = false)
         {
@@ -45,10 +50,10 @@ namespace Scripts.Entity_Components
             groupComponent.Member?.Remove(transform);
             _group.GetComponent<GroupAiBase>().LastCommand(transform, selfDestroy);
             _group = null;
-            if(!selfDestroy){
-                GetComponent<SingularAiBase>().FindTarget();
-                Search();
-            }
+
+            if (selfDestroy) return;
+            GetComponent<SingularAiBase>().FindTarget();
+            Search();
         }
 
         //search for an existing group
@@ -60,7 +65,7 @@ namespace Scripts.Entity_Components
                 {
                     var success = @group.GetComponent<GroupComponent>().Apply(gameObject);
                     if (!success) continue;
-                    SetGroup(@group);
+                    Group = @group;
                     return;
                 }
             }

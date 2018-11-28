@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Scripts.Buildable_Components;
+using Scripts.Entity_Components;
+using Scripts.Entity_Components.Ais;
 
 namespace Scripts.Controllers
 {
@@ -43,6 +45,34 @@ namespace Scripts.Controllers
         public void StartNewWave()
         {
             // Start Collecting Points
+
+            // TODO : Set target of wave
+            var target = new GameObject();
+
+
+            // TODO : Instantiate enemies;
+            var enemies = new List<GameObject>();
+            for (int i = 0; i < 500; i++)
+            {
+                enemies.Add(Instantiate(new GameObject()));
+            }
+
+            // Wait for an update to start controlling enemy.
+
+            // Start assigning target
+            var hash = new HashSet<Transform>();
+            foreach (var enemy in enemies)
+            {
+                var group = enemy.GetComponent<GroupFinder>().Group;
+                if (hash.Contains(group)) continue;
+
+                hash.Add(group);
+
+
+                var ai = group.GetComponent<GroupAiBase>();
+                ai.TargetTo(target, true);
+
+            }
         }
     }
 

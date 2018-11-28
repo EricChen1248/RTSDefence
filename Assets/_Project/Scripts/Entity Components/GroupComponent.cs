@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Scripts.Scriptable_Objects;
 using UnityEngine;
 
@@ -13,12 +14,12 @@ namespace Scripts.Entity_Components
         public HashSet<Transform> Member;
 
         public class GroupDataProperty{
-            public String Characteristics;
+            public string Characteristics;
         }
 
         private GroupDataProperty _groupProperty;
 
-        public String Characteristics(){
+        public string Characteristics(){
             return _groupProperty.Characteristics;
         }
 
