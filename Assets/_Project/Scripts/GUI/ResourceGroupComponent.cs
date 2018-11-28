@@ -25,7 +25,7 @@ namespace Scripts.GUI
                 go.transform.SetParent(transform);
                 var comp = go.GetComponent<ResourcePanelComponent>();
                 _panelLinks[resourceType] = comp;
-                // comp.AssignImage(ResourceController.Instance.SpriteDictionary[resourceType]);
+                comp.AssignImage(ResourceController.Instance.SpriteDictionary[resourceType]);
 
             }
         }

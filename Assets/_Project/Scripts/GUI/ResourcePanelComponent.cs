@@ -7,7 +7,9 @@ namespace Scripts.GUI
     {
         public void AssignImage(Sprite sprite)
         {
+            print("getting image comp");
             GetComponentInChildren<Image>().sprite = sprite;
+            print("assigned image");
         }
 
         public Text Text;
