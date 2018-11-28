@@ -15,6 +15,7 @@ namespace Scripts.Scriptable_Objects
 
         public Vector3 Offset;
         public Vector3 Size;
+        public Vector3 ColliderOffset;
         public bool CanRotateHorizontal;
         public bool CanRotateVertical;
 

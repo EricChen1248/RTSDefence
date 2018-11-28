@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4610949917400616}
   - component: {fileID: 95856501625731794}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Training place
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4473266841017294}
   - component: {fileID: 33835204298382546}
   - component: {fileID: 23112491362249770}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Wooden Fence 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 4129419402825870}
   - component: {fileID: 33189421166365478}
   - component: {fileID: 23049454232825000}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Wooden Fence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 4819007089625332}
   - component: {fileID: 33999945154066194}
   - component: {fileID: 23041687515821182}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Wooden Box 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 4027963696936888}
   - component: {fileID: 33845520529236708}
   - component: {fileID: 23881595186108542}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Wooden Fence 1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 4659521647598888}
   - component: {fileID: 33217601083343390}
   - component: {fileID: 23511689647165054}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Wooden Fence 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 4472187362102400}
   - component: {fileID: 33958659533618406}
   - component: {fileID: 23320783823087376}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Target 2 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 4453467858697440}
   - component: {fileID: 33363094833569106}
   - component: {fileID: 23310122070420784}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: FLag_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 4920208870394716}
   - component: {fileID: 33471090539615400}
   - component: {fileID: 23165515817899972}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: 'Arrow Target '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 4527398725135030}
   - component: {fileID: 33346433166944224}
   - component: {fileID: 23212543569781436}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Wooden Box 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 4336535839672794}
   - component: {fileID: 33741092760981898}
   - component: {fileID: 23329437030274552}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Wooden Barrel 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,7 +205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4959332581096366}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Building_phase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 4809317272445104}
   - component: {fileID: 33463003806247966}
   - component: {fileID: 23244613008202658}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Wooden Fence 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 4368240704875040}
   - component: {fileID: 33723331942209394}
   - component: {fileID: 23072770762335472}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Wooden Barrel 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 4836091773405914}
   - component: {fileID: 33470025777842602}
   - component: {fileID: 23201283029976152}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Flag_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,7 +271,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4397025972712028}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Flags
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 4485768786933428}
   - component: {fileID: 33316475018217728}
   - component: {fileID: 23626493080222236}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Wooden Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 4859158801968706}
   - component: {fileID: 33034534027275270}
   - component: {fileID: 23995096788422332}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Wooden Box 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 4817886153058904}
   - component: {fileID: 33521425617412224}
   - component: {fileID: 23343780902534040}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Wooden Fence 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -339,7 +339,7 @@ GameObject:
   - component: {fileID: 4006299733493546}
   - component: {fileID: 33018396494999362}
   - component: {fileID: 23470053341610612}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: First_Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -354,7 +354,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4058386887517366}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Training_place
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -371,7 +371,7 @@ GameObject:
   - component: {fileID: 4497640096147720}
   - component: {fileID: 33765271242614284}
   - component: {fileID: 23926202022180254}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Wooden Fence (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,7 +388,7 @@ GameObject:
   - component: {fileID: 4324341567868256}
   - component: {fileID: 33290404874781770}
   - component: {fileID: 23891985747786570}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Wooden Fence 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,7 +405,7 @@ GameObject:
   - component: {fileID: 4226784811561076}
   - component: {fileID: 33570651757676786}
   - component: {fileID: 23775397808204610}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Wooden Barrel 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,7 +424,7 @@ GameObject:
   - component: {fileID: 114511095517659566}
   - component: {fileID: 65346341676973592}
   - component: {fileID: 114927463844786166}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Archery
   m_TagString: Untagged
   m_Icon: {fileID: 0}

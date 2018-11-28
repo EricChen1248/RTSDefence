@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4909261261045126}
   - component: {fileID: 33353988565700358}
   - component: {fileID: 23914137076583030}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Foundation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4591032630102450}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Flags
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4968699740931044}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Building_phase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 4204768727332328}
   - component: {fileID: 33133059087684482}
   - component: {fileID: 23493667827771078}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Second_Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 4153997580464986}
   - component: {fileID: 33926653863101554}
   - component: {fileID: 23829182182966386}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Saw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 4257202409196902}
   - component: {fileID: 33279824034794960}
   - component: {fileID: 23762800694271856}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Carcass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 4574445689523700}
   - component: {fileID: 33132087979567812}
   - component: {fileID: 23284152732856130}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Carriage 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 4933379799167892}
   - component: {fileID: 33818607774167360}
   - component: {fileID: 23426571986986012}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Roof
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 4048443921867272}
   - component: {fileID: 33518414434464630}
   - component: {fileID: 23509920796287078}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Beam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 4919658019498564}
   - component: {fileID: 33860416107483584}
   - component: {fileID: 23553919964994144}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: First_Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 4330547503478644}
   - component: {fileID: 65766000425582026}
   - component: {fileID: 114228793504671508}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Sawmill Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1989163642411096}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.916565, y: -99, z: -5.7774734}
+  m_LocalPosition: {x: -13.175644, y: 0.59, z: 2.1830826}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4574445689523700}
@@ -695,8 +695,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 4, z: 4}
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Size: {x: 4, y: 2.9, z: 4}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &114228793504671508
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -2,7 +2,7 @@
 
 namespace Scripts.Interface
 {
-    public interface IPlayerControllable
+    public interface IClickable
     {
         bool HasFocus { get; }
 

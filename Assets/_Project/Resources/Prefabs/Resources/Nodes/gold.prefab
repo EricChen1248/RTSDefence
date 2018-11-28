@@ -10,7 +10,8 @@ GameObject:
   - component: {fileID: 404636}
   - component: {fileID: 3304636}
   - component: {fileID: 2304636}
-  m_Layer: 19
+  - component: {fileID: 114971544494290616}
+  m_Layer: 20
   m_Name: gold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,3 +84,15 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 104636}
   m_IsPrefabAsset: 1
+--- !u!114 &114971544494290616
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c4c35109e57966459172b47109942a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 3

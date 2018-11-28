@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4035669701227286}
-  m_Layer: 12
+  m_Layer: 19
   m_Name: Flags
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   - component: {fileID: 4602640771730068}
   - component: {fileID: 33464432086301576}
   - component: {fileID: 23539333004207858}
-  m_Layer: 12
+  m_Layer: 19
   m_Name: First_Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 114055180000415110}
   - component: {fileID: 114088675565637766}
   - component: {fileID: 114145258163989576}
-  m_Layer: 12
+  m_Layer: 19
   m_Name: Barracks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 4991647537518714}
   - component: {fileID: 33253664331968366}
   - component: {fileID: 23233967973361236}
-  m_Layer: 12
+  m_Layer: 19
   m_Name: Second_Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 4121013509528360}
   - component: {fileID: 33957993059142784}
   - component: {fileID: 23276914281809814}
-  m_Layer: 12
+  m_Layer: 19
   m_Name: Foundation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 4510841758764356}
   - component: {fileID: 33157681346098696}
   - component: {fileID: 23914554126676806}
-  m_Layer: 12
+  m_Layer: 19
   m_Name: Flag_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 4346644457600390}
   - component: {fileID: 33342931639966432}
   - component: {fileID: 23653913624819162}
-  m_Layer: 12
+  m_Layer: 19
   m_Name: Flag_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 4308267376508364}
   - component: {fileID: 33764684353615990}
   - component: {fileID: 23354485987160060}
-  m_Layer: 12
+  m_Layer: 19
   m_Name: Carcass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 4907930263884674}
   - component: {fileID: 33495888103413536}
   - component: {fileID: 23657304910092974}
-  m_Layer: 12
+  m_Layer: 19
   m_Name: Flag_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 4921727871967712}
   - component: {fileID: 33474597094762516}
   - component: {fileID: 23845029058934758}
-  m_Layer: 12
+  m_Layer: 19
   m_Name: Flag_Element
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4151757706985392}
-  m_Layer: 12
+  m_Layer: 19
   m_Name: Building_phase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 4151476861404636}
   - component: {fileID: 33016324745955286}
   - component: {fileID: 23415272784390668}
-  m_Layer: 12
+  m_Layer: 19
   m_Name: Flag_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 4388743639304154}
   - component: {fileID: 33856442542281816}
   - component: {fileID: 23834751437467890}
-  m_Layer: 12
+  m_Layer: 19
   m_Name: Roof
   m_TagString: Untagged
   m_Icon: {fileID: 0}

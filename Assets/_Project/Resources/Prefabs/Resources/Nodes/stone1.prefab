@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 114941175956736184}
   - component: {fileID: 135494023030558968}
   - component: {fileID: 208106828565333460}
-  m_Layer: 19
+  - component: {fileID: 114845647544527072}
+  m_Layer: 20
   m_Name: stone1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +30,7 @@ GameObject:
   - component: {fileID: 418744}
   - component: {fileID: 3318744}
   - component: {fileID: 2318744}
-  m_Layer: 19
+  m_Layer: 20
   m_Name: Stone01_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +47,7 @@ GameObject:
   - component: {fileID: 418746}
   - component: {fileID: 3318746}
   - component: {fileID: 2318746}
-  m_Layer: 19
+  m_Layer: 20
   m_Name: Stone01_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +64,7 @@ GameObject:
   - component: {fileID: 418748}
   - component: {fileID: 3318748}
   - component: {fileID: 2318748}
-  m_Layer: 19
+  m_Layer: 20
   m_Name: Stone01_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,6 +288,18 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 118742}
   m_IsPrefabAsset: 1
+--- !u!114 &114845647544527072
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c4c35109e57966459172b47109942a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 0
 --- !u!114 &114941175956736184
 MonoBehaviour:
   m_ObjectHideFlags: 1

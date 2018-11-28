@@ -10,9 +10,9 @@ namespace Scripts.Controllers
 {
     public class MouseController : MonoBehaviour
     {
-        public IPlayerControllable FocusedItem { get; private set; }
+        public IClickable FocusedItem { get; private set; }
 
-        public void SetFocus(IPlayerControllable click)
+        public void SetFocus(IClickable click)
         {
             if (FocusedItem == click) return;
             FocusedItem?.LostFocus();
@@ -48,9 +48,9 @@ namespace Scripts.Controllers
         {
             if (!Input.GetMouseButtonDown(0)) return;
 
-            if (GhostModelLeftClick()) return;
-            if (ResourceLeftClick()) return;
-            if (PlayerLeftClick()) return;
+            //if (GhostModelLeftClick()) return;
+            //if (ResourceLeftClick()) return;
+            //if (PlayerLeftClick()) return;
         }
 
         private static bool GhostModelLeftClick()

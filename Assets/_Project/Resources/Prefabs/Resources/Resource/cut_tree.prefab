@@ -10,7 +10,7 @@ GameObject:
   - component: {fileID: 435476}
   - component: {fileID: 3335476}
   - component: {fileID: 2335476}
-  m_Layer: 20
+  m_Layer: 19
   m_Name: cut_tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,8 +24,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 135476}
   m_LocalRotation: {x: 0, y: 0.37910768, z: 0, w: 0.92535263}
-  m_LocalPosition: {x: 4.6080017, y: -0.0004871398, z: -3.31427}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalPosition: {x: 66.8, y: 1.5, z: -64}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0

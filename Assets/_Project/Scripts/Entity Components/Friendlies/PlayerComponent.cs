@@ -8,7 +8,7 @@ using UnityEngine.AI;
 namespace Scripts.Entity_Components.Friendlies
 {
     [DefaultExecutionOrder(0)]
-    public class PlayerComponent : MonoBehaviour, IPlayerControllable
+    public class PlayerComponent : MonoBehaviour, IClickable
     {
         public float Speed = 3.5f;
         public NavMeshAgent Agent { get; private set; }

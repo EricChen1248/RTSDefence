@@ -16,6 +16,7 @@ MonoBehaviour:
   Health: 0
   Offset: {x: 0, y: 0, z: 0}
   Size: {x: 3, y: 3, z: 3}
+  ColliderOffset: {x: 0, y: 0.75, z: 0}
   CanRotateHorizontal: 1
   CanRotateVertical: 0
   BuildTime: 5

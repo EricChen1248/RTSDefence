@@ -66,7 +66,7 @@ namespace Scripts.Buildable_Components
 
         public bool CanBuild()
         {
-            var overlap = Physics.OverlapBox(transform.position, Data.Size / 2f * 0.9f, transform.rotation, RaycastHelper.LayerMaskDictionary["Non Buildables"]);
+            var overlap = Physics.OverlapBox(transform.position + Data.ColliderOffset, Data.Size / 2f * 0.9f, transform.rotation, RaycastHelper.LayerMaskDictionary["Non Buildables"]);
             foreach (var item in overlap)
             {
                 print(item);

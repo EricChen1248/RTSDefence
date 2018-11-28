@@ -10,7 +10,7 @@ GameObject:
   - component: {fileID: 465402}
   - component: {fileID: 3365402}
   - component: {fileID: 2365402}
-  m_Layer: 19
+  m_Layer: 20
   m_Name: Tree08_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ GameObject:
   m_Component:
   - component: {fileID: 465404}
   - component: {fileID: 20565402}
-  m_Layer: 19
+  m_Layer: 20
   m_Name: tree4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 465406}
   - component: {fileID: 3365404}
   - component: {fileID: 2365404}
-  m_Layer: 19
+  m_Layer: 20
   m_Name: Tree08_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 465408}
   - component: {fileID: 3365406}
   - component: {fileID: 2365406}
-  m_Layer: 19
+  m_Layer: 20
   m_Name: Tree08_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ Transform:
   m_GameObject: {fileID: 165404}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.3, y: 1.5, z: 9}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 465406}
   - {fileID: 465402}

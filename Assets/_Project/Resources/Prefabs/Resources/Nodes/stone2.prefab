@@ -10,7 +10,7 @@ GameObject:
   - component: {fileID: 447736}
   - component: {fileID: 3347736}
   - component: {fileID: 2347736}
-  m_Layer: 19
+  m_Layer: 20
   m_Name: Stone02_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 447738}
   - component: {fileID: 3347738}
   - component: {fileID: 2347738}
-  m_Layer: 19
+  m_Layer: 20
   m_Name: Stone02_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 447740}
   - component: {fileID: 3347740}
   - component: {fileID: 2347740}
-  m_Layer: 19
+  m_Layer: 20
   m_Name: Stone02_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ GameObject:
   m_Component:
   - component: {fileID: 447742}
   - component: {fileID: 20547736}
-  m_Layer: 19
+  m_Layer: 20
   m_Name: stone2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

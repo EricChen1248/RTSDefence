@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Scripts.GUI;
 using Scripts.Resources;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Scripts.Controllers
 {
