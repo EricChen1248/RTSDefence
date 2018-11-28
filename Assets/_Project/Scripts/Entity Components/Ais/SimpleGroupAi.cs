@@ -9,23 +9,23 @@ namespace Scripts.Entity_Components.Ais
     [DefaultExecutionOrder(-1)]
     public class SimpleGroupAi : GroupAiBase
     {
-        protected State State;
+        protected State _State;
         protected HashSet<SingularAiBase> HasTempTarget;
 
         protected new void Start()
         {
             base.Start();
-            State = null;
+            _State = null;
             HasTempTarget = new HashSet<SingularAiBase>();
             SwitchState(new SelfDecideState(transform));
         }
 
         protected void SwitchState(State state)
         {
-            State?.Leave();
+            _State?.Leave();
             print(state.Identifier);
-            State = state;
-            State?.Enter();
+            _State = state;
+            _State?.Enter();
         }
 
         public override void FindTarget()
@@ -48,12 +48,12 @@ namespace Scripts.Entity_Components.Ais
 
         public override void FirstCommand(Transform member)
         {
-            State?.FirstCommand(member);
+            _State?.FirstCommand(member);
         }
 
         public override void LastCommand(Transform member, bool selfDestroy)
         {
-            State?.LastCommand(member, selfDestroy);
+            _State?.LastCommand(member, selfDestroy);
             //member.GetComponent<SingularAiBase>().FindTarget(); //This will be done in GroupFinder
         }
 
@@ -69,15 +69,15 @@ namespace Scripts.Entity_Components.Ais
 
         protected void Update()
         {
-            State?.Update();
+            _State?.Update();
             CommonUpdate();
         }
 
         protected void CommonUpdate()
         {
-            if (!_aiProperty.CheckTempTarget) return;
+            if (!AIProperty.CheckTempTarget) return;
 
-            foreach (var member in _groupComponent.Member)
+            foreach (var member in GroupComponent.Member)
             {
                 var singularAI = member.GetComponent<SingularAiBase>();
                 if (!singularAI.HasTempTarget() || HasTempTarget.Contains(singularAI)) continue;
@@ -89,15 +89,15 @@ namespace Scripts.Entity_Components.Ais
 
         protected IEnumerator StopMemberTempTarget(SingularAiBase singularAI)
         {
-            yield return new WaitForSeconds(_aiProperty.TimeToClearTempTarget);
+            yield return new WaitForSeconds(AIProperty.TimeToClearTempTarget);
             singularAI.StopTempTarget();
             HasTempTarget.Remove(singularAI);
         }
 
         private void OnDestroy()
         {
-            State?.Leave();
-            State = null;
+            _State?.Leave();
+            _State = null;
         }
 
         //Define All Kinds of States

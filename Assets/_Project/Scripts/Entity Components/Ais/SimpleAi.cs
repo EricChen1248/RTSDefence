@@ -10,16 +10,15 @@ namespace Scripts.Entity_Components.Ais
     public class SimpleAi : SingularAiBase
     {
         private EnemyComponent _enemyComponent;
-        private GameObject _tempTarget;
-        public Animation _animation;
+        public Animation Animation;
 
         private bool _stopAttack;
         public void Start()
         {
             Agent = GetComponent<NavMeshAgent>();
             _enemyComponent = GetComponent<EnemyComponent>();
-            _animation = GetComponentInChildren<Animation>();
-            _stopTemp = false;
+            Animation = GetComponentInChildren<Animation>();
+            StopTemp = false;
         }
 
         public override void FindTarget()
@@ -28,18 +27,18 @@ namespace Scripts.Entity_Components.Ais
         }
 
         public override void StopTempTarget(){
-            _stopTemp = true;
+            StopTemp = true;
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (!InLayerMask(TargetingLayers, other.gameObject.layer)) return;
             Agent.isStopped = true;
-            _tempTarget = other.gameObject;
-            _stopTemp = false;
-            var health = _tempTarget.GetComponent<HealthComponent>();
+            TempTarget = other.gameObject;
+            StopTemp = false;
+            var health = TempTarget.GetComponent<HealthComponent>();
             health.OnDeath += OnTargetDeath;
-            print("starting routine");
+            print("starting routine rotate to target");
             StartCoroutine(RotateToTarget());
             StartCoroutine(Attack());
         }
@@ -47,29 +46,29 @@ namespace Scripts.Entity_Components.Ais
         private void OnTriggerExit(Collider other)
         {
             if (_stopAttack) return;
-            _stopAttack = (other.gameObject == _tempTarget);
+            _stopAttack = (other.gameObject == TempTarget);
         }
 
         private IEnumerator Attack()
         {
-            var health = _tempTarget.GetComponent<HealthComponent>();
+            var health = TempTarget.GetComponent<HealthComponent>();
             float radius;
             try
             {
-                radius = _tempTarget.GetComponent<SphereCollider>().radius;
+                radius = TempTarget.GetComponent<SphereCollider>().radius;
             }
             catch (MissingComponentException)
             {
-                radius = _tempTarget.GetComponent<CapsuleCollider>().radius;
+                radius = TempTarget.GetComponent<CapsuleCollider>().radius;
             }
             while (health.Health > 0)
             {
-                if ((_tempTarget.transform.position - transform.position).sqrMagnitude >=
+                if ((TempTarget.transform.position - transform.position).sqrMagnitude >=
                     Math.Pow(_enemyComponent.Radius + 2 + radius, 2))
                 {
                     print("stopping attack");
-                    _tempTarget = null;
-                    _stopTemp = false;
+                    TempTarget = null;
+                    StopTemp = false;
                     health.OnDeath -= OnTargetDeath;
                     Agent.isStopped = false;
                     break;
@@ -78,7 +77,7 @@ namespace Scripts.Entity_Components.Ais
                 // Attack
                 health.Damage(10);
                 
-                _animation.Play();
+                Animation.Play();
 
                 yield return new WaitForSeconds(ReloadTime);
             }
@@ -88,12 +87,12 @@ namespace Scripts.Entity_Components.Ais
             Agent.isStopped = false;
 
             _stopAttack = true;
-            _tempTarget = null;
+            TempTarget = null;
         }
 
         private IEnumerator RotateToTarget()
         {
-            var look = _tempTarget.transform.position - transform.position;
+            var look = TempTarget.transform.position - transform.position;
             while(true)
             {
                 Vector3 newDir = Vector3.RotateTowards(transform.forward, look, Time.deltaTime, 0.0f);

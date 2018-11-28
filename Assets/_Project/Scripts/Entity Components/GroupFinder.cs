@@ -10,7 +10,7 @@ namespace Scripts.Entity_Components
 
         public Transform Group
         {
-            public get { return _group; }
+            get { return _group; }
             private set
             {
                 if (_group != null)

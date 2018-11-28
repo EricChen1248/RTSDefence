@@ -5,12 +5,12 @@ namespace Scripts.Entity_Components.Ais
 {
     public abstract class SingularAiBase : AiBase
     {
-        protected GameObject _tempTarget;
-        protected bool _stopTemp;
+        protected GameObject TempTarget;
+        protected bool StopTemp;
 
         public abstract void StopTempTarget();
         public bool HasTempTarget(){
-            return _tempTarget != null;
+            return TempTarget != null;
         }
     }
 }

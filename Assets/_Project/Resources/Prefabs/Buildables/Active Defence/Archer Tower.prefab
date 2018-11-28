@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4546723319842054}
   - component: {fileID: 33942284541714332}
   - component: {fileID: 23378479394012168}
-  - component: {fileID: 114866263441142558}
   m_Layer: 0
   m_Name: War_Tower
   m_TagString: Untagged
@@ -154,16 +153,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 100
   Health: 100
---- !u!114 &114866263441142558
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1869647961392498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f71fe7ce636c74055a5d1a6a668591b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  m_target: {fileID: 0}
