@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: SimpleEnemy
   m_EditorClassIdentifier: 
   Health: 100
-  Radius: 3
+  Radius: 2
   TargetLayers:
     serializedVersion: 2
     m_Bits: 274944
