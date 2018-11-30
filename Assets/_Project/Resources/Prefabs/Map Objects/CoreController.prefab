@@ -62,7 +62,15 @@ MonoBehaviour:
     Model: {fileID: 153888, guid: 6591aa4bc57a0014dbb3c668abd53e63, type: 2}
   - Resource: 1
     Model: {fileID: 135476, guid: fd1883c2f90dc2c4ba70292b0ba64ab9, type: 2}
-  ResourceLinks: []
+  ResourceLinks:
+  - Type: 0
+    Obj: {fileID: 21300000, guid: e2be3294d416b40878fdafd520f2b0d0, type: 3}
+  - Type: 1
+    Obj: {fileID: 21300000, guid: a5d0977c87ef94218927a7e0774b9ac9, type: 3}
+  - Type: 2
+    Obj: {fileID: 21300000, guid: df459e95276fb4b208d855e9db41a333, type: 3}
+  - Type: 3
+    Obj: {fileID: 21300000, guid: d71294ca19b7e4f2280353c860931b2d, type: 3}
   ResourceGroup: {fileID: 0}
 --- !u!114 &114490995274481308
 MonoBehaviour:
@@ -101,8 +109,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NoGhost: 0
   ActiveDefences: []
-  ResourceCollectors: []
   StaticDefences: []
+  Structure: []
   Traps: []
 --- !u!114 &114943725802021552
 MonoBehaviour:

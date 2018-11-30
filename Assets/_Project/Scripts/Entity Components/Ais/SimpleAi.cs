@@ -10,20 +10,21 @@ namespace Scripts.Entity_Components.Ais
     public class SimpleAi : SingularAiBase
     {
         private EnemyComponent _enemyComponent;
-        public Animation Animation;
-
+        private Animator _animator;
         private bool _stopAttack;
         public void Start()
         {
             Agent = GetComponent<NavMeshAgent>();
             _enemyComponent = GetComponent<EnemyComponent>();
-            Animation = GetComponentInChildren<Animation>();
+            _animator = GetComponent<Animator>();
             StopTemp = false;
         }
 
         public override void FindTarget()
         {
-            TargetTo(CoreController.Instance.CoreGameObject, force: true);
+            TargetTo(Target, force: true);
+
+            _animator.SetBool("Walking", true);
         }
 
         public override void StopTempTarget(){
@@ -34,11 +35,11 @@ namespace Scripts.Entity_Components.Ais
         {
             if (!InLayerMask(TargetingLayers, other.gameObject.layer)) return;
             Agent.isStopped = true;
+            _animator.SetBool("Walking", false);
+
             TempTarget = other.gameObject;
             StopTemp = false;
-            var health = TempTarget.GetComponent<HealthComponent>();
-            health.OnDeath += OnTargetDeath;
-            print("starting routine rotate to target");
+
             StartCoroutine(RotateToTarget());
             StartCoroutine(Attack());
         }
@@ -52,6 +53,7 @@ namespace Scripts.Entity_Components.Ais
         private IEnumerator Attack()
         {
             var health = TempTarget.GetComponent<HealthComponent>();
+            health.OnDeath += OnTargetDeath;
             float radius;
             try
             {
@@ -74,16 +76,18 @@ namespace Scripts.Entity_Components.Ais
                     break;
                 }
 
+                print("hit");
                 // Attack
                 health.Damage(10);
                 
-                Animation.Play();
-
+                _animator.SetBool("Attacking", true);
                 yield return new WaitForSeconds(ReloadTime);
+
             }
 
             health.OnDeath -= OnTargetDeath;
 
+            _animator.SetBool("Attacking", true);
             Agent.isStopped = false;
 
             _stopAttack = true;
@@ -95,9 +99,13 @@ namespace Scripts.Entity_Components.Ais
             var look = TempTarget.transform.position - transform.position;
             while(true)
             {
-                Vector3 newDir = Vector3.RotateTowards(transform.forward, look, Time.deltaTime, 0.0f);
+                var newDir = Vector3.RotateTowards(transform.forward, look, Time.deltaTime, 0.0f);
 
                 transform.rotation = Quaternion.LookRotation(newDir);
+                if ((transform.rotation.eulerAngles - look).sqrMagnitude < 1f)
+                {
+                    break;
+                }
                 yield return new WaitForFixedUpdate();
             }
         }
