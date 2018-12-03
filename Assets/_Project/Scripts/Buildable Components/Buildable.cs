@@ -1,4 +1,5 @@
 ﻿using Scripts.Entity_Components;
+using Scripts.Entity_Components.Misc;
 using Scripts.Scriptable_Objects;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ namespace Scripts.Buildable_Components
 
         public virtual void Start()
         {
-            GetComponent<HealthComponent>().Health = Data.Health;
+            GetComponent<HealthComponent>().MaxHealth = Data.Health;
             ID = GetInstanceID();
         }
     }

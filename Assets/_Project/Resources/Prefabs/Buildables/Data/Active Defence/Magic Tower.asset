@@ -20,5 +20,7 @@ MonoBehaviour:
   CanRotateHorizontal: 1
   CanRotateVertical: 0
   BuildTime: 0
-  Recipe: []
+  Recipe:
+  - Resource: 0
+    Amount: 1
   Types: 

@@ -3,6 +3,7 @@ using UnityEngine.AI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Scripts.Entity_Components.Misc;
 
 namespace Scripts.Entity_Components.Ais
 {

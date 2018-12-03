@@ -1,33 +1,28 @@
 ﻿using System;
 using System.Collections;
+using Scripts.Entity_Components.Misc;
 using Scripts.Entity_Components.Status;
-using Scripts.Helpers;
+using Scripts.Navigation;
+using Scripts.Towers;
 using UnityEngine;
 
 namespace Scripts.Entity_Components.Attacks
 {
-    public class ArrowScript : MonoBehaviour {
-
-        public Transform Target;
-        public float Height = 20f;
-        public float Acceleration = 0.01f;
+    public class ArrowScript : AmmoBase
+    {
+        public float Height = 1f;
+        public float Acceleration = 0.0001f;
         public enum ArrowType { Regular, Fire }
 
         public ArrowType Type;
 
         private IEnumerator _currentCoroutine;
 
-
-        // Use this for initialization
-        private void Start ()
-        {
-            Fire(transform.position, Target.position);
-        }
 	
-        public void Fire(Vector3 startPos, Vector3 endPos)
+        public override void Fire()
         {
-            _currentCoroutine = FireRoutine(startPos, endPos);
-
+            _currentCoroutine = FireRoutine(transform.position, Target.position);
+            StartCoroutine(CheckCollision());
             StartCoroutine(_currentCoroutine);
         }
     
@@ -43,48 +38,61 @@ namespace Scripts.Entity_Components.Attacks
             {
                 maxHeight = endPos.y + Height;
             }
-
             var time = Mathf.Sqrt(2 * (maxHeight - startPos.y) / Acceleration) + Mathf.Sqrt(2 * (maxHeight - endPos.y) / Acceleration);
 
             var velocityV = Acceleration * Mathf.Sqrt(2 * (maxHeight - startPos.y) / Acceleration);
 
             var velocityH = new Vector3(endPos.x - startPos.x , 0 , endPos.z - startPos.z) / time;
 
-            for (var i = 0f; i <= Mathf.Ceil(time) + 5; i++)
+            var lastPos = transform.position;
+            while (transform.position.y > 0)
             {
                 velocityV = velocityV - Acceleration;
-                transform.rotation = Quaternion.LookRotation(new Vector3(velocityH.x,velocityV,velocityH.z));
                 transform.position = transform.position + velocityH + velocityV * Vector3.up;
+                transform.LookAt(2 * transform.position - lastPos);
+                lastPos = transform.position;
                 yield return new WaitForFixedUpdate();
             }
     
             // Explosion
-
-            Pool.ReturnToPool("Arrow", gameObject);
+            Destroy(gameObject);
         }
 
+        private IEnumerator CheckCollision()
+        {
+            while (true)
+            {
+                var colliders = Physics.OverlapCapsule(transform.position + new Vector3(0, 0, 0.065f / 2),
+                    transform.position - new Vector3(0, 0, 0.065f / 2), 0.03f);
+                if (colliders.Length > 0)
+                {
+                    if (RaycastHelper.InLayer(RaycastHelper.LayerMaskDictionary["Enemies"], colliders[0].gameObject.layer))
+                    {
+                        var health = colliders[0].GetComponent<HealthComponent>();
+                        health.Damage(5);
+                        switch (Type)
+                        {
+                            case ArrowType.Regular:
+                                break;
+                            case ArrowType.Fire:
+                                colliders[0].gameObject.AddComponent<BurnComponent>();
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException();
+                        }
+                    }
+
+                    Destroy(gameObject);
+                }
+                yield return new WaitForFixedUpdate();
+            }
+        }
+
+        /*
         private void OnTriggerEnter(Collider other)
         {
-            if(other.gameObject.layer == LayerMask.NameToLayer("Player"))
-            {
-                var health = other.GetComponent<HealthComponent>();
-                health.Damage(50);
-                switch (Type)
-                {
-                    case ArrowType.Regular:
-                        break;
-                    case ArrowType.Fire:
-                        other.gameObject.AddComponent<BurnComponent>();
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
-
-            StopCoroutine(_currentCoroutine);
-            _currentCoroutine = null;
-            Pool.ReturnToPool("Arrow", gameObject);
         }
+        */
 
 
     }

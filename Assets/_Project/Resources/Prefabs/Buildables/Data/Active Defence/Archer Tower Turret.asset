@@ -8,15 +8,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d251784dc9511fe47a52c48510fc1d2e, type: 3}
-  m_Name: SimpleEnemy
+  m_Script: {fileID: 11500000, guid: a79c16c28ee67174aa844ff357c6fa73, type: 3}
+  m_Name: Archer Tower Turret
   m_EditorClassIdentifier: 
-  Health: 100
-  Radius: 1.5
-  MovementSpeed: 3.5
-  TargetLayers:
-    serializedVersion: 2
-    m_Bits: 537088
-  ReloadTime: 1
-  FindGroup: 0
-  Types: 
+  Ammo: {fileID: 1130948403366240, guid: 33675a15a1c125e4bb38f9f73523d78a, type: 2}
+  Range: 5
+  FireRate: 2
+  FieldOfView: 60
+  Rotates: 1
