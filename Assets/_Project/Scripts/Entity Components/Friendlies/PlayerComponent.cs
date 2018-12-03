@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Scripts.Controllers;
 using Scripts.Entity_Components.Jobs;
 using Scripts.Interface;
 using UnityEngine;
@@ -53,6 +54,11 @@ namespace Scripts.Entity_Components.Friendlies
             }
             DoingJob = true;
             StartCoroutine(CurrentJob.DoJob());
+        }
+
+        private void OnMouseDown()
+        {
+            CoreController.MouseController.SetFocus(this);
         }
 
         #endregion

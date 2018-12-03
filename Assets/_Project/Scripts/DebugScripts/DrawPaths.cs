@@ -1,6 +1,7 @@
 ﻿using Scripts.Entity_Components;
 using Scripts.Entity_Components.Friendlies;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Scripts.DebugScripts
 {
@@ -11,7 +12,7 @@ namespace Scripts.DebugScripts
         public void Click()
         {
 
-            var objects = FindObjectsOfType<PlayerComponent>();
+            var objects = FindObjectsOfType<NavMeshAgent>();
             foreach (var playerComponent in objects)
             {
                 if (!_showing)
