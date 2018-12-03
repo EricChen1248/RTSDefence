@@ -9,6 +9,8 @@ namespace Scripts.Scriptable_Objects
         public float Range;
         public float FireRate;
         public float FieldOfView;
+        public AiStates AiState;
+
 
         public bool Rotates;
 
@@ -17,4 +19,7 @@ namespace Scripts.Scriptable_Objects
             return Instantiate(Ammo, transform);
         }
     }
+
+
+    public enum AiStates { FIRST, NEAREST, FURTHEST, WEAKEST, STRONGEST };
 }

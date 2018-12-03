@@ -1,6 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using System.Collections;
 using System.Linq;
+using Scripts.Entity_Components.Misc;
 using Scripts.Navigation;
 using Scripts.Scriptable_Objects;
 using UnityEngine;
@@ -10,8 +11,10 @@ namespace Scripts.Towers
     [DefaultExecutionOrder(0)]
     public class TurretBase : MonoBehaviour
     {
+
         public GameObject FireSpot;
         public TurretData Data;
+
 
         private Collider[] _inRangeTargets;
         private Collider _currentTarget;
@@ -31,29 +34,15 @@ namespace Scripts.Towers
             StartCoroutine(CheckEnterRange());
         }
 
-        private IEnumerator CheckEnterRange()
+        #region Targetting Functions
+
+        private void TargetFirst()
         {
-            while (true)
+            if (!_inRangeTargets.Contains(_currentTarget))
             {
-                _inRangeTargets = Physics.OverlapSphere(transform.position, 5, RaycastHelper.LayerMaskDictionary["Enemies"]);
-
-                if (!_inRangeTargets.Contains(_currentTarget))
-                {
-                    _currentTarget = null;
-                    
-                }
-
-                AssignTarget();
-
-                for (var i = 0; i < 10; i++)
-                {
-                    yield return new WaitForFixedUpdate();
-                }
+                _currentTarget = null;
             }
-        }
 
-        private void AssignTarget()
-        {
             if (_currentTarget != null) return;
 
             StopCoroutine(_shootingRoutine);
@@ -63,6 +52,67 @@ namespace Scripts.Towers
             StartCoroutine(_shootingRoutine);
         }
 
+        private void TargetDistance(bool nearest)
+        {
+            Collider curTarget = null;
+            var curDistance = nearest ? float.PositiveInfinity : 0.0f;
+            foreach (var target in _inRangeTargets)
+            {
+                var dist = Vector3.Distance(transform.position, target.transform.position);
+                if (nearest)
+                {
+                   if (!(dist < curDistance)) continue;
+                }
+                else
+                {
+                    if (!(dist > curDistance)) continue;
+                }
+
+                curTarget = target;
+                curDistance = dist;
+            }
+
+            if (curTarget == null) return;
+            if (_currentTarget == curTarget) return;
+
+            StopCoroutine(_shootingRoutine);
+            _currentTarget = curTarget;
+            StartCoroutine(_shootingRoutine);
+        }
+
+        private void TargetHealth(bool highest)
+        {
+            Collider curTarget = null;
+            var targetHealth = highest ? 0.0f : float.PositiveInfinity;
+            foreach (var target in _inRangeTargets)
+            {
+                var healthComp = target.GetComponent<HealthComponent>();
+                var health = (float)healthComp.Health / healthComp.MaxHealth;
+                if (highest)
+                {
+                    if (!(health > targetHealth)) continue;
+                }
+                else
+                {
+                    if (!(health < targetHealth)) continue;
+                }
+
+                curTarget = target;
+                targetHealth = health;
+            }
+
+            if (curTarget == null) return;
+            if (_currentTarget == curTarget) return;
+
+            StopCoroutine(_shootingRoutine);
+            _currentTarget = curTarget;
+            StartCoroutine(_shootingRoutine);
+
+        }
+
+        #endregion
+        #region Coroutines
+        
         private IEnumerator Shoot()
         {
             StartCoroutine(RotateToTarget());
@@ -104,6 +154,40 @@ namespace Scripts.Towers
             }
         }
 
+        private IEnumerator CheckEnterRange()
+        {
+            while (true)
+            {
+                _inRangeTargets = Physics.OverlapSphere(transform.position, 5, RaycastHelper.LayerMaskDictionary["Enemies"]);
 
+                switch (Data.AiState)
+                {
+                    case AiStates.FIRST:
+                        TargetFirst();
+                        break;
+                    case AiStates.NEAREST:
+                        TargetDistance(nearest: true);
+                        break;
+                    case AiStates.FURTHEST:
+                        TargetDistance(nearest: false);
+                        break;
+                    case AiStates.WEAKEST:
+                        TargetHealth(highest: false);
+                        break;
+                    case AiStates.STRONGEST:
+                        TargetHealth(highest: true);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
+                for (var i = 0; i < 10; i++)
+                {
+                    yield return new WaitForFixedUpdate();
+                }
+            }
+        }
+
+        #endregion
     }
 }
