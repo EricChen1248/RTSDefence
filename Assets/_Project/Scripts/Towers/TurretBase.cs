@@ -158,7 +158,7 @@ namespace Scripts.Towers
         {
             while (true)
             {
-                _inRangeTargets = Physics.OverlapSphere(transform.position, 5, RaycastHelper.LayerMaskDictionary["Enemies"]);
+                _inRangeTargets = Physics.OverlapSphere(transform.position, Data.Range, RaycastHelper.LayerMaskDictionary["Enemies"]);
 
                 switch (Data.AiState)
                 {
