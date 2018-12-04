@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Scripts.Entity_Components;
 using Scripts.Entity_Components.Ais;
@@ -10,7 +11,7 @@ namespace Scripts.Scriptable_Objects
     {
         #region Used By GroupComponent
 
-        public string Characteristics;
+        public List<String> Characteristics;
 
         public void CompileGroupProperty(out GroupComponent.GroupDataProperty p)
         {
