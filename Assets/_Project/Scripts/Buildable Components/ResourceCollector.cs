@@ -1,22 +1,41 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using Scripts.Controllers;
+using Scripts.GUI;
 using Scripts.Interface;
 using Scripts.Resources;
 using UnityEngine;
-using UnityEngine.VR;
+using UnityEngine.AI;
 
 namespace Scripts.Buildable_Components
 {
-    public class ResourceCollector : Buildable, IClickable 
+    public class ResourceCollector : Buildable, IClickable
     {
+        public GameObject Gatherer;
+
         public int CollectionRadius;
         public List<ResourceNode> Nodes;
+        private readonly List<ResourceGatherer> Gatherers = new List<ResourceGatherer>();
         private GameObject _range;
+
+        private ResourceNode CurrentNode;
 
         public override void Start()
         {
             base.Start();
             GetResourceInRange();
+            GetClosestNode();
+
+            StartCoroutine(SpawnGatherer(3));
+        }
+
+        public void OnDestroy()
+        {
+            if (CurrentNode != null)
+            {
+                CurrentNode.Collectors.Remove(this);
+            }
         }
 
         private void GetResourceInRange()
@@ -31,11 +50,56 @@ namespace Scripts.Buildable_Components
                 {
                     Nodes.Add(node);
                 }
-
             }
         }
 
-        private void OnMouseDown()
+        public IEnumerator SpawnGatherer(int count)
+        {
+            var prefab = UnityEngine.Resources.Load<GameObject>("Prefabs/Entities/Friendlies/Gatherer");
+            prefab.transform.position = transform.forward * -2.5f;
+
+            for (int i = 0; i < count; i++)
+            {
+                var obj = Instantiate(prefab, transform);
+                obj.GetComponent<NavMeshAgent>().enabled = true;
+
+                yield return new WaitForSeconds(1);
+
+                var gatherer = obj.GetComponent<ResourceGatherer>();
+                Gatherers.Add(gatherer);
+                gatherer.Collector = this;
+                gatherer.Node = CurrentNode;
+                gatherer.GatherNewResource();
+                yield return new WaitForSeconds(1);
+            }
+        }
+
+        private void GetClosestNode()
+        {
+            var minDist = float.MaxValue;
+            foreach (var node in Nodes)
+            {
+                var dist = (node.transform.position - transform.position).sqrMagnitude;
+                if (dist < minDist)
+                {
+                    CurrentNode = node;
+                    minDist = dist;
+                }
+            }
+
+            CurrentNode.Collectors.Add(this);
+        }
+        public void NotifyNodeDestroy(ResourceNode node)
+        {
+            Nodes.Remove(node);
+            GetClosestNode();
+            foreach (var gatherer in Gatherers)
+            {
+                gatherer.Node = CurrentNode;
+            }
+        }
+
+        public void OnMouseDown()
         {
             CoreController.MouseController.SetFocus(this);
         }
@@ -46,6 +110,14 @@ namespace Scripts.Buildable_Components
             HasFocus = true;
             _range = Instantiate(UnityEngine.Resources.Load<GameObject>("Prefabs/Map Objects/RangeShower"), transform);
             _range.transform.localScale = new Vector3(CollectionRadius, 5, CollectionRadius);
+
+
+            var omg = ObjectMenuGroupComponent.Instance;
+
+            omg.ResetButtons();
+            omg.SetButton(1, "Destroy", Destroy);
+            omg.Show();
+            CoreController.MouseController.SetFocus(null);
         }
 
         public void LostFocus()

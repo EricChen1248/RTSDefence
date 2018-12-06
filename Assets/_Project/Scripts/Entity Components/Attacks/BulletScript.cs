@@ -35,7 +35,7 @@ namespace Scripts.Entity_Components
             transform.position += Vector3.Normalize(moveDir) * Speed;
         }
 
-        private void OnTriggerEnter(Collider other)
+        public void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.layer == Target.gameObject.layer)
             {

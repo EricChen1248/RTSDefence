@@ -1,5 +1,5 @@
-﻿using Scripts.Entity_Components;
-using Scripts.Entity_Components.Misc;
+﻿using Scripts.Entity_Components.Misc;
+using Scripts.Graphic_Components;
 using Scripts.Scriptable_Objects;
 using UnityEngine;
 
@@ -14,8 +14,24 @@ namespace Scripts.Buildable_Components
 
         public virtual void Start()
         {
-            GetComponent<HealthComponent>().MaxHealth = Data.Health;
+            var health = GetComponent<HealthComponent>();
+            health.MaxHealth = Data.Health;
             ID = GetInstanceID();
+            health.OnDeath += DestroyEvent;
         }
+
+        private void DestroyEvent(HealthComponent health)
+        {
+            Destroy();
+        }
+
+        public void Destroy()
+        {
+            var health = GetComponentInChildren<HealthBarComponent>();
+            if (health != null) health.Hide();
+            var dc = gameObject.AddComponent<DestroyComponent>();
+            dc.size = Data.Size.y;
+        }
+        
     }
 }
