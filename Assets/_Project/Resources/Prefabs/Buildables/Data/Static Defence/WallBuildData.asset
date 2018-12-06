@@ -9,14 +9,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 584233384e22c2c42bafa39ac866ae61, type: 3}
-  m_Name: Quarry
+  m_Name: WallBuildData
   m_EditorClassIdentifier: 
-  Name: Quarry
-  GhostModel: {fileID: 1638394299684722, guid: bf5d8ff41cca4e143ae34873e40b4598, type: 2}
-  Health: 0
+  Name: health
+  GhostModel: {fileID: 1545132368954914, guid: a893f98f43f960b419842e0132612b74, type: 2}
+  Health: 1000
   Offset: {x: 0, y: 0.5, z: 0}
-  Size: {x: 0, y: 2, z: 0}
-  ColliderOffset: {x: 5, y: 4, z: 5}
+  Size: {x: 1, y: 2.5, z: 4}
+  ColliderOffset: {x: 0, y: 1.25, z: 0}
   CanRotateHorizontal: 1
   CanRotateVertical: 0
   BuildTime: 10
