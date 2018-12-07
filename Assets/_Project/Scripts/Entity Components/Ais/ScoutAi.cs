@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using Scripts.Controllers;
 using UnityEngine;
 using UnityEngine.AI;
@@ -9,10 +8,16 @@ namespace Scripts.Entity_Components.Ais
     public class ScoutAi : AiBase
     {
         private int _previousDirection;
+        private Animator _animator;
+
+        private int _count;
+
         public void Start()
         {
             Agent = GetComponent<NavMeshAgent>();
+            _animator = GetComponent<Animator>();
             _previousDirection = -1;
+            _animator.SetBool("Walking", true);
         }
 
 		public override void FindTarget()
@@ -38,24 +43,29 @@ namespace Scripts.Entity_Components.Ais
 
         private IEnumerator CheckDistance()
         {
-            var lr = GetComponent<LineRenderer>();
-            while (true)
+            var distanceToTarget = 3f;
+            while (distanceToTarget > 2f)
             {
-                var distanceToTarget = (transform.position - Agent.destination).sqrMagnitude;
-                if (distanceToTarget < 2f) break;
-
-
-
-
                 yield return new WaitForFixedUpdate();
+                distanceToTarget = (transform.position - Agent.destination).sqrMagnitude;
             }
 
-            print("Destination reached");
-            FindTarget();
-        }
+            if (_count++ < 10)
+            {
+                FindTarget();
+            }
+            else
+            {
+                LeaveMap();
 
-        void Update()
-        {
+                distanceToTarget = 3f;
+                while (distanceToTarget > 2f) 
+                {
+                    yield return new WaitForFixedUpdate();
+                    distanceToTarget = (transform.position - Agent.destination).sqrMagnitude;
+                }
+                Destroy(gameObject);
+            }
         }
 
     }

@@ -4,12 +4,14 @@ using UnityEngine;
 
 namespace Scripts.Navigation
 {
+    [DefaultExecutionOrder(-999)]
     public class RaycastHelper : MonoBehaviour
     {
         public LayerMasks[] LayerMasks;
 
         public static Dictionary<string, LayerMask> LayerMaskDictionary;
         private static Camera _camera;
+
         public void Start()
         {
             _camera = Camera.main;
@@ -61,10 +63,14 @@ namespace Scripts.Navigation
                 if (1 << i == mask)
                     return i;
             }
+
             return -1;
         }
 
-
+        public static bool InLayer(LayerMask mask, int layer)
+        {
+            return (mask == (mask | (1 << layer)));
+        }
     }
 
     [Serializable]

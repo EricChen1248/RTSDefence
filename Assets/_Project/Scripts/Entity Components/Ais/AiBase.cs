@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.AI;
 
 namespace Scripts.Entity_Components.Ais
@@ -27,6 +28,13 @@ namespace Scripts.Entity_Components.Ais
         protected static bool InLayerMask(LayerMask layerMask, int layer)
         {
             return layerMask == (layerMask | (1 << layer));
+        }
+
+        protected void LeaveMap()
+        {
+            var x = 125 - Math.Abs(transform.position.x);
+            var z = 125 - Math.Abs(transform.position.z);
+            Agent.destination = x > z ? new Vector3(transform.position.x > 0 ? 125 : -125, 0, transform.position.z) : new Vector3(transform.position.x, 0, transform.position.z > 0 ? 125 : -125);
         }
     }
 }

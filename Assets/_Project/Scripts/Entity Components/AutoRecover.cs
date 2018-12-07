@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Scripts.Entity_Components.Misc;
+using UnityEngine;
 
 namespace Scripts.Entity_Components
 {

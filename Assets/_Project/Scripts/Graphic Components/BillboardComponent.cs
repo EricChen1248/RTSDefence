@@ -14,7 +14,7 @@ namespace Scripts.Graphic_Components
 
         private void LateUpdate()
         {
-            transform.rotation = _camera.transform.rotation;
+            transform.eulerAngles = _camera.transform.eulerAngles;
         }
     }
 }

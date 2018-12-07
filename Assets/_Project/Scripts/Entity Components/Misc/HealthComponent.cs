@@ -1,13 +1,15 @@
 ﻿using Scripts.Graphic_Components;
 using UnityEngine;
 
-namespace Scripts.Entity_Components
+namespace Scripts.Entity_Components.Misc
 {
+
+    [DefaultExecutionOrder(0)]
     public class HealthComponent : MonoBehaviour
     {
         public delegate void DeathEventHandler(HealthComponent sender);
 
-        private HealthBarComponent _healthBarComponent;
+        public HealthBarComponent HealthBarComponent;
 
         public event DeathEventHandler OnDeath;
         public int MaxHealth = 100;
@@ -15,7 +17,7 @@ namespace Scripts.Entity_Components
 
         public void Start()
         {
-            _healthBarComponent = GetComponentInChildren<HealthBarComponent>();
+            HealthBarComponent = GetComponentInChildren<HealthBarComponent>(includeInactive: true);
             Health = MaxHealth;
 
             ReportHealth();
@@ -34,12 +36,17 @@ namespace Scripts.Entity_Components
         private void Death()
         {
             // Kill off object;
+
+            foreach (var coll in GetComponentsInParent<Collider>())
+            {
+                coll.enabled = false;
+            }
             OnDeath?.Invoke(this);
         }
 
         private void ReportHealth()
         {
-            _healthBarComponent.ReportProgress((float)Health / MaxHealth);
+            HealthBarComponent.ReportProgress((float)Health / MaxHealth);
         }
     }
 }
