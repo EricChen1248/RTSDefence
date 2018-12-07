@@ -12,12 +12,14 @@ namespace Scripts.Buildable_Components
 {
     public class ResourceCollector : Buildable, IClickable
     {
+        public ResourceTypes Type;
         public GameObject Gatherer;
 
         public int CollectionRadius;
         public List<ResourceNode> Nodes;
         private readonly List<ResourceGatherer> Gatherers = new List<ResourceGatherer>();
         private GameObject _range;
+
 
         private ResourceNode CurrentNode;
 
@@ -48,7 +50,11 @@ namespace Scripts.Buildable_Components
                 var node = overlap.GetComponent<ResourceNode>();
                 if (node != null)
                 {
-                    Nodes.Add(node);
+                    if (node.Type == Type)
+                    {
+                        Nodes.Add(node);
+                        node.Collectors.Add(this);
+                    }
                 }
             }
         }
@@ -86,12 +92,11 @@ namespace Scripts.Buildable_Components
                     minDist = dist;
                 }
             }
-
-            CurrentNode.Collectors.Add(this);
         }
         public void NotifyNodeDestroy(ResourceNode node)
         {
             Nodes.Remove(node);
+            if (CurrentNode != node) return;
             GetClosestNode();
             foreach (var gatherer in Gatherers)
             {
@@ -109,15 +114,13 @@ namespace Scripts.Buildable_Components
         {
             HasFocus = true;
             _range = Instantiate(UnityEngine.Resources.Load<GameObject>("Prefabs/Map Objects/RangeShower"), transform);
-            _range.transform.localScale = new Vector3(CollectionRadius, 5, CollectionRadius);
-
+            _range.transform.localScale = new Vector3(CollectionRadius * 2, 5, CollectionRadius * 2);
 
             var omg = ObjectMenuGroupComponent.Instance;
 
             omg.ResetButtons();
             omg.SetButton(1, "Destroy", Destroy);
             omg.Show();
-            CoreController.MouseController.SetFocus(null);
         }
 
         public void LostFocus()
@@ -126,6 +129,15 @@ namespace Scripts.Buildable_Components
             Destroy(_range);
         }
 
+        public void Destroy()
+        {
+            foreach (var gatherer in Gatherers)
+            {
+                Destroy(gatherer.gameObject);
+            }
+            Destroy(true);
+        }
+        
         public void RightClick(Vector3 clickPosition)
         {
 

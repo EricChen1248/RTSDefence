@@ -36,47 +36,63 @@ public class ResourceGatherer : MonoBehaviour
         var agent = GetComponent<NavMeshAgent>();
         var holder = Resources.Load<GameObject>("Prefabs/Entities/Resource Holder");
 
-        while (true)
+        while (Node != null)
         {
             if (!_delivering)
             {
                 agent.isStopped = false;
                 agent.destination = Node.transform.position;
                 var oldNode = Node;
-                while (true)
-                { 
+                while (Node != null)
+                {
                     if (AtResourceNode()) break;
                     if (oldNode != Node) agent.destination = Node.transform.position;
                     yield return new WaitForFixedUpdate();
                 }
-                resource = Node.GetResource();
-                Holders = Instantiate(holder, transform);
-                Holders.transform.localPosition = Vector3.up * 1.5f;
-                Holders.GetComponent<ResourceHolderComponent>().ChangeResources(resource.Type, resource.Count);
+                if (Node != null)
+                {
+                    resource = Node.GetResource();
+                    Holders = Instantiate(holder, transform);
+                    Holders.transform.localPosition = Vector3.up * 1.5f;
+                    Holders.GetComponent<ResourceHolderComponent>().ChangeResources(resource.Type, resource.Count);
+                    agent.isStopped = true;
+                    _delivering = true;
+                }
+            }
+            if (Node != null)
+            {
+                yield return new WaitForSeconds(1);
+                agent.isStopped = false;
+                agent.destination = Collector.transform.position;
+
+                while (true)
+                {
+                    if (AtCollector()) break;
+                    yield return new WaitForFixedUpdate();
+                }
+
                 agent.isStopped = true;
-                _delivering = true;
+                _delivering = false;
+                ResourceController.AddResource(resource.Type, resource.Count);
+
+                yield return new WaitForSeconds(1);
+                Destroy(Holders);
+                Holders = null;
+
                 yield return new WaitForSeconds(1);
             }
-            agent.isStopped = false;
-            agent.destination = Collector.transform.position;
-
-            while (true)
-            {
-                if (AtCollector()) break;
-                yield return new WaitForFixedUpdate();
-            }
-
-            agent.isStopped = true;
-            _delivering = false;
-            ResourceController.AddResource(resource.Type, resource.Count);
-
-            yield return new WaitForSeconds(1);
-            Destroy(Holders);
-            Holders = null;
-
-            yield return new WaitForSeconds(1);
-
         }
+
+        agent.isStopped = false;
+        agent.destination = Collector.transform.position;
+
+        while (true)
+        {
+            if (AtCollector()) break;
+            yield return new WaitForFixedUpdate();
+        }
+
+        agent.isStopped = true;
     }
 
     public void GatherNewResource()
@@ -100,7 +116,8 @@ public class ResourceGatherer : MonoBehaviour
         }
         catch (Exception)
         {
-            return false;
+            // Resource Node is gone, return true
+            return true;
         }
     }
 

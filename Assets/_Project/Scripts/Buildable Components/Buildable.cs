@@ -1,4 +1,5 @@
-﻿using Scripts.Entity_Components.Misc;
+﻿using Scripts.Controllers;
+using Scripts.Entity_Components.Misc;
 using Scripts.Graphic_Components;
 using Scripts.Scriptable_Objects;
 using UnityEngine;
@@ -25,8 +26,15 @@ namespace Scripts.Buildable_Components
             Destroy();
         }
 
-        public void Destroy()
+        public virtual void Destroy(bool returnResource = false)
         {
+            if (returnResource)
+            {
+                foreach (var resource in Data.Recipe)
+                {
+                    ResourceController.AddResource(resource.Resource, resource.Amount);
+                }
+            }
             var health = GetComponentInChildren<HealthBarComponent>();
             if (health != null) health.Hide();
             var dc = gameObject.AddComponent<DestroyComponent>();
