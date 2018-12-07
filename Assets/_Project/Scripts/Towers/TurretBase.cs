@@ -124,8 +124,8 @@ namespace Scripts.Towers
                     var go = Data.SpawnAmmo(FireSpot.transform);
                     var ammo = go.GetComponent<AmmoBase>();
                     go.transform.position = FireSpot.transform.position;
+                    ammo.Layer = RaycastHelper.LayerMaskDictionary["Enemies"];
                     ammo.Target = _currentTarget.transform;
-                    ammo.Fire();
                 }
 
 

@@ -2,6 +2,7 @@
 using System.Linq;
 using Scripts.Entity_Components.Misc;
 using Scripts.Navigation;
+using Scripts.Scriptable_Objects;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,16 +11,17 @@ namespace Scripts.Entity_Components.Ais
     [DefaultExecutionOrder(-1)]
     public class SimpleAi : SingularAiBase
     {
-        private EnemyComponent _enemyComponent;
-        private Animator _animator;
+        protected EnemyComponent EnemyComponent;
+        protected EnemyData Data;
+        protected Animator Animator;
 
         public void Start()
         {
             Agent = GetComponent<NavMeshAgent>();
-            _enemyComponent = GetComponent<EnemyComponent>();
-            _animator = GetComponent<Animator>();
+            EnemyComponent = GetComponent<EnemyComponent>();
+            Animator = GetComponent<Animator>();
             StopTemp = false;
-
+            Data = EnemyComponent.Data;
             StartCoroutine(CheckCollision());
         }
 
@@ -27,7 +29,7 @@ namespace Scripts.Entity_Components.Ais
         {
             TargetTo(Target, force: true);
 
-            _animator.SetBool("Walking", true);
+            Animator.SetBool("Walking", true);
         }
 
         public override void StopTempTarget()
@@ -38,15 +40,14 @@ namespace Scripts.Entity_Components.Ais
 
         private IEnumerator CheckCollision()
         {
-            var radius = _enemyComponent.Radius;
             while (true)
             {
-                var colliders = Physics.OverlapSphere(transform.position, radius, RaycastHelper.LayerMaskDictionary["Friendlies"]);
+                var colliders = Physics.OverlapSphere(transform.position, Data.Radius, Data.TargetLayers);
 
                 if (colliders.Length > 0)
                 {
                     Agent.isStopped = true;
-                    _animator.SetBool("Walking", false);
+                    Animator.SetBool("Walking", false);
 
                     TempTarget = colliders[0].gameObject;
                     StopTemp = false;
@@ -64,15 +65,14 @@ namespace Scripts.Entity_Components.Ais
 
         private IEnumerator Attack()
         {
-
             var rotate = RotateToTarget();
             StartCoroutine(rotate);
 
             var health = TempTarget.GetComponent<HealthComponent>();
             health.OnDeath += OnTargetDeath;
-            _animator.SetBool("Attacking", true);
+            Animator.SetBool("Attacking", true);
             var targetCollider = TempTarget.GetComponent<Collider>();
-            var radius = _enemyComponent.Radius;
+            var radius = Data.Radius;
             radius *= radius;
             while (health.Health > 0 && health != null)
             {
@@ -84,15 +84,16 @@ namespace Scripts.Entity_Components.Ais
                 {
                     break;
                 }
-                health.Damage(10);
+                health.Damage(Data.Damage);
             }
-
+            
             StopCoroutine(rotate);
             StartCoroutine(CheckCollision());
 
-            _animator.SetBool("Attacking", false);
-            _animator.SetBool("Walking", true);
+            Animator.SetBool("Attacking", false);
+            Animator.SetBool("Walking", true);
 
+            yield return new WaitForSeconds(ReloadTime);
             TempTarget = null;
             // Wait for animation to stop
             yield return new WaitForSeconds(1);
@@ -100,11 +101,11 @@ namespace Scripts.Entity_Components.Ais
             Agent.isStopped = false;
         }
 
-        private IEnumerator RotateToTarget()
+        protected IEnumerator RotateToTarget()
         {
-            var look = TempTarget.transform.position - transform.position;
             while(true)
             {
+                var look = TempTarget.transform.position - transform.position;
                 var newDir = Vector3.RotateTowards(transform.forward, look, Time.deltaTime, 0.0f);
 
                 transform.rotation = Quaternion.LookRotation(newDir);

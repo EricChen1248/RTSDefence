@@ -14,9 +14,10 @@ MonoBehaviour:
   Health: 100
   Radius: 1.5
   MovementSpeed: 3.5
+  Damage: 10
   TargetLayers:
     serializedVersion: 2
-    m_Bits: 537088
+    m_Bits: 799232
   ReloadTime: 1
   FindGroup: 0
   Types: 

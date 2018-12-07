@@ -15,9 +15,12 @@ namespace Scripts.Entity_Components.Attacks
         public enum ArrowType { Regular, Fire }
 
         public ArrowType Type;
-
         private IEnumerator _currentCoroutine;
 
+        public void Start()
+        {
+            Fire();
+        }
 	
         public override void Fire()
         {
@@ -66,7 +69,7 @@ namespace Scripts.Entity_Components.Attacks
                     transform.position - new Vector3(0, 0, 0.065f / 2), 0.03f);
                 if (colliders.Length > 0)
                 {
-                    if (RaycastHelper.InLayer(RaycastHelper.LayerMaskDictionary["Enemies"], colliders[0].gameObject.layer))
+                    if (RaycastHelper.InLayer(Layer, colliders[0].gameObject.layer))
                     {
                         var health = colliders[0].GetComponent<HealthComponent>();
                         health.Damage(5);
