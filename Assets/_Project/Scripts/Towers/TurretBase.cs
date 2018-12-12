@@ -33,7 +33,7 @@ namespace Scripts.Towers
         {
             StartCoroutine(CheckEnterRange());
         }
-
+        
         #region Targetting Functions
 
         private void TargetFirst()
