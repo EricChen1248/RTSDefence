@@ -9,6 +9,7 @@ namespace Scripts.Scriptable_Objects
         public float Radius;
         [Tooltip("Default is 3.5")]
         public float MovementSpeed = 3.5f;
+        public int Damage = 10;
         public LayerMask TargetLayers;
         public float ReloadTime;
         public bool FindGroup;

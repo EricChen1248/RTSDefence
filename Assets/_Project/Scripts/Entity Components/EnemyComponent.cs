@@ -1,4 +1,5 @@
 ﻿using Scripts.Entity_Components.Ais;
+using Scripts.Entity_Components.Misc;
 using Scripts.Scriptable_Objects;
 using UnityEngine;
 using UnityEngine.AI;
@@ -39,7 +40,7 @@ namespace Scripts.Entity_Components
 
             Radius = Data.Radius;
 
-            GetComponent<SphereCollider>().radius = Radius;
+            //GetComponent<SphereCollider>().radius = Radius;
             _ai.FindTarget();
         }
     }

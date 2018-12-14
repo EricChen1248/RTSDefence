@@ -13,12 +13,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Archer Tower
   GhostModel: {fileID: 1321205004436844, guid: 880689be85e1442789af5c6e989f20e1, type: 2}
-  Health: 100
-  Offset: {x: 0, y: 0, z: 0}
+  Health: 1000
+  Offset: {x: 0, y: 0.5, z: 0}
   Size: {x: 2, y: 2, z: 2}
   ColliderOffset: {x: 0, y: 1, z: 0}
   CanRotateHorizontal: 1
   CanRotateVertical: 0
   BuildTime: 0
-  Recipe: []
-  Types: 
+  Recipe:
+  - Resource: 0
+    Amount: 1
+  Types: 04000000

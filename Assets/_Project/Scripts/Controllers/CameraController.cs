@@ -45,7 +45,7 @@ namespace Scripts.Controllers
             // Mouse scroll
             var scrollChange = Input.mouseScrollDelta.y * -2f;
             // Clamp to top and bottom angle
-            if (MainCamHolder.transform.eulerAngles.x + scrollChange <= 80 && MainCamHolder.transform.eulerAngles.x + scrollChange >= 30)
+            if (MainCamHolder.transform.eulerAngles.x + scrollChange <= 80 && MainCamHolder.transform.eulerAngles.x + scrollChange >= 25)
             {
                 MainCamHolder.transform.RotateAround(transform.position, transform.right, scrollChange);
                 MainCamera.orthographicSize += scrollChange;
