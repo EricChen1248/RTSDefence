@@ -54,12 +54,13 @@ namespace Scripts.Resources
 
         private void AssignJobToPlayer()
         {
-            var player = CoreController.MouseController.FocusedItem as PlayerComponent;
-            if (player == null) return;
-
-            var job = GenerateJob(player);
-            player.CurrentJob = job;
-            player.DoingJob = false;
+            foreach(var item in CoreController.MouseController.FocusedItem){
+                var player = item as PlayerComponent;
+                if(player == null) continue;
+                var job = GenerateJob(player);
+                player.CurrentJob = job;
+                player.DoingJob = false;
+            }
         }
 
         public ResourceCollectionJob GenerateJob(PlayerComponent player)

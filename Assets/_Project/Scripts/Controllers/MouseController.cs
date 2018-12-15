@@ -5,19 +5,35 @@ using Scripts.Navigation;
 using Scripts.Resources;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 namespace Scripts.Controllers
 {
     public class MouseController : MonoBehaviour
     {
-        public IClickable FocusedItem { get; private set; }
+        public HashSet<IClickable> FocusedItem { get; private set; }
+
+        public void Start(){
+        	FocusedItem = new HashSet<IClickable>();
+        }
 
         public void SetFocus(IClickable click)
         {
+        	//Set single clickable?
+        	//Unclick all objects and leave a set containing only 1 object
+        	/*
             if (FocusedItem == click) return;
             FocusedItem?.LostFocus();
             FocusedItem = click;
             FocusedItem.Focus();
+            */
+            if(FocusedItem.Contains(click)) return;
+            foreach(var item in FocusedItem){
+            	item?.LostFocus();
+            }
+            FocusedItem.Clear();
+            FocusedItem.Add(click);
+            click.Focus();
         }
 
         private void Update()
@@ -35,7 +51,9 @@ namespace Scripts.Controllers
                 if (!RaycastHelper.TryMouseRaycastToGrid(out clickPos,
                     RaycastHelper.LayerMaskDictionary["Walkable Surface"])) return;
 
-                FocusedItem?.RightClick(clickPos);
+                foreach(var item in FocusedItem){
+                	item?.RightClick(clickPos);
+                }
                 return;
             }
             HandleLeftClicks();
