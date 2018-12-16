@@ -31,6 +31,7 @@ namespace Scripts.Controllers
             {
                 ModelDictionary.Add(modelLink.Resource, modelLink.Model);
             }
+
             ResourceCount = new Dictionary<ResourceTypes, int>();
             foreach (ResourceTypes resourceType in Enum.GetValues(typeof(ResourceTypes)))
             {
@@ -42,7 +43,9 @@ namespace Scripts.Controllers
             {
                 SpriteDictionary[resourceLink.Type] = resourceLink.Obj;
             }
-            
+
+            ResourceCount[ResourceTypes.Wood] = 100;
+            ResourceCount[ResourceTypes.Rock] = 50;
         }
 
         [Serializable]
@@ -62,6 +65,11 @@ namespace Scripts.Controllers
         public static void AddResource(ResourceTypes type, int count)
         {
             ResourceCount[type] += count;
+            Instance.ResourceGroup.UpdateGui(ResourceCount);
+        }
+
+        public static void UpdateGUI()
+        {
             Instance.ResourceGroup.UpdateGui(ResourceCount);
         }
     }

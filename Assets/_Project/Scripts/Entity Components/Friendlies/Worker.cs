@@ -35,5 +35,7 @@ namespace Scripts.Entity_Components.Friendlies
 
             DoWork(job);
         }
+
+
     }
 }

@@ -13,7 +13,8 @@ public class DestroyComponent : MonoBehaviour
     private IEnumerator DestroyRoutine()
     {
         var collider = GetComponent<Collider>();
-        
+        collider.enabled = false;
+
         var start = transform.position;
         var end = start + Vector3.down * size;
         for (int i = 0; i < 30; i++)

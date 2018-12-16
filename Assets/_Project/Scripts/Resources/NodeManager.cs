@@ -17,9 +17,10 @@ namespace Scripts.Resources
         public float AvailableResource; // 有多少的量可採
         public float CollectionRadius;
 
-
+        
         public List<ResourceCollectionJob> Collectors = new List<ResourceCollectionJob>();
 
+        /*
         public void Clicked()
         {
             var ui = Pool.Spawn("FloatingUI");
@@ -33,6 +34,7 @@ namespace Scripts.Resources
             var jobs = new List<FloatingUIMenu.ClickEvent> { AssignJobToPlayer };
             ui.GetComponent<FloatingUIMenu>().AssignButton(images, jobs);
         }
+        */
 
         public float GatherResource()
         {
@@ -50,25 +52,7 @@ namespace Scripts.Resources
             return 0;
 
         }
-
-
-        private void AssignJobToPlayer()
-        {
-            foreach(var item in CoreController.MouseController.FocusedItem){
-                var player = item as PlayerComponent;
-                if(player == null) continue;
-                var job = GenerateJob(player);
-                player.CurrentJob = job;
-                player.DoingJob = false;
-            }
-        }
-
-        public ResourceCollectionJob GenerateJob(PlayerComponent player)
-        {
-            var job = new ResourceCollectionJob(player, this);
-            return job;
-        }
-
+        
         private IEnumerator WaitDestroy()
         {
             yield return new WaitForFixedUpdate();

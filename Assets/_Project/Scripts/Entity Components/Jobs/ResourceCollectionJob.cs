@@ -11,7 +11,7 @@ namespace Scripts.Entity_Components.Jobs
     public class ResourceCollectionJob : Job
     {
         // private resource collection;
-        private readonly PlayerComponent _sender;
+        private readonly Worker _sender;
         private readonly NodeManager _node;
 
         private JobPhase _currentPhase;
@@ -23,7 +23,7 @@ namespace Scripts.Entity_Components.Jobs
 
         private GameObject _rhp;
 
-        public ResourceCollectionJob(PlayerComponent sender, NodeManager node)
+        public ResourceCollectionJob(Worker sender, NodeManager node)
         {
             _sender = sender;
             _node = node;

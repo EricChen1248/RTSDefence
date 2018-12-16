@@ -44,13 +44,13 @@ namespace Scripts.GUI
 
         public void Show()
         {
-            enabled = true;
+            gameObject.SetActive(true);
             MenuController.Instance.MenuLowered();
         }
 
         public void Hide()
         {
-            enabled = false;
+            gameObject.SetActive(false);
         }
     }
 }

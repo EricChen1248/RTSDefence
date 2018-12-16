@@ -3,6 +3,7 @@ using System.Collections;
 using Scripts.Controllers;
 using Scripts.Entity_Components.Jobs;
 using Scripts.Interface;
+using Scripts.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,10 +14,11 @@ namespace Scripts.Entity_Components.Friendlies
     {
         public float Speed = 3.5f;
         public NavMeshAgent Agent { get; private set; }
+        public Animator Animator;
 
-        public Jobs.Job CurrentJob;
+        public Job CurrentJob;
         public bool DoingJob;
-
+        
         public void MoveToLocationOnGrid(Vector3 target)
         {
             target.x = Mathf.Round(target.x);
@@ -26,9 +28,10 @@ namespace Scripts.Entity_Components.Friendlies
             MoveToLocation(target);
         }
 
-        public void MoveToLocation(Vector3 target)
+        public virtual void MoveToLocation(Vector3 target)
         {
             Agent.destination = target;
+
             Agent.isStopped = false;
         }
 
@@ -44,6 +47,7 @@ namespace Scripts.Entity_Components.Friendlies
         {
             Agent = GetComponent<NavMeshAgent>();
             Agent.enabled = true;
+            Animator = GetComponent<Animator>();
         }
 
         public IEnumerator CheckJob()
@@ -56,7 +60,7 @@ namespace Scripts.Entity_Components.Friendlies
             StartCoroutine(CurrentJob.DoJob());
         }
 
-        private void OnMouseDown()
+        public void OnMouseDown()
         {
             CoreController.MouseController.SetFocus(this);
         }
@@ -78,12 +82,15 @@ namespace Scripts.Entity_Components.Friendlies
             HasFocus = false;
         }
         
-        public void RightClick(Vector3 clickPosition)
+        public void RightClick()
         {
-            MoveToLocationOnGrid(clickPosition);
+            Vector3 clickPos;
+            if (!RaycastHelper.TryMouseRaycastToGrid(out clickPos,
+                RaycastHelper.LayerMaskDictionary["Walkable Surface"])) return;
+
+            MoveToLocationOnGrid(clickPos);
         }
-
+        
         #endregion
-
     }
 }

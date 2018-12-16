@@ -138,7 +138,7 @@ namespace Scripts.Buildable_Components
             Destroy(true);
         }
         
-        public void RightClick(Vector3 clickPosition)
+        public void RightClick()
         {
 
         }
