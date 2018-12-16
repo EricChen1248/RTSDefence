@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using Scripts.Buildable_Components;
 using Scripts.Entity_Components.Misc;
+using Scripts.GUI;
 using Scripts.Navigation;
 using Scripts.Scriptable_Objects;
 using UnityEngine;
-
+using Object = UnityEngine.Object;
 namespace Scripts.Towers
 {
     [DefaultExecutionOrder(0)]
-    public class TurretBase : MonoBehaviour
+    public class TurretBase : Buildable
     {
-
         public GameObject FireSpot;
-        public TurretData Data;
-
+        public TurretData TurretData;
 
         private Collider[] _inRangeTargets;
         private Collider _currentTarget;
@@ -24,15 +25,78 @@ namespace Scripts.Towers
 
         private readonly IEnumerator _shootingRoutine;
 
+        private GameObject _range;
+
+        private AiStates State;
+
         public TurretBase()
         {
             _shootingRoutine = Shoot();
         }
 
-        public void Start()
+        public override void Start()
         {
+            base.Start();
             StartCoroutine(CheckEnterRange());
+            State = TurretData.AiState;
         }
+
+        public override void Focus()
+        {
+            base.Focus();
+            _range = Instantiate(UnityEngine.Resources.Load<GameObject>("Prefabs/Map Objects/RangeShower"), transform);
+            _range.transform.localScale = new Vector3(TurretData.Range * 2, 5, TurretData.Range * 2);
+
+            UpdateGui();
+        }
+
+        private readonly Dictionary<AiStates, string> StateString = new Dictionary<AiStates, string>()
+        {
+            {AiStates.FIRST,"First"},        
+            {AiStates.NEAREST,"Nearest"},
+            {AiStates.FURTHEST,"Furthest"},
+            {AiStates.WEAKEST,"Weakest"},
+            {AiStates.STRONGEST,"Strongest"}
+        };
+
+        private void UpdateGui()
+        {
+
+            var omg = ObjectMenuGroupComponent.Instance;
+            omg.SetButton(1, StateString[State], ToggleFiringState);
+        }
+        public override void LostFocus()
+        {
+            base.LostFocus();
+            Object.Destroy(_range);
+        }
+
+        public void ToggleFiringState()
+        {
+            switch (State)
+            {
+                case AiStates.FIRST:
+                    State = AiStates.NEAREST;
+                    break;
+                case AiStates.NEAREST:
+                    State = AiStates.FURTHEST;
+                    break;
+                case AiStates.FURTHEST:
+                    State = AiStates.WEAKEST;
+                    break;
+                case AiStates.WEAKEST:
+                    State = AiStates.STRONGEST;
+                    break;
+                case AiStates.STRONGEST:
+                    State = AiStates.FIRST;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            UpdateGui();
+        }
+        
 
         #region Targetting Functions
 
@@ -116,12 +180,12 @@ namespace Scripts.Towers
         private IEnumerator Shoot()
         {
             StartCoroutine(RotateToTarget());
-            while (true)
+            while (_currentTarget != null)
             {
                 var angle = Quaternion.Angle(transform.rotation, Quaternion.LookRotation(_currentTarget.transform.position - transform.position));
-                if (angle < Data.FieldOfView)
+                if (angle < TurretData.FieldOfView)
                 {
-                    var go = Data.SpawnAmmo(FireSpot.transform);
+                    var go = TurretData.SpawnAmmo(FireSpot.transform);
                     var ammo = go.GetComponent<AmmoBase>();
                     go.transform.position = FireSpot.transform.position;
                     ammo.Layer = RaycastHelper.LayerMaskDictionary["Enemies"];
@@ -129,7 +193,7 @@ namespace Scripts.Towers
                 }
 
 
-                yield return new WaitForSeconds(Data.FireRate);
+                yield return new WaitForSeconds(TurretData.FireRate);
             }
         }
 
@@ -158,9 +222,9 @@ namespace Scripts.Towers
         {
             while (true)
             {
-                _inRangeTargets = Physics.OverlapSphere(transform.position, Data.Range, RaycastHelper.LayerMaskDictionary["Enemies"]);
+                _inRangeTargets = Physics.OverlapSphere(transform.position, TurretData.Range, RaycastHelper.LayerMaskDictionary["Enemies"]);
 
-                switch (Data.AiState)
+                switch (State)
                 {
                     case AiStates.FIRST:
                         TargetFirst();
@@ -188,6 +252,7 @@ namespace Scripts.Towers
             }
         }
 
+
         #endregion
-    }
+}
 }

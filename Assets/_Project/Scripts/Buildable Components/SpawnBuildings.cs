@@ -34,23 +34,22 @@ namespace Scripts.Buildable_Components
             CoreController.MouseController.SetFocus(this);
         }
 
-        public bool HasFocus { get; private set; }
-        public void Focus()
+        public override void Focus()
         {
+            base.Focus();
             HasFocus = true;
-            ObjectMenuGroupComponent.Instance.Show();
-            UpdateGUI();
 
-            StartCoroutine(DetectLoseFocus());
+            UpdateGui();
         }
 
-        public void LostFocus()
+        public override void LostFocus()
         {
+            base.LostFocus();
             HasFocus = false;
             ObjectMenuGroupComponent.Instance.Hide();
         }
 
-        public void RightClick()
+        public override void RightClick()
         {
         }
 
@@ -60,25 +59,25 @@ namespace Scripts.Buildable_Components
             var progress = GetComponentInChildren<CircularProgress>();
             while (SpawnList.Count > 0)
             {
-                for (int i = 0; i < 120; i++)
+                for (var i = 0; i < 120; i++)
                 {
                     progress.UpdateProgress(i / 120f);
                     yield return new WaitForFixedUpdate();
                 }
 
                 var spawn = SpawnList.Dequeue();
-                var spawnedGO = Instantiate(spawn.Object);
-                spawnedGO.transform.position = transform.position + SpawnPosition;
+                var spawnedGo = Instantiate(spawn.Object);
+                spawnedGo.transform.position = transform.position + SpawnPosition;
                 SpawnCount[spawn]--;
 
-                UpdateGUI();
+                UpdateGui();
             }
 
             progress.UpdateProgress(0);
             spawning = false;
         }
 
-        private void UpdateGUI()
+        private void UpdateGui()
         {
             if (!HasFocus) return;
             var omg = ObjectMenuGroupComponent.Instance;
@@ -86,41 +85,16 @@ namespace Scripts.Buildable_Components
             {
                 var obj = Objects[i];
                 var s = obj.Name + (SpawnCount[obj] > 0 ? " " + SpawnCount[obj] : "");
-                omg.SetButton(i, s, () =>
+                omg.SetButton(i + 1, s, () =>
                 {
                     SpawnList.Enqueue(obj);
                     SpawnCount[obj]++;
-                    UpdateGUI();
+                    UpdateGui();
                     if (!spawning) StartCoroutine(StartSpawn());
                 });
             }
         }
 
-        private IEnumerator DetectLoseFocus()
-        {
-            while (true)
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    if (!EventSystem.current.IsPointerOverGameObject())
-                    {
-
-                        RaycastHit hit = new RaycastHit();
-                        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-                        if (Physics.Raycast(ray, out hit))
-                        {
-                            if (hit.collider.gameObject != gameObject)
-                            {
-                                CoreController.MouseController.SetFocus(null);
-                                yield break;
-                            }
-                        }
-                    }
-                }
-                yield return null;
-            }
-        }
     }
     [Serializable]
     public struct SpawnObject

@@ -1540,7 +1540,7 @@ MonoBehaviour:
   TargetingLayers:
     serializedVersion: 2
     m_Bits: 0
-  Ammo: {fileID: 1130948403366240, guid: 33675a15a1c125e4bb38f9f73523d78a, type: 2}
+  Ammo: {fileID: 1130948403366240, guid: b7c71b32b0177344683c3524be951a84, type: 2}
 --- !u!136 &136880451366337616
 CapsuleCollider:
   m_ObjectHideFlags: 1

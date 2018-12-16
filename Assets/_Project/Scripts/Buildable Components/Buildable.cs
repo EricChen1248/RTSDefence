@@ -1,14 +1,18 @@
-﻿using Scripts.Controllers;
+﻿using System.Collections;
+using Scripts.Controllers;
 using Scripts.Entity_Components.Misc;
 using Scripts.Graphic_Components;
+using Scripts.GUI;
+using Scripts.Interface;
 using Scripts.Scriptable_Objects;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Scripts.Buildable_Components
 {
     [SelectionBase]
     [RequireComponent(typeof(HealthComponent))]
-    public class Buildable : MonoBehaviour
+    public class Buildable : MonoBehaviour, IClickable
     {
         public BuildData Data;
         public int ID;
@@ -18,15 +22,11 @@ namespace Scripts.Buildable_Components
             var health = GetComponent<HealthComponent>();
             health.MaxHealth = Data.Health;
             ID = GetInstanceID();
-            health.OnDeath += DestroyEvent;
+            health.OnDeath += (e) => Destroy();
+
         }
 
-        private void DestroyEvent(HealthComponent health)
-        {
-            Destroy();
-        }
-
-        public virtual void Destroy(bool returnResource = false)
+        public virtual void Destroy(bool returnResource)
         {
             if (returnResource)
             {
@@ -40,7 +40,75 @@ namespace Scripts.Buildable_Components
             var dc = gameObject.AddComponent<DestroyComponent>();
             dc.size = Data.Size.y;
             WaveController.Instance.AddScore(-Data.Points);
+
+            if (CoreController.MouseController.FocusedItem.Contains(this))
+            {
+                CoreController.MouseController.SetFocus(null);
+            }
+        }
+
+        public virtual void Destroy()
+        {
+            Destroy(false);
+        }
+
+        private void OnMouseUpAsButton()
+        {
+            CoreController.MouseController.SetFocus(this);
+        }
+
+        public bool HasFocus { get; protected set; }
+        public virtual void Focus()
+        {
+            HasFocus = true;
+
+            var omg = ObjectMenuGroupComponent.Instance;
+
+            omg.ResetButtons();
+            omg.SetButton(0, "Destroy", () => Destroy(true));
+            omg.Show();
+
+            StartCoroutine(DetectLoseFocus());
+        }
+
+        public virtual void LostFocus()
+        {
+            HasFocus = false;
+
+            ObjectMenuGroupComponent.Instance.Hide();
+        }
+
+        public virtual void RightClick()
+        {
+            
         }
         
+        private IEnumerator DetectLoseFocus()
+        {
+            while (true)
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    if (!EventSystem.current.IsPointerOverGameObject())
+                    {
+                        if (Camera.main != null)
+                        {
+                            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                            RaycastHit hit;
+                            if (Physics.Raycast(ray, out hit))
+                            {
+                                if (hit.collider.gameObject != gameObject)
+                                {
+                                    CoreController.MouseController.SetFocus(null);
+                                    yield break;
+                                }
+                            }
+                        }
+                    }
+                }
+                yield return null;
+            }
+        }
     }
 }

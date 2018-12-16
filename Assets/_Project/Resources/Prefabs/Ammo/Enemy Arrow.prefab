@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4556986366282498}
   - component: {fileID: 114738612777142024}
   m_Layer: 22
-  m_Name: Arrow
+  m_Name: Enemy Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -813,7 +813,7 @@ MonoBehaviour:
   Target: {fileID: 0}
   Layer:
     serializedVersion: 2
-    m_Bits: 3072
+    m_Bits: 799232
   Height: 2
   Acceleration: 0.01
   Type: 0

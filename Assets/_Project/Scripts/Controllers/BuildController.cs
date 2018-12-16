@@ -126,10 +126,10 @@ namespace Scripts.Controllers
         {
             BuiltObjects = new Dictionary<ScriptableObject, Dictionary<int, GameObject>>();
 
-            ActiveDefences = UnityEngine.Resources.LoadAll<BuildData>("Prefabs/Buildables/Data/Active Defence");
-            StaticDefences = UnityEngine.Resources.LoadAll<BuildData>("Prefabs/Buildables/Data/Static Defence");
-            Structure = UnityEngine.Resources.LoadAll<BuildData>("Prefabs/Buildables/Data/Structure");
-            Traps = UnityEngine.Resources.LoadAll<BuildData>("Prefabs/Buildables/Data/Traps");
+            ActiveDefences = UnityEngine.Resources.LoadAll<BuildData>("Prefabs/Buildables/TurretData/Active Defence");
+            StaticDefences = UnityEngine.Resources.LoadAll<BuildData>("Prefabs/Buildables/TurretData/Static Defence");
+            Structure = UnityEngine.Resources.LoadAll<BuildData>("Prefabs/Buildables/TurretData/Structure");
+            Traps = UnityEngine.Resources.LoadAll<BuildData>("Prefabs/Buildables/TurretData/Traps");
 
             foreach (var activeDefence in ActiveDefences)
             {

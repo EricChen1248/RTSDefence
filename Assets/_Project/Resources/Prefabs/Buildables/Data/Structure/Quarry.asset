@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Quarry
   GhostModel: {fileID: 1638394299684722, guid: bf5d8ff41cca4e143ae34873e40b4598, type: 2}
-  Health: 0
+  Health: 100
   Offset: {x: 0, y: 0.5, z: 0}
   Size: {x: 0, y: 2, z: 0}
   ColliderOffset: {x: 5, y: 4, z: 5}

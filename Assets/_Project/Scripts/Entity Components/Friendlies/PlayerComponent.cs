@@ -65,7 +65,7 @@ namespace Scripts.Entity_Components.Friendlies
             StartCoroutine(CurrentJob.DoJob());
         }
 
-        public void OnMouseDown()
+        public void OnMouseUpAsButton()
         {
             CoreController.MouseController.SetFocus(this);
         }

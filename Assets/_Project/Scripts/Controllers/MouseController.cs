@@ -44,6 +44,14 @@ namespace Scripts.Controllers
                 return;
             }
 
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (!EventSystem.current.IsPointerOverGameObject())
+                {
+                    MenuController.Instance.MenuLowered();
+                }
+            }
+
         }
 
         #region Left Clicks

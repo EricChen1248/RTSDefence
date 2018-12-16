@@ -7,6 +7,8 @@ using Scripts.Interface;
 using Scripts.Resources;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.GameObject;
+using Object = UnityEngine.Object;
 
 namespace Scripts.Buildable_Components
 {
@@ -68,11 +70,11 @@ namespace Scripts.Buildable_Components
             {
                 var obj = Instantiate(prefab, transform);
                 obj.GetComponent<NavMeshAgent>().enabled = true;
+                var gatherer = obj.GetComponent<ResourceGatherer>();
+                Gatherers.Add(gatherer);
 
                 yield return new WaitForSeconds(1);
 
-                var gatherer = obj.GetComponent<ResourceGatherer>();
-                Gatherers.Add(gatherer);
                 gatherer.Collector = this;
                 gatherer.Node = CurrentNode;
                 gatherer.GatherNewResource();
@@ -86,11 +88,9 @@ namespace Scripts.Buildable_Components
             foreach (var node in Nodes)
             {
                 var dist = (node.transform.position - transform.position).sqrMagnitude;
-                if (dist < minDist)
-                {
-                    CurrentNode = node;
-                    minDist = dist;
-                }
+                if (!(dist < minDist)) continue;
+                CurrentNode = node;
+                minDist = dist;
             }
         }
         public void NotifyNodeDestroy(ResourceNode node)
@@ -109,36 +109,41 @@ namespace Scripts.Buildable_Components
             CoreController.MouseController.SetFocus(this);
         }
 
-        public bool HasFocus { get; private set; }
-        public void Focus()
+        public override void Focus()
         {
-            HasFocus = true;
+            base.Focus();
+
             _range = Instantiate(UnityEngine.Resources.Load<GameObject>("Prefabs/Map Objects/RangeShower"), transform);
             _range.transform.localScale = new Vector3(CollectionRadius * 2, 5, CollectionRadius * 2);
 
-            var omg = ObjectMenuGroupComponent.Instance;
 
-            omg.ResetButtons();
-            omg.SetButton(1, "Destroy", Destroy);
-            omg.Show();
+            var omg = ObjectMenuGroupComponent.Instance;
+            omg.SetButton(1, "Respawn", SpawnNew);
         }
 
-        public void LostFocus()
+        public override void LostFocus()
         {
             HasFocus = false;
-            Destroy(_range);
+            Object.Destroy(_range);
         }
 
-        public void Destroy()
+        private void SpawnNew()
+        {
+            if (Gatherers.Count >= 3) return;
+            if (ResourceController.ResourceCount[ResourceTypes.Gold] <= 2) return;
+            ResourceController.AddResource(ResourceTypes.Gold, -2);
+            StartCoroutine(SpawnGatherer(1));
+        }
+        public override void Destroy()
         {
             foreach (var gatherer in Gatherers)
             {
                 Destroy(gatherer.gameObject);
             }
-            Destroy(true);
+            base.Destroy(true);
         }
         
-        public void RightClick()
+        public override void RightClick()
         {
 
         }

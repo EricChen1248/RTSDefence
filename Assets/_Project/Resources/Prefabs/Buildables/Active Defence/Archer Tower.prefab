@@ -104,7 +104,6 @@ GameObject:
   - component: {fileID: 4455420111326988}
   - component: {fileID: 136466818971453662}
   - component: {fileID: 114339888091919634}
-  - component: {fileID: 114025713735760564}
   - component: {fileID: 114995601581772676}
   m_Layer: 13
   m_Name: Archer Tower
@@ -322,19 +321,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1694784883461484}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114025713735760564
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1923133400723034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04bf2f2740365d34ba36c7288d3346d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Data: {fileID: 11400000, guid: acbc31edc90b0471d8beaa01ead17ad7, type: 2}
-  ID: -2118
 --- !u!114 &114339888091919634
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -383,8 +369,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2dfc53fdc33f4e40a1d885292f0678c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Data: {fileID: 11400000, guid: acbc31edc90b0471d8beaa01ead17ad7, type: 2}
+  ID: 0
   FireSpot: {fileID: 1192857325084222}
-  Data: {fileID: 11400000, guid: be88aee05ac2f8d4c94dedf4aa5d076a, type: 2}
+  TurretData: {fileID: 11400000, guid: be88aee05ac2f8d4c94dedf4aa5d076a, type: 2}
 --- !u!136 &136466818971453662
 CapsuleCollider:
   m_ObjectHideFlags: 1
