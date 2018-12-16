@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4206672229765150}
   - component: {fileID: 114999170289413882}
-  m_Layer: 31
+  m_Layer: 0
   m_Name: Billboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}

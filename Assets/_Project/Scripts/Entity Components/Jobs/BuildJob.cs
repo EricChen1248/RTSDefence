@@ -80,6 +80,21 @@ namespace Scripts.Entity_Components.Jobs
         {
             if (_recipe.Count > 0)
             {
+                var res = _recipe.Peek();
+
+                // If not enough resources.
+                if (ResourceController.ResourceCount[res.Resource] < res.Amount)
+                {
+                    // Wait one update so the update isn't full of failed jobs.
+                    yield return new WaitForFixedUpdate();
+
+                    JobController.AddJob(this);
+                    Worker.CompleteJob();
+                    yield break;
+                }
+
+                ResourceController.AddResource(res.Resource, -res.Amount);
+
                 Worker.Agent.destination = CoreController.Instance.CoreGameObject.transform.position;
                 while (true)
                 {
@@ -91,10 +106,9 @@ namespace Scripts.Entity_Components.Jobs
 
                 yield return new WaitForSeconds(1);
 
-                // TODO : Add Take Resource.
-                    _resourceHolder = UnityEngine.Object.Instantiate(UnityEngine.Resources.Load<GameObject>("Prefabs/Entities/Resource Holder"));
 
-                var res = _recipe.Dequeue();
+                _resourceHolder = Object.Instantiate(UnityEngine.Resources.Load<GameObject>("Prefabs/Entities/Resource Holder"));
+
                 _resourceHolder.GetComponent<ResourceHolderComponent>().ChangeResources(res.Resource, res.Amount);
 
                 _resourceHolder.transform.parent = Worker.gameObject.transform;

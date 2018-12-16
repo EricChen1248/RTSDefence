@@ -2,7 +2,6 @@
 using Scripts.Entity_Components.Friendlies;
 using Scripts.Interface;
 using Scripts.Navigation;
-using Scripts.Resources;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -17,10 +16,10 @@ namespace Scripts.Controllers
             if (FocusedItem == click) return;
             FocusedItem?.LostFocus();
             FocusedItem = click;
-            FocusedItem.Focus();
+            FocusedItem?.Focus();
         }
 
-        private void Update()
+        public void Update()
         {
             if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2))
             {
@@ -30,15 +29,11 @@ namespace Scripts.Controllers
             // Right click
             if (Input.GetMouseButtonDown(1))
             {
-
-                Vector3 clickPos;
-                if (!RaycastHelper.TryMouseRaycastToGrid(out clickPos,
-                    RaycastHelper.LayerMaskDictionary["Walkable Surface"])) return;
-
-                FocusedItem?.RightClick(clickPos);
+                FocusedItem?.RightClick();
                 return;
             }
-            HandleLeftClicks();
+
+            //HandleLeftClicks();
 
         }
 
@@ -47,38 +42,19 @@ namespace Scripts.Controllers
         private void HandleLeftClicks()
         {
             if (!Input.GetMouseButtonDown(0)) return;
-
-            //if (GhostModelLeftClick()) return;
-            //if (ResourceLeftClick()) return;
-            //if (PlayerLeftClick()) return;
+            
+            if (FocusedItem != null)
+            {
+                GameObject go;
+                RaycastHelper.RaycastGameObject(out go, 1);
+                if (go == null || go.GetComponent<IClickable>() != FocusedItem)
+                {
+                    FocusedItem.LostFocus();
+                    FocusedItem = null;
+                }
+            }
         }
-
-        private static bool GhostModelLeftClick()
-        {
-            GameObject go;
-            if (!RaycastHelper.RaycastGameObject(out go, 1 << LayerMask.NameToLayer("GhostModel"))) return false;
-            go.GetComponent<GhostModelScript>().Clicked();
-            return true;
-        }
-
-        private static bool ResourceLeftClick()
-        {
-            GameObject go;
-            if (!RaycastHelper.RaycastGameObject(out go, 1 << LayerMask.NameToLayer("Resource Collection"))) return false;
-            print("Click Resources");
-            go.GetComponent<NodeManager>().Clicked();
-            return true;
-
-        }
-
-        private bool PlayerLeftClick()
-        {
-            GameObject player;
-            if (!RaycastHelper.RaycastGameObject(out player, 1 << LayerMask.NameToLayer("Player"))) return false;
-            SetFocus(player.GetComponent<PlayerComponent>());
-            return true;
-        }
-
+                
         #endregion
     }
 }

@@ -26,17 +26,15 @@ namespace Scripts.GUI
                 var comp = go.GetComponent<ResourcePanelComponent>();
                 _panelLinks[resourceType] = comp;
                 comp.AssignImage(ResourceController.Instance.SpriteDictionary[resourceType]);
-
             }
+
+            ResourceController.UpdateGUI();
         }
-
-
 
         public void UpdateGui(Dictionary<ResourceTypes, int> resourceCount)
         {
             foreach (var item in resourceCount)
             {
-                print(item.Key);
                 _panelLinks[item.Key].UpdateText(item.Value);
             }
         }

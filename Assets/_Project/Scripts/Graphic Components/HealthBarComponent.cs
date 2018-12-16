@@ -10,8 +10,6 @@ namespace Scripts.Graphic_Components
 
         public void Start()
         {
-            //if (Camera.main != null) transform.rotation = Camera.main.transform.rotation;
-            //CurrentHealthBar.transform.localPosition = new Vector3(0,0,-0.001f);
             gameObject.SetActive(false);
         }
 

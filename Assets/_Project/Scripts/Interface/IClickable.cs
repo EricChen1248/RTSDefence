@@ -9,7 +9,7 @@ namespace Scripts.Interface
         void Focus();
         void LostFocus();
 
-        void RightClick(Vector3 clickPosition);
+        void RightClick();
     }
 
 }
