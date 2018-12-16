@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Linq;
+using Scripts.Buildable_Components;
 using Scripts.Entity_Components.Misc;
 using Scripts.Navigation;
 using Scripts.Scriptable_Objects;
@@ -15,8 +16,11 @@ namespace Scripts.Entity_Components.Ais
         protected EnemyData Data;
         protected Animator Animator;
 
-        public void Start()
+        public override void Start()
         {
+            base.Start();
+
+
             Agent = GetComponent<NavMeshAgent>();
             EnemyComponent = GetComponent<EnemyComponent>();
             Animator = GetComponent<Animator>();
@@ -46,14 +50,25 @@ namespace Scripts.Entity_Components.Ais
 
                 if (colliders.Length > 0)
                 {
-                    Agent.isStopped = true;
-                    Animator.SetBool("Walking", false);
+                    foreach (var collider in colliders)
+                    {
+                        var buildable = collider.gameObject.GetComponent<Buildable>();
+                        if (buildable != null && buildable.Data.Name == "Wall")
+                        {
+                            if ((collider.transform.position - transform.position).sqrMagnitude > 2)
+                            {
+                                continue;
+                            }
+                        }
+                        Agent.isStopped = true;
+                        Animator.SetBool("Walking", false);
 
-                    TempTarget = colliders[0].gameObject;
-                    StopTemp = false;
+                        TempTarget = collider.gameObject;
+                        StopTemp = false;
 
-                    StartCoroutine(Attack());
-                    yield break;
+                        StartCoroutine(Attack());
+                        yield break;
+                    }
                 }
 
                 for (var i = 0; i < 10; i++)
@@ -103,7 +118,7 @@ namespace Scripts.Entity_Components.Ais
 
         protected IEnumerator RotateToTarget()
         {
-            while(true)
+            while(TempTarget != null)
             {
                 var look = TempTarget.transform.position - transform.position;
                 var newDir = Vector3.RotateTowards(transform.forward, look, Time.deltaTime, 0.0f);

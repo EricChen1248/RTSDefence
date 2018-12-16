@@ -19,7 +19,8 @@ MonoBehaviour:
   ColliderOffset: {x: 0, y: 1, z: 0}
   CanRotateHorizontal: 1
   CanRotateVertical: 0
-  BuildTime: 0
+  Points: 100
+  BuildTime: 10
   Recipe:
   - Resource: 0
     Amount: 1

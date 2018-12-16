@@ -20,4 +20,5 @@ MonoBehaviour:
     m_Bits: 799232
   ReloadTime: 1
   FindGroup: 0
-  Types: 
+  Points: 400
+  Types: 0000000004000000

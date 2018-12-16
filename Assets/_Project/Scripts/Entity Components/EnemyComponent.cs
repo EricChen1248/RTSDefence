@@ -40,7 +40,7 @@ namespace Scripts.Entity_Components
 
             Radius = Data.Radius;
             
-            _ai.FindTarget();
+            //_ai.FindTarget();
         }
     }
 }

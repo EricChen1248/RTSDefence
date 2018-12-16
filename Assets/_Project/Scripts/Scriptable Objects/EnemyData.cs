@@ -13,6 +13,7 @@ namespace Scripts.Scriptable_Objects
         public LayerMask TargetLayers;
         public float ReloadTime;
         public bool FindGroup;
+        public int Points = 10;
 
         public EnemyType[] Types;
     }
@@ -23,5 +24,8 @@ namespace Scripts.Scriptable_Objects
         FireResistant,
         BlastResistant,
         SuicideBomber,
+        HardHitting,
+        Fast,
+        Tank,
     }
 }

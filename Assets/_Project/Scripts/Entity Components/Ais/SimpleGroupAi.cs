@@ -156,11 +156,13 @@ namespace Scripts.Entity_Components.Ais
 
             public override void Enter()
             {
-                var groupData = _transform.GetComponent<GroupComponent>();
-                foreach (var member in groupData.Member)
-                {
-                    member.GetComponent<SingularAiBase>().FindTarget();
-                }
+                // TODO disabled group ai
+
+                //var groupData = _transform.GetComponent<GroupComponent>();
+                //foreach (var member in groupData.Member)
+                //{
+                //    member.GetComponent<SingularAiBase>().FindTarget();
+                //}
             }
 
             public override void Update() { }

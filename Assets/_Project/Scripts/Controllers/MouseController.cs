@@ -1,7 +1,4 @@
-﻿using Scripts.Buildable_Components;
-using Scripts.Entity_Components.Friendlies;
-using Scripts.Interface;
-using Scripts.Navigation;
+﻿using Scripts.Interface;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using Scripts.Controllers;
 using UnityEngine;
 using UnityEngine.AI;
@@ -64,6 +65,7 @@ namespace Scripts.Entity_Components.Ais
                     yield return new WaitForFixedUpdate();
                     distanceToTarget = (transform.position - Agent.destination).sqrMagnitude;
                 }
+                WaveController.Instance.AddScore(1000);
                 Destroy(gameObject);
             }
         }

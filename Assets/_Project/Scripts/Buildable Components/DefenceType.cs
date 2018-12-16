@@ -8,5 +8,6 @@ namespace Scripts.Buildable_Components
         Ice,
         Fast,
         Slow,
+        Wall,
     }
 }

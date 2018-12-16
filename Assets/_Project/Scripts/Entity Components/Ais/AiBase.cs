@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Scripts.Controllers;
+using Scripts.Entity_Components.Misc;
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,8 +17,14 @@ namespace Scripts.Entity_Components.Ais
         [HideInInspector]
         public LayerMask TargetingLayers;
 
+        public virtual void Start()
+        {
+            GetComponent<HealthComponent>().OnDeath += (e) => Destroy(gameObject);
+        }
+
         public abstract void FindTarget();
-        public virtual bool TargetTo(GameObject obj, bool force){
+        public virtual bool TargetTo(GameObject obj, bool force)
+        {
             if (!InLayerMask(TargetingLayers, obj.layer) && !force){
                 return false;
             }
@@ -30,11 +38,16 @@ namespace Scripts.Entity_Components.Ais
             return layerMask == (layerMask | (1 << layer));
         }
 
-        protected void LeaveMap()
+        public void LeaveMap()
         {
             var x = 125 - Math.Abs(transform.position.x);
             var z = 125 - Math.Abs(transform.position.z);
             Agent.destination = x > z ? new Vector3(transform.position.x > 0 ? 125 : -125, 0, transform.position.z) : new Vector3(transform.position.x, 0, transform.position.z > 0 ? 125 : -125);
+        }
+
+        public void OnDestroy()
+        {
+            WaveController.Instance.enemies.Remove(gameObject);
         }
     }
 }

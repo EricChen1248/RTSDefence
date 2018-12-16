@@ -2,6 +2,7 @@
 using System.Collections;
 using Scripts.Controllers;
 using Scripts.Entity_Components.Jobs;
+using Scripts.Entity_Components.Misc;
 using Scripts.Interface;
 using Scripts.Navigation;
 using UnityEngine;
@@ -48,6 +49,10 @@ namespace Scripts.Entity_Components.Friendlies
             Agent = GetComponent<NavMeshAgent>();
             Agent.enabled = true;
             Animator = GetComponent<Animator>();
+            GetComponent<HealthComponent>().OnDeath += (e) => Destroy(gameObject);
+            var startLocation = UnityEngine.Random.insideUnitSphere * 0.001f;
+            startLocation.y = 0;
+            MoveToLocation(transform.position + startLocation);
         }
 
         public IEnumerator CheckJob()
@@ -72,13 +77,11 @@ namespace Scripts.Entity_Components.Friendlies
         public bool HasFocus { get; private set; }
         public void Focus()
         {
-            gameObject.AddComponent<PathDrawer>();
             HasFocus = true;
         }
 
         public void LostFocus()
         {
-            Destroy(GetComponent<PathDrawer>());
             HasFocus = false;
         }
         
@@ -90,7 +93,16 @@ namespace Scripts.Entity_Components.Friendlies
 
             MoveToLocationOnGrid(clickPos);
         }
-        
+
+        public void OnDestroy()
+        {
+            if (CoreController.MouseController.FocusedItem.Contains(this))
+            {
+                CoreController.MouseController.FocusedItem.Remove(this);
+            }
+
+        }
+
         #endregion
     }
 }

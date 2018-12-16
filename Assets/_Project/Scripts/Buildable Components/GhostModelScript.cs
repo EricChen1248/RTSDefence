@@ -69,7 +69,6 @@ namespace Scripts.Buildable_Components
             var overlap = Physics.OverlapBox(transform.position + Data.ColliderOffset, Data.Size / 2f * 0.9f, transform.rotation, RaycastHelper.LayerMaskDictionary["Non Buildables"]);
             foreach (var item in overlap)
             {
-                print(item);
                 return false;
             }
             return true;

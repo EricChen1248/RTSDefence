@@ -39,6 +39,7 @@ namespace Scripts.Buildable_Components
             if (health != null) health.Hide();
             var dc = gameObject.AddComponent<DestroyComponent>();
             dc.size = Data.Size.y;
+            WaveController.Instance.AddScore(-Data.Points);
         }
         
     }

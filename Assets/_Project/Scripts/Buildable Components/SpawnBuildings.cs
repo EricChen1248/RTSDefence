@@ -6,6 +6,7 @@ using Scripts.Interface;
 using Scripts.Controllers;
 using System;
 using UnityEngine.EventSystems;
+using Scripts.Entity_Components.Friendlies;
 
 namespace Scripts.Buildable_Components
 {
@@ -37,7 +38,6 @@ namespace Scripts.Buildable_Components
         public void Focus()
         {
             HasFocus = true;
-            print("Focus");
             ObjectMenuGroupComponent.Instance.Show();
             UpdateGUI();
 

@@ -22,7 +22,10 @@ namespace Scripts.Entity_Components.Friendlies
             {
                 StopCoroutine(CheckingDistance);
             }
-            StopCoroutine(CheckingCollision);
+            if (CheckingCollision != null)
+            {
+                StopCoroutine(CheckingCollision);
+            }
 
             Agent.destination = target;
             CheckingDistance = CheckDistanceRoutine();
@@ -34,9 +37,9 @@ namespace Scripts.Entity_Components.Friendlies
         // Use this for initialization
         public override void Start()
         {
+            //CheckingCollision = CheckCollision();
+            //StartCoroutine(CheckingCollision);
             base.Start();
-            CheckingCollision = CheckCollision();
-            StartCoroutine(CheckingCollision);
         }
 
         private IEnumerator CheckCollision()
@@ -93,7 +96,7 @@ namespace Scripts.Entity_Components.Friendlies
 
         protected IEnumerator RotateToTarget(GameObject go)
         {
-            while (true)
+            while (go != null)
             {
                 var look = go.transform.position - transform.position;
                 var newDir = Vector3.RotateTowards(transform.forward, look, Time.deltaTime * 10, 10);
@@ -110,7 +113,7 @@ namespace Scripts.Entity_Components.Friendlies
             var destination = Agent.destination;
             while (true)
             {
-                if ((transform.position - destination).sqrMagnitude < 2f)
+                if ((transform.position - destination).sqrMagnitude < 3f)
                 {
                     break;
                 }

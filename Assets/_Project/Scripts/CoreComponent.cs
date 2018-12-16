@@ -1,5 +1,7 @@
 ﻿using Scripts.Controllers;
+using Scripts.Entity_Components.Misc;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Scripts
 {
@@ -10,6 +12,13 @@ namespace Scripts
         private void Start ()
         {
             CoreController.Instance.CoreGameObject = gameObject;
+            GetComponent<HealthComponent>().OnDeath += (e) =>
+            {
+                WaveController.Instance.GameOver();
+                gameObject.AddComponent<DestroyComponent>();
+                GetComponent<NavMeshObstacle>().enabled = false;
+            };
+
         }
 	
     }

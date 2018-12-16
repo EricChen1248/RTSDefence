@@ -9,19 +9,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 584233384e22c2c42bafa39ac866ae61, type: 3}
-  m_Name: WallBuildData
+  m_Name: Fire Arrow Tower
   m_EditorClassIdentifier: 
-  Name: Wall
-  GhostModel: {fileID: 1545132368954914, guid: a893f98f43f960b419842e0132612b74, type: 2}
+  Name: Archer Tower
+  GhostModel: {fileID: 1321205004436844, guid: 880689be85e1442789af5c6e989f20e1, type: 2}
   Health: 1000
   Offset: {x: 0, y: 0.5, z: 0}
-  Size: {x: 1, y: 2.5, z: 3}
-  ColliderOffset: {x: 0, y: 1.25, z: 0}
+  Size: {x: 2, y: 2, z: 2}
+  ColliderOffset: {x: 0, y: 1, z: 0}
   CanRotateHorizontal: 1
   CanRotateVertical: 0
-  Points: 10
+  Points: 100
   BuildTime: 10
   Recipe:
-  - Resource: 0
-    Amount: 20
-  Types: 
+  - Resource: 1
+    Amount: 5
+  Types: 0400000001000000
