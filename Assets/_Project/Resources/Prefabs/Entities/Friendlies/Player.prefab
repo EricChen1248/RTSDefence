@@ -332,6 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9901572aad2848741955aeeaa549593e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HealthBarComponent: {fileID: 0}
   MaxHealth: 100
   Health: 100
 --- !u!114 &114246291905265644
@@ -346,7 +347,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 3.5
+  Animator: {fileID: 0}
   DoingJob: 0
+  SelectionCirclePrefab: {fileID: 1872910547942498, guid: d8132f04c78885d42b030f1925c4e9b9,
+    type: 2}
 --- !u!114 &114272426333978634
 MonoBehaviour:
   m_ObjectHideFlags: 1
