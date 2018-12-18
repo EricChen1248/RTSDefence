@@ -19,6 +19,9 @@ namespace Scripts.Entity_Components.Friendlies
 
         public Job CurrentJob;
         public bool DoingJob;
+
+        public GameObject SelectionCirclePrefab;
+        private GameObject _selectionCircle;
         
         public void MoveToLocationOnGrid(Vector3 target)
         {
@@ -78,11 +81,19 @@ namespace Scripts.Entity_Components.Friendlies
         public void Focus()
         {
             HasFocus = true;
+            if(_selectionCircle == null){
+                _selectionCircle = Instantiate(SelectionCirclePrefab);
+                _selectionCircle.transform.SetParent(transform, false);
+            }
         }
 
         public void LostFocus()
         {
             HasFocus = false;
+            if(_selectionCircle != null){
+                Destroy(_selectionCircle);
+                _selectionCircle = null;
+            }
         }
         
         public void RightClick()
