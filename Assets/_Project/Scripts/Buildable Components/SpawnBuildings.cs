@@ -92,6 +92,7 @@ namespace Scripts.Buildable_Components
                     UpdateGui();
                     if (!spawning) StartCoroutine(StartSpawn());
                 });
+                omg.SetButtonImage(i + 1, obj.Texture);
             }
         }
 
@@ -101,6 +102,6 @@ namespace Scripts.Buildable_Components
     {
         public string Name;
         public GameObject Object;
-        public Sprite Sprite;
+        public Texture Texture;
     }
 }

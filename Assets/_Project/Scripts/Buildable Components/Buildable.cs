@@ -52,7 +52,7 @@ namespace Scripts.Buildable_Components
             Destroy(false);
         }
 
-        private void OnMouseUpAsButton()
+        public void OnMouseUpAsButton()
         {
             CoreController.MouseController.SetFocus(this);
         }
@@ -66,6 +66,7 @@ namespace Scripts.Buildable_Components
 
             omg.ResetButtons();
             omg.SetButton(0, "Destroy", () => Destroy(true));
+            omg.SetButtonImage(0, UnityEngine.Resources.Load<Texture>("Sprites/destroy"));
             omg.Show();
 
             StartCoroutine(DetectLoseFocus());

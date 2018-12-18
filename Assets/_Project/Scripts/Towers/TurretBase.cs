@@ -61,9 +61,9 @@ namespace Scripts.Towers
 
         private void UpdateGui()
         {
-
             var omg = ObjectMenuGroupComponent.Instance;
             omg.SetButton(1, StateString[State], ToggleFiringState);
+            omg.SetButtonImage(1, UnityEngine.Resources.Load<Texture>("Sprites/reticle"));
         }
         public override void LostFocus()
         {

@@ -24,7 +24,7 @@ namespace Scripts.GUI
         {
             foreach (var button in Buttons)
             {
-                button.enabled = false;
+                button.gameObject.SetActive(false);
             }
         }
 
@@ -39,7 +39,12 @@ namespace Scripts.GUI
             Buttons[index].GetComponentInChildren<Text>().text = text;
             Buttons[index].onClick.RemoveAllListeners();
             Buttons[index].onClick.AddListener(delegate { clickEvent(); });
-            Buttons[index].enabled = true;
+            Buttons[index].gameObject.SetActive(true);
+        }
+
+        public void SetButtonImage(int index, Texture tex)
+        {
+            Buttons[index].GetComponentInChildren<RawImage>().texture = tex;
         }
 
         public void Show()
