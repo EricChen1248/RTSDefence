@@ -78,7 +78,7 @@ namespace Scripts.Buildable_Components
             ObjectMenuGroupComponent.Instance.Hide();
         }
 
-        public virtual void RightClick()
+        public virtual void RightClick(Vector3 pos)
         {
             
         }

@@ -5,27 +5,10 @@ public class Allocate : MonoBehaviour
 {
 
     public Terrain WorldTerrain;
-    public LayerMask TerrainLayer;
-    public static float TerrainLeft, TerrainRight, TerrainTop,
-    TerrainBottom, TerrainWidth, TerrainLength, TerrainHeight;
-
-    public static ArrayList units = new ArrayList();
-    public static ArrayList positions = new ArrayList();
-    public static ArrayList rotations = new ArrayList();
-
-
-
     // Use this for initialization
     public void Awake()
     {
         WorldTerrain = GetComponent<Terrain>();
-        TerrainLeft = WorldTerrain.transform.position.x;
-        TerrainBottom = WorldTerrain.transform.position.z;
-        TerrainWidth = WorldTerrain.terrainData.size.x;
-        TerrainLength = WorldTerrain.terrainData.size.z;
-        TerrainHeight = WorldTerrain.terrainData.size.y;
-        TerrainRight = TerrainLeft + TerrainWidth;
-        TerrainTop = TerrainBottom + TerrainLength;
 
         InstantiateRandomPosition("Prefabs/Resources/Nodes/tree1", 100, 10);
         InstantiateRandomPosition("Prefabs/Resources/Nodes/tree2", 100, 10);
@@ -44,7 +27,7 @@ public class Allocate : MonoBehaviour
 
         do
         {
-            var radius = Random.Range(5, (TerrainRight - TerrainLeft) / 2);
+            var radius = Random.Range(5, WorldTerrain.terrainData.size.x / 2);
             var groupPos = Random.insideUnitCircle * radius;
             print(groupPos);
             print(groupPos.sqrMagnitude);

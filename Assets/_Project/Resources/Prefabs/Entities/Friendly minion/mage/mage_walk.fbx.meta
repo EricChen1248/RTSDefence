@@ -1,65 +1,32 @@
 fileFormatVersion: 2
-guid: 1c66c8049e8c8d1458995ad537f16d0c
+guid: 7f7c983e2ba6a1b4687f8bbe2917c3ef
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: body_armature
-    100002: Bone
-    100004: Bone.001
-    100006: Bone.001_end
-    100008: Bone.002
-    100010: Bone.003
-    100012: Bone.004
-    100014: Bone.004_end
-    100016: Bone.005
-    100018: Bone.006
-    100020: Bone.006_end
-    100022: Cylinder
-    100024: Hat
-    100026: Head
-    100028: Lefthand
-    100030: //RootNode
-    100032: Righthand
-    100034: staff
-    400000: body_armature
-    400002: Bone
-    400004: Bone.001
-    400006: Bone.001_end
-    400008: Bone.002
-    400010: Bone.003
-    400012: Bone.004
-    400014: Bone.004_end
-    400016: Bone.005
-    400018: Bone.006
-    400020: Bone.006_end
-    400022: Cylinder
-    400024: Hat
-    400026: Head
-    400028: Lefthand
-    400030: //RootNode
-    400032: Righthand
-    400034: staff
-    2100000: staff
-    2100002: "\u6750\u8CEA"
-    2100004: "\u6750\u8CEA.001"
-    2100006: "\u6750\u8CEA.003"
-    2100008: "\u6750\u8CEA.004"
-    2100010: "\u6750\u8CEA.002"
-    2300000: staff
-    3300000: staff
-    4300000: staff
-    4300002: Lefthand
-    4300004: Righthand
-    4300006: Cylinder
-    4300008: Hat
-    4300010: Head
+    100000: Bone
+    100002: Bone.001
+    100004: Bone.001_end
+    100006: Bone.002
+    100008: Bone.003
+    100010: Bone.004
+    100012: Bone.004_end
+    100014: Bone.005
+    100016: Bone.006
+    100018: Bone.006_end
+    100020: //RootNode
+    400000: Bone
+    400002: Bone.001
+    400004: Bone.001_end
+    400006: Bone.002
+    400008: Bone.003
+    400010: Bone.004
+    400012: Bone.004_end
+    400014: Bone.005
+    400016: Bone.006
+    400018: Bone.006_end
+    400020: //RootNode
     7400000: body_armature|body_armatureAction
     9500000: //RootNode
-    13700000: Cylinder
-    13700002: Hat
-    13700004: Head
-    13700006: Lefthand
-    13700008: Righthand
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -87,35 +54,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: body_armature|body_armatureAction
-      takeName: body_armature|body_armatureAction
-      firstFrame: 0
-      lastFrame: 19
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []

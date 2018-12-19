@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 71d45fe3b85fb744889cb643ac56644a
+guid: 598c4ccd3dfef6d4fa2712aec47e5e61
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -42,12 +42,11 @@ ModelImporter:
     2100000: "\u6750\u8CEA"
     2100002: "\u6750\u8CEA.001"
     2100004: "\u6750\u8CEA.003"
-    2100006: No Name
+    2100006: "\u6750\u8CEA.007"
     2100008: "\u6750\u8CEA.002"
     2100010: "\u6750\u8CEA.004"
     2100012: "\u6750\u8CEA.005"
     2100014: "\u6750\u8CEA.006"
-    2100016: "\u6750\u8CEA.007"
     4300000: Lefthand
     4300002: Righthand
     4300004: Cylinder
@@ -55,9 +54,6 @@ ModelImporter:
     4300008: Head
     4300010: tnt
     7400000: body_armature|body_armatureAction
-    7400002: "body_armature|\u5713\u67F1\u9AD4Action"
-    7400004: "body_armature|\u5713\u67F1\u9AD4Action.001"
-    7400006: "body_armature|\u7ACB\u65B9\u9AD4Action"
     9500000: //RootNode
     13700000: Cylinder
     13700002: Hat

@@ -524,6 +524,7 @@ GameObject:
   - component: {fileID: 95532612978435600}
   - component: {fileID: 136493321751392948}
   - component: {fileID: 114674248138202166}
+  - component: {fileID: 114104520653619862}
   m_Layer: 0
   m_Name: Swordman
   m_TagString: Untagged
@@ -3028,7 +3029,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1161086785405452}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 14.273529, y: -0.0015258789, z: -1.0569763}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4260234076469914}
@@ -9228,6 +9229,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114104520653619862
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1161086785405452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9901572aad2848741955aeeaa549593e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealthBarComponent: {fileID: 0}
+  Health: 100
 --- !u!114 &114660769553461310
 MonoBehaviour:
   m_ObjectHideFlags: 1

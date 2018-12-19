@@ -143,9 +143,5 @@ namespace Scripts.Buildable_Components
             base.Destroy(true);
         }
         
-        public override void RightClick()
-        {
-
-        }
     }
 }

@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114943725802021552}
   - component: {fileID: 114816458675779788}
   - component: {fileID: 114485558854444120}
+  - component: {fileID: 114986286329901990}
   m_Layer: 0
   m_Name: CoreController
   m_TagString: Untagged
@@ -123,3 +124,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73b34248694b4984f82f3ed8eaedd01f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114986286329901990
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1775495577561964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d0ad7f9ddb402a4c87e1138d680da8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RectangleColor: {r: 0.8, g: 0.8, b: 0.95, a: 0.2509804}
+  BorderColor: {r: 0.8, g: 0.8, b: 0.95, a: 1}

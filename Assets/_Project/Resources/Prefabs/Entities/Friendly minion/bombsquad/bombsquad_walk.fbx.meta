@@ -1,69 +1,32 @@
 fileFormatVersion: 2
-guid: e5c5606614870b34195e3706f687172f
+guid: 5def0051338e3d14ba1bf2754142c95e
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: body_armature
-    100002: //RootNode
-    100004: Bone
-    100006: Bone.001
-    100008: Bone.001_end
-    100010: Bone.002
-    100012: Bone.003
-    100014: Bone.004
-    100016: Bone.005
-    100018: Bone.005_end
-    100020: Bone.008
-    100022: Bone.008_end
-    100024: Cylinder
-    100026: Hat
-    100028: Head
-    100030: Lefthand
-    100032: Righthand
-    100034: tnt
-    400000: body_armature
-    400002: //RootNode
-    400004: Bone
-    400006: Bone.001
-    400008: Bone.001_end
-    400010: Bone.002
-    400012: Bone.003
-    400014: Bone.004
-    400016: Bone.005
-    400018: Bone.005_end
-    400020: Bone.008
-    400022: Bone.008_end
-    400024: Cylinder
-    400026: Hat
-    400028: Head
-    400030: Lefthand
-    400032: Righthand
-    400034: tnt
-    2100000: "\u6750\u8CEA"
-    2100002: "\u6750\u8CEA.001"
-    2100004: "\u6750\u8CEA.003"
-    2100006: "\u6750\u8CEA.007"
-    2100008: "\u6750\u8CEA.002"
-    2100010: "\u6750\u8CEA.004"
-    2100012: "\u6750\u8CEA.005"
-    2100014: "\u6750\u8CEA.006"
-    4300000: Lefthand
-    4300002: Righthand
-    4300004: Cylinder
-    4300006: Hat
-    4300008: Head
-    4300010: tnt
+    100000: //RootNode
+    100002: Bone
+    100004: Bone.001
+    100006: Bone.001_end
+    100008: Bone.002
+    100010: Bone.003
+    100012: Bone.004
+    100014: Bone.005
+    100016: Bone.005_end
+    100018: Bone.008
+    100020: Bone.008_end
+    400000: //RootNode
+    400002: Bone
+    400004: Bone.001
+    400006: Bone.001_end
+    400008: Bone.002
+    400010: Bone.003
+    400012: Bone.004
+    400014: Bone.005
+    400016: Bone.005_end
+    400018: Bone.008
+    400020: Bone.008_end
     7400000: body_armature|body_armatureAction
-    7400002: "body_armature|\u5713\u67F1\u9AD4Action"
-    7400004: "body_armature|\u5713\u67F1\u9AD4Action.001"
-    7400006: "body_armature|\u7ACB\u65B9\u9AD4Action"
     9500000: //RootNode
-    13700000: Cylinder
-    13700002: Hat
-    13700004: Head
-    13700006: Lefthand
-    13700008: Righthand
-    13700010: tnt
   externalObjects: {}
   materials:
     importMaterials: 1

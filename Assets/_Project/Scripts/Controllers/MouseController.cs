@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using Scripts.Navigation;
 
 namespace Scripts.Controllers
 {
@@ -16,15 +17,42 @@ namespace Scripts.Controllers
 
         public void SetFocus(IClickable click)
         {
-            if (FocusedItem.Contains(click)) return;
+            if (FocusedItem.Contains(click)){
+                // Note: We cannot Clear() -> AddFocus(click)
+                // because that will make the new PathDrawer in PlayerComponent fail to start.
+                // That is, we do not call click.LostFocus() in this method.
+                foreach (var item in FocusedItem)
+                {
+                    if(item != click){
+                        item?.LostFocus();
+                    }
+                }
+                FocusedItem.Clear();
+                FocusedItem.Add(click);
+                return;
+            }
+            Clear();
+            if (click == null) return;
+            FocusedItem.Add(click);
+            click.Focus();
+        }
+
+        public void AddFocus(IClickable click){
+            if (click == null || FocusedItem.Contains(click)) return;
+            FocusedItem.Add(click);
+            click.Focus();
+        }
+        public void RemoveFocus(IClickable click){
+            if (click == null || !FocusedItem.Contains(click)) return;
+            click.LostFocus();
+            FocusedItem.Remove(click);
+        }
+        public void Clear(){
             foreach (var item in FocusedItem)
             {
                 item?.LostFocus();
             }
             FocusedItem.Clear();
-            if (click == null) return;
-            FocusedItem.Add(click);
-            click.Focus();
         }
 
         public void Update()
@@ -37,9 +65,20 @@ namespace Scripts.Controllers
             // Right click
             if (Input.GetMouseButtonDown(1))
             {
+                Vector3 clickPos;
+                if (!RaycastHelper.TryMouseRaycastToGrid(out clickPos,
+                    RaycastHelper.LayerMaskDictionary["Walkable Surface"])) return;
+
+                var center = Vector3.zero;
                 foreach (var item in FocusedItem)
                 {
-                    item?.RightClick();
+                    center += (item as MonoBehaviour).transform.position / FocusedItem.Count;
+                }
+                clickPos -= center;
+                foreach (var item in FocusedItem)
+                {
+                    var pos = (item as MonoBehaviour).transform.position + clickPos;
+                    item?.RightClick(pos);
                 }
                 return;
             }

@@ -82,7 +82,8 @@ namespace Scripts.Entity_Components.Friendlies
 
         public void OnMouseUpAsButton()
         {
-            CoreController.MouseController.SetFocus(this);
+            //CoreController.MouseController.SetFocus(this);
+            CoreController.UnitSelectionController.SingleSelect = this;
         }
 
         #endregion
@@ -93,6 +94,7 @@ namespace Scripts.Entity_Components.Friendlies
         public virtual void Focus()
         {
             HasFocus = true;
+            gameObject.AddComponent<PathDrawer>();
             if(_selectionCircle == null)
             {
                 _selectionCircle = Instantiate(SelectionCirclePrefab, transform);
@@ -105,6 +107,7 @@ namespace Scripts.Entity_Components.Friendlies
 
         public virtual void LostFocus()
         {
+                Destroy(GetComponent<PathDrawer>());
             HasFocus = false;
             if(_selectionCircle != null){
                 Destroy(_selectionCircle);
@@ -112,13 +115,9 @@ namespace Scripts.Entity_Components.Friendlies
             }
         }
         
-        public virtual void RightClick()
+        public virtual void RightClick(Vector3 clickPos)
         {
-            Vector3 clickPos;
-            if (!RaycastHelper.TryMouseRaycastToGrid(out clickPos,
-                RaycastHelper.LayerMaskDictionary["Walkable Surface"])) return;
-
-            MoveToLocationOnGrid(clickPos);
+            MoveToLocation(clickPos);
         }
 
         public void OnDestroy()

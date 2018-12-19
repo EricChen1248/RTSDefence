@@ -47,10 +47,6 @@ namespace Scripts.Buildable_Components
             ObjectMenuGroupComponent.Instance.Hide();
         }
 
-        public override void RightClick()
-        {
-        }
-
         private IEnumerator StartSpawn()
         {
             spawning = true;
