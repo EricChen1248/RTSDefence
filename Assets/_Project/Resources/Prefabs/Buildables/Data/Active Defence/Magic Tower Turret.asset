@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79c16c28ee67174aa844ff357c6fa73, type: 3}
   m_Name: Magic Tower Turret
   m_EditorClassIdentifier: 
-  Ammo: {fileID: 0}
-  Range: 5
+  Ammo: {fileID: 1993374003617124, guid: 5b1d0c6c6f01b4d45bec448d0b84bfc2, type: 2}
+  Range: 10
   FireRate: 2
   FieldOfView: 360
   AiState: 0

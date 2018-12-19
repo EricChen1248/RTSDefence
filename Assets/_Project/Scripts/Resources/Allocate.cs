@@ -30,7 +30,6 @@ public class Allocate : MonoBehaviour
         InstantiateRandomPosition("Prefabs/Resources/Nodes/tree1", 100, 10);
         InstantiateRandomPosition("Prefabs/Resources/Nodes/tree2", 100, 10);
         InstantiateRandomPosition("Prefabs/Resources/Nodes/stone1", 200, 20);
-        //InstantiateRandomPosition("Prefabs/Resources/Nodes/TreeSet", 10,8.46f);
 
     }
 
@@ -48,9 +47,9 @@ public class Allocate : MonoBehaviour
             var groupPos = Random.insideUnitCircle * radius;
             print(groupPos);
             print(groupPos.sqrMagnitude);
-            if (groupPos.sqrMagnitude < 64f)
+            if (groupPos.sqrMagnitude < 100f)
             {
-                return;
+                continue;
             }
             var randomPosition = new Vector3(groupPos.x, 0, groupPos.y);
 

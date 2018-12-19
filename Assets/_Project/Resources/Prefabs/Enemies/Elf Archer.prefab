@@ -1032,7 +1032,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1192795003958166}
   m_LocalRotation: {x: 1.5434347e-10, y: -0.23353438, z: -7.8111906e-10, w: 0.9723486}
-  m_LocalPosition: {x: -17.356705, y: -0.0015258789, z: 2.0344086}
+  m_LocalPosition: {x: -62.73977, y: -0.0015258789, z: -13.705208}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4944533386063416}
@@ -1312,7 +1312,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1925669119458928}
-  m_LocalRotation: {x: 0.41057992, y: 0.50651664, z: -0.29836124, w: 0.69702625}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
@@ -1537,7 +1537,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthBarComponent: {fileID: 0}
-  MaxHealth: 100
   Health: 100
 --- !u!114 &114663674728294512
 MonoBehaviour:
