@@ -1777,10 +1777,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67dd00f367c6845fe8978b666ff533e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Camera: {fileID: 0}
-  amActive: 0
-  autoInit: 1
-  myContainer: {fileID: 0}
 --- !u!114 &1292371776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2065,6 +2061,26 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0a2d4df465836544897191548579172, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1771554962 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1156749316436408, guid: e0a2d4df465836544897191548579172,
+    type: 2}
+  m_PrefabInternal: {fileID: 1771554961}
+--- !u!114 &1771554963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1771554962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bf4e190e2e3040f2a6dc5920ed9cbf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WorldTerrain: {fileID: 0}
+  TerrainLayer:
+    serializedVersion: 2
+    m_Bits: 65536
 --- !u!1 &1848944634 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1169475766185932, guid: 653dc77b41b98c84a87b2829ff188ff1,
