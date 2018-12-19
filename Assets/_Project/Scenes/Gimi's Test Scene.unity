@@ -1102,52 +1102,25 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114485558854444120, guid: d546d5c45a223ad47b55c2ee404bbf29,
+        type: 2}
+      propertyPath: ModelLinks.Array.data[1].Model
+      value: 
+      objectReference: {fileID: 135476, guid: fd1883c2f90dc2c4ba70292b0ba64ab9, type: 2}
     - target: {fileID: 114516716130377454, guid: d546d5c45a223ad47b55c2ee404bbf29,
         type: 2}
       propertyPath: CoreGameObject
       value: 
       objectReference: {fileID: 1309365379}
-    m_RemovedComponents: []
+    - target: {fileID: 114912992518691010, guid: d546d5c45a223ad47b55c2ee404bbf29,
+        type: 2}
+      propertyPath: ModelLinks.Array.data[0].Model
+      value: 
+      objectReference: {fileID: 118742, guid: a085c3c828888ce459c560e9a8c3aeb5, type: 2}
+    m_RemovedComponents:
+    - {fileID: 114912992518691010, guid: d546d5c45a223ad47b55c2ee404bbf29, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: d546d5c45a223ad47b55c2ee404bbf29, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &742638416 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1775495577561964, guid: d546d5c45a223ad47b55c2ee404bbf29,
-    type: 2}
-  m_PrefabInternal: {fileID: 742638415}
---- !u!114 &742638417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 742638416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc4a0ae97fec23e429a63c492597c794, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ResouceHolderPrefab: {fileID: 1815704334279178, guid: bd585c28612326342acd108e2172bb0c,
-    type: 2}
-  ModelLinks:
-  - Resource: 0
-    Model: {fileID: 118742, guid: a085c3c828888ce459c560e9a8c3aeb5, type: 2}
-  - Resource: 1
-    Model: {fileID: 135476, guid: 02d87de426565834b96470e3dfe49caf, type: 2}
-  ResourceLinks: []
-  ResourceGroup: {fileID: 0}
---- !u!114 &742638424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 742638416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d0ad7f9ddb402a4c87e1138d680da8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RectangleColor: {r: 0.8, g: 0.8, b: 0.95, a: 0.2509804}
-  BorderColor: {r: 0.8, g: 0.8, b: 0.95, a: 1}
 --- !u!1001 &1030526071
 Prefab:
   m_ObjectHideFlags: 0
