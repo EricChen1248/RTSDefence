@@ -482,7 +482,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1210182254928028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.029869, y: 0.54847413, z: -59.806427}
+  m_LocalPosition: {x: -3.336937, y: 0.54847413, z: 4.200653}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4151757706985392}
@@ -1170,7 +1170,7 @@ MonoBehaviour:
     Object: {fileID: 1169475766185932, guid: 2728b39ef1da39c42aae2f2f8386fee7, type: 2}
     Texture: {fileID: 0}
   - Name: Swordman
-    Object: {fileID: 1066537877617686, guid: 6d14af4cc727f4d4f8de01b2afb990b4, type: 2}
+    Object: {fileID: 1161086785405452, guid: 6d14af4cc727f4d4f8de01b2afb990b4, type: 2}
     Texture: {fileID: 2800000, guid: b41c7667aa3ef674a80396698ff38d4b, type: 3}
   SpawnPosition: {x: -3, y: 0, z: 0}
 --- !u!114 &114631507778246792
