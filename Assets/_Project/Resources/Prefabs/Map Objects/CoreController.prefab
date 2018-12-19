@@ -24,6 +24,9 @@ GameObject:
   - component: {fileID: 114943725802021552}
   - component: {fileID: 114816458675779788}
   - component: {fileID: 114485558854444120}
+  - component: {fileID: 82110660602051428}
+  - component: {fileID: 114399694273420884}
+  - component: {fileID: 114172139327108202}
   m_Layer: 0
   m_Name: CoreController
   m_TagString: Untagged
@@ -44,6 +47,141 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &82110660602051428
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1775495577561964}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &114172139327108202
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1775495577561964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72c34e36bd156b3419b25d79d0b426c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Files:
+  - Name: epic
+    Clip: {fileID: 8300000, guid: 683f8a515bb6db4449aa43023b9459df, type: 3}
+  - Name: instinct
+    Clip: {fileID: 8300000, guid: 3bddfb0e2d5886a4fbed31807a3b01a4, type: 3}
+  - Name: losing
+    Clip: {fileID: 8300000, guid: f744f5aed21b4414f95da5adf0b13075, type: 3}
+  - Name: newdawn
+    Clip: {fileID: 8300000, guid: d87b3bfd0752f6f49a7393786cae7748, type: 3}
+  - Name: victory
+    Clip: {fileID: 8300000, guid: 525092252e9c44f419af4dcdc0a752bb, type: 3}
+--- !u!114 &114399694273420884
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1775495577561964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e28df387235fdd42af5d2ca7dff5f94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Indicator: {fileID: 0}
+  Enemies:
+  - {fileID: 1080053786728032, guid: 80e5c571ec9b53c4483d3b5bbfc69b44, type: 2}
+  - {fileID: 1577830386131466, guid: 29f761fdb9a6be24bab4d18a83823ccd, type: 2}
+  - {fileID: 1192795003958166, guid: 4a2d56d1a7920da4a8ea6876c71753d6, type: 2}
+  - {fileID: 1503692535146870, guid: f382f51f1f099a14089176273f8c397f, type: 2}
+  - {fileID: 1549815823365482, guid: 7ba8a6f6272d535448de65fcf28c20d2, type: 2}
 --- !u!114 &114485558854444120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -61,7 +199,7 @@ MonoBehaviour:
   - Resource: 0
     Model: {fileID: 153888, guid: 6591aa4bc57a0014dbb3c668abd53e63, type: 2}
   - Resource: 1
-    Model: {fileID: 135476, guid: fd1883c2f90dc2c4ba70292b0ba64ab9, type: 2}
+    Model: {fileID: 0}
   ResourceLinks:
   - Type: 0
     Obj: {fileID: 21300000, guid: e2be3294d416b40878fdafd520f2b0d0, type: 3}
@@ -107,7 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e0252ec0f2f59544ab199d5dd0f66a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NoGhost: 0
+  NoGhost: 1
   ActiveDefences: []
   StaticDefences: []
   Structure: []
