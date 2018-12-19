@@ -52,7 +52,7 @@ namespace Scripts.Entity_Components.Friendlies
             Agent.enabled = true;
             Animator = GetComponent<Animator>();
             GetComponent<HealthComponent>().OnDeath += (e) => Destroy(gameObject);
-            var startLocation = UnityEngine.Random.insideUnitSphere * 0.001f;
+            var startLocation = Random.insideUnitSphere * 0.001f;
             startLocation.y = 0;
             MoveToLocation(transform.position + startLocation);
 
@@ -82,9 +82,13 @@ namespace Scripts.Entity_Components.Friendlies
         public virtual void Focus()
         {
             HasFocus = true;
-            if(_selectionCircle == null){
-                _selectionCircle = Instantiate(SelectionCirclePrefab);
-                _selectionCircle.transform.SetParent(transform, false);
+            if(_selectionCircle == null)
+            {
+                _selectionCircle = Instantiate(SelectionCirclePrefab, transform);
+
+                // Set y to 0.1 as not every model starts at the same location;
+                var pos = _selectionCircle.transform.position;
+                _selectionCircle.transform.position = new Vector3(pos.x, 0.1f, pos.z);
             }
         }
 
