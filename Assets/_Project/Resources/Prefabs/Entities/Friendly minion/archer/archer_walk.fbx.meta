@@ -22,7 +22,7 @@ ModelImporter:
     100032: Bone.009
     100034: Bone.010
     100036: Bone.010_end
-    100038: Cube.008
+    100038: Cube
     100040: Cylinder
     100042: Hat
     100044: Head
@@ -47,13 +47,13 @@ ModelImporter:
     400032: Bone.009
     400034: Bone.010
     400036: Bone.010_end
-    400038: Cube.008
+    400038: Cube
     400040: Cylinder
     400042: Hat
     400044: Head
     400046: Lefthand
     400048: Righthand
-    2100000: Material__Axe_png0001_png
+    2100000: Material__Axe_png0001_png.001
     2100002: Material.006
     2100004: Material.007
     2100006: Material.008
@@ -69,9 +69,9 @@ ModelImporter:
     2100026: "\u6750\u8CEA"
     2100028: "\u6750\u8CEA.004"
     2100030: "\u6750\u8CEA.001"
-    2300000: Cube.008
-    3300000: Cube.008
-    4300000: Cube.008
+    2300000: Cube
+    3300000: Cube
+    4300000: Cube
     4300002: Arrow
     4300004: Lefthand
     4300006: Righthand
@@ -80,7 +80,7 @@ ModelImporter:
     4300012: Head
     7400000: body_armature|body_armatureAction
     7400002: body_armature|Cube.008|Default Take|Layer0
-    7400004: Cube.008|Cube.008|Default Take|Layer0
+    7400004: body_armature|Cube|Default Take|Layer0
     9500000: //RootNode
     13700000: Arrow
     13700002: Cylinder
