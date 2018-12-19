@@ -22,6 +22,8 @@ namespace Scripts.Entity_Components.Friendlies
         protected GameObject SelectionCirclePrefab;
         protected GameObject _selectionCircle;
         
+        protected IEnumerator DestinationRoutine;
+
         public void MoveToLocationOnGrid(Vector3 target)
         {
             target.x = Mathf.Round(target.x);
@@ -34,12 +36,20 @@ namespace Scripts.Entity_Components.Friendlies
         public virtual void MoveToLocation(Vector3 target)
         {
             Agent.destination = target;
-
+            Animator.SetBool("Walking", true);
             Agent.isStopped = false;
+            
+            if (DestinationRoutine != null)
+            {
+                StopCoroutine(DestinationRoutine);
+            }
+            DestinationRoutine = AtDestination();
+            StartCoroutine(DestinationRoutine);
         }
 
         public void Stop()
         {
+            Animator.SetBool("Walking", false);
             Agent.isStopped = true;
         }
 
@@ -57,6 +67,7 @@ namespace Scripts.Entity_Components.Friendlies
             MoveToLocation(transform.position + startLocation);
 
             SelectionCirclePrefab = UnityEngine.Resources.Load<GameObject>("Prefabs/Entities/SelectionCircle");
+            Stop();
         }
 
         public IEnumerator CheckJob()
@@ -117,6 +128,17 @@ namespace Scripts.Entity_Components.Friendlies
                 CoreController.MouseController.FocusedItem.Remove(this);
             }
 
+        }
+
+        public IEnumerator AtDestination()
+        {
+            while ((transform.position - Agent.destination).sqrMagnitude > 2f)
+            {
+                yield return new WaitForFixedUpdate();
+            }
+            print("at dsetination");
+            Stop();
+            DestinationRoutine = null;
         }
 
         #endregion

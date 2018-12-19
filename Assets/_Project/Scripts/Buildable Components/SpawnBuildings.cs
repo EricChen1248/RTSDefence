@@ -66,6 +66,7 @@ namespace Scripts.Buildable_Components
                 var spawn = SpawnList.Dequeue();
                 var spawnedGo = Instantiate(spawn.Object);
                 spawnedGo.transform.position = transform.position + SpawnPosition;
+
                 SpawnCount[spawn]--;
 
                 UpdateGui();
