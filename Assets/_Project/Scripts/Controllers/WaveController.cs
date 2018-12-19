@@ -49,7 +49,7 @@ namespace Scripts.Controllers
 
         public IEnumerator StartNewWave()
         {
-            print($"Starting Wave {CurrentWave}, with score {_score}");
+            AudioController.Instance.State = AudioController.AudioState.Fight;
             Indicator.text = $"Wave {CurrentWave}";
             // Start Collecting Points
 

@@ -36,8 +36,8 @@ namespace Scripts.Buildable_Components
         {
             base.Focus();
             HasFocus = true;
-
-            UpdateGui();
+            if (CoreController.MouseController.FocusedItem.Count == 1)
+                UpdateGui();
         }
 
         public override void LostFocus()

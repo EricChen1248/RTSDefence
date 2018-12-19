@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Scripts.Controllers
 {
@@ -11,6 +12,8 @@ namespace Scripts.Controllers
         public static UnitSelectionController UnitSelectionController { get; private set; }
         public static CameraController CameraController { get; set; }
 
+        public static Dictionary<string, List<GameObject>> EntityDictionary;
+
         public GameObject CoreGameObject;
         public GameObject GroupsGameObject;
 
@@ -20,6 +23,8 @@ namespace Scripts.Controllers
             BuildController = GetComponent<BuildController>();
             MouseController = GetComponent<MouseController>();
             UnitSelectionController = GetComponent<UnitSelectionController>();
+
+            EntityDictionary = new Dictionary<string, List<GameObject>>();
         }
     }
 }
