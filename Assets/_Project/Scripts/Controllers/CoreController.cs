@@ -8,6 +8,7 @@ namespace Scripts.Controllers
         public static CoreController Instance { get; private set; }
         public static BuildController BuildController { get; private set; }
         public static MouseController MouseController { get; private set; }
+        public static UnitSelectionController UnitSelectionController { get; private set; }
         public static CameraController CameraController { get; set; }
 
         public GameObject CoreGameObject;
@@ -18,6 +19,7 @@ namespace Scripts.Controllers
             Instance = this;
             BuildController = GetComponent<BuildController>();
             MouseController = GetComponent<MouseController>();
+            UnitSelectionController = GetComponent<UnitSelectionController>();
         }
     }
 }

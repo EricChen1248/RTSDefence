@@ -65,7 +65,8 @@ namespace Scripts.Entity_Components.Friendlies
 
         public void OnMouseDown()
         {
-            CoreController.MouseController.SetFocus(this);
+            //CoreController.MouseController.SetFocus(this);
+            CoreController.UnitSelectionController.SingleSelect = this;
         }
 
         #endregion
@@ -75,21 +76,25 @@ namespace Scripts.Entity_Components.Friendlies
         public bool HasFocus { get; private set; }
         public void Focus()
         {
-            gameObject.AddComponent<PathDrawer>();
-            HasFocus = true;
-            if(_selectionCircle == null){
-                _selectionCircle = Instantiate(SelectionCirclePrefab);
-                _selectionCircle.transform.SetParent(transform, false);
+            if(!HasFocus){
+                gameObject.AddComponent<PathDrawer>();
+                HasFocus = true;
+                if(_selectionCircle == null){
+                    _selectionCircle = Instantiate(SelectionCirclePrefab);
+                    _selectionCircle.transform.SetParent(transform, false);
+                }
             }
         }
 
         public void LostFocus()
         {
-            Destroy(GetComponent<PathDrawer>());
-            HasFocus = false;
-            if(_selectionCircle != null){
-                Destroy(_selectionCircle);
-                _selectionCircle = null;
+            if(HasFocus){
+                Destroy(GetComponent<PathDrawer>());
+                HasFocus = false;
+                if(_selectionCircle != null){
+                    Destroy(_selectionCircle);
+                    _selectionCircle = null;
+                }
             }
         }
         
