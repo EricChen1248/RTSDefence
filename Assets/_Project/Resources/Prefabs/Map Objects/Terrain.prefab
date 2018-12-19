@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114640656689056180}
   - component: {fileID: 114733515078536686}
   - component: {fileID: 114090206802142682}
+  - component: {fileID: 114917877416722088}
   m_Layer: 16
   m_Name: Terrain
   m_TagString: Untagged
@@ -62,7 +63,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 618807
+    m_Bits: 864256
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
@@ -101,7 +102,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 618807
+    m_Bits: 880640
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
@@ -118,7 +119,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1156749316436408}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e21d442181d00f146a89b6cf8ba916e0, type: 3}
   m_Name: 
@@ -129,7 +130,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 618807
+    m_Bits: 864256
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
@@ -140,6 +141,21 @@ MonoBehaviour:
   m_VoxelSize: 0.1
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &114917877416722088
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1156749316436408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bf4e190e2e3040f2a6dc5920ed9cbf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WorldTerrain: {fileID: 0}
+  TerrainLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!154 &154770819838564232
 TerrainCollider:
   m_ObjectHideFlags: 1
