@@ -21,10 +21,10 @@ GameObject:
   - component: {fileID: 4279071534806828}
   - component: {fileID: 136539041803022442}
   - component: {fileID: 54218726829038076}
-  - component: {fileID: 114246291905265644}
   - component: {fileID: 195569545830505716}
   - component: {fileID: 114224226138102526}
   - component: {fileID: 114573136775189592}
+  - component: {fileID: 114734822326443230}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -359,22 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthBarComponent: {fileID: 0}
-  MaxHealth: 100
   Health: 100
---- !u!114 &114246291905265644
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1169475766185932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3779822de62c9c64f9fa9f177a82c770, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 3.5
-  Animator: {fileID: 0}
-  DoingJob: 0
 --- !u!114 &114506384859757522
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -405,6 +390,23 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &114734822326443230
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1169475766185932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f853ab97bf32d1f48baf30768c11dfec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 3.5
+  Animator: {fileID: 0}
+  DoingJob: 0
+  Radius: 5
+  Damage: 5
+  ReloadTime: 5
 --- !u!136 &136539041803022442
 CapsuleCollider:
   m_ObjectHideFlags: 1

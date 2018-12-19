@@ -1958,7 +1958,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthBarComponent: {fileID: 0}
-  MaxHealth: 100
   Health: 100
 --- !u!114 &114351664869565562
 MonoBehaviour:
@@ -1984,7 +1983,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: c51b9a4e36276fc4a9a3d55d713b9a2b, type: 2}
   ID: 0
-  Objects: []
+  Objects:
+  - Name: Mage
+    Object: {fileID: 1857054191524908, guid: c4c6d8bf1c08b3043a0784b23175670d, type: 2}
+    Texture: {fileID: 0}
+  - Name: Player
+    Object: {fileID: 1169475766185932, guid: 653dc77b41b98c84a87b2829ff188ff1, type: 2}
+    Texture: {fileID: 0}
   SpawnPosition: {x: -2, y: 0, z: 0}
 --- !u!114 &114727068891802174
 MonoBehaviour:
