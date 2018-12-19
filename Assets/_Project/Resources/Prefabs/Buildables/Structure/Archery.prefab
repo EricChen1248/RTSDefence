@@ -1987,8 +1987,8 @@ MonoBehaviour:
   - Name: Mage
     Object: {fileID: 1857054191524908, guid: c4c6d8bf1c08b3043a0784b23175670d, type: 2}
     Texture: {fileID: 0}
-  - Name: Player
-    Object: {fileID: 1169475766185932, guid: 653dc77b41b98c84a87b2829ff188ff1, type: 2}
+  - Name: Archer
+    Object: {fileID: 1046575341892446, guid: 69c19a02085959e42afa39bf9a1392a0, type: 2}
     Texture: {fileID: 0}
   SpawnPosition: {x: -2, y: 0, z: 0}
 --- !u!114 &114727068891802174
