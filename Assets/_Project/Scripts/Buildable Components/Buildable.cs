@@ -23,7 +23,6 @@ namespace Scripts.Buildable_Components
             health.MaxHealth = Data.Health;
             ID = GetInstanceID();
             health.OnDeath += (e) => Destroy();
-
         }
 
         public virtual void Destroy(bool returnResource)

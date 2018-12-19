@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Scripts.Controllers;
 using Scripts.Entity_Components.Jobs;
 using Scripts.Entity_Components.Misc;
@@ -10,7 +9,7 @@ using UnityEngine.AI;
 
 namespace Scripts.Entity_Components.Friendlies
 {
-    [DefaultExecutionOrder(0)]
+    [DefaultExecutionOrder(-1)]
     public class PlayerComponent : MonoBehaviour, IClickable
     {
         public float Speed = 3.5f;
@@ -20,8 +19,8 @@ namespace Scripts.Entity_Components.Friendlies
         public Job CurrentJob;
         public bool DoingJob;
 
-        public GameObject SelectionCirclePrefab;
-        private GameObject _selectionCircle;
+        protected GameObject SelectionCirclePrefab;
+        protected GameObject _selectionCircle;
         
         public void MoveToLocationOnGrid(Vector3 target)
         {
@@ -56,6 +55,8 @@ namespace Scripts.Entity_Components.Friendlies
             var startLocation = UnityEngine.Random.insideUnitSphere * 0.001f;
             startLocation.y = 0;
             MoveToLocation(transform.position + startLocation);
+
+            SelectionCirclePrefab = UnityEngine.Resources.Load<GameObject>("Prefabs/Entities/SelectionCircle");
         }
 
         public IEnumerator CheckJob()
@@ -78,7 +79,7 @@ namespace Scripts.Entity_Components.Friendlies
         #region Focus
 
         public bool HasFocus { get; private set; }
-        public void Focus()
+        public virtual void Focus()
         {
             HasFocus = true;
             if(_selectionCircle == null){
@@ -87,7 +88,7 @@ namespace Scripts.Entity_Components.Friendlies
             }
         }
 
-        public void LostFocus()
+        public virtual void LostFocus()
         {
             HasFocus = false;
             if(_selectionCircle != null){
@@ -96,7 +97,7 @@ namespace Scripts.Entity_Components.Friendlies
             }
         }
         
-        public void RightClick()
+        public virtual void RightClick()
         {
             Vector3 clickPos;
             if (!RaycastHelper.TryMouseRaycastToGrid(out clickPos,

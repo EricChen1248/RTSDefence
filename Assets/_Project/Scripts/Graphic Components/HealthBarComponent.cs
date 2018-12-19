@@ -1,9 +1,8 @@
-﻿using Scripts.Entity_Components.Misc;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Scripts.Graphic_Components
 {
-    [DefaultExecutionOrder(-1)]
+    [DefaultExecutionOrder(-100)]
     public class HealthBarComponent : MonoBehaviour
     {
         public GameObject CurrentHealthBar;

@@ -3,8 +3,6 @@ using System.Collections;
 using Scripts.Navigation;
 using Scripts.Entity_Components.Misc;
 using System.Linq;
-using Scripts.Controllers;
-
 namespace Scripts.Entity_Components.Friendlies
 {
     public class Defender : PlayerComponent
@@ -37,8 +35,6 @@ namespace Scripts.Entity_Components.Friendlies
         // Use this for initialization
         public override void Start()
         {
-            //CheckingCollision = CheckCollision();
-            //StartCoroutine(CheckingCollision);
             base.Start();
         }
 

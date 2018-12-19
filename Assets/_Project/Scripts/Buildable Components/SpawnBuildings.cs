@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using Scripts.Interface;
 using Scripts.Controllers;
 using System;
-using UnityEngine.EventSystems;
-using Scripts.Entity_Components.Friendlies;
 
 namespace Scripts.Buildable_Components
 {

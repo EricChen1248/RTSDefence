@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Scripts.Entity_Components.Misc
 {
 
-    [DefaultExecutionOrder(0)]
+    [DefaultExecutionOrder(-100)]
     public class HealthComponent : MonoBehaviour
     {
         public delegate void DeathEventHandler(HealthComponent sender);
@@ -12,14 +12,24 @@ namespace Scripts.Entity_Components.Misc
         public HealthBarComponent HealthBarComponent;
 
         public event DeathEventHandler OnDeath;
-        public int MaxHealth = 100;
+        public int MaxHealth {
+            get
+            {
+                return _maxHealth;
+            }
+            set
+            {
+                _maxHealth = value;
+                Health = value;
+                ReportHealth();
+            }
+        }
+        private int _maxHealth = 100;
         public int Health = 100;
 
         public void Start()
         {
             HealthBarComponent = GetComponentInChildren<HealthBarComponent>(includeInactive: true);
-            Health = MaxHealth;
-
             ReportHealth();
         }
 
@@ -44,9 +54,11 @@ namespace Scripts.Entity_Components.Misc
             OnDeath?.Invoke(this);
         }
 
-        private void ReportHealth()
+        public void ReportHealth()
         {
-            HealthBarComponent.ReportProgress((float)Health / MaxHealth);
+            var percent = (float)Health / MaxHealth;
+            percent = float.IsNaN(percent) ? 0 : percent;
+            HealthBarComponent.ReportProgress(percent);
         }
     }
 }
