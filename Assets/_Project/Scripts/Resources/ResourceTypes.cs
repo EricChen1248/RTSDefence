@@ -5,6 +5,7 @@
         Rock,
         Wood,
         Coal,
-        Gold
+        Gold,
+        People
     }
 }
