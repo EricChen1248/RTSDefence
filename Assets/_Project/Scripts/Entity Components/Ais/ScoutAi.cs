@@ -13,8 +13,9 @@ namespace Scripts.Entity_Components.Ais
 
         private int _count;
 
-        public void Start()
+        public override void Start()
         {
+            base.Start();
             Agent = GetComponent<NavMeshAgent>();
             _animator = GetComponent<Animator>();
             _previousDirection = -1;

@@ -35,7 +35,7 @@ namespace Scripts.Entity_Components.Ais
         protected GroupAIProperty AIProperty;
 
         // Use this for initialization
-        protected void Start()
+        public override void Start()
         {
             GroupComponent = GetComponent<GroupComponent>();
             GroupComponent.Data?.CompileAIProperty(out AIProperty);

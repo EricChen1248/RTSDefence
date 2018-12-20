@@ -10,23 +10,23 @@ namespace Scripts.Entity_Components.Ais
     [DefaultExecutionOrder(-1)]
     public class SimpleGroupAi : GroupAiBase
     {
-        protected State _State;
+        protected State CurrentState;
         protected HashSet<SingularAiBase> HasTempTarget;
 
         protected new void Start()
         {
             base.Start();
-            _State = null;
+            CurrentState = null;
             HasTempTarget = new HashSet<SingularAiBase>();
             SwitchState(new SelfDecideState(transform));
         }
 
         protected void SwitchState(State state)
         {
-            _State?.Leave();
+            CurrentState?.Leave();
             print(state.Identifier);
-            _State = state;
-            _State?.Enter();
+            CurrentState = state;
+            CurrentState?.Enter();
         }
 
         public override void FindTarget()
@@ -49,12 +49,12 @@ namespace Scripts.Entity_Components.Ais
 
         public override void FirstCommand(Transform member)
         {
-            _State?.FirstCommand(member);
+            CurrentState?.FirstCommand(member);
         }
 
         public override void LastCommand(Transform member, bool selfDestroy)
         {
-            _State?.LastCommand(member, selfDestroy);
+            CurrentState?.LastCommand(member, selfDestroy);
             //member.GetComponent<SingularAiBase>().FindTarget(); //This will be done in GroupFinder
         }
 
@@ -70,7 +70,7 @@ namespace Scripts.Entity_Components.Ais
 
         protected void Update()
         {
-            _State?.Update();
+            CurrentState?.Update();
             CommonUpdate();
         }
 
@@ -94,13 +94,13 @@ namespace Scripts.Entity_Components.Ais
             singularAI.StopTempTarget();
             HasTempTarget.Remove(singularAI);
         }
-
-        private void OnDestroy()
+        /*
+        public override void OnDestroy()
         {
-            _State?.Leave();
-            _State = null;
+            CurrentState?.Leave();
+            CurrentState = null;
         }
-
+        */
         //Define All Kinds of States
         protected class StopState : State
         {

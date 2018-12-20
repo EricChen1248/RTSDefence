@@ -31,13 +31,7 @@ namespace Scripts.Entity_Components.Friendlies
 
             Agent.isStopped = false;
         }
-
-        // Use this for initialization
-        public override void Start()
-        {
-            base.Start();
-        }
-
+        
         private IEnumerator CheckCollision()
         {
             while (true)

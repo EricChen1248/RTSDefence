@@ -60,6 +60,7 @@ namespace Scripts.Entity_Components.Ais
                                 continue;
                             }
                         }
+
                         Agent.isStopped = true;
                         Animator.SetBool("Walking", false);
 
@@ -94,14 +95,16 @@ namespace Scripts.Entity_Components.Ais
                 yield return new WaitForSeconds(ReloadTime);
 
                 // If target no longer in range
-                var colliders = Physics.OverlapSphere(transform.position, radius, RaycastHelper.LayerMaskDictionary["Friendlies"]);
+                var colliders = Physics.OverlapSphere(transform.position, radius,
+                    RaycastHelper.LayerMaskDictionary["Friendlies"]);
                 if (!colliders.Contains(targetCollider))
                 {
                     break;
                 }
+
                 health.Damage(Data.Damage);
             }
-            
+
             StopCoroutine(rotate);
             StartCoroutine(CheckCollision());
 
@@ -118,7 +121,7 @@ namespace Scripts.Entity_Components.Ais
 
         protected IEnumerator RotateToTarget()
         {
-            while(TempTarget != null)
+            while (TempTarget != null)
             {
                 var look = TempTarget.transform.position - transform.position;
                 var newDir = Vector3.RotateTowards(transform.forward, look, Time.deltaTime, 0.0f);
@@ -131,7 +134,6 @@ namespace Scripts.Entity_Components.Ais
 
         private void OnTargetDeath(HealthComponent target)
         {
-
         }
     }
 }
