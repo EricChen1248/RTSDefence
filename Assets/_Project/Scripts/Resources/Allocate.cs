@@ -10,10 +10,11 @@ public class Allocate : MonoBehaviour
     {
         WorldTerrain = GetComponent<Terrain>();
 
-        InstantiateRandomPosition("Prefabs/Resources/Nodes/tree1", 100, 10);
-        InstantiateRandomPosition("Prefabs/Resources/Nodes/tree2", 100, 10);
-        InstantiateRandomPosition("Prefabs/Resources/Nodes/stone1", 200, 20);
-        //InstantiateRandomPosition("Prefabs/Resources/Nodes/TreeSet", 10,8.46f);
+        InstantiateRandomPosition("Prefabs/Resources/Nodes/tree1", 200, 10);
+        InstantiateRandomPosition("Prefabs/Resources/Nodes/tree2", 200, 10);
+        InstantiateRandomPosition("Prefabs/Resources/Nodes/stone1", 400, 20);
+        InstantiateRandomPosition("Prefabs/Resources/Nodes/coal", 200, 20);
+        InstantiateRandomPosition("Prefabs/Resources/Nodes/gold", 100, 20);
 
     }
 
@@ -29,12 +30,12 @@ public class Allocate : MonoBehaviour
         {
             var radius = Random.Range(5, WorldTerrain.terrainData.size.x / 2);
             var groupPos = Random.insideUnitCircle * radius;
-            print(groupPos);
-            print(groupPos.sqrMagnitude);
-            if (groupPos.sqrMagnitude < 64f)
+            
+            if (groupPos.sqrMagnitude < 256f)
             {
-                return;
+                continue;
             }
+
             var randomPosition = new Vector3(groupPos.x, 0, groupPos.y);
 
             for (int j = 0; j < groupCount; j++)

@@ -1,5 +1,6 @@
 ﻿using Scripts.Entity_Components.Misc;
 using UnityEngine;
+using static Scripts.Entity_Components.Attacks.ArrowScript;
 
 namespace Scripts.Entity_Components
 {
@@ -10,6 +11,8 @@ namespace Scripts.Entity_Components
         public float Speed = 1;
 
         public Transform Target;
+
+        public ArrowType Type;
 
         // Update is called once per frame
 
@@ -40,6 +43,15 @@ namespace Scripts.Entity_Components
             if (other.gameObject.layer == Target.gameObject.layer)
             {
                 other.GetComponentInParent<HealthComponent>().Damage(Damage);
+                switch (Type)
+                {
+                    case ArrowType.Regular:
+                        break;
+                    case ArrowType.Fire:
+                        break;
+                    default:
+                        break;
+                }
             }
 
             Destroy(gameObject);

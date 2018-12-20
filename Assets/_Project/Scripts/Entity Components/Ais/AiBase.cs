@@ -47,7 +47,13 @@ namespace Scripts.Entity_Components.Ais
 
         public void OnDestroy()
         {
-            WaveController.Instance.enemies.Remove(gameObject);
+            try
+            {
+                WaveController.Instance.enemies.Remove(gameObject);
+            }
+            catch (NullReferenceException)
+            {
+            }
         }
     }
 }
