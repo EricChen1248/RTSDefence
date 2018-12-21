@@ -17,8 +17,8 @@ NavMeshProjectSettings:
     cost: 3
   - name: Wall
     cost: 100000
-  - name: 
-    cost: 1
+  - name: Walls
+    cost: 1e+20
   - name: 
     cost: 1
   - name: 

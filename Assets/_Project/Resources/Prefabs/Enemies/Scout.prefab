@@ -1917,7 +1917,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthBarComponent: {fileID: 0}
-  MaxHealth: 100
   Health: 100
 --- !u!114 &114906979861464472
 MonoBehaviour:
