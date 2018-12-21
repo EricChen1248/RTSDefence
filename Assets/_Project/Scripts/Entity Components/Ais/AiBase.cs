@@ -45,9 +45,15 @@ namespace Scripts.Entity_Components.Ais
             Agent.destination = x > z ? new Vector3(transform.position.x > 0 ? 125 : -125, 0, transform.position.z) : new Vector3(transform.position.x, 0, transform.position.z > 0 ? 125 : -125);
         }
 
-        public void OnDestroy()
+        public virtual void OnDestroy()
         {
-            WaveController.Instance.enemies.Remove(gameObject);
+            try
+            {
+                WaveController.Instance.Enemies.Remove(gameObject);
+            }
+            catch (NullReferenceException)
+            {
+            }
         }
     }
 }

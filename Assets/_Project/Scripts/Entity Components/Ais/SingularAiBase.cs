@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Scripts.Entity_Components.Ais
 {
@@ -9,7 +8,9 @@ namespace Scripts.Entity_Components.Ais
         protected bool StopTemp;
 
         public abstract void StopTempTarget();
-        public bool HasTempTarget(){
+
+        public bool HasTempTarget()
+        {
             return TempTarget != null;
         }
     }

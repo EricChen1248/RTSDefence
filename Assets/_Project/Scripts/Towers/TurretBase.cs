@@ -190,6 +190,7 @@ namespace Scripts.Towers
                     go.transform.position = FireSpot.transform.position;
                     ammo.Layer = RaycastHelper.LayerMaskDictionary["Enemies"];
                     ammo.Target = _currentTarget.transform;
+                    ammo.Fire();
                 }
 
 

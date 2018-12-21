@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Scripts.Controllers;
+using Scripts.Entity_Components.Ais;
+using UnityEngine;
 
 namespace Scripts.GUI{
 	public class SpawnButton : MonoBehaviour {
@@ -13,7 +15,9 @@ namespace Scripts.GUI{
 		{
 			//...
 			var v = new Vector3(Rnd.Next(PosXLowerBound, PosXUpperBound), (float)0.75, Rnd.Next(PosZLowerBound, PosZUpperBound));
-			Instantiate(SpawnObject, v, Quaternion.identity);
+			var go = Instantiate(SpawnObject, v, Quaternion.identity);
+
+            go.GetComponent<SimpleAi>().Target = CoreController.Instance.CoreGameObject;
 		}
 	}
 }

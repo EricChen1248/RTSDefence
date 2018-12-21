@@ -185,6 +185,7 @@ ModelImporter:
     100358: Tappo 2.7
     100360: Tappo 2.8
     100362: Tappo 2.9
+    100364: sword
     400000: '1) '
     400002: 4-Lati
     400004: 4-Lati.1
@@ -367,6 +368,7 @@ ModelImporter:
     400358: Tappo 2.7
     400360: Tappo 2.8
     400362: Tappo 2.9
+    400364: sword
     2100000: No Name
     2100002: Nuovo.2.1
     2100004: Nuovo.2
@@ -375,6 +377,12 @@ ModelImporter:
     2100010: "\u6750\u8CEA.004"
     2100012: "\u6750\u8CEA"
     2100014: "\u6750\u8CEA.001"
+    2100016: "\u6750\u8CEA.010"
+    2100018: "\u6750\u8CEA.009"
+    2100020: "\u6750\u8CEA.008"
+    2100022: "\u6750\u8CEA.007"
+    2100024: "\u6750\u8CEA.006"
+    2100026: "\u6750\u8CEA.005"
     2300000: '1) '
     2300002: a
     2300004: b.1
@@ -620,6 +628,7 @@ ModelImporter:
     4300164: Cylinder
     4300166: Hat
     4300168: Head
+    4300170: sword
     7400000: body_armature|body_armatureAction
     9500000: //RootNode
     13700000: Cylinder
@@ -627,6 +636,7 @@ ModelImporter:
     13700004: Head
     13700006: Lefthand
     13700008: Righthand
+    13700010: sword
   externalObjects: {}
   materials:
     importMaterials: 1

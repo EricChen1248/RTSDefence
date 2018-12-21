@@ -1172,7 +1172,7 @@ MonoBehaviour:
   - Name: Swordman
     Object: {fileID: 1161086785405452, guid: 6d14af4cc727f4d4f8de01b2afb990b4, type: 2}
     Texture: {fileID: 2800000, guid: b41c7667aa3ef674a80396698ff38d4b, type: 3}
-  SpawnPosition: {x: -3, y: 0, z: 0}
+  SpawnPosition: {x: -3.5, y: 0, z: 0}
 --- !u!114 &114631507778246792
 MonoBehaviour:
   m_ObjectHideFlags: 1

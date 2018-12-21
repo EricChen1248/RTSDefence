@@ -901,7 +901,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1857054191524908}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f853ab97bf32d1f48baf30768c11dfec, type: 3}
   m_Name: 
@@ -909,6 +909,7 @@ MonoBehaviour:
   Speed: 3.5
   Animator: {fileID: 0}
   DoingJob: 0
+  ResourceCount: 0
   Radius: 5
   Damage: 50
   ReloadTime: 2

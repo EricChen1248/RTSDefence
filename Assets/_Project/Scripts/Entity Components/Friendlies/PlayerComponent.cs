@@ -3,7 +3,6 @@ using Scripts.Controllers;
 using Scripts.Entity_Components.Jobs;
 using Scripts.Entity_Components.Misc;
 using Scripts.Interface;
-using Scripts.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -19,8 +18,10 @@ namespace Scripts.Entity_Components.Friendlies
         public Job CurrentJob;
         public bool DoingJob;
 
+        public int ResourceCount;
+
         protected GameObject SelectionCirclePrefab;
-        protected GameObject _selectionCircle;
+        protected GameObject SelectionCircle;
         
         protected IEnumerator DestinationRoutine;
 
@@ -80,10 +81,10 @@ namespace Scripts.Entity_Components.Friendlies
             StartCoroutine(CurrentJob.DoJob());
         }
 
-        public void OnMouseUpAsButton()
+        public void OnMouseDown()
         {
-            //CoreController.MouseController.SetFocus(this);
-            CoreController.UnitSelectionController.SingleSelect = this;
+
+        CoreController.UnitSelectionController.SingleSelect = this;
         }
 
         #endregion
@@ -95,13 +96,13 @@ namespace Scripts.Entity_Components.Friendlies
         {
             HasFocus = true;
             gameObject.AddComponent<PathDrawer>();
-            if(_selectionCircle == null)
+            if(SelectionCircle == null)
             {
-                _selectionCircle = Instantiate(SelectionCirclePrefab, transform);
+                SelectionCircle = Instantiate(SelectionCirclePrefab, transform);
 
                 // Set y to 0.1 as not every model starts at the same location;
-                var pos = _selectionCircle.transform.position;
-                _selectionCircle.transform.position = new Vector3(pos.x, 0.1f, pos.z);
+                var pos = SelectionCircle.transform.position;
+                SelectionCircle.transform.position = new Vector3(pos.x, 0.1f, pos.z);
             }
         }
 
@@ -109,9 +110,9 @@ namespace Scripts.Entity_Components.Friendlies
         {
                 Destroy(GetComponent<PathDrawer>());
             HasFocus = false;
-            if(_selectionCircle != null){
-                Destroy(_selectionCircle);
-                _selectionCircle = null;
+            if(SelectionCircle != null){
+                Destroy(SelectionCircle);
+                SelectionCircle = null;
             }
         }
         

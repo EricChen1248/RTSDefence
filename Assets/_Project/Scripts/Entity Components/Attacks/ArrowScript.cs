@@ -8,18 +8,19 @@ using UnityEngine;
 
 namespace Scripts.Entity_Components.Attacks
 {
+
+    public enum ArrowType { Regular, Fire }
     public class ArrowScript : AmmoBase
     {
         public float Height = 1f;
         public float Acceleration = 0.0001f;
-        public enum ArrowType { Regular, Fire }
 
         public ArrowType Type;
         private IEnumerator _currentCoroutine;
 
         public void Start()
         {
-            Fire();
+
         }
 	
         public override void Fire()

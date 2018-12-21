@@ -16,13 +16,13 @@ namespace Scripts.Controllers
         public Text Indicator;
         private int _score = 1000;
 
-        public GameObject[] Enemies;
+        public GameObject[] EnemiesLookup;
 
         public int CurrentWave { get; private set; }
         public Dictionary<DefenceType, int> DefenceInfo;
         public Dictionary<EnemyType, GameObject> EnemyTypes;
 
-        public HashSet<GameObject> enemies;
+        public HashSet<GameObject> Enemies;
 
         public void Start()
         {
@@ -33,8 +33,9 @@ namespace Scripts.Controllers
 
         public IEnumerator WaitForWave()
         {
+            yield return new WaitForEndOfFrame();
             var time = (int) (20 / Mathf.Log10(CurrentWave * 10));
-            for (int i = time - 1; i >= 0; i--)
+            for (var i = time - 1; i >= 0; i--)
             {
                 Indicator.text = $"Next Wave: {i / 60:D2}:{i % 60:D2}";
                 yield return new WaitForSeconds(1);
@@ -58,9 +59,9 @@ namespace Scripts.Controllers
 
             var currentScore = _score;
             var currentMaxIndex = 1;
-            var maxPoints = Enemies[currentMaxIndex].GetComponent<EnemyComponent>().Data.Points;
+            var maxPoints = EnemiesLookup[currentMaxIndex].GetComponent<EnemyComponent>().Data.Points;
             
-            enemies = new HashSet<GameObject>();
+            Enemies = new HashSet<GameObject>();
 
             while(currentMaxIndex > 0)
             {
@@ -71,8 +72,8 @@ namespace Scripts.Controllers
                 }
 
                 var enemyIndex = Random.Range(1, currentMaxIndex + 1);
-                var enemy = Instantiate(Enemies[enemyIndex]);
-                enemies.Add(enemy);
+                var enemy = Instantiate(EnemiesLookup[enemyIndex]);
+                Enemies.Add(enemy);
                 var pos = Random.insideUnitSphere;
                 pos.y = 0;
                 enemy.transform.position = pos.normalized * 125f;
@@ -84,7 +85,7 @@ namespace Scripts.Controllers
             yield return new WaitForFixedUpdate();
 
             // Start assigning target
-            foreach (var enemy in enemies)
+            foreach (var enemy in Enemies)
             {
                 var ai = enemy.GetComponent<AiBase>();
 
@@ -92,8 +93,8 @@ namespace Scripts.Controllers
                 ai.FindTarget();
             }
             _score += currentScore;
-            print($"attacking with enemies: {enemies.Count}");
-            yield return new WaitUntil(() => enemies.Count == 0);
+            print($"attacking with enemies: {Enemies.Count}");
+            yield return new WaitUntil(() => Enemies.Count == 0);
             CurrentWave++;
             StartCoroutine(WaitForWave());
         }
@@ -124,7 +125,7 @@ namespace Scripts.Controllers
 
         public void GameOver()
         {
-            foreach (var enemy in enemies)
+            foreach (var enemy in Enemies)
             {
                 enemy.GetComponent<AiBase>().LeaveMap();
             }

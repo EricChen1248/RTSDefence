@@ -26,8 +26,8 @@ GameObject:
   - component: {fileID: 114485558854444120}
   - component: {fileID: 114986286329901990}
   - component: {fileID: 82110660602051428}
-  - component: {fileID: 114399694273420884}
   - component: {fileID: 114172139327108202}
+  - component: {fileID: 114850130480819142}
   m_Layer: 0
   m_Name: CoreController
   m_TagString: Untagged
@@ -165,24 +165,6 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: d87b3bfd0752f6f49a7393786cae7748, type: 3}
   - Name: victory
     Clip: {fileID: 8300000, guid: 525092252e9c44f419af4dcdc0a752bb, type: 3}
---- !u!114 &114399694273420884
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1775495577561964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e28df387235fdd42af5d2ca7dff5f94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Indicator: {fileID: 0}
-  Enemies:
-  - {fileID: 1080053786728032, guid: 80e5c571ec9b53c4483d3b5bbfc69b44, type: 2}
-  - {fileID: 1577830386131466, guid: 29f761fdb9a6be24bab4d18a83823ccd, type: 2}
-  - {fileID: 1192795003958166, guid: 4a2d56d1a7920da4a8ea6876c71753d6, type: 2}
-  - {fileID: 1503692535146870, guid: f382f51f1f099a14089176273f8c397f, type: 2}
-  - {fileID: 1549815823365482, guid: 7ba8a6f6272d535448de65fcf28c20d2, type: 2}
 --- !u!114 &114485558854444120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,6 +192,8 @@ MonoBehaviour:
     Obj: {fileID: 21300000, guid: df459e95276fb4b208d855e9db41a333, type: 3}
   - Type: 3
     Obj: {fileID: 21300000, guid: d71294ca19b7e4f2280353c860931b2d, type: 3}
+  - Type: 4
+    Obj: {fileID: 21300000, guid: a588bed2269124aceb2dd6229a31daae, type: 3}
   ResourceGroup: {fileID: 0}
 --- !u!114 &114490995274481308
 MonoBehaviour:
@@ -251,6 +235,24 @@ MonoBehaviour:
   StaticDefences: []
   Structure: []
   Traps: []
+--- !u!114 &114850130480819142
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1775495577561964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e28df387235fdd42af5d2ca7dff5f94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Indicator: {fileID: 0}
+  EnemiesLookup:
+  - {fileID: 1080053786728032, guid: 80e5c571ec9b53c4483d3b5bbfc69b44, type: 2}
+  - {fileID: 1577830386131466, guid: 29f761fdb9a6be24bab4d18a83823ccd, type: 2}
+  - {fileID: 1192795003958166, guid: 4a2d56d1a7920da4a8ea6876c71753d6, type: 2}
+  - {fileID: 1503692535146870, guid: f382f51f1f099a14089176273f8c397f, type: 2}
+  - {fileID: 1549815823365482, guid: 7ba8a6f6272d535448de65fcf28c20d2, type: 2}
 --- !u!114 &114943725802021552
 MonoBehaviour:
   m_ObjectHideFlags: 1
