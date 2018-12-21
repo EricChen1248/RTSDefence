@@ -50,9 +50,9 @@ namespace Scripts.Entity_Components.Ais
                         var buildable = collider.gameObject.GetComponent<Buildable>();
                         if (buildable != null)
                         {
-                            if (buildable.Data.Name == "Wall")
+                            if (buildable.Data.Types.Contains(DefenceType.Wall))
                             {
-                                if ((collider.transform.position - transform.position).sqrMagnitude > 1)
+                                if ((collider.transform.position - transform.position).sqrMagnitude > 1f)
                                 {
                                     continue;
                                 }
