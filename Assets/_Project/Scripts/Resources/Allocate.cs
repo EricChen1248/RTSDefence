@@ -12,14 +12,15 @@ namespace Scripts.Resources
             _resourceGameObject = new GameObject {name = "Resources"};
             WorldTerrain = GetComponent<Terrain>();
 
-            InstantiateRandomPosition("Prefabs/Resources/Nodes/tree1", 200, 10);
-            InstantiateRandomPosition("Prefabs/Resources/Nodes/tree2", 200, 10);
-            InstantiateRandomPosition("Prefabs/Resources/Nodes/stone1", 400, 20);
-            InstantiateRandomPosition("Prefabs/Resources/Nodes/coal", 200, 20);
-            InstantiateRandomPosition("Prefabs/Resources/Nodes/Gold", 100, 20);
+            InstantiateRandomPosition("Prefabs/Resources/Nodes/tree1", 100, 10, 256f, 5);
+            InstantiateRandomPosition("Prefabs/Resources/Nodes/tree2", 100, 10, 256f, 5);
+            InstantiateRandomPosition("Prefabs/Resources/Nodes/tree1", 100, 25, 400f, 8);
+            InstantiateRandomPosition("Prefabs/Resources/Nodes/stone1", 400, 20, 256f, 5);
+            InstantiateRandomPosition("Prefabs/Resources/Nodes/coal", 200, 20, 256f, 5);
+            InstantiateRandomPosition("Prefabs/Resources/Nodes/Gold", 100, 20, 256f, 5);
         }
         
-        public void InstantiateRandomPosition (string resource, int amount, int groupCount) {
+        public void InstantiateRandomPosition (string resource, int amount, int groupCount, float minSize, int groupRadius) {
             // define variable
             // loop through the amount
             // generate random position
@@ -31,7 +32,7 @@ namespace Scripts.Resources
                 var radius = Random.Range(5, WorldTerrain.terrainData.size.x / 2);
                 var groupPos = Random.insideUnitCircle * radius;
             
-                if (groupPos.sqrMagnitude < 256f)
+                if (groupPos.sqrMagnitude < minSize)
                 {
                     continue;
                 }
@@ -40,7 +41,7 @@ namespace Scripts.Resources
 
                 for (var j = 0; j < groupCount; j++)
                 {
-                    var pos = Random.insideUnitCircle * 5;
+                    var pos = Random.insideUnitCircle * groupRadius;
                     var newPos = randomPosition + new Vector3(pos.x, 0, pos.y);
 
                     var r = Instantiate(go, newPos, Quaternion.Euler(0, Random.Range(0.0f, 360.0f), 0));

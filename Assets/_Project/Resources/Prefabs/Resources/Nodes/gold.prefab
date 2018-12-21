@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4371680406394410}
   - component: {fileID: 33366694304330944}
   - component: {fileID: 23700505091428736}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Stone06_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114508989666822006}
   - component: {fileID: 135659814130945486}
   - component: {fileID: 208417020952952220}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: gold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 4182336086704004}
   - component: {fileID: 33092358948629312}
   - component: {fileID: 23963814896355024}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Stone06_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 4816256362018620}
   - component: {fileID: 33893467105393114}
   - component: {fileID: 23304256526145372}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Stone06_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1399094484580192}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.633812, y: 0.028007269, z: 7.305374}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4816256362018620}
