@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 
-public class ChangeSpeedButton : MonoBehaviour {
-
+public class ChangeSpeedButton : MonoBehaviour
+{
+    public bool Fast;
     public void Click()
     {
-        Time.timeScale = (Time.timeScale) % 10 + 1;
+        Time.timeScale = Fast ? 1 : 5;
+        Fast = !Fast;
     }
 }

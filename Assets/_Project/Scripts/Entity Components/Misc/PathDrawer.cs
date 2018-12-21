@@ -5,17 +5,22 @@ namespace Scripts.Entity_Components
 {
     public class PathDrawer : MonoBehaviour
     {
-
+        private static Material mat;
         private NavMeshAgent _agent;
         private LineRenderer _lr;
     
         // Use this for initialization
         public void Start ()
         {
+            if (mat == null)
+            {
+                mat = UnityEngine.Resources.Load<Material>("Materials/TrailMat");
+            }
+
             _lr = gameObject.AddComponent<LineRenderer>();
-            _lr.startWidth = 0.01f;
-            _lr.endWidth = 0.01f;
-            _lr.material = UnityEngine.Resources.Load<Material>("Materials/TrailMat");
+            _lr.startWidth = 0.03f;
+            _lr.endWidth = 0.03f;
+            _lr.material = mat;
 
             _agent = GetComponent<NavMeshAgent>();
         }

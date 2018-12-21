@@ -1,5 +1,4 @@
 ﻿using Scripts.Entity_Components;
-using Scripts.Entity_Components.Friendlies;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,11 +6,9 @@ namespace Scripts.DebugScripts
 {
     public class DrawPaths : MonoBehaviour
     {
-
-        private bool _showing = true;
+        private bool _showing;
         public void Click()
         {
-
             var objects = FindObjectsOfType<NavMeshAgent>();
             foreach (var playerComponent in objects)
             {
@@ -21,7 +18,13 @@ namespace Scripts.DebugScripts
                 }
                 else
                 {
-                    Destroy(playerComponent.gameObject.GetComponent<PathDrawer>());
+                    try
+                    {
+                        Destroy(playerComponent.gameObject.GetComponent<PathDrawer>());
+                    }
+                    catch (System.Exception)
+                    {
+                    }
                 }
             }
 

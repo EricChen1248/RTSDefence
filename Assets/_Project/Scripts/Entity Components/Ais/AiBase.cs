@@ -29,7 +29,8 @@ namespace Scripts.Entity_Components.Ais
                 return false;
             }
             Target = obj;
-            Agent.destination = Target.transform.position;
+            //Agent.CalculatePath(Target.transform.position, Agent.path);
+            Agent.SetDestination(Target.transform.position);
             return true;
         }
 

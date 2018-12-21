@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Wall
   GhostModel: {fileID: 1545132368954914, guid: a893f98f43f960b419842e0132612b74, type: 2}
-  Health: 1000
+  Health: 300
   Offset: {x: 0, y: 0.5, z: 0}
   Size: {x: 1, y: 2.5, z: 3}
   ColliderOffset: {x: 0, y: 1.25, z: 0}

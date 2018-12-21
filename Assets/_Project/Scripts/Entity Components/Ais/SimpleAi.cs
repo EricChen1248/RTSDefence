@@ -2,7 +2,6 @@
 using System.Linq;
 using Scripts.Buildable_Components;
 using Scripts.Entity_Components.Misc;
-using Scripts.Navigation;
 using Scripts.Scriptable_Objects;
 using UnityEngine;
 using UnityEngine.AI;
@@ -19,8 +18,6 @@ namespace Scripts.Entity_Components.Ais
         public override void Start()
         {
             base.Start();
-
-
             Agent = GetComponent<NavMeshAgent>();
             EnemyComponent = GetComponent<EnemyComponent>();
             Animator = GetComponent<Animator>();
@@ -32,7 +29,6 @@ namespace Scripts.Entity_Components.Ais
         public override void FindTarget()
         {
             TargetTo(Target, force: true);
-
             Animator.SetBool("Walking", true);
         }
 
@@ -40,7 +36,6 @@ namespace Scripts.Entity_Components.Ais
         {
             StopTemp = true;
         }
-
 
         private IEnumerator CheckCollision()
         {
@@ -53,11 +48,21 @@ namespace Scripts.Entity_Components.Ais
                     foreach (var collider in colliders)
                     {
                         var buildable = collider.gameObject.GetComponent<Buildable>();
-                        if (buildable != null && buildable.Data.Name == "Wall")
+                        if (buildable != null)
                         {
-                            if ((collider.transform.position - transform.position).sqrMagnitude > 2)
+                            if (buildable.Data.Name == "Wall")
                             {
-                                continue;
+                                if ((collider.transform.position - transform.position).sqrMagnitude > 1)
+                                {
+                                    continue;
+                                }
+                                else
+                                {
+                                    if ((collider.transform.position - transform.position).sqrMagnitude > 2)
+                                    {
+                                        continue;
+                                    }
+                                }
                             }
                         }
 
@@ -95,8 +100,7 @@ namespace Scripts.Entity_Components.Ais
                 yield return new WaitForSeconds(ReloadTime);
 
                 // If target no longer in range
-                var colliders = Physics.OverlapSphere(transform.position, radius,
-                    RaycastHelper.LayerMaskDictionary["Friendlies"]);
+                var colliders = Physics.OverlapSphere(transform.position, radius, Data.TargetLayers);
                 if (!colliders.Contains(targetCollider))
                 {
                     break;

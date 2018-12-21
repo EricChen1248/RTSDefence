@@ -15,10 +15,10 @@ NavMeshProjectSettings:
     cost: 3
   - name: Door
     cost: 3
-  - name: Wall
-    cost: 100000
+  - name: Skip
+    cost: 1
   - name: Walls
-    cost: 1e+20
+    cost: 1000
   - name: 
     cost: 1
   - name: 
@@ -88,22 +88,6 @@ NavMeshProjectSettings:
     debug:
       m_Flags: 0
   - serializedVersion: 2
-    agentTypeID: -1372625422
-    agentRadius: 0.1
-    agentHeight: 1.5
-    agentSlope: 60
-    agentClimb: 0.8
-    ledgeDropHeight: 0
-    maxJumpAcrossDistance: 0
-    minRegionArea: 2
-    manualCellSize: 0
-    cellSize: 0.16666667
-    manualTileSize: 0
-    tileSize: 256
-    accuratePlacement: 0
-    debug:
-      m_Flags: 0
-  - serializedVersion: 2
     agentTypeID: -334000983
     agentRadius: 0.1
     agentHeight: 1.5
@@ -120,6 +104,5 @@ NavMeshProjectSettings:
     debug:
       m_Flags: 0
   m_SettingNames:
-  - Friendly Humonoid
-  - Enemy
+  - Regular
   - Wall Passers

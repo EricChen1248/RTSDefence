@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 33738759746384944}
   - component: {fileID: 23295420472407086}
   - component: {fileID: 65017914291227494}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4588345096235992}
   - component: {fileID: 114356826199224774}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Billboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 23254668049048556}
   - component: {fileID: 65112403212102014}
   - component: {fileID: 114894414896751958}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Healthbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

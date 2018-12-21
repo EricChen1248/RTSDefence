@@ -7,7 +7,7 @@ namespace Scripts.Resources
         private GameObject _resourceGameObject;
         public Terrain WorldTerrain;
         // Use this for initialization
-        public void Awake()
+        public void Start()
         {
             _resourceGameObject = new GameObject {name = "Resources"};
             WorldTerrain = GetComponent<Terrain>();

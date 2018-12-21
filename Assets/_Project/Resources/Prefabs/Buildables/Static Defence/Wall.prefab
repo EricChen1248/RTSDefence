@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 33410284363838194}
   - component: {fileID: 23466212050124354}
   - component: {fileID: 65490846052248508}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4705964137963970}
   - component: {fileID: 114748378977294112}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Billboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 23404597094448602}
   - component: {fileID: 65673485499127440}
   - component: {fileID: 114016099032763666}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Healthbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,7 +212,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1575787477800204}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -8.355949, y: 0.02465107, z: 3.1811218}
+  m_LocalPosition: {x: 3.945465, y: 0.02465107, z: -6.0334396}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4078864753050982}
@@ -558,7 +558,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1575787477800204}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b3c7b37057c4ae4fa4a20650e531c5d, type: 3}
   m_Name: 

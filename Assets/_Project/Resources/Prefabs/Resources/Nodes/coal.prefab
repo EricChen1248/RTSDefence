@@ -61,6 +61,7 @@ GameObject:
   - component: {fileID: 447742}
   - component: {fileID: 20547736}
   - component: {fileID: 114618652749322218}
+  - component: {fileID: 135202632819308696}
   - component: {fileID: 208258165929946442}
   m_Layer: 20
   m_Name: coal
@@ -301,6 +302,18 @@ MonoBehaviour:
   count: 15
   PerCollection: 8
   Collectors: []
+--- !u!135 &135202632819308696
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 147742}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.8
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!208 &208258165929946442
 NavMeshObstacle:
   m_ObjectHideFlags: 1
