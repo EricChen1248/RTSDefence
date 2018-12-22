@@ -80,7 +80,7 @@ namespace Scripts.Entity_Components.Friendlies
             StartCoroutine(CurrentJob.DoJob());
         }
 
-        public void OnMouseUpAsButton()
+        public void OnMouseDown()
         {
             //CoreController.MouseController.SetFocus(this);
             CoreController.UnitSelectionController.SingleSelect = this;

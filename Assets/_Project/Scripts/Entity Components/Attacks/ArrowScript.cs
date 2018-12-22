@@ -12,7 +12,7 @@ namespace Scripts.Entity_Components.Attacks
     {
         public float Height = 1f;
         public float Acceleration = 0.0001f;
-        public enum ArrowType { Regular, Fire }
+        public enum ArrowType { Regular, Fire, Slow, Thunder }
 
         public ArrowType Type;
         private IEnumerator _currentCoroutine;
