@@ -1,44 +1,82 @@
 fileFormatVersion: 2
-guid: 6d44593e2440d9a4b878c71ed532dee4
+guid: 18ddf35caf55246438e067bd135cea11
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Bone
-    100004: Bone.001
-    100006: Bone.001_end
-    100008: Bone.002
-    100010: Bone.003
-    100012: Bone.004
-    100014: Bone.004_end
-    100016: Bone.005
-    100018: Bone.006
-    100020: Bone.006_end
-    100022: Bone.007
-    100024: Bone.007_end
-    100026: Bone.009
-    100028: Bone.010
-    100030: Bone.010_end
+    100002: Arrow
+    100004: blend_root
+    100006: body_armature
+    100008: Bone
+    100010: Bone_001
+    100012: Bone_002
+    100014: Bone_003
+    100016: Bone_004
+    100018: Bone_005
+    100020: Bone_006
+    100022: Bone_007
+    100024: Bone_009
+    100026: Bone_010
+    100028: Cube_008
+    100030: Cylinder
+    100032: Hat
+    100034: Head
+    100036: Lefthand
+    100038: Righthand
     400000: //RootNode
-    400002: Bone
-    400004: Bone.001
-    400006: Bone.001_end
-    400008: Bone.002
-    400010: Bone.003
-    400012: Bone.004
-    400014: Bone.004_end
-    400016: Bone.005
-    400018: Bone.006
-    400020: Bone.006_end
-    400022: Bone.007
-    400024: Bone.007_end
-    400026: Bone.009
-    400028: Bone.010
-    400030: Bone.010_end
-    7400000: body_armature|body_armatureAction
-    7400002: body_armature|Cube.008|Default Take|Layer0
-    7400004: body_armature|Cube|Default Take|Layer0
+    400002: Arrow
+    400004: blend_root
+    400006: body_armature
+    400008: Bone
+    400010: Bone_001
+    400012: Bone_002
+    400014: Bone_003
+    400016: Bone_004
+    400018: Bone_005
+    400020: Bone_006
+    400022: Bone_007
+    400024: Bone_009
+    400026: Bone_010
+    400028: Cube_008
+    400030: Cylinder
+    400032: Hat
+    400034: Head
+    400036: Lefthand
+    400038: Righthand
+    2100000: Material_006
+    2100002: Material_007
+    2100004: Material_008
+    2100006: Material_009
+    2100008: Material_010
+    2100010: Material_011
+    2100012: Material_012
+    2100014: Material_004
+    2100016: Material_005
+    2100018: Material_013
+    2100020: "\u6750\u8CEA_002"
+    2100022: "\u6750\u8CEA_003"
+    2100024: "\u6750\u8CEA"
+    2100026: "\u6750\u8CEA_004"
+    2100028: "\u6750\u8CEA_001"
+    2100030: Material__Axe_png0001_png
+    2300000: Cube_008
+    3300000: Cube_008
+    4300000: Arrow
+    4300002: Lefthand
+    4300004: Righthand
+    4300006: Cylinder
+    4300008: Hat
+    4300010: Head
+    4300012: Cube_008
+    7400000: Default Take
+    7400002: body_armatureAction
     9500000: //RootNode
+    13700000: Arrow
+    13700002: Cylinder
+    13700004: Hat
+    13700006: Head
+    13700008: Lefthand
+    13700010: Righthand
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -90,7 +128,7 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
+    previousCalculatedGlobalScale: 1
     hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
