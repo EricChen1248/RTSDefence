@@ -13,6 +13,12 @@ ModelImporter:
     100014: Bone.005
     100016: Bone.005_end
     100018: //RootNode
+    100020: body_armature
+    100022: Cylinder
+    100024: Hat
+    100026: Head
+    100028: Lefthand
+    100030: Righthand
     400000: Bone
     400002: Bone.001
     400004: Bone.001_end
@@ -23,8 +29,30 @@ ModelImporter:
     400014: Bone.005
     400016: Bone.005_end
     400018: //RootNode
+    400020: body_armature
+    400022: Cylinder
+    400024: Hat
+    400026: Head
+    400028: Lefthand
+    400030: Righthand
+    2100000: "\u6750\u8CEA"
+    2100002: "\u6750\u8CEA.001"
+    2100004: "\u6750\u8CEA.003"
+    2100006: "\u6750\u8CEA.004"
+    2100008: "\u6750\u8CEA.002"
+    4300000: Lefthand
+    4300002: Righthand
+    4300004: Cylinder
+    4300006: Hat
+    4300008: Head
     7400000: body_armature|body_armatureAction
     9500000: //RootNode
+    13700000: Cylinder
+    13700002: Hat
+    13700004: Head
+    13700006: Lefthand
+    13700008: Righthand
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
