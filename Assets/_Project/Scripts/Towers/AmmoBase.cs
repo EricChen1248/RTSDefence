@@ -6,7 +6,8 @@ namespace Scripts.Towers
     {
         public Transform Target;
         public LayerMask Layer;
-
+        public Transform Parent;
+        public int Damage;
         public abstract void Fire();
     }
 }

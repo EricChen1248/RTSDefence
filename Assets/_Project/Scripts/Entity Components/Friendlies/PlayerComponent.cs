@@ -136,7 +136,6 @@ namespace Scripts.Entity_Components.Friendlies
             {
                 yield return new WaitForFixedUpdate();
             }
-            print("at dsetination");
             Stop();
             DestinationRoutine = null;
         }

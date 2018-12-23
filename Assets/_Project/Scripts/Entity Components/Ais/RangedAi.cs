@@ -73,12 +73,13 @@ namespace Scripts.Entity_Components.Ais
                 {
                     break;
                 }
-
-                Instantiate(Ammo, transform);
-                Ammo.SetActive(true);
-                var script = Ammo.GetComponent<AmmoBase>();
+                
+                var ammo = Instantiate(Ammo, transform);
+                //ammo.transform.position = transform.position;
+                var script = ammo.GetComponent<AmmoBase>();
                 script.Layer = RaycastHelper.LayerMaskDictionary["Friendlies"];
                 script.Target = targetCollider.transform;
+                script.Fire();
             }
             
             StopCoroutine(rotate);

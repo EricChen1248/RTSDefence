@@ -57,10 +57,12 @@ namespace Scripts.Entity_Components.Jobs
         private IEnumerator DeliveringResource()
         {
             Worker.Agent.destination = _ghost.transform.position;
-            AtDestination = false;
 
-            while (!AtDestination)
+            while (true)
             {
+                var distanceToTarget = (Worker.transform.position - Worker.Agent.destination).sqrMagnitude;
+                if (distanceToTarget < 4f) break;
+
                 yield return new WaitForFixedUpdate();
             }
 
@@ -93,9 +95,11 @@ namespace Scripts.Entity_Components.Jobs
                     yield break;
                 }
 
+                _recipe.Dequeue();
                 ResourceController.AddResource(res.Resource, -res.Amount);
 
-                Worker.Agent.destination = CoreController.Instance.CoreGameObject.transform.position;
+                Worker.Agent.SetDestination(CoreController.Instance.CoreGameObject.transform.position);
+                Worker.Agent.isStopped = false;
                 while (true)
                 {
                     var distanceToTarget = (Worker.transform.position - CoreController.Instance.CoreGameObject.transform.position).sqrMagnitude;
@@ -121,9 +125,9 @@ namespace Scripts.Entity_Components.Jobs
 
         private IEnumerator Build()
         {
+            Worker.GetComponent<Animator>().SetBool("Building", true);
             if (_resourceHolder != null)
             {
-                Object.Destroy(_resourceHolder);
                 Object.Destroy(_resourceHolder);
                 _resourceHolder = null;
             }
@@ -135,6 +139,7 @@ namespace Scripts.Entity_Components.Jobs
             }
             CoreController.BuildController.Build(_ghost.transform.gameObject);
             CompleteJob();
+            Worker.GetComponent<Animator>().SetBool("Building", false);
         }
 
         #endregion

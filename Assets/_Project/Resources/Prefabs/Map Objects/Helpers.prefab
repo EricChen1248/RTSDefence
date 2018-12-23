@@ -68,3 +68,7 @@ MonoBehaviour:
     Layers:
       serializedVersion: 2
       m_Bits: 3072
+  - Name: Friendlies
+    Layers:
+      serializedVersion: 2
+      m_Bits: 799232

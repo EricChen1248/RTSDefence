@@ -67,13 +67,13 @@ namespace Scripts.Entity_Components.Attacks
             while (true)
             {
                 var colliders = Physics.OverlapCapsule(transform.position + new Vector3(0, 0, 0.065f / 2),
-                    transform.position - new Vector3(0, 0, 0.065f / 2), 0.03f);
+                    transform.position - new Vector3(0, 0, 0.065f / 2), 0.03f, Layer);
                 if (colliders.Length > 0)
                 {
                     if (RaycastHelper.InLayer(Layer, colliders[0].gameObject.layer))
                     {
                         var health = colliders[0].GetComponent<HealthComponent>();
-                        health.Damage(5);
+                        health.Damage(Damage);
                         switch (Type)
                         {
                             case ArrowType.Regular:
@@ -85,19 +85,14 @@ namespace Scripts.Entity_Components.Attacks
                                 throw new ArgumentOutOfRangeException();
                         }
                     }
-
+                    Destroy(gameObject);
+                }
+                else if(transform.position.y < 0)
+                {
                     Destroy(gameObject);
                 }
                 yield return new WaitForFixedUpdate();
             }
         }
-
-        /*
-        private void OnTriggerEnter(Collider other)
-        {
-        }
-        */
-
-
     }
 }

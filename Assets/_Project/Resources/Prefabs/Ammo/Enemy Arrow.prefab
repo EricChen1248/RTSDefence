@@ -814,6 +814,8 @@ MonoBehaviour:
   Layer:
     serializedVersion: 2
     m_Bits: 799232
+  Parent: {fileID: 0}
+  Damage: 5
   Height: 2
   Acceleration: 0.01
   Type: 0

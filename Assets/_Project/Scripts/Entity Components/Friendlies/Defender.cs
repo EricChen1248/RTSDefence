@@ -32,7 +32,7 @@ namespace Scripts.Entity_Components.Friendlies
             Agent.isStopped = false;
         }
         
-        private IEnumerator CheckCollision()
+        protected IEnumerator CheckCollision()
         {
             while (true)
             {
@@ -51,7 +51,7 @@ namespace Scripts.Entity_Components.Friendlies
             }
         }
 
-        private IEnumerator Attack(GameObject go)
+        protected virtual IEnumerator Attack(GameObject go)
         {
             var rotate = RotateToTarget(go);
             StartCoroutine(rotate);
@@ -98,7 +98,7 @@ namespace Scripts.Entity_Components.Friendlies
         }
 
 
-        public IEnumerator CheckDistanceRoutine()
+        protected IEnumerator CheckDistanceRoutine()
         {
             var destination = Agent.destination;
             while (true)
