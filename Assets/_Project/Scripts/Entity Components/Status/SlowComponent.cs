@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace Scripts.Entity_Components.Status
 {
-    [RequireComponent(typeof(HealthComponent))]
     public class SlowComponent : MonoBehaviour
     {
         public float Slow = 2.0f;
