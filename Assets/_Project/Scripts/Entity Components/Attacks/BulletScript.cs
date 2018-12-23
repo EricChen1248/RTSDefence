@@ -4,6 +4,10 @@ using Scripts.Entity_Components.Misc;
 using Scripts.Navigation;
 using Scripts.Towers;
 using UnityEngine;
+using Scripts.Navigation;
+using Scripts.Entity_Components.Attacks;
+using System.Collections;
+using System;
 
 namespace Scripts.Entity_Components.Attacks
 {
@@ -20,7 +24,6 @@ namespace Scripts.Entity_Components.Attacks
             transform.rotation.SetLookRotation(Target.position - transform.position);
         }
 
-        // Update is called once per frame
 
         public void FixedUpdate()
         {
