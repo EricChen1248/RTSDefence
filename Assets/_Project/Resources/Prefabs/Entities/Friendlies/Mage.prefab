@@ -901,7 +901,7 @@ MonoBehaviour:
   ResourceCount: 0
   Radius: 10
   Damage: 10
-  ReloadTime: 2
+  ReloadTime: 0.775
   Ammo: {fileID: 1993374003617124, guid: 5b1d0c6c6f01b4d45bec448d0b84bfc2, type: 2}
 --- !u!114 &114118656854479982
 MonoBehaviour:
