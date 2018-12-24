@@ -2,6 +2,7 @@
 using System.Linq;
 using Scripts.Buildable_Components;
 using Scripts.Entity_Components.Misc;
+using Scripts.Navigation;
 using Scripts.Scriptable_Objects;
 using UnityEngine;
 using UnityEngine.AI;
@@ -9,37 +10,24 @@ using UnityEngine.AI;
 namespace Scripts.Entity_Components.Ais
 {
     [DefaultExecutionOrder(-1)]
-    public class SimpleAi : SingularAiBase
+    public class BossAi : SimpleAi
     {
-        protected EnemyComponent EnemyComponent;
-        protected EnemyData Data;
-        protected Animator Animator;
-
         public override void Start()
         {
             base.Start();
-
-            Agent = GetComponent<NavMeshAgent>();
-            EnemyComponent = GetComponent<EnemyComponent>();
-            Animator = GetComponent<Animator>();
-            StopTemp = false;
-            Data = EnemyComponent.Data;
-            StartCoroutine(CheckCollision());
+            StartCoroutine(Spawn());
+            Agent.isStopped = true;
         }
-
-        public override void FindTarget()
+        
+        private IEnumerator Spawn()
         {
-            TargetTo(Target, force: true);
+            yield return new WaitForSeconds(6.5f);
+            TargetTo(Target, true);
             Animator.SetBool("Walking", true);
+            Agent.isStopped = false;
         }
 
-        public override void StopTempTarget()
-        {
-            StopTemp = true;
-        }
-
-
-        protected virtual IEnumerator CheckCollision()
+        protected override IEnumerator CheckCollision()
         {
             while (true)
             {
@@ -50,24 +38,13 @@ namespace Scripts.Entity_Components.Ais
                     foreach (var collider in colliders)
                     {
                         var buildable = collider.gameObject.GetComponent<Buildable>();
-                        if (buildable != null)
+                        if (buildable != null && buildable.Data.Name == "Wall")
                         {
-                            if (buildable.Data.Types.Contains(DefenceType.Wall))
+                            if ((collider.transform.position - transform.position).sqrMagnitude > 2)
                             {
-                                if ((collider.transform.position - transform.position).sqrMagnitude > 1f)
-                                {
-                                    continue;
-                                }
-                                else
-                                {
-                                    if ((collider.transform.position - transform.position).sqrMagnitude > 2)
-                                    {
-                                        continue;
-                                    }
-                                }
+                                continue;
                             }
                         }
-
                         Agent.isStopped = true;
                         Animator.SetBool("Walking", false);
 
@@ -92,54 +69,68 @@ namespace Scripts.Entity_Components.Ais
             StartCoroutine(rotate);
 
             var health = TempTarget.GetComponent<HealthComponent>();
-            health.OnDeath += OnTargetDeath;
-            Animator.SetBool("Attacking", true);
+            health.OnDeath += OnTargetDeath;     
             var targetCollider = TempTarget.GetComponent<Collider>();
             var radius = Data.Radius;
             radius *= radius;
             while (health.Health > 0 && health != null)
             {
-                yield return new WaitForSeconds(ReloadTime);
+                int atktype = Random.Range(3,4);                
+                var colliders = Physics.OverlapSphere(transform.position, radius, RaycastHelper.LayerMaskDictionary["Friendlies"]);
+                var damage = 1;
+                switch (atktype)
+                {
+                    case 1:
+
+                        Animator.SetInteger("AttackType", 1);
+                        yield return new WaitForSeconds(4f);
+                        damage = 25;
+                        break;
+
+                    case 2:
+
+                        Animator.SetInteger("AttackType", 2);
+                        yield return new WaitForSeconds(4.5f);
+                        damage = 30;
+                        break;
+
+                    case 3:
+
+                        Animator.SetInteger("AttackType", 3);
+                        yield return new WaitForSeconds(3.5f);
+                        damage = 20;
+                        break;
+
+                }
 
                 // If target no longer in range
-                var colliders = Physics.OverlapSphere(transform.position, radius, Data.TargetLayers);
+                colliders = Physics.OverlapSphere(transform.position, radius, RaycastHelper.LayerMaskDictionary["Friendlies"]);
                 if (!colliders.Contains(targetCollider))
                 {
                     break;
                 }
-
-                health.Damage(Data.Damage);
+                health.Damage(damage);
+         
+                Animator.SetInteger("AttackType", 0); 
             }
-
+            
             StopCoroutine(rotate);
             StartCoroutine(CheckCollision());
 
-            Animator.SetBool("Attacking", false);
+            Animator.SetInteger("AttackType" , 0);
             Animator.SetBool("Walking", true);
 
-            yield return new WaitForSeconds(ReloadTime);
+            yield return new WaitForSeconds(0.5f);
             TempTarget = null;
             // Wait for animation to stop
             yield return new WaitForSeconds(1);
 
             Agent.isStopped = false;
         }
-
-        protected IEnumerator RotateToTarget()
-        {
-            while (TempTarget != null)
-            {
-                var look = TempTarget.transform.position - transform.position;
-                var newDir = Vector3.RotateTowards(transform.forward, look, Time.deltaTime, 0.0f);
-
-                transform.rotation = Quaternion.LookRotation(newDir);
-
-                yield return new WaitForFixedUpdate();
-            }
-        }
-
+    
         private void OnTargetDeath(HealthComponent target)
         {
+
         }
     }
 }
