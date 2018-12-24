@@ -14,6 +14,7 @@ namespace Scripts.Entity_Components.Attacks
     {
         public float Height = 1f;
         public float Acceleration = 0.0001f;
+        public enum ArrowType { Regular, Fire, Slow, Thunder }
 
         public ArrowType Type;
         private IEnumerator _currentCoroutine;
@@ -80,6 +81,12 @@ namespace Scripts.Entity_Components.Attacks
                                 break;
                             case ArrowType.Fire:
                                 colliders[0].gameObject.AddComponent<BurnComponent>();
+                                break;
+                            case ArrowType.Slow:
+                                colliders[0].gameObject.AddComponent<SlowComponent>();
+                                break;
+                            case ArrowType.Thunder:
+                                colliders[0].gameObject.AddComponent<ThunderComponent>();
                                 break;
                             default:
                                 throw new ArgumentOutOfRangeException();
