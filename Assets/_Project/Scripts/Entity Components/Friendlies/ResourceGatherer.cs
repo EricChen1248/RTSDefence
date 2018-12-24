@@ -14,6 +14,7 @@ public class ResourceGatherer : MonoBehaviour
     public ResourceCollector Collector;
     public ResourceNode Node;
 
+    private Animator _animator;
     private IEnumerator _collectionRoutine;
     private GameObject Holders;
     private int resourceMask;
@@ -26,6 +27,7 @@ public class ResourceGatherer : MonoBehaviour
     public void Start()
     {
         _collectionRoutine = Collect();
+        _animator = GetComponent<Animator>();
 
         resourceMask = 1 << LayerMask.NameToLayer("Resource");
         collectorMask = 1 << LayerMask.NameToLayer("Resource Collection");
@@ -41,6 +43,7 @@ public class ResourceGatherer : MonoBehaviour
             if (!_delivering)
             {
                 agent.isStopped = false;
+                _animator.SetBool("Walking", true);
                 agent.destination = Node.transform.position;
                 var oldNode = Node;
                 while (Node != null)
@@ -53,9 +56,10 @@ public class ResourceGatherer : MonoBehaviour
                 {
                     resource = Node.GetResource();
                     Holders = Instantiate(holder, transform);
-                    Holders.transform.localPosition = Vector3.up * 1.5f;
+                    Holders.transform.localPosition = Vector3.up * 0.5f + Vector3.forward * 0.5f;
                     Holders.GetComponent<ResourceHolderComponent>().ChangeResources(resource.Type, resource.Count);
                     agent.isStopped = true;
+                    _animator.SetBool("Walking", false);
                     _delivering = true;
                 }
             }
@@ -63,6 +67,7 @@ public class ResourceGatherer : MonoBehaviour
             {
                 yield return new WaitForSeconds(1);
                 agent.isStopped = false;
+                _animator.SetBool("Walking", true);
                 agent.destination = Collector.transform.position;
 
                 while (true)
@@ -72,6 +77,7 @@ public class ResourceGatherer : MonoBehaviour
                 }
 
                 agent.isStopped = true;
+                _animator.SetBool("Walking", false);
                 _delivering = false;
                 ResourceController.AddResource(resource.Type, resource.Count);
 
@@ -84,6 +90,7 @@ public class ResourceGatherer : MonoBehaviour
         }
 
         agent.isStopped = false;
+        _animator.SetBool("Walking", true);
         agent.destination = Collector.transform.position;
 
         while (true)
@@ -92,6 +99,7 @@ public class ResourceGatherer : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
+        _animator.SetBool("Walking", false);
         agent.isStopped = true;
     }
 

@@ -32,7 +32,7 @@ namespace Scripts.Entity_Components.Friendlies
             Agent.isStopped = false;
         }
         
-        protected IEnumerator CheckCollision()
+        protected virtual IEnumerator CheckCollision()
         {
             while (true)
             {
