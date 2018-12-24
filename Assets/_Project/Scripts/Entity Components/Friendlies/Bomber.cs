@@ -8,6 +8,11 @@ namespace Scripts.Entity_Components.Friendlies
 {
     public class Bomber : Defender
     {
+        public override void Start()
+        {
+            base.Start();
+            _type = "Bomber";
+        }
 
         protected override IEnumerator CheckCollision()
         {
@@ -18,7 +23,6 @@ namespace Scripts.Entity_Components.Friendlies
                 if (colliders.Length > 0)
                 {
                     var omg = ObjectMenuGroupComponent.Instance;
-                    omg.ResetButtons();
                     omg.SetButton(0, "Explode", () => StartCoroutine(Attack(null)));
                     omg.Show();
                     // TODO : omg.SetButton

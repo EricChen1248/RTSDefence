@@ -3,16 +3,19 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using Scripts.Navigation;
+using Scripts.GUI;
 
 namespace Scripts.Controllers
 {
     public class MouseController : MonoBehaviour
     {
         public HashSet<IClickable> FocusedItem { get; private set; }
+        public HashSet<string> FocusedTypes { get; private set; }
 
         public void Start()
         {
             FocusedItem = new HashSet<IClickable>();
+            FocusedTypes = new HashSet<string>();
         }
 
         public void SetFocus(IClickable click)
@@ -40,19 +43,19 @@ namespace Scripts.Controllers
         public void AddFocus(IClickable click){
             if (click == null || FocusedItem.Contains(click)) return;
             FocusedItem.Add(click);
+            FocusedTypes.Add(click.Type);
             click.Focus();
+
         }
-        public void RemoveFocus(IClickable click){
-            if (click == null || !FocusedItem.Contains(click)) return;
-            click.LostFocus();
-            FocusedItem.Remove(click);
-        }
+
         public void Clear(){
             foreach (var item in FocusedItem)
             {
                 item?.LostFocus();
             }
             FocusedItem.Clear();
+            FocusedTypes.Clear();
+            ObjectMenuGroupComponent.Instance.ResetButtons();
         }
 
         public void Update()

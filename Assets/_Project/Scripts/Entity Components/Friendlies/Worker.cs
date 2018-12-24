@@ -2,6 +2,7 @@
 using System.Collections;
 using Scripts.Controllers;
 using Scripts.Entity_Components.Jobs;
+using UnityEngine;
 
 namespace Scripts.Entity_Components.Friendlies
 {
@@ -19,6 +20,10 @@ namespace Scripts.Entity_Components.Friendlies
             StartCoroutine(job.DoJob());
         }
         
+        public override void RightClick(Vector3 click)
+        {
+
+        }
 
         public void CompleteJob()
         {

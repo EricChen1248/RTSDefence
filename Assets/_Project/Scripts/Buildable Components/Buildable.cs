@@ -16,6 +16,7 @@ namespace Scripts.Buildable_Components
     {
         public BuildData Data;
         public int ID;
+        public string Type { get { return Data.Name; } }
 
         public virtual void Start()
         {
@@ -62,8 +63,7 @@ namespace Scripts.Buildable_Components
             HasFocus = true;
 
             var omg = ObjectMenuGroupComponent.Instance;
-
-            omg.ResetButtons();
+            
             omg.SetButton(0, "Destroy", () => Destroy(true));
             omg.SetButtonImage(0, UnityEngine.Resources.Load<Texture>("Sprites/destroy"));
             omg.Show();

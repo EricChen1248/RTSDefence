@@ -19,6 +19,8 @@ namespace Scripts.Entity_Components.Friendlies
         public bool DoingJob;
 
         public int ResourceCount;
+        public string Type { get { return _type; } }
+        protected string _type = "player";
 
         protected GameObject SelectionCirclePrefab;
         protected GameObject SelectionCircle;

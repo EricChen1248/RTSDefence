@@ -25,6 +25,7 @@ namespace Scripts.GUI
             foreach (var button in Buttons)
             {
                 button.gameObject.SetActive(false);
+                button.onClick.RemoveAllListeners();
             }
         }
 
@@ -37,7 +38,6 @@ namespace Scripts.GUI
             }
 
             Buttons[index].GetComponentInChildren<Text>().text = text;
-            Buttons[index].onClick.RemoveAllListeners();
             Buttons[index].onClick.AddListener(delegate { clickEvent(); });
             Buttons[index].gameObject.SetActive(true);
         }
@@ -49,8 +49,18 @@ namespace Scripts.GUI
 
         public void Show()
         {
-            gameObject.SetActive(true);
             MenuController.Instance.MenuLowered();
+            if (CoreController.MouseController.FocusedTypes.Count > 1)
+            {
+                foreach (var item in CoreController.MouseController.FocusedTypes)
+                {
+                    print(item);
+                }
+                Hide();
+                return;
+            }
+
+            gameObject.SetActive(true);
         }
 
         public void Hide()

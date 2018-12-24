@@ -18,7 +18,7 @@ NavMeshProjectSettings:
   - name: Skip
     cost: 1
   - name: Walls
-    cost: 10000
+    cost: 7
   - name: 
     cost: 1
   - name: 

@@ -2024,10 +2024,13 @@ MonoBehaviour:
   Objects:
   - Name: Mage
     Object: {fileID: 1857054191524908, guid: c4c6d8bf1c08b3043a0784b23175670d, type: 2}
-    Texture: {fileID: 0}
+    Texture: {fileID: 2800000, guid: dab4188a6603942a095187e7c2ccb13c, type: 3}
   - Name: Archer
     Object: {fileID: 1046575341892446, guid: 69c19a02085959e42afa39bf9a1392a0, type: 2}
-    Texture: {fileID: 0}
+    Texture: {fileID: 2800000, guid: 5f5d4a1f4ca1fc847b1d907e8fb3e6d6, type: 3}
+  - Name: Bomber
+    Object: {fileID: 1122601507334306, guid: 4b6633d8ce227df42b91deeabf373b83, type: 2}
+    Texture: {fileID: 2800000, guid: b7d67146246c01042aea491283e04d23, type: 3}
   SpawnPosition: {x: -2, y: 0, z: 0}
 --- !u!114 &114727068891802174
 MonoBehaviour:

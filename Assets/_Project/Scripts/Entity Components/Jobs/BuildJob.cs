@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Scripts.Buildable_Components;
 using Scripts.Controllers;
 using Scripts.Resources;
@@ -57,11 +58,11 @@ namespace Scripts.Entity_Components.Jobs
         private IEnumerator DeliveringResource()
         {
             Worker.Agent.destination = _ghost.transform.position;
-
+            var collider = _ghost.GetComponent<Collider>();
             while (true)
             {
-                var distanceToTarget = (Worker.transform.position - Worker.Agent.destination).sqrMagnitude;
-                if (distanceToTarget < 4f) break;
+                var colliders = Physics.OverlapSphere(Worker.transform.position, 2f, 1 << LayerMask.NameToLayer("GhostModel"));
+                if (colliders.Contains(collider)) break;
 
                 yield return new WaitForFixedUpdate();
             }
@@ -102,9 +103,8 @@ namespace Scripts.Entity_Components.Jobs
                 Worker.Agent.isStopped = false;
                 while (true)
                 {
-                    var distanceToTarget = (Worker.transform.position - CoreController.Instance.CoreGameObject.transform.position).sqrMagnitude;
-                    if (distanceToTarget < 4f) break;
-
+                    var colliders = Physics.OverlapSphere(Worker.transform.position, 2f, 1 << LayerMask.NameToLayer("Core"));
+                    if (colliders.Length > 0) break;
                     yield return new WaitForFixedUpdate();
                 }
 
@@ -124,6 +124,7 @@ namespace Scripts.Entity_Components.Jobs
 
         private IEnumerator Build()
         {
+            Worker.Agent.isStopped = true;
             Worker.GetComponent<Animator>().SetBool("Building", true);
             if (_resourceHolder != null)
             {
@@ -139,6 +140,7 @@ namespace Scripts.Entity_Components.Jobs
             CoreController.BuildController.Build(_ghost.transform.gameObject);
             CompleteJob();
             Worker.GetComponent<Animator>().SetBool("Building", false);
+            Worker.Agent.isStopped = false;
         }
 
         #endregion

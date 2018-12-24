@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using Scripts.Resources;
 using UnityEngine;
 using UnityEngine.AI;
+using Scripts.Interface;
 
 namespace Scripts.Buildable_Components
 {
@@ -18,12 +19,22 @@ namespace Scripts.Buildable_Components
     /// Ghost model script that handles behaviors for ghost models.
     /// NOTE : Remember to disable colliders on prefabs
     /// </summary>
-    public class GhostModelScript : MonoBehaviour
+    public class GhostModelScript : MonoBehaviour, IClickable
     {
         public BuildData Data { get; private set; }
         public List<RecipeItem> Recipe { get; private set; }
         public int WorkLeft { get; private set; }
         public GameObject OriginalGameObject { get; private set; }
+
+        public bool HasFocus
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+        }
+
+        public string Type => "Ghost Model";
 
         public bool ActiveGhost;
         private Dictionary<ResourceTypes, int> _droppedResources;
@@ -73,18 +84,7 @@ namespace Scripts.Buildable_Components
             }
             return true;
         }
-
-        public void Clicked()
-        {
-            if (!ActiveGhost) return;
-            var omg = ObjectMenuGroupComponent.Instance;
-
-            omg.ResetButtons();
-            omg.SetButton(0, "Cancel", Cancel);
-            omg.SetButton(1, "Prioritize", Prioritize);
-            omg.Show();
-        }
-
+        
         public void Cancel()
         {
             foreach (var droppedResource in _droppedResources)
@@ -106,6 +106,24 @@ namespace Scripts.Buildable_Components
             {
                 _job.AtDestination = true;
             }
+        }
+
+        public void Focus()
+        {
+            if (!ActiveGhost) return;
+            var omg = ObjectMenuGroupComponent.Instance;
+
+            omg.SetButton(0, "Cancel", Cancel);
+            omg.SetButton(1, "Prioritize", Prioritize);
+            omg.Show();
+        }
+
+        public void LostFocus()
+        {
+        }
+
+        public void RightClick(Vector3 vec)
+        {
         }
     }
 }
