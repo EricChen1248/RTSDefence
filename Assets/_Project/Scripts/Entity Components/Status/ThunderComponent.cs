@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using Scripts.Entity_Components.Misc;
@@ -7,20 +8,17 @@ namespace Scripts.Entity_Components.Status
 {
     public class ThunderComponent : MonoBehaviour
     {
-        public bool Immediate = true;
-        public int Duration;
         public int Damage = 20;
         public int Range = 5;
+        public int NumberOfOtherVictim = 2;
 
         public void Start () {
-            if(Immediate){
-                foreach(var health in GetRangeHealth(transform, Range)){
-                    health.Damage(Damage);
-                }
-                Destroy(this);
-            }else{
-                throw new System.ArgumentOutOfRangeException();
+            var rnd = new System.Random();
+            GetComponent<HealthComponent>()?.Damage(Damage);
+            foreach(var health in GetRangeHealth(transform, Range).Where(x => transform != x.transform).OrderBy(x => rnd.Next()).Take(NumberOfOtherVictim)){
+                health.Damage(Damage);
             }
+            Destroy(this);
         }
 
         public static List<HealthComponent> GetRangeHealth(Transform t, int Range){

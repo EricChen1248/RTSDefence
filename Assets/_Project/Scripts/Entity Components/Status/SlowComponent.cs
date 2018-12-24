@@ -18,10 +18,10 @@ namespace Scripts.Entity_Components.Status
 
         private IEnumerator SlowDown()
         {
-            var player = GetComponent<PlayerComponent>();
-            player.Speed -= Slow;
+            var agent = GetComponent<PlayerComponent>().Agent;
+            agent.speed -= Slow;
             yield return new WaitForSeconds(Duration);
-            player.Speed += Slow;
+            agent.speed += Slow;
             Destroy(this);
         }
     }
