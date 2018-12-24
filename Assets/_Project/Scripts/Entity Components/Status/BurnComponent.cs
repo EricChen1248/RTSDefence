@@ -8,7 +8,7 @@ namespace Scripts.Entity_Components.Status
     public class BurnComponent : MonoBehaviour
     {
 
-        public int Damage = 2;
+        public int Damage = 3;
 
         public int Duration = 5;
         // Use this for initialization

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Scripts.Entity_Components.Misc;
+using Scripts.Entity_Components.Status;
 using Scripts.Towers;
 using UnityEngine;
 
@@ -40,7 +41,10 @@ namespace Scripts.Entity_Components.Attacks
                         case ArrowType.Regular:
                             break;
                         case ArrowType.Fire:
-                            //colliders[0].gameObject.AddComponent<BurnComponent>();
+                            break;
+                        case ArrowType.Thunder:
+                            colliders[0].gameObject.AddComponent<ThunderComponent>();
+                            colliders[0].gameObject.AddComponent<SlowComponent>();
                             break;
                         default:
                             throw new ArgumentOutOfRangeException();

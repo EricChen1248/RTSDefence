@@ -299,8 +299,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 2
-  count: 15
-  PerCollection: 8
+  count: 25
+  PerCollection: 3
   Collectors: []
 --- !u!135 &135202632819308696
 SphereCollider:

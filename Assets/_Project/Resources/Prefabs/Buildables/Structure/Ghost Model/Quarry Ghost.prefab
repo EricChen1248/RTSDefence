@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4888338606067294}
   - component: {fileID: 33335814136030036}
   - component: {fileID: 23686300113245948}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: quarry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4361261857966698}
   - component: {fileID: 65214861446803814}
   - component: {fileID: 114514287461694420}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Quarry Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}

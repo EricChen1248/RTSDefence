@@ -9,12 +9,12 @@ using UnityEngine;
 namespace Scripts.Entity_Components.Attacks
 {
 
-    public enum ArrowType { Regular, Fire }
+    public enum ArrowType { Regular, Fire, Thunder, Slow }
     public class ArrowScript : AmmoBase
     {
         public float Height = 1f;
         public float Acceleration = 0.0001f;
-        public enum ArrowType { Regular, Fire, Slow, Thunder }
+        public enum ArrowType { Regular, Fire, Explode }
 
         public ArrowType Type;
         private IEnumerator _currentCoroutine;
@@ -82,12 +82,14 @@ namespace Scripts.Entity_Components.Attacks
                             case ArrowType.Fire:
                                 colliders[0].gameObject.AddComponent<BurnComponent>();
                                 break;
+                                /*
                             case ArrowType.Slow:
                                 colliders[0].gameObject.AddComponent<SlowComponent>();
                                 break;
                             case ArrowType.Thunder:
                                 colliders[0].gameObject.AddComponent<ThunderComponent>();
                                 break;
+                                */
                             default:
                                 throw new ArgumentOutOfRangeException();
                         }

@@ -300,8 +300,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 0
-  count: 0
-  PerCollection: 0
+  count: 30
+  PerCollection: 3
   Collectors: []
 --- !u!114 &114941175956736184
 MonoBehaviour:

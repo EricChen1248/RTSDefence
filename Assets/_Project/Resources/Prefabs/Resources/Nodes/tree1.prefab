@@ -299,8 +299,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 1
-  count: 10
-  PerCollection: 6
+  count: 30
+  PerCollection: 3
   Collectors: []
 --- !u!136 &136307672423402482
 CapsuleCollider:

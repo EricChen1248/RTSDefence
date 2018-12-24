@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Magic Tower Turret
   m_EditorClassIdentifier: 
   Ammo: {fileID: 1993374003617124, guid: 5b1d0c6c6f01b4d45bec448d0b84bfc2, type: 2}
-  Range: 10
+  Range: 20
   FireRate: 2
   FieldOfView: 360
   AiState: 0

@@ -13,17 +13,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Sawmill
   GhostModel: {fileID: 1989163642411096, guid: 6d4418aac00160f46acb1e646ba4ca5a, type: 2}
-  Health: 100
+  Health: 150
   Offset: {x: 0, y: 0, z: 0}
   Size: {x: 3, y: 3, z: 3}
   ColliderOffset: {x: 0, y: 1, z: 0}
   CanRotateHorizontal: 1
   CanRotateVertical: 0
   Points: 80
-  BuildTime: 10
+  BuildTime: 5
   Recipe:
-  - Resource: 0
-    Amount: 10
+  - Resource: 1
+    Amount: 25
   - Resource: 1
     Amount: 10
   Types: 

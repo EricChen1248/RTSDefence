@@ -9,19 +9,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 584233384e22c2c42bafa39ac866ae61, type: 3}
-  m_Name: Archery
+  m_Name: Bomb Tower
   m_EditorClassIdentifier: 
-  Name: Archery
-  GhostModel: {fileID: 1380719608947222, guid: d3e9b139f621c034a9f4d7c5a0a5f8d5, type: 2}
-  Health: 200
-  Offset: {x: 0, y: 0, z: 0}
-  Size: {x: 3, y: 3, z: 3}
-  ColliderOffset: {x: 0, y: 0.75, z: 0}
+  Name: Bomb Tower
+  GhostModel: {fileID: 1115011073446234, guid: a43ca9a9b224744f896ead5a97a930d2, type: 2}
+  Health: 900
+  Offset: {x: 0, y: 0.5, z: 0}
+  Size: {x: 1, y: 3, z: 1}
+  ColliderOffset: {x: 0, y: 1, z: 0}
   CanRotateHorizontal: 1
   CanRotateVertical: 0
-  Points: 50
-  BuildTime: 100
+  Points: 100
+  BuildTime: 150
   Recipe:
+  - Resource: 0
+    Amount: 50
   - Resource: 1
-    Amount: 40
+    Amount: 30
+  - Resource: 2
+    Amount: 50
   Types: 

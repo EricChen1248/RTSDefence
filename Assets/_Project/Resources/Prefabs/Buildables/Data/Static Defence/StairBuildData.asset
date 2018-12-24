@@ -13,15 +13,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Stairs
   GhostModel: {fileID: 1732552712364700, guid: 29cce01636a4e1e43a4e2bf70a20f6a2, type: 2}
-  Health: 100
+  Health: 200
   Offset: {x: 0, y: 0, z: 0}
   Size: {x: 1, y: 1, z: 1}
   ColliderOffset: {x: 0, y: 0, z: 0}
   CanRotateHorizontal: 1
   CanRotateVertical: 0
   Points: 10
-  BuildTime: 2
+  BuildTime: 30
   Recipe:
   - Resource: 0
-    Amount: 1
+    Amount: 3
   Types: 

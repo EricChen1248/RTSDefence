@@ -917,7 +917,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 3072
   Parent: {fileID: 0}
-  Damage: 5
+  Damage: 15
   Height: 2
   Acceleration: 0.01
   Type: 1

@@ -13,14 +13,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Block
   GhostModel: {fileID: 1831496399549416, guid: 73442d6432a466e47ae62d410af38ebd, type: 2}
-  Health: 100
+  Health: 200
   Offset: {x: 0, y: 0, z: -1}
   Size: {x: 1, y: 1, z: 3}
   ColliderOffset: {x: 0, y: 0, z: 0}
   CanRotateHorizontal: 1
   CanRotateVertical: 0
   Points: 10
-  BuildTime: 2
+  BuildTime: 30
   Recipe:
   - Resource: 0
     Amount: 5

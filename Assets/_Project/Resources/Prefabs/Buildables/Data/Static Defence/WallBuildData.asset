@@ -13,14 +13,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Wall
   GhostModel: {fileID: 1545132368954914, guid: a893f98f43f960b419842e0132612b74, type: 2}
-  Health: 300
+  Health: 1000
   Offset: {x: 0, y: 0.5, z: 0}
   Size: {x: 1, y: 2.5, z: 3}
   ColliderOffset: {x: 0, y: 1.25, z: 0}
   CanRotateHorizontal: 1
   CanRotateVertical: 0
   Points: 10
-  BuildTime: 10
+  BuildTime: 30
   Recipe:
   - Resource: 0
     Amount: 20

@@ -864,7 +864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthBarComponent: {fileID: 0}
-  Health: 100
+  Health: 200
 --- !u!114 &114660769553461310
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -892,7 +892,7 @@ MonoBehaviour:
   DoingJob: 0
   ResourceCount: 0
   Radius: 2
-  Damage: 20
+  Damage: 3
   ReloadTime: 0.65
 --- !u!114 &114779496053352070
 MonoBehaviour:

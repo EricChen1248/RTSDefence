@@ -13,15 +13,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Magic Tower
   GhostModel: {fileID: 1115011073446234, guid: a43ca9a9b224744f896ead5a97a930d2, type: 2}
-  Health: 500
+  Health: 700
   Offset: {x: 0, y: 0.5, z: 0}
   Size: {x: 1, y: 3, z: 1}
   ColliderOffset: {x: 0, y: 1, z: 0}
   CanRotateHorizontal: 1
   CanRotateVertical: 0
   Points: 100
-  BuildTime: 10
+  BuildTime: 100
   Recipe:
   - Resource: 0
-    Amount: 1
+    Amount: 20
+  - Resource: 1
+    Amount: 60
   Types: 

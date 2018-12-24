@@ -34,7 +34,7 @@ namespace Scripts.Controllers
         public IEnumerator WaitForWave()
         {
             yield return new WaitForEndOfFrame();
-            var time = (int) (20 / Mathf.Log10(CurrentWave * 10));
+            var time = (int) (60 / Mathf.Log10(CurrentWave * 10));
             for (var i = time - 1; i >= 0; i--)
             {
                 Indicator.text = $"Next Wave: {i / 60:D2}:{i % 60:D2}";

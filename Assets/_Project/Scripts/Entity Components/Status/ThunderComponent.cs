@@ -1,6 +1,4 @@
 using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
 using Scripts.Entity_Components.Misc;
 using Scripts.Navigation;
 using UnityEngine;

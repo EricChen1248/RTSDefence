@@ -10,6 +10,7 @@ namespace Scripts.Entity_Components.Attacks
     {
         public int Damage = 20;
         public int Range = 5;
+        public GameObject Smoke;
 
         public void Start () {
         }
@@ -22,6 +23,8 @@ namespace Scripts.Entity_Components.Attacks
                     var health = collider.GetComponent<HealthComponent>();
                     health?.Damage(Damage);
                 }
+                var smoke = Instantiate(Smoke);
+                smoke.transform.position = transform.position;
                 Destroy(this);
             }
         }

@@ -2,6 +2,7 @@ using System.Collections;
 using Scripts.Entity_Components.Misc;
 using Scripts.Entity_Components.Friendlies;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Scripts.Entity_Components.Status
 {
@@ -18,7 +19,7 @@ namespace Scripts.Entity_Components.Status
 
         private IEnumerator SlowDown()
         {
-            var agent = GetComponent<PlayerComponent>().Agent;
+            var agent = GetComponent<NavMeshAgent>();
             agent.speed -= Slow;
             yield return new WaitForSeconds(Duration);
             agent.speed += Slow;
