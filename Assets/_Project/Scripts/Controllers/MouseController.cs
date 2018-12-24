@@ -48,11 +48,13 @@ namespace Scripts.Controllers
 
         }
 
-        public void Clear(){
+        public void Clear()
+        {
             foreach (var item in FocusedItem)
             {
                 item?.LostFocus();
             }
+
             FocusedItem.Clear();
             FocusedTypes.Clear();
             ObjectMenuGroupComponent.Instance.ResetButtons();

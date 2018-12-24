@@ -346,7 +346,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: bafa22b60aac71941a6e4b89a7dd7b71, type: 2}
   ID: 0
-  Type: 0
+  ResourceType: 0
+  tex: {fileID: 2800000, guid: 3f07543aa0169457fa6fab0faac74b3a, type: 3}
   Gatherer: {fileID: 0}
   CollectionRadius: 20
   Nodes: []

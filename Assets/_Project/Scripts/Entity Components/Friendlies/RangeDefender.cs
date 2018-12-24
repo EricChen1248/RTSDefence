@@ -34,6 +34,7 @@ namespace Scripts.Entity_Components.Friendlies
 
                 var ammo = Instantiate(Ammo, transform);
                 var script = ammo.GetComponent<AmmoBase>();
+                ammo.transform.localPosition = new Vector3(-1, 1.5f, 0);
                 script.Layer = RaycastHelper.LayerMaskDictionary["Enemies"];
                 script.Damage = 2;
                 script.Parent = transform.root;

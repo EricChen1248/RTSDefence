@@ -14,7 +14,8 @@ namespace Scripts.Buildable_Components
 {
     public class ResourceCollector : Buildable, IClickable
     {
-        public ResourceTypes Type;
+        public ResourceTypes ResourceType;
+        public Texture tex;
         public GameObject Gatherer;
 
         public int CollectionRadius;
@@ -52,7 +53,7 @@ namespace Scripts.Buildable_Components
                 var node = overlap.GetComponent<ResourceNode>();
                 if (node != null)
                 {
-                    if (node.Type == Type)
+                    if (node.Type == ResourceType)
                     {
                         Nodes.Add(node);
                         node.Collectors.Add(this);
@@ -119,6 +120,7 @@ namespace Scripts.Buildable_Components
 
             var omg = ObjectMenuGroupComponent.Instance;
             omg.SetButton(1, "Respawn", SpawnNew);
+            omg.SetButtonImage(1, tex);
         }
 
         public override void LostFocus()
