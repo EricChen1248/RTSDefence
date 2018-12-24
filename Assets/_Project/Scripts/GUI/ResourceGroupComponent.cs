@@ -7,14 +7,15 @@ using UnityEngine;
 namespace Scripts.GUI
 {
     [DefaultExecutionOrder(1)]
-    public class ResourceGroupComponent : MonoBehaviour {
+    public class ResourceGroupComponent : MonoBehaviour
+    {
+        private Dictionary<ResourceTypes, ResourcePanelComponent> _panelLinks;
 
         public GameObject ResourceGuiPrefab;
-        private Dictionary<ResourceTypes, ResourcePanelComponent> _panelLinks;
 
 
         // Use this for initialization
-        private void Start ()
+        private void Start()
         {
             ResourceController.Instance.ResourceGroup = this;
 
@@ -33,10 +34,7 @@ namespace Scripts.GUI
 
         public void UpdateGui(Dictionary<ResourceTypes, int> resourceCount)
         {
-            foreach (var item in resourceCount)
-            {
-                _panelLinks[item.Key].UpdateText(item.Value);
-            }
+            foreach (var item in resourceCount) _panelLinks[item.Key].UpdateText(item.Value);
         }
     }
 }

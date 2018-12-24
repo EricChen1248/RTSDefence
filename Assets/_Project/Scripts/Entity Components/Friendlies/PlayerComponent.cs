@@ -11,21 +11,21 @@ namespace Scripts.Entity_Components.Friendlies
     [DefaultExecutionOrder(-1)]
     public class PlayerComponent : MonoBehaviour, IClickable
     {
-        public float Speed = 3.5f;
-        public NavMeshAgent Agent { get; private set; }
+        protected string _type = "player";
         public Animator Animator;
 
         public Job CurrentJob;
+
+        protected IEnumerator DestinationRoutine;
         public bool DoingJob;
 
         public int ResourceCount;
-        public string Type { get { return _type; } }
-        protected string _type = "player";
+        protected GameObject SelectionCircle;
 
         protected GameObject SelectionCirclePrefab;
-        protected GameObject SelectionCircle;
-        
-        protected IEnumerator DestinationRoutine;
+        public float Speed = 3.5f;
+        public NavMeshAgent Agent { get; private set; }
+        public string Type => _type;
 
         public void MoveToLocationOnGrid(Vector3 target)
         {
@@ -41,11 +41,8 @@ namespace Scripts.Entity_Components.Friendlies
             Agent.destination = target;
             Animator.SetBool("Walking", true);
             Agent.isStopped = false;
-            
-            if (DestinationRoutine != null)
-            {
-                StopCoroutine(DestinationRoutine);
-            }
+
+            if (DestinationRoutine != null) StopCoroutine(DestinationRoutine);
             DestinationRoutine = AtDestination();
             StartCoroutine(DestinationRoutine);
         }
@@ -64,7 +61,7 @@ namespace Scripts.Entity_Components.Friendlies
             Agent = GetComponent<NavMeshAgent>();
             Agent.enabled = true;
             Animator = GetComponent<Animator>();
-            GetComponent<HealthComponent>().OnDeath += (e) => Destroy(gameObject);
+            GetComponent<HealthComponent>().OnDeath += e => Destroy(gameObject);
             var startLocation = Random.insideUnitSphere * 0.001f;
             startLocation.y = 0;
             MoveToLocation(transform.position + startLocation);
@@ -75,18 +72,14 @@ namespace Scripts.Entity_Components.Friendlies
 
         public IEnumerator CheckJob()
         {
-            while(DoingJob || CurrentJob == null)
-            {
-                yield return new WaitForFixedUpdate();
-            }
+            while (DoingJob || CurrentJob == null) yield return new WaitForFixedUpdate();
             DoingJob = true;
             StartCoroutine(CurrentJob.DoJob());
         }
 
         public void OnMouseDown()
         {
-
-        CoreController.UnitSelectionController.SingleSelect = this;
+            CoreController.UnitSelectionController.SingleSelect = this;
         }
 
         #endregion
@@ -94,11 +87,12 @@ namespace Scripts.Entity_Components.Friendlies
         #region Focus
 
         public bool HasFocus { get; private set; }
+
         public virtual void Focus()
         {
             HasFocus = true;
             gameObject.AddComponent<PathDrawer>();
-            if(SelectionCircle == null)
+            if (SelectionCircle == null)
             {
                 SelectionCircle = Instantiate(SelectionCirclePrefab, transform);
 
@@ -110,14 +104,15 @@ namespace Scripts.Entity_Components.Friendlies
 
         public virtual void LostFocus()
         {
-                Destroy(GetComponent<PathDrawer>());
+            Destroy(GetComponent<PathDrawer>());
             HasFocus = false;
-            if(SelectionCircle != null){
+            if (SelectionCircle != null)
+            {
                 Destroy(SelectionCircle);
                 SelectionCircle = null;
             }
         }
-        
+
         public virtual void RightClick(Vector3 clickPos)
         {
             MoveToLocation(clickPos);
@@ -126,18 +121,12 @@ namespace Scripts.Entity_Components.Friendlies
         public void OnDestroy()
         {
             if (CoreController.MouseController.FocusedItem.Contains(this))
-            {
                 CoreController.MouseController.FocusedItem.Remove(this);
-            }
-
         }
 
         public IEnumerator AtDestination()
         {
-            while ((transform.position - Agent.destination).sqrMagnitude > 2f)
-            {
-                yield return new WaitForFixedUpdate();
-            }
+            while ((transform.position - Agent.destination).sqrMagnitude > 2f) yield return new WaitForFixedUpdate();
             Stop();
             DestinationRoutine = null;
         }

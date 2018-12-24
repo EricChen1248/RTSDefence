@@ -2,148 +2,118 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-
-
-public class AudioController : MonoBehaviour
+namespace Scripts.Controllers
 {
-
-    public static AudioController Instance;
-    [SerializeField]
-    public AudioFile[] Files;
-
-    private AudioSource audioSource;
-
-    public AudioState State
+    public class AudioController : MonoBehaviour
     {
-        get
+        public enum AudioState
         {
-            return _state;
+            Normal,
+            Fight,
+            Lose
         }
-        set
+
+        public static AudioController Instance;
+        private AudioState _state;
+
+
+        private readonly Dictionary<string, AudioClip> audioDictionary = new Dictionary<string, AudioClip>();
+
+        private AudioSource audioSource;
+
+        [SerializeField] public AudioFile[] Files;
+
+        public AudioState State
         {
-            _state = value;
-            ChangeAudio();
+            get { return _state; }
+            set
+            {
+                _state = value;
+                ChangeAudio();
+            }
         }
-    }
-    private AudioState _state;
 
-    public enum AudioState
-    {
-        Normal,
-        Fight,
-        Lose
-    }
-
-
-
-    private Dictionary<string, AudioClip> audioDictionary = new Dictionary<string, AudioClip>();
-    // Use this for initialization
-    void Start()
-    {
-        Instance = this;
-        audioSource = GetComponent<AudioSource>();
-
-        foreach (var file in Files)
+        // Use this for initialization
+        private void Start()
         {
-            audioDictionary[file.Name] = file.Clip;
+            Instance = this;
+            audioSource = GetComponent<AudioSource>();
+
+            foreach (var file in Files) audioDictionary[file.Name] = file.Clip;
         }
-    }
 
-    // Update is called once per frame
-    void ChangeAudio()
-    {
-        // If state = ?? 
-        // If clip is not playing, play next clip
-
-        switch (State)
+        // Update is called once per frame
+        private void ChangeAudio()
         {
-            case AudioState.Normal:
-                if (State == AudioState.Normal)
-                {
-                    switch (UnityEngine.Random.Range(0, 3))
-                    {
-                        case 0:
+            // If state = ?? 
+            // If clip is not playing, play next clip
+
+            switch (State)
+            {
+                case AudioState.Normal:
+                    if (State == AudioState.Normal)
+                        switch (Random.Range(0, 3))
+                        {
+                            case 0:
+                                StartCoroutine(FadeSound(audioDictionary["victory"]));
+                                break;
+                            case 1:
+                                StartCoroutine(FadeSound(audioDictionary["epic"]));
+                                break;
+                            case 2:
+                                StartCoroutine(FadeSound(audioDictionary["newdawn"]));
+                                break;
+                        }
+                    break;
+
+                case AudioState.Fight:
+                    if (State == AudioState.Fight) StartCoroutine(FadeSound(audioDictionary["instinct"]));
+                    break;
+
+                case AudioState.Lose:
+                    if (State == AudioState.Lose) StartCoroutine(FadeSound(audioDictionary["losing"]));
+                    break;
+
+                default:
+                    if (State == AudioState.Normal)
+                        if (!audioSource.isPlaying)
                             StartCoroutine(FadeSound(audioDictionary["victory"]));
-                            break;
-                        case 1:
-                            StartCoroutine(FadeSound(audioDictionary["epic"]));
-                            break;
-                        case 2:
-                            StartCoroutine(FadeSound(audioDictionary["newdawn"]));
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                break;
+                    break;
+            }
 
-            case AudioState.Fight:
-                if (State == AudioState.Fight)
-                {
-                    StartCoroutine(FadeSound(audioDictionary["instinct"]));
-                }
-                break;
-
-            case AudioState.Lose:
-                if (State == AudioState.Lose)
-                {
-                    StartCoroutine(FadeSound(audioDictionary["losing"]));
-                }
-                break;
-
-            default:
-                if (State == AudioState.Normal)
-                {
-                    if (!audioSource.isPlaying)
-                    {
-                        StartCoroutine(FadeSound(audioDictionary["victory"]));
-                    }
-                }
-                break;
+            if (Input.GetKeyDown(KeyCode.Space)) StartCoroutine(FadeSound(audioDictionary["victory"]));
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        private IEnumerator FadeSound(AudioClip clip)
         {
-            StartCoroutine(FadeSound(audioDictionary["victory"]));
+            while (audioSource.volume > 0)
+            {
+                audioSource.volume -= 0.5f * Time.deltaTime;
+                yield return null;
+            }
 
+            audioSource.clip = clip;
+            audioSource.Play();
+
+            while (audioSource.volume < 1)
+            {
+                audioSource.volume += 0.5f * Time.deltaTime;
+                yield return null;
+            }
         }
 
-    }
-
-    private IEnumerator FadeSound(AudioClip clip)
-    {
-        while(audioSource.volume > 0)
+        public void Update()
         {
-            audioSource.volume -= 0.5f * Time.deltaTime;
-            yield return null;
+            if (!audioSource.isPlaying) ChangeAudio();
         }
 
-        audioSource.clip = clip;
-        audioSource.Play();
-
-        while (audioSource.volume < 1)
+        [Serializable]
+        public struct AudioFile
         {
-            audioSource.volume += 0.5f * Time.deltaTime;
-            yield return null;
-        }
-    }   
-
-    public void Update()
-    {
-        if (!audioSource.isPlaying)
-        {
-            ChangeAudio();
+            public string Name;
+            public AudioClip Clip;
         }
     }
-
-    [Serializable]
-    public struct AudioFile
-    {
-        public string Name;
-        public AudioClip Clip;
-    }
-
-
-
 }

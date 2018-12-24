@@ -1,9 +1,9 @@
-using UnityEngine;
-using UnityEngine.AI;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Scripts.Entity_Components.Misc;
+using UnityEngine;
+using UnityEngine.AI;
+using Random = System.Random;
 
 namespace Scripts.Entity_Components.Ais
 {
@@ -38,10 +38,7 @@ namespace Scripts.Entity_Components.Ais
 
         public override bool TargetTo(GameObject obj, bool force)
         {
-            if (!InLayerMask(TargetingLayers, obj.layer) && !force)
-            {
-                return false;
-            }
+            if (!InLayerMask(TargetingLayers, obj.layer) && !force) return false;
 
             SwitchState(new TargetingState(transform, obj.transform));
             return true;
@@ -94,6 +91,7 @@ namespace Scripts.Entity_Components.Ais
             singularAI.StopTempTarget();
             HasTempTarget.Remove(singularAI);
         }
+
         /*
         public override void OnDestroy()
         {
@@ -113,10 +111,7 @@ namespace Scripts.Entity_Components.Ais
             public override void Enter()
             {
                 var groupData = _transform.GetComponent<GroupComponent>();
-                foreach (var member in groupData.Member)
-                {
-                    member.GetComponent<NavMeshAgent>().isStopped = true;
-                }
+                foreach (var member in groupData.Member) member.GetComponent<NavMeshAgent>().isStopped = true;
             }
 
             public override void Update()
@@ -126,10 +121,7 @@ namespace Scripts.Entity_Components.Ais
             public override void Leave()
             {
                 var groupData = _transform.GetComponent<GroupComponent>();
-                foreach (var member in groupData.Member)
-                {
-                    member.GetComponent<NavMeshAgent>().isStopped = false;
-                }
+                foreach (var member in groupData.Member) member.GetComponent<NavMeshAgent>().isStopped = false;
             }
 
             public override void FirstCommand(Transform member)
@@ -139,10 +131,7 @@ namespace Scripts.Entity_Components.Ais
 
             public override void LastCommand(Transform member, bool selfDestroy)
             {
-                if (!selfDestroy)
-                {
-                    member.GetComponent<NavMeshAgent>().isStopped = false;
-                }
+                if (!selfDestroy) member.GetComponent<NavMeshAgent>().isStopped = false;
             }
         }
 
@@ -165,37 +154,42 @@ namespace Scripts.Entity_Components.Ais
                 //}
             }
 
-            public override void Update() { }
-            public override void Leave() { }
-            public override void FirstCommand(Transform member) { }
-            public override void LastCommand(Transform member, bool selfDestroy) { }
+            public override void Update()
+            {
+            }
+
+            public override void Leave()
+            {
+            }
+
+            public override void FirstCommand(Transform member)
+            {
+            }
+
+            public override void LastCommand(Transform member, bool selfDestroy)
+            {
+            }
         }
 
         protected class MoveState : State
         {
-            //random for test
-            public static System.Random Rnd = new System.Random();
             private const int PosXLowerBound = -10;
             private const int PosXUpperBound = 10;
             private const int PosZLowerBound = -10;
             private const int PosZUpperBound = 10;
 
             protected const int Step0Bond = 10;
+
             protected const int Step1Bond = 8;
 
-            protected Vector3 Vector
-            {
-                get { return _transform.position; }
-                set { _transform.position = value; }
-            }
+            //random for test
+            public static Random Rnd = new Random();
+            private readonly List<Transform> _toBeRemoved;
 
             protected readonly GroupComponent GroupComponent;
             protected byte _step;
 
-            public byte Step => _step;
-
             protected HashSet<Transform> NotStopped;
-            private readonly List<Transform> _toBeRemoved;
 
             public MoveState(Transform t, Vector3 vector) : base(t)
             {
@@ -205,6 +199,14 @@ namespace Scripts.Entity_Components.Ais
                 NotStopped = new HashSet<Transform>();
                 _toBeRemoved = new List<Transform>();
             }
+
+            protected Vector3 Vector
+            {
+                get { return _transform.position; }
+                set { _transform.position = value; }
+            }
+
+            public byte Step => _step;
 
             public override string Identifier => "Move";
 
@@ -231,9 +233,7 @@ namespace Scripts.Entity_Components.Ais
                     {
                         if (Vector3.Distance(member.position, member.GetComponent<NavMeshAgent>().destination) <
                             Step0Bond)
-                        {
                             _step = 1;
-                        }
 
                         break;
                     }
@@ -242,7 +242,6 @@ namespace Scripts.Entity_Components.Ais
                     {
                         print("set correct place");
                         foreach (var member in GroupComponent.Member)
-                        {
                             if (Vector3.Distance(member.position, Vector) < Step1Bond)
                             {
                                 member.GetComponent<NavMeshAgent>().ResetPath();
@@ -252,7 +251,6 @@ namespace Scripts.Entity_Components.Ais
                                 member.GetComponent<NavMeshAgent>().destination = Vector;
                                 NotStopped.Add(member);
                             }
-                        }
                     }
                 }
                 else
@@ -330,7 +328,9 @@ namespace Scripts.Entity_Components.Ais
                 Target.GetComponent<HealthComponent>().OnDeath += OnTargetDeath;
             }
 
-            public override void Update() { }
+            public override void Update()
+            {
+            }
 
             public override void Leave()
             {
@@ -345,7 +345,9 @@ namespace Scripts.Entity_Components.Ais
                 agent.destination = Target.position;
             }
 
-            public override void LastCommand(Transform member, bool selfDestroy) { }
+            public override void LastCommand(Transform member, bool selfDestroy)
+            {
+            }
 
             protected void OnTargetDeath(HealthComponent th)
             {

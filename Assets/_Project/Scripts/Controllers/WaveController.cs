@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-
 using Scripts.Buildable_Components;
 using Scripts.Entity_Components;
 using Scripts.Entity_Components.Ais;
 using Scripts.Scriptable_Objects;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Scripts.Controllers
@@ -13,16 +12,16 @@ namespace Scripts.Controllers
     public class WaveController : MonoBehaviour
     {
         public static WaveController Instance;
-        public Text Indicator;
         private int _score = 1000;
-
-        public GameObject[] EnemiesLookup;
-
-        public int CurrentWave { get; private set; }
         public Dictionary<DefenceType, int> DefenceInfo;
-        public Dictionary<EnemyType, GameObject> EnemyTypes;
 
         public HashSet<GameObject> Enemies;
+
+        public GameObject[] EnemiesLookup;
+        public Dictionary<EnemyType, GameObject> EnemyTypes;
+        public Text Indicator;
+
+        public int CurrentWave { get; private set; }
 
         public void Start()
         {
@@ -40,6 +39,7 @@ namespace Scripts.Controllers
                 Indicator.text = $"Next Wave: {i / 60:D2}:{i % 60:D2}";
                 yield return new WaitForSeconds(1);
             }
+
             StartCoroutine(StartNewWave());
         }
 
@@ -60,10 +60,10 @@ namespace Scripts.Controllers
             var currentScore = _score;
             var currentMaxIndex = 1;
             var maxPoints = EnemiesLookup[currentMaxIndex].GetComponent<EnemyComponent>().Data.Points;
-            
+
             Enemies = new HashSet<GameObject>();
 
-            while(currentMaxIndex > 0)
+            while (currentMaxIndex > 0)
             {
                 if (maxPoints > currentScore)
                 {
@@ -92,6 +92,7 @@ namespace Scripts.Controllers
                 ai.Target = target;
                 ai.FindTarget();
             }
+
             _score += currentScore;
             print($"attacking with enemies: {Enemies.Count}");
             yield return new WaitUntil(() => Enemies.Count == 0);
@@ -120,16 +121,13 @@ namespace Scripts.Controllers
                 default:
                     return 0;
             }
+
             return 0;
         }
 
         public void GameOver()
         {
-            foreach (var enemy in Enemies)
-            {
-                enemy.GetComponent<AiBase>().LeaveMap();
-            }
+            foreach (var enemy in Enemies) enemy.GetComponent<AiBase>().LeaveMap();
         }
     }
-
 }

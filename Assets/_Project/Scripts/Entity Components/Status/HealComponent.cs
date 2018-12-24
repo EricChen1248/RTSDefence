@@ -12,8 +12,8 @@ namespace Scripts.Entity_Components.Status
 
 
         // Use this for initialization
-        void Start () {
-		
+        private void Start()
+        {
         }
 
         private IEnumerator HealhRoutine()

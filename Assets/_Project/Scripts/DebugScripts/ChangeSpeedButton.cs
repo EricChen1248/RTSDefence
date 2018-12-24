@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 
-public class ChangeSpeedButton : MonoBehaviour
+namespace Scripts.DebugScripts
 {
-    public bool Fast;
-    public void Click()
+    public class ChangeSpeedButton : MonoBehaviour
     {
-        Time.timeScale = Fast ? 1 : 5;
-        Fast = !Fast;
+        public bool Fast;
+
+        public void Click()
+        {
+            Time.timeScale = Fast ? 1 : 5;
+            Fast = !Fast;
+        }
     }
 }

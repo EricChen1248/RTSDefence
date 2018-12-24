@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Scripts.Entity_Components.Misc;
 using Scripts.Navigation;
 using UnityEngine;
@@ -11,22 +9,25 @@ namespace Scripts.Entity_Components.Attacks
         public int Damage = 20;
         public int Range = 5;
         public GameObject Smoke;
+        
+        public void FixedUpdate()
+        {
+            if (!(transform.position.y <= 0)) return;
+            var colliders = Physics.OverlapSphere(transform.position, Range,
+                RaycastHelper.LayerMaskDictionary["Enemies"]);
 
-        public void Start () {
-        }
-        public void FixedUpdate(){
-            if(transform.position.y <= 0){
-                var colliders = Physics.OverlapSphere(transform.position, Range, RaycastHelper.LayerMaskDictionary["Enemies"]);
-
-                foreach(var collider in colliders)
+            foreach (var collider in colliders)
+            {
+                var health = collider.GetComponent<HealthComponent>();
+                if (health != null)
                 {
-                    var health = collider.GetComponent<HealthComponent>();
-                    health?.Damage(Damage);
+                    health.Damage(Damage);
                 }
-                var smoke = Instantiate(Smoke);
-                smoke.transform.position = transform.position;
-                Destroy(this);
             }
+
+            var smoke = Instantiate(Smoke);
+            smoke.transform.position = transform.position;
+            Destroy(this);
         }
     }
 }

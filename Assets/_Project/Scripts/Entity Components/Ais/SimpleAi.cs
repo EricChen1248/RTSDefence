@@ -11,9 +11,9 @@ namespace Scripts.Entity_Components.Ais
     [DefaultExecutionOrder(-1)]
     public class SimpleAi : SingularAiBase
     {
-        protected EnemyComponent EnemyComponent;
-        protected EnemyData Data;
         protected Animator Animator;
+        protected EnemyData Data;
+        protected EnemyComponent EnemyComponent;
 
         public override void Start()
         {
@@ -29,7 +29,7 @@ namespace Scripts.Entity_Components.Ais
 
         public override void FindTarget()
         {
-            TargetTo(Target, force: true);
+            TargetTo(Target, true);
             Animator.SetBool("Walking", true);
         }
 
@@ -46,27 +46,19 @@ namespace Scripts.Entity_Components.Ais
                 var colliders = Physics.OverlapSphere(transform.position, Data.Radius, Data.TargetLayers);
 
                 if (colliders.Length > 0)
-                {
                     foreach (var collider in colliders)
                     {
                         var buildable = collider.gameObject.GetComponent<Buildable>();
                         if (buildable != null)
-                        {
                             if (buildable.Data.Types.Contains(DefenceType.Wall))
                             {
                                 if ((collider.transform.position - transform.position).sqrMagnitude > 1f)
                                 {
                                     continue;
                                 }
-                                else
-                                {
-                                    if ((collider.transform.position - transform.position).sqrMagnitude > 2)
-                                    {
-                                        continue;
-                                    }
-                                }
+
+                                if ((collider.transform.position - transform.position).sqrMagnitude > 2) continue;
                             }
-                        }
 
                         Agent.isStopped = true;
                         Animator.SetBool("Walking", false);
@@ -77,12 +69,8 @@ namespace Scripts.Entity_Components.Ais
                         StartCoroutine(Attack());
                         yield break;
                     }
-                }
 
-                for (var i = 0; i < 10; i++)
-                {
-                    yield return new WaitForFixedUpdate();
-                }
+                for (var i = 0; i < 10; i++) yield return new WaitForFixedUpdate();
             }
         }
 
@@ -103,10 +91,7 @@ namespace Scripts.Entity_Components.Ais
 
                 // If target no longer in range
                 var colliders = Physics.OverlapSphere(transform.position, radius, Data.TargetLayers);
-                if (!colliders.Contains(targetCollider))
-                {
-                    break;
-                }
+                if (!colliders.Contains(targetCollider)) break;
 
                 health.Damage(Data.Damage);
             }

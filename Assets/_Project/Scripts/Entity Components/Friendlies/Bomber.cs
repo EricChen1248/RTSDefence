@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-using System.Collections;
-using Scripts.GUI;
+﻿using System.Collections;
 using Scripts.Entity_Components.Misc;
+using Scripts.GUI;
 using Scripts.Navigation;
+using UnityEngine;
 
 namespace Scripts.Entity_Components.Friendlies
 {
@@ -18,7 +18,8 @@ namespace Scripts.Entity_Components.Friendlies
         {
             while (true)
             {
-                var colliders = Physics.OverlapSphere(transform.position, Radius, RaycastHelper.LayerMaskDictionary["Enemies"]);
+                var colliders = Physics.OverlapSphere(transform.position, Radius,
+                    RaycastHelper.LayerMaskDictionary["Enemies"]);
 
                 if (colliders.Length > 0)
                 {
@@ -29,10 +30,7 @@ namespace Scripts.Entity_Components.Friendlies
                     yield break;
                 }
 
-                for (var i = 0; i < 10; i++)
-                {
-                    yield return new WaitForFixedUpdate();
-                }
+                for (var i = 0; i < 10; i++) yield return new WaitForFixedUpdate();
             }
         }
 
@@ -43,7 +41,8 @@ namespace Scripts.Entity_Components.Friendlies
             yield return new WaitForSeconds(ReloadTime);
 
             // If target no longer in range
-            var colliders = Physics.OverlapSphere(transform.position, Radius, RaycastHelper.LayerMaskDictionary["Enemies"]);
+            var colliders =
+                Physics.OverlapSphere(transform.position, Radius, RaycastHelper.LayerMaskDictionary["Enemies"]);
             foreach (var collider in colliders)
             {
                 var health = collider.GetComponent<HealthComponent>();
@@ -56,4 +55,3 @@ namespace Scripts.Entity_Components.Friendlies
         }
     }
 }
-

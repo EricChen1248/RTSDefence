@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ammo: {fileID: 1993374003617124, guid: 4a1f107d52b4ddf4f905b8176c5d5b08, type: 2}
   Range: 5
-  FireRate: 2
+  FireRate: 0.2
   FieldOfView: 360
   AiState: 0
   Rotates: 1

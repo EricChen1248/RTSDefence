@@ -6,12 +6,12 @@ namespace Scripts.Navigation
     [DefaultExecutionOrder(-102)]
     public class NavigationBaker : MonoBehaviour
     {
-        public static NavigationBaker Instance { get; private set; }
         private NavMeshSurface[] _surface;
 
         private AsyncOperation[] _updateOps;
+        public static NavigationBaker Instance { get; private set; }
 
-        public void Start ()
+        public void Start()
         {
             Instance = this;
             _surface = GetComponents<NavMeshSurface>();
@@ -32,10 +32,7 @@ namespace Scripts.Navigation
 
         public void Build()
         {
-            foreach (var navMeshSurface in _surface)
-            {
-                navMeshSurface.BuildNavMesh();
-            }
+            foreach (var navMeshSurface in _surface) navMeshSurface.BuildNavMesh();
         }
     }
 }

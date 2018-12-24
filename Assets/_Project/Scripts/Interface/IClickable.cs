@@ -13,5 +13,4 @@ namespace Scripts.Interface
 
         void RightClick(Vector3 vec);
     }
-
 }

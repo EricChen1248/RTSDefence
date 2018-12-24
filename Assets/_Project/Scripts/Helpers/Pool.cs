@@ -7,7 +7,7 @@ namespace Scripts.Helpers
     public static class Pool
     {
         private static readonly Dictionary<string, Stack<GameObject>> ObjectPool;
-    
+
         static Pool()
         {
             ObjectPool = new Dictionary<string, Stack<GameObject>>();
@@ -38,18 +38,19 @@ namespace Scripts.Helpers
                 go.SetActive(true);
                 return go;
             }
-            catch (InvalidOperationException) {}
-            catch (KeyNotFoundException) {}
+            catch (InvalidOperationException)
+            {
+            }
+            catch (KeyNotFoundException)
+            {
+            }
 
             return null;
         }
-    
+
         private static void CheckPoolExists(string key)
         {
-            if (!ObjectPool.ContainsKey(key))
-            {
-                ObjectPool[key] = new Stack<GameObject>();
-            }
+            if (!ObjectPool.ContainsKey(key)) ObjectPool[key] = new Stack<GameObject>();
         }
     }
 }

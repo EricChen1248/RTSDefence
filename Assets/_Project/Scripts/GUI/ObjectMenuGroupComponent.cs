@@ -7,8 +7,9 @@ namespace Scripts.GUI
 {
     public class ObjectMenuGroupComponent : MonoBehaviour
     {
-        public static ObjectMenuGroupComponent Instance;
         public delegate void ClickEvent();
+
+        public static ObjectMenuGroupComponent Instance;
         public GameObject ButtonPrefab;
         public List<Button> Buttons;
 
@@ -52,10 +53,7 @@ namespace Scripts.GUI
             MenuController.Instance.MenuLowered();
             if (CoreController.MouseController.FocusedTypes.Count > 1)
             {
-                foreach (var item in CoreController.MouseController.FocusedTypes)
-                {
-                    print(item);
-                }
+                foreach (var item in CoreController.MouseController.FocusedTypes) print(item);
                 Hide();
                 return;
             }

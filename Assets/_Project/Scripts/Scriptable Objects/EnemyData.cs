@@ -5,15 +5,16 @@ namespace Scripts.Scriptable_Objects
     [CreateAssetMenu]
     public class EnemyData : ScriptableObject
     {
-        public int Health;
-        public float Radius;
-        [Tooltip("Default is 3.5")]
-        public float MovementSpeed = 3.5f;
         public int Damage = 10;
-        public LayerMask TargetLayers;
-        public float ReloadTime;
         public bool FindGroup;
+        public int Health;
+
+        [Tooltip("Default is 3.5")] public float MovementSpeed = 3.5f;
+
         public int Points = 10;
+        public float Radius;
+        public float ReloadTime;
+        public LayerMask TargetLayers;
 
         public EnemyType[] Types;
     }
@@ -26,6 +27,6 @@ namespace Scripts.Scriptable_Objects
         SuicideBomber,
         HardHitting,
         Fast,
-        Tank,
+        Tank
     }
 }

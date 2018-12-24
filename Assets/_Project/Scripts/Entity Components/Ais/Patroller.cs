@@ -8,12 +8,12 @@ namespace Scripts.Entity_Components.Ais
     [RequireComponent(typeof(NavMeshAgent))]
     public class Patroller : MonoBehaviour
     {
-        public List<PatrolPoint> PatrolPoints;
-        private int _currentPoint;
         private NavMeshAgent _agent;
+        private int _currentPoint;
+        public List<PatrolPoint> PatrolPoints;
 
         // Use this for initialization
-        public void Start ()
+        public void Start()
         {
             PatrolPoints = new List<PatrolPoint>();
             _agent = GetComponent<NavMeshAgent>();
@@ -36,7 +36,7 @@ namespace Scripts.Entity_Components.Ais
 
         public Vector3 GetNextPatrol()
         {
-            _currentPoint = (++_currentPoint) % PatrolPoints.Count;
+            _currentPoint = ++_currentPoint % PatrolPoints.Count;
             return PatrolPoints[_currentPoint].GetPoint;
         }
 
@@ -72,6 +72,5 @@ namespace Scripts.Entity_Components.Ais
                 _usesTransform = false;
             }
         }
-
     }
 }

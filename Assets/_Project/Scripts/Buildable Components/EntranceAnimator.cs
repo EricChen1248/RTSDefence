@@ -6,27 +6,42 @@ namespace Scripts.Buildable_Components
 {
     public class EntranceAnimator : MonoBehaviour
     {
-        public GameObject GameObject;
-        [Space]
-        public MoverType MoveType;
-        public DirectionType Direction;
-        public Transform ChangePivot;
-        [Space]
-        public int ChangeAmount;
-        public int ChangeSpeed;
-        public int PauseTime;
+        public enum DirectionType
+        {
+            Up,
+            Down,
+            Left,
+            Right,
+            Forward,
+            Back
+        }
+
+        public enum MoverType
+        {
+            Rotate,
+            Move,
+            Shrink
+        }
 
         private int _changed;
         private IEnumerator _openRoutine;
-        
+
+        [Space] public int ChangeAmount;
+
+        public Transform ChangePivot;
+        public int ChangeSpeed;
+        public DirectionType Direction;
+        public GameObject GameObject;
+
+        [Space] public MoverType MoveType;
+
+        public int PauseTime;
+
 
         // Update is called once per frame
-        private void OnTriggerEnter (Collider other)
+        private void OnTriggerEnter(Collider other)
         {
-            if (_openRoutine != null)
-            {
-                StopCoroutine(_openRoutine);
-            }
+            if (_openRoutine != null) StopCoroutine(_openRoutine);
 
             switch (MoveType)
             {
@@ -40,6 +55,7 @@ namespace Scripts.Buildable_Components
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
             StartCoroutine(_openRoutine);
         }
 
@@ -77,10 +93,7 @@ namespace Scripts.Buildable_Components
                 yield return new WaitForFixedUpdate();
             }
 
-            for (var i = 0; i < PauseTime; i++)
-            {
-                yield return new WaitForFixedUpdate();
-            }
+            for (var i = 0; i < PauseTime; i++) yield return new WaitForFixedUpdate();
 
             for (; _changed > 0; _changed--)
             {
@@ -89,23 +102,6 @@ namespace Scripts.Buildable_Components
             }
 
             _openRoutine = null;
-        }
-
-        public enum MoverType
-        {
-            Rotate,
-            Move,
-            Shrink
-        }
-
-        public enum DirectionType
-        {
-            Up,
-            Down,
-            Left,
-            Right,
-            Forward,
-            Back,
         }
     }
 }

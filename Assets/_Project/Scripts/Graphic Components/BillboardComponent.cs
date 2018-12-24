@@ -10,7 +10,6 @@ namespace Scripts.Graphic_Components
         private void Start()
         {
             _camera = Camera.main;
-
         }
 
         private void LateUpdate()

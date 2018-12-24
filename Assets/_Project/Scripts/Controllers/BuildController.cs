@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Scripts.Buildable_Components;
 using Scripts.Navigation;
+using Scripts.Scriptable_Objects;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using BuildData = Scripts.Scriptable_Objects.BuildData;
 
 namespace Scripts.Controllers
 {
@@ -12,86 +12,6 @@ namespace Scripts.Controllers
         #region Cheat Variables
 
         public bool NoGhost;
-
-        #endregion
-
-        #region Public Variables
-
-        public BuildData[] ActiveDefences;
-        public BuildData[] StaticDefences;
-        public BuildData[] Structure;
-        public BuildData[] Traps;
-        
-        public Dictionary<ScriptableObject, Dictionary<int, GameObject>> BuiltObjects;
-
-        #endregion
-
-        #region Private Variables
-
-        private GameObject _currentGameObject;
-        private GameObject _currentGhostModel;
-        private BuildData _currentData;
-
-        #endregion
-
-        #region Unity Callbacks
-        
-        // Use this for initialization
-        private void Start ()
-        {
-            enabled = false;
-            InitializeBuildDictionary();
-
-        }
-
-        // Update is called once per frame
-        private void Update()
-        {
-            if (EventSystem.current.IsPointerOverGameObject()) return;
-
-            var screenRect = new Rect(0, 0, Screen.width, Screen.height);
-            if (!screenRect.Contains(Input.mousePosition))
-                return;
-            // If right clicked
-            if (Input.GetMouseButtonDown(1))
-            {
-                DeselectBuild();
-            }
-            else if (Input.GetMouseButtonDown(0))
-            {
-                var script = _currentGhostModel.GetComponent<GhostModelScript>();
-                if (!script.CanBuild()) return;
-                var ghost = _currentGhostModel;
-                if (NoGhost)
-                {
-                    Build(_currentGhostModel);
-                }
-                else
-                {
-                    script.Activate();
-                }
-
-                _currentGhostModel = null;
-                CreateGhostModel();
-                _currentGhostModel.transform.rotation = ghost.transform.rotation;
-            }
-            else if (Input.GetKeyDown(KeyCode.E))
-            {
-                RotateGhostModel(vertical: false);
-            }
-            else if (Input.GetKeyDown(KeyCode.Q))
-            {
-                RotateGhostModel(vertical: true);
-            }
-            else
-            {
-                Vector3 mouseLocation;
-                if (RaycastHelper.TryMouseRaycastToGrid(out mouseLocation, RaycastHelper.LayerMaskDictionary["Buildable Surface"]))
-                {
-                    _currentGhostModel.transform.position = mouseLocation - new Vector3(0, -0.5f, 0) - _currentGhostModel.transform.rotation * _currentData.Offset;
-                }
-            }
-        }
 
         #endregion
 
@@ -132,24 +52,15 @@ namespace Scripts.Controllers
             Traps = UnityEngine.Resources.LoadAll<BuildData>("Prefabs/Buildables/TurretData/Traps");
 
             foreach (var activeDefence in ActiveDefences)
-            {
                 BuiltObjects[activeDefence] = new Dictionary<int, GameObject>();
-            }
 
             foreach (var staticDefence in StaticDefences)
-            {
                 BuiltObjects[staticDefence] = new Dictionary<int, GameObject>();
-            }
 
             foreach (var resourceCollector in Structure)
-            {
                 BuiltObjects[resourceCollector] = new Dictionary<int, GameObject>();
-            }
 
-            foreach (var trap in Traps)
-            {
-                BuiltObjects[trap] = new Dictionary<int, GameObject>();
-            }
+            foreach (var trap in Traps) BuiltObjects[trap] = new Dictionary<int, GameObject>();
         }
 
         private void DeselectBuild()
@@ -178,10 +89,7 @@ namespace Scripts.Controllers
             go.transform.rotation = ghostModel.transform.rotation;
 
             // Add newly built object to the dictionary list
-            if (!BuiltObjects.ContainsKey(_currentData))
-            {
-                BuiltObjects[_currentData] = new Dictionary<int, GameObject>();
-            }
+            if (!BuiltObjects.ContainsKey(_currentData)) BuiltObjects[_currentData] = new Dictionary<int, GameObject>();
             BuiltObjects[_currentData][go.GetInstanceID()] = go;
 
             Destroy(ghostModel);
@@ -193,6 +101,81 @@ namespace Scripts.Controllers
         {
             BuiltObjects[building.Data].Remove(building.ID);
         }
-        
+
+        #region Public Variables
+
+        public BuildData[] ActiveDefences;
+        public BuildData[] StaticDefences;
+        public BuildData[] Structure;
+        public BuildData[] Traps;
+
+        public Dictionary<ScriptableObject, Dictionary<int, GameObject>> BuiltObjects;
+
+        #endregion
+
+        #region Private Variables
+
+        private GameObject _currentGameObject;
+        private GameObject _currentGhostModel;
+        private BuildData _currentData;
+
+        #endregion
+
+        #region Unity Callbacks
+
+        // Use this for initialization
+        private void Start()
+        {
+            enabled = false;
+            InitializeBuildDictionary();
+        }
+
+        // Update is called once per frame
+        private void Update()
+        {
+            if (EventSystem.current.IsPointerOverGameObject()) return;
+
+            var screenRect = new Rect(0, 0, Screen.width, Screen.height);
+            if (!screenRect.Contains(Input.mousePosition))
+                return;
+            // If right clicked
+            if (Input.GetMouseButtonDown(1))
+            {
+                DeselectBuild();
+            }
+            else if (Input.GetMouseButtonDown(0))
+            {
+                var script = _currentGhostModel.GetComponent<GhostModelScript>();
+                if (!script.CanBuild()) return;
+                var ghost = _currentGhostModel;
+                if (NoGhost)
+                    Build(_currentGhostModel);
+                else
+                    script.Activate();
+
+                _currentGhostModel = null;
+                CreateGhostModel();
+                _currentGhostModel.transform.rotation = ghost.transform.rotation;
+            }
+            else if (Input.GetKeyDown(KeyCode.E))
+            {
+                RotateGhostModel(false);
+            }
+            else if (Input.GetKeyDown(KeyCode.Q))
+            {
+                RotateGhostModel(true);
+            }
+            else
+            {
+                Vector3 mouseLocation;
+                if (RaycastHelper.TryMouseRaycastToGrid(out mouseLocation,
+                    RaycastHelper.LayerMaskDictionary["Buildable Surface"]))
+                    _currentGhostModel.transform.position =
+                        mouseLocation - new Vector3(0, -0.5f, 0) -
+                        _currentGhostModel.transform.rotation * _currentData.Offset;
+            }
+        }
+
+        #endregion
     }
 }

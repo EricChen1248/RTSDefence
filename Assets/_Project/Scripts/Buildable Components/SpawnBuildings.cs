@@ -1,32 +1,29 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections;
-using Scripts.GUI;
 using System.Collections.Generic;
-using Scripts.Interface;
 using Scripts.Controllers;
-using System;
 using Scripts.Entity_Components.Friendlies;
+using Scripts.GUI;
 using Scripts.Resources;
+using UnityEngine;
 
 namespace Scripts.Buildable_Components
 {
     public class SpawnBuildings : Buildable
     {
-        [SerializeField]
-        public SpawnObject[] Objects;
-        public Vector3 SpawnPosition;
+        private readonly Dictionary<SpawnObject, int> _spawnCount = new Dictionary<SpawnObject, int>();
 
         private readonly Queue<SpawnObject> _spawnList = new Queue<SpawnObject>();
-        private readonly Dictionary<SpawnObject, int> _spawnCount = new Dictionary<SpawnObject, int>();
         private bool _spawning;
+
+        [SerializeField] public SpawnObject[] Objects;
+
+        public Vector3 SpawnPosition;
 
         public override void Start()
         {
             base.Start();
-            foreach (var obj in Objects)
-            {
-                _spawnCount[obj] = 0;
-            }
+            foreach (var obj in Objects) _spawnCount[obj] = 0;
         }
 
         public void OnMouseDown()
@@ -38,10 +35,7 @@ namespace Scripts.Buildable_Components
         {
             base.Focus();
             HasFocus = true;
-            if (CoreController.MouseController.FocusedItem.Count == 1)
-            {
-                UpdateGui();
-            }
+            if (CoreController.MouseController.FocusedItem.Count == 1) UpdateGui();
         }
 
         public override void LostFocus()
@@ -97,8 +91,8 @@ namespace Scripts.Buildable_Components
                 omg.SetButtonImage(i + 1, obj.Texture);
             }
         }
-
     }
+
     [Serializable]
     public struct SpawnObject
     {

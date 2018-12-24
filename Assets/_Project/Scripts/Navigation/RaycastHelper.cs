@@ -7,19 +7,15 @@ namespace Scripts.Navigation
     [DefaultExecutionOrder(-999)]
     public class RaycastHelper : MonoBehaviour
     {
-        public LayerMasks[] LayerMasks;
-
         public static Dictionary<string, LayerMask> LayerMaskDictionary;
         private static Camera _camera;
+        public LayerMasks[] LayerMasks;
 
         public void Start()
         {
             _camera = Camera.main;
             LayerMaskDictionary = new Dictionary<string, LayerMask>();
-            foreach (var layerMasks in LayerMasks)
-            {
-                LayerMaskDictionary[layerMasks.Name] = layerMasks.Layers;
-            }
+            foreach (var layerMasks in LayerMasks) LayerMaskDictionary[layerMasks.Name] = layerMasks.Layers;
         }
 
         public static bool TryMouseRaycast(out Vector3 results, LayerMask layerMask)
@@ -59,17 +55,15 @@ namespace Scripts.Navigation
         public static int IndexFromMask(int mask)
         {
             for (var i = 0; i < 32; ++i)
-            {
                 if (1 << i == mask)
                     return i;
-            }
 
             return -1;
         }
 
         public static bool InLayer(LayerMask mask, int layer)
         {
-            return (mask == (mask | (1 << layer)));
+            return mask == (mask | (1 << layer));
         }
     }
 

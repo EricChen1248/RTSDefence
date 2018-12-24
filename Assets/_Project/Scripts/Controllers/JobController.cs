@@ -12,10 +12,11 @@ namespace Scripts.Controllers
         private LinkedList<Job> _jobQueue;
 
         private Queue<Worker> _workers;
+
         // Use this for initialization
-        private void Start ()
+        private void Start()
         {
-		    _jobQueue = new LinkedList<Job>();
+            _jobQueue = new LinkedList<Job>();
             _workers = new Queue<Worker>();
             _instance = this;
         }

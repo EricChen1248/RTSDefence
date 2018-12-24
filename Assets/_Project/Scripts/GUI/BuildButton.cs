@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Scripts.GUI
 {
-    public class BuildButton : MonoBehaviour {
-
+    public class BuildButton : MonoBehaviour
+    {
         public GameObject GameObject;
 
         public void ClickEvent()

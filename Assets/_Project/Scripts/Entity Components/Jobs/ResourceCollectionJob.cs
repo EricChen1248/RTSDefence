@@ -10,18 +10,19 @@ namespace Scripts.Entity_Components.Jobs
 {
     public class ResourceCollectionJob : Job
     {
-        // private resource collection;
-        private readonly Worker _sender;
         private readonly NodeManager _node;
 
-        private JobPhase _currentPhase;
+        // private resource collection;
+        private readonly Worker _sender;
 
-        public ResourceTypes HeldResourceType;
-        public int HeldCount;
+        private JobPhase _currentPhase;
 
         private bool _hasResources;
 
         private GameObject _rhp;
+        public int HeldCount;
+
+        public ResourceTypes HeldResourceType;
 
         public ResourceCollectionJob(Worker sender, NodeManager node)
         {
@@ -47,7 +48,7 @@ namespace Scripts.Entity_Components.Jobs
                     throw new ArgumentOutOfRangeException($"{_sender} has invalid job phase {_currentPhase}");
             }
         }
-        
+
 
         public override void CancelJob()
         {
@@ -57,12 +58,10 @@ namespace Scripts.Entity_Components.Jobs
         private IEnumerator MoveToResource()
         {
             _sender.MoveToLocationOnGrid(_node.transform.position);
-            
+
             var sqrRadius = _node.CollectionRadius * _node.CollectionRadius;
             while ((_sender.transform.position - _node.transform.position).sqrMagnitude > sqrRadius)
-            {
                 yield return new WaitForFixedUpdate();
-            }
             _sender.DoingJob = false;
             _currentPhase = JobPhase.Collecting;
             _sender.Stop();
@@ -98,7 +97,8 @@ namespace Scripts.Entity_Components.Jobs
 
         private IEnumerator DepositResource()
         {
-            _rhp.GetComponent<ResourceHolderComponent>().MoveTo(_rhp.transform.position, CoreController.Instance.CoreGameObject.transform.position, 1.5f);
+            _rhp.GetComponent<ResourceHolderComponent>().MoveTo(_rhp.transform.position,
+                CoreController.Instance.CoreGameObject.transform.position, 1.5f);
             yield return new WaitForSeconds(2);
 
             ResourceController.AddResource(HeldResourceType, HeldCount);
@@ -111,10 +111,7 @@ namespace Scripts.Entity_Components.Jobs
         {
             var corePos = CoreController.Instance.CoreGameObject.transform.position;
             _sender.MoveToLocationOnGrid(corePos);
-            while ((_sender.transform.position - corePos).sqrMagnitude > 11)
-            {
-                yield return new WaitForFixedUpdate();
-            }
+            while ((_sender.transform.position - corePos).sqrMagnitude > 11) yield return new WaitForFixedUpdate();
 
             _sender.DoingJob = false;
             _currentPhase = JobPhase.Depositing;

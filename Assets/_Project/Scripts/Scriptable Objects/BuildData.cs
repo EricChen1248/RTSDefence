@@ -1,6 +1,6 @@
 ﻿using System;
-using Scripts.Resources;
 using Scripts.Buildable_Components;
+using Scripts.Resources;
 using UnityEngine;
 
 namespace Scripts.Scriptable_Objects
@@ -8,21 +8,20 @@ namespace Scripts.Scriptable_Objects
     [CreateAssetMenu]
     public class BuildData : ScriptableObject
     {
-        public string Name;
+        public int BuildTime;
+        public bool CanRotateHorizontal;
+        public bool CanRotateVertical;
+        public Vector3 ColliderOffset;
         public GameObject GhostModel;
 
         public int Health;
+        public string Name;
 
         public Vector3 Offset;
-        public Vector3 Size;
-        public Vector3 ColliderOffset;
-        public bool CanRotateHorizontal;
-        public bool CanRotateVertical;
 
         public int Points;
-
-        public int BuildTime;
         public RecipeItem[] Recipe;
+        public Vector3 Size;
 
         public DefenceType[] Types;
     }

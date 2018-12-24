@@ -1,9 +1,9 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Linq;
 using Scripts.Entity_Components.Misc;
 using Scripts.Navigation;
-using System.Linq;
 using Scripts.Towers;
+using UnityEngine;
 
 namespace Scripts.Entity_Components.Friendlies
 {
@@ -26,11 +26,9 @@ namespace Scripts.Entity_Components.Friendlies
                 yield return new WaitForSeconds(ReloadTime);
 
                 // If target no longer in range
-                var colliders = Physics.OverlapSphere(transform.position, radius, RaycastHelper.LayerMaskDictionary["Enemies"]);
-                if (!colliders.Contains(targetCollider))
-                {
-                    break;
-                }
+                var colliders = Physics.OverlapSphere(transform.position, radius,
+                    RaycastHelper.LayerMaskDictionary["Enemies"]);
+                if (!colliders.Contains(targetCollider)) break;
 
                 var ammo = Instantiate(Ammo, transform);
                 var script = ammo.GetComponent<AmmoBase>();
@@ -41,7 +39,7 @@ namespace Scripts.Entity_Components.Friendlies
                 script.Target = go.transform;
                 script.Fire();
             }
-            
+
 
             StopCoroutine(rotate);
             StartCoroutine(CheckCollision());

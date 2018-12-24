@@ -1,20 +1,20 @@
-﻿using UnityEngine;
+﻿using Scripts.Interface;
+using UnityEngine;
 using UnityEngine.EventSystems;
-using Scripts.Interface;
 
 namespace Scripts.Controllers
 {
     [DefaultExecutionOrder(0)]
     public class UnitSelectionController : MonoBehaviour
     {
-        private bool _isSelecting;
         private bool _isMoving;
-        private Vector3 _mousePosition;
-        public Color RectangleColor;
-        public Color BorderColor;
-        public IClickable SingleSelect;
+        private bool _isSelecting;
 
         private Camera _mainCam;
+        private Vector3 _mousePosition;
+        public Color BorderColor;
+        public Color RectangleColor;
+        public IClickable SingleSelect;
 
         public void Start()
         {
@@ -42,16 +42,12 @@ namespace Scripts.Controllers
 
             if (!Input.GetMouseButtonUp(0)) return;
             if (_isSelecting && _isMoving)
-            {
                 foreach (var m in FindObjectsOfType<MonoBehaviour>())
                 {
                     var clickable = m as IClickable;
                     if (clickable != null && IsInSelectionBox(m.transform))
-                    {
                         CoreController.MouseController.AddFocus(clickable);
-                    }
                 }
-            }
 
             _isSelecting = false;
         }
@@ -63,12 +59,10 @@ namespace Scripts.Controllers
             RectUtil.DrawScreenRect(rect, RectangleColor);
             RectUtil.DrawScreenRectBorder(rect, 2, BorderColor);
         }
+
         public bool IsInSelectionBox(Transform t)
         {
-            if (!_isSelecting)
-            {
-                return false;
-            }
+            if (!_isSelecting) return false;
 
             var viewportBound = RectUtil.GetViewportBound(_mainCam, _mousePosition, Input.mousePosition);
             return viewportBound.Contains(_mainCam.WorldToViewportPoint(t.position));

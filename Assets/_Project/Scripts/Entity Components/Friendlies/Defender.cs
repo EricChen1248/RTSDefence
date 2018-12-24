@@ -1,29 +1,24 @@
-﻿using UnityEngine;
-using System.Collections;
-using Scripts.Navigation;
-using Scripts.Entity_Components.Misc;
+﻿using System.Collections;
 using System.Linq;
+using Scripts.Entity_Components.Misc;
+using Scripts.Navigation;
+using UnityEngine;
+
 namespace Scripts.Entity_Components.Friendlies
 {
     public class Defender : PlayerComponent
     {
-        public float Radius;
-        public int Damage;
-        public float ReloadTime;
-        
-        public IEnumerator CheckingDistance;
         public IEnumerator CheckingCollision;
+
+        public IEnumerator CheckingDistance;
+        public int Damage;
+        public float Radius;
+        public float ReloadTime;
 
         public override void MoveToLocation(Vector3 target)
         {
-            if (CheckingDistance != null)
-            {
-                StopCoroutine(CheckingDistance);
-            }
-            if (CheckingCollision != null)
-            {
-                StopCoroutine(CheckingCollision);
-            }
+            if (CheckingDistance != null) StopCoroutine(CheckingDistance);
+            if (CheckingCollision != null) StopCoroutine(CheckingCollision);
 
             Agent.destination = target;
             CheckingDistance = CheckDistanceRoutine();
@@ -31,12 +26,13 @@ namespace Scripts.Entity_Components.Friendlies
 
             Agent.isStopped = false;
         }
-        
+
         protected virtual IEnumerator CheckCollision()
         {
             while (true)
             {
-                var colliders = Physics.OverlapSphere(transform.position, Radius, RaycastHelper.LayerMaskDictionary["Enemies"]);
+                var colliders = Physics.OverlapSphere(transform.position, Radius,
+                    RaycastHelper.LayerMaskDictionary["Enemies"]);
 
                 if (colliders.Length > 0)
                 {
@@ -44,10 +40,7 @@ namespace Scripts.Entity_Components.Friendlies
                     yield break;
                 }
 
-                for (var i = 0; i < 10; i++)
-                {
-                    yield return new WaitForFixedUpdate();
-                }
+                for (var i = 0; i < 10; i++) yield return new WaitForFixedUpdate();
             }
         }
 
@@ -66,11 +59,9 @@ namespace Scripts.Entity_Components.Friendlies
                 yield return new WaitForSeconds(ReloadTime);
 
                 // If target no longer in range
-                var colliders = Physics.OverlapSphere(transform.position, radius, RaycastHelper.LayerMaskDictionary["Enemies"]);
-                if (!colliders.Contains(targetCollider))
-                {
-                    break;
-                }
+                var colliders = Physics.OverlapSphere(transform.position, radius,
+                    RaycastHelper.LayerMaskDictionary["Enemies"]);
+                if (!colliders.Contains(targetCollider)) break;
                 health.Damage(Damage);
             }
 
@@ -103,16 +94,13 @@ namespace Scripts.Entity_Components.Friendlies
             var destination = Agent.destination;
             while (true)
             {
-                if ((transform.position - destination).sqrMagnitude < 3f)
-                {
-                    break;
-                }
+                if ((transform.position - destination).sqrMagnitude < 3f) break;
                 yield return new WaitForFixedUpdate();
             }
+
             CheckingDistance = null;
             CheckingCollision = CheckCollision();
             StartCoroutine(CheckingCollision);
         }
-
     }
 }

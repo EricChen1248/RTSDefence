@@ -5,7 +5,9 @@ namespace Scripts.Resources
     public class Allocate : MonoBehaviour
     {
         private GameObject _resourceGameObject;
+
         public Terrain WorldTerrain;
+
         // Use this for initialization
         public void Start()
         {
@@ -19,8 +21,10 @@ namespace Scripts.Resources
             InstantiateRandomPosition("Prefabs/Resources/Nodes/coal", 200, 20, 256f, 5);
             InstantiateRandomPosition("Prefabs/Resources/Nodes/Gold", 100, 20, 256f, 5);
         }
-        
-        public void InstantiateRandomPosition (string resource, int amount, int groupCount, float minSize, int groupRadius) {
+
+        public void InstantiateRandomPosition(string resource, int amount, int groupCount, float minSize,
+            int groupRadius)
+        {
             // define variable
             // loop through the amount
             // generate random position
@@ -31,11 +35,8 @@ namespace Scripts.Resources
             {
                 var radius = Random.Range(5, WorldTerrain.terrainData.size.x / 2);
                 var groupPos = Random.insideUnitCircle * radius;
-            
-                if (groupPos.sqrMagnitude < minSize)
-                {
-                    continue;
-                }
+
+                if (groupPos.sqrMagnitude < minSize) continue;
 
                 var randomPosition = new Vector3(groupPos.x, 0, groupPos.y);
 
@@ -49,10 +50,7 @@ namespace Scripts.Resources
                 }
 
                 i += groupCount;
-
             } while (i < amount);
-
-		
         }
     }
 }

@@ -6,20 +6,16 @@ namespace Scripts.Resources
 {
     public class ResourceHolderComponent : MonoBehaviour
     {
-        public GameObject ModelHolder;
+        public int HeldCount;
 
         public ResourceTypes HeldResource;
-
-        public int HeldCount;
+        public GameObject ModelHolder;
 
         public void ChangeResources(ResourceTypes type, int count)
         {
             HeldResource = type;
             HeldCount = count;
-            foreach (Transform child in ModelHolder.transform)
-            {
-                Destroy(child.gameObject);
-            }
+            foreach (Transform child in ModelHolder.transform) Destroy(child.gameObject);
 
             var model = Instantiate(ResourceController.ModelDictionary[type]);
             model.transform.parent = ModelHolder.transform;
@@ -39,8 +35,6 @@ namespace Scripts.Resources
                 transform.position = Vector3.Lerp(start, end, i / seconds);
                 yield return new WaitForSeconds(0.01f);
             }
-
         }
-    
     }
 }

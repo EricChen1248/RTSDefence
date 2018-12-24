@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class CircularProgress : MonoBehaviour
+namespace Scripts.GUI
 {
-    public Image loading;
-
-    public void UpdateProgress(float percentage)
+    public class CircularProgress : MonoBehaviour
     {
-        loading.fillAmount = percentage;
+        public Image loading;
+
+        public void UpdateProgress(float percentage)
+        {
+            loading.fillAmount = percentage;
+        }
     }
 }

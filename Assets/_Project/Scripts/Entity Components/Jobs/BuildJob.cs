@@ -13,19 +13,26 @@ namespace Scripts.Entity_Components.Jobs
 {
     public class BuildJob : Job
     {
-        private readonly Queue<RecipeItem> _recipe;
         private readonly GhostModelScript _ghost;
+        private readonly Queue<RecipeItem> _recipe;
 
         private BuildJobPhase _currentPhase;
         private GameObject _resourceHolder;
 
         public bool AtDestination;
-        
+
         public BuildJob(GhostModelScript ghost)
         {
             _ghost = ghost;
             _recipe = new Queue<RecipeItem>(ghost.Recipe);
             _currentPhase = BuildJobPhase.CollectingResources;
+        }
+
+        private enum BuildJobPhase
+        {
+            Building,
+            CollectingResources,
+            DeliveringResources
         }
 
         #region IJob Interface Methods
@@ -61,7 +68,8 @@ namespace Scripts.Entity_Components.Jobs
             var collider = _ghost.GetComponent<Collider>();
             while (true)
             {
-                var colliders = Physics.OverlapSphere(Worker.transform.position, 2f, 1 << LayerMask.NameToLayer("GhostModel"));
+                var colliders = Physics.OverlapSphere(Worker.transform.position, 2f,
+                    1 << LayerMask.NameToLayer("GhostModel"));
                 if (colliders.Contains(collider)) break;
 
                 yield return new WaitForFixedUpdate();
@@ -76,7 +84,6 @@ namespace Scripts.Entity_Components.Jobs
 
             _currentPhase = _recipe.Count > 0 ? BuildJobPhase.CollectingResources : BuildJobPhase.Building;
             Worker.DoWork(this);
-            Worker.Agent.isStopped = false;
         }
 
         private IEnumerator CollectingResources()
@@ -103,7 +110,8 @@ namespace Scripts.Entity_Components.Jobs
                 Worker.Agent.isStopped = false;
                 while (true)
                 {
-                    var colliders = Physics.OverlapSphere(Worker.transform.position, 2f, 1 << LayerMask.NameToLayer("Core"));
+                    var colliders = Physics.OverlapSphere(Worker.transform.position, 2f,
+                        1 << LayerMask.NameToLayer("Core"));
                     if (colliders.Length > 0) break;
                     yield return new WaitForFixedUpdate();
                 }
@@ -111,7 +119,9 @@ namespace Scripts.Entity_Components.Jobs
                 yield return new WaitForSeconds(1);
 
 
-                _resourceHolder = Object.Instantiate(UnityEngine.Resources.Load<GameObject>("Prefabs/Entities/Resource Holder"), Worker.transform);
+                _resourceHolder =
+                    Object.Instantiate(UnityEngine.Resources.Load<GameObject>("Prefabs/Entities/Resource Holder"),
+                        Worker.transform);
 
                 _resourceHolder.GetComponent<ResourceHolderComponent>().ChangeResources(res.Resource, res.Amount);
 
@@ -137,6 +147,7 @@ namespace Scripts.Entity_Components.Jobs
                 yield return new WaitForSeconds(0.1f);
                 _ghost.DoWork();
             }
+
             CoreController.BuildController.Build(_ghost.transform.gameObject);
             CompleteJob();
             Worker.GetComponent<Animator>().SetBool("Building", false);
@@ -144,13 +155,5 @@ namespace Scripts.Entity_Components.Jobs
         }
 
         #endregion
-
-        private enum BuildJobPhase
-        {
-            Building,
-            CollectingResources,
-            DeliveringResources
-        }
     }
-
 }

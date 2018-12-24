@@ -4,8 +4,8 @@ namespace Scripts.Entity_Components.Ais
 {
     public abstract class SingularAiBase : AiBase
     {
-        protected GameObject TempTarget;
         protected bool StopTemp;
+        protected GameObject TempTarget;
 
         public abstract void StopTempTarget();
 

@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 
-namespace Scripts.Entity_Components
+namespace Scripts.Entity_Components.Misc
 {
     public class FieldOfViewComponent : MonoBehaviour
     {
-        public float ViewRadius;
-        [Range(0, 360)]
-        public float ViewAngle;
-
         public LayerMask TargetMask;
+
+        [Range(0, 360)] public float ViewAngle;
+
+        public float ViewRadius;
 
         public Collider FindClosestTarget()
         {
@@ -37,7 +37,7 @@ namespace Scripts.Entity_Components
         public bool TargetInField(Vector3 target)
         {
             var dirToTarget = Vector3.ProjectOnPlane(target - transform.position, Vector3.up);
-            return (Vector3.Angle(transform.forward, dirToTarget.normalized) < ViewAngle / 2);
+            return Vector3.Angle(transform.forward, dirToTarget.normalized) < ViewAngle / 2;
         }
 
         private static bool InLayerMask(LayerMask layerMask, int layer)

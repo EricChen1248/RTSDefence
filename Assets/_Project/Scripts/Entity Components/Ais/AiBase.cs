@@ -1,6 +1,6 @@
-﻿using Scripts.Controllers;
+﻿using System;
+using Scripts.Controllers;
 using Scripts.Entity_Components.Misc;
-using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,24 +10,22 @@ namespace Scripts.Entity_Components.Ais
     [RequireComponent(typeof(NavMeshAgent))]
     public abstract class AiBase : MonoBehaviour
     {
-        public GameObject Target;
-        public float ReloadTime;
         protected NavMeshAgent Agent;
+        public float ReloadTime;
+        public GameObject Target;
 
-        [HideInInspector]
-        public LayerMask TargetingLayers;
+        [HideInInspector] public LayerMask TargetingLayers;
 
         public virtual void Start()
         {
-            GetComponent<HealthComponent>().OnDeath += (e) => Destroy(gameObject);
+            GetComponent<HealthComponent>().OnDeath += e => Destroy(gameObject);
         }
 
         public abstract void FindTarget();
+
         public virtual bool TargetTo(GameObject obj, bool force)
         {
-            if (!InLayerMask(TargetingLayers, obj.layer) && !force){
-                return false;
-            }
+            if (!InLayerMask(TargetingLayers, obj.layer) && !force) return false;
             Target = obj;
             //Agent.CalculatePath(Target.transform.position, Agent.path);
             Agent.SetDestination(Target.transform.position);
@@ -43,7 +41,10 @@ namespace Scripts.Entity_Components.Ais
         {
             var x = 125 - Math.Abs(transform.position.x);
             var z = 125 - Math.Abs(transform.position.z);
-            Agent.destination = x > z ? new Vector3(transform.position.x > 0 ? 125 : -125, 0, transform.position.z) : new Vector3(transform.position.x, 0, transform.position.z > 0 ? 125 : -125);
+            Agent.destination =
+                x > z
+                    ? new Vector3(transform.position.x > 0 ? 125 : -125, 0, transform.position.z)
+                    : new Vector3(transform.position.x, 0, transform.position.z > 0 ? 125 : -125);
         }
 
         public virtual void OnDestroy()

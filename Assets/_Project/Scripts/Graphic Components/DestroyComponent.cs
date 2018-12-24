@@ -1,33 +1,36 @@
-﻿using Scripts.Navigation;
-using System.Collections;
+﻿using System.Collections;
+using Scripts.Navigation;
 using UnityEngine;
 
-public class DestroyComponent : MonoBehaviour
+namespace Scripts.Graphic_Components
 {
-    public float size;
-    public void Start()
+    public class DestroyComponent : MonoBehaviour
     {
-        StartCoroutine(DestroyRoutine());
-    }
+        public float size;
 
-    private IEnumerator DestroyRoutine()
-    {
-        var collider = GetComponent<Collider>();
-        collider.enabled = false;
-
-        var start = transform.position;
-        var end = start + Vector3.down * size;
-        for (int i = 0; i < 30; i++)
+        public void Start()
         {
-            var change = start + Random.insideUnitSphere * 0.5f;
-            change.y = Vector3.Slerp(start, end, i / 30f).y;
-            transform.position = change;
-            yield return new WaitForFixedUpdate();
+            StartCoroutine(DestroyRoutine());
         }
 
-        Destroy(gameObject);
+        private IEnumerator DestroyRoutine()
+        {
+            var collider = GetComponent<Collider>();
+            collider.enabled = false;
 
-        NavigationBaker.Instance.Rebuild();
+            var start = transform.position;
+            var end = start + Vector3.down * size;
+            for (var i = 0; i < 30; i++)
+            {
+                var change = start + Random.insideUnitSphere * 0.5f;
+                change.y = Vector3.Slerp(start, end, i / 30f).y;
+                transform.position = change;
+                yield return new WaitForFixedUpdate();
+            }
+
+            Destroy(gameObject);
+
+            NavigationBaker.Instance.Rebuild();
+        }
     }
-
 }

@@ -7,14 +7,14 @@ namespace Scripts.GUI
 {
     public class MenuButton : MonoBehaviour
     {
+        private float _downY;
+
+        private IEnumerator _heightRoutine;
+
+        private bool _isUp;
         public GameObject Menu;
 
         public float UpY;
-        private float _downY;
-
-        private bool _isUp;
-
-        private IEnumerator _heightRoutine;
 
         private void Start()
         {

@@ -9,25 +9,35 @@ using Scripts.Navigation;
 using Scripts.Scriptable_Objects;
 using UnityEngine;
 using Object = UnityEngine.Object;
+
 namespace Scripts.Towers
 {
     [DefaultExecutionOrder(0)]
     public class TurretBase : Buildable
     {
-        public GameObject FireSpot;
-        public TurretData TurretData;
-
-        private Collider[] _inRangeTargets;
-        private Collider _currentTarget;
-
-        private Vector3 _lastTargetPosition = Vector3.zero;
-        private Quaternion _targetRotation;
-
         private readonly IEnumerator _shootingRoutine;
 
-        private GameObject _range;
+        private readonly Dictionary<AiStates, string> _stateString = new Dictionary<AiStates, string>
+        {
+            {AiStates.FIRST, "First"},
+            {AiStates.NEAREST, "Nearest"},
+            {AiStates.FURTHEST, "Furthest"},
+            {AiStates.WEAKEST, "Weakest"},
+            {AiStates.STRONGEST, "Strongest"}
+        };
 
-        private AiStates State;
+        private Collider _currentTarget;
+
+        private Collider[] _inRangeTargets;
+
+        private Vector3 _lastTargetPosition = Vector3.zero;
+
+        private GameObject _range;
+        private Quaternion _targetRotation;
+        public GameObject FireSpot;
+
+        private AiStates _state;
+        public TurretData TurretData;
 
         public TurretBase()
         {
@@ -38,7 +48,7 @@ namespace Scripts.Towers
         {
             base.Start();
             StartCoroutine(CheckEnterRange());
-            State = TurretData.AiState;
+            _state = TurretData.AiState;
         }
 
         public override void Focus()
@@ -50,21 +60,13 @@ namespace Scripts.Towers
             UpdateGui();
         }
 
-        private readonly Dictionary<AiStates, string> StateString = new Dictionary<AiStates, string>()
-        {
-            {AiStates.FIRST,"First"},        
-            {AiStates.NEAREST,"Nearest"},
-            {AiStates.FURTHEST,"Furthest"},
-            {AiStates.WEAKEST,"Weakest"},
-            {AiStates.STRONGEST,"Strongest"}
-        };
-
         private void UpdateGui()
         {
             var omg = ObjectMenuGroupComponent.Instance;
-            omg.SetButton(1, StateString[State], ToggleFiringState);
+            omg.SetButton(1, _stateString[_state], ToggleFiringState);
             omg.SetButtonImage(1, UnityEngine.Resources.Load<Texture>("Sprites/reticle"));
         }
+
         public override void LostFocus()
         {
             base.LostFocus();
@@ -73,22 +75,22 @@ namespace Scripts.Towers
 
         public void ToggleFiringState()
         {
-            switch (State)
+            switch (_state)
             {
                 case AiStates.FIRST:
-                    State = AiStates.NEAREST;
+                    _state = AiStates.NEAREST;
                     break;
                 case AiStates.NEAREST:
-                    State = AiStates.FURTHEST;
+                    _state = AiStates.FURTHEST;
                     break;
                 case AiStates.FURTHEST:
-                    State = AiStates.WEAKEST;
+                    _state = AiStates.WEAKEST;
                     break;
                 case AiStates.WEAKEST:
-                    State = AiStates.STRONGEST;
+                    _state = AiStates.STRONGEST;
                     break;
                 case AiStates.STRONGEST:
-                    State = AiStates.FIRST;
+                    _state = AiStates.FIRST;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -96,16 +98,13 @@ namespace Scripts.Towers
 
             UpdateGui();
         }
-        
+
 
         #region Targetting Functions
 
         private void TargetFirst()
         {
-            if (!_inRangeTargets.Contains(_currentTarget))
-            {
-                _currentTarget = null;
-            }
+            if (!_inRangeTargets.Contains(_currentTarget)) _currentTarget = null;
 
             if (_currentTarget != null) return;
 
@@ -125,7 +124,7 @@ namespace Scripts.Towers
                 var dist = Vector3.Distance(transform.position, target.transform.position);
                 if (nearest)
                 {
-                   if (!(dist < curDistance)) continue;
+                    if (!(dist < curDistance)) continue;
                 }
                 else
                 {
@@ -151,7 +150,7 @@ namespace Scripts.Towers
             foreach (var target in _inRangeTargets)
             {
                 var healthComp = target.GetComponent<HealthComponent>();
-                var health = (float)healthComp.Health / healthComp.MaxHealth;
+                var health = (float) healthComp.Health / healthComp.MaxHealth;
                 if (highest)
                 {
                     if (!(health > targetHealth)) continue;
@@ -171,18 +170,19 @@ namespace Scripts.Towers
             StopCoroutine(_shootingRoutine);
             _currentTarget = curTarget;
             StartCoroutine(_shootingRoutine);
-
         }
 
         #endregion
+
         #region Coroutines
-        
+
         private IEnumerator Shoot()
         {
             StartCoroutine(RotateToTarget());
             while (_currentTarget != null)
             {
-                var angle = Quaternion.Angle(transform.rotation, Quaternion.LookRotation(_currentTarget.transform.position - transform.position));
+                var angle = Quaternion.Angle(transform.rotation,
+                    Quaternion.LookRotation(_currentTarget.transform.position - transform.position));
                 if (angle < TurretData.FieldOfView)
                 {
                     var go = TurretData.SpawnAmmo(FireSpot.transform);
@@ -212,9 +212,8 @@ namespace Scripts.Towers
                 }
 
                 if (transform.rotation != _targetRotation)
-                {
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, _targetRotation, 100 * Time.deltaTime);
-                }
+                    transform.rotation =
+                        Quaternion.RotateTowards(transform.rotation, _targetRotation, 100 * Time.deltaTime);
                 yield return new WaitForFixedUpdate();
             }
         }
@@ -223,37 +222,34 @@ namespace Scripts.Towers
         {
             while (true)
             {
-                _inRangeTargets = Physics.OverlapSphere(transform.position, TurretData.Range, RaycastHelper.LayerMaskDictionary["Enemies"]);
+                _inRangeTargets = Physics.OverlapSphere(transform.position, TurretData.Range,
+                    RaycastHelper.LayerMaskDictionary["Enemies"]);
 
-                switch (State)
+                switch (_state)
                 {
                     case AiStates.FIRST:
                         TargetFirst();
                         break;
                     case AiStates.NEAREST:
-                        TargetDistance(nearest: true);
+                        TargetDistance(true);
                         break;
                     case AiStates.FURTHEST:
-                        TargetDistance(nearest: false);
+                        TargetDistance(false);
                         break;
                     case AiStates.WEAKEST:
-                        TargetHealth(highest: false);
+                        TargetHealth(false);
                         break;
                     case AiStates.STRONGEST:
-                        TargetHealth(highest: true);
+                        TargetHealth(true);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
 
-                for (var i = 0; i < 10; i++)
-                {
-                    yield return new WaitForFixedUpdate();
-                }
+                for (var i = 0; i < 10; i++) yield return new WaitForFixedUpdate();
             }
         }
 
-
         #endregion
-}
+    }
 }

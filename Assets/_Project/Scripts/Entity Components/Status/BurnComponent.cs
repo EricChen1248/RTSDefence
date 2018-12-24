@@ -7,12 +7,12 @@ namespace Scripts.Entity_Components.Status
     [RequireComponent(typeof(HealthComponent))]
     public class BurnComponent : MonoBehaviour
     {
-
         public int Damage = 3;
 
         public int Duration = 5;
+
         // Use this for initialization
-        private void Start ()
+        private void Start()
         {
             StartCoroutine(BurnDamage());
         }

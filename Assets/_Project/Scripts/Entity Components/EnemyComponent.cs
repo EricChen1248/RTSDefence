@@ -13,8 +13,8 @@ namespace Scripts.Entity_Components
     [RequireComponent(typeof(SingularAiBase))]
     public class EnemyComponent : MonoBehaviour
     {
-        private AiBase _ai;
         private NavMeshAgent _agent;
+        private AiBase _ai;
         private GroupFinder _gf;
 
         public EnemyData Data;
@@ -31,7 +31,7 @@ namespace Scripts.Entity_Components
             _ai = GetComponent<AiBase>();
             _ai.TargetingLayers = Data.TargetLayers;
             _ai.ReloadTime = Data.ReloadTime;
-            
+
             if (Data.FindGroup)
             {
                 _gf = GetComponent<GroupFinder>();
@@ -39,7 +39,7 @@ namespace Scripts.Entity_Components
             }
 
             Radius = Data.Radius;
-            
+
             //_ai.FindTarget();
         }
     }

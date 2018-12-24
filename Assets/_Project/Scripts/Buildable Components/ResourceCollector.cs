@@ -1,30 +1,47 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Scripts.Controllers;
+using Scripts.Entity_Components.Friendlies;
 using Scripts.GUI;
 using Scripts.Interface;
 using Scripts.Resources;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEngine.GameObject;
-using Object = UnityEngine.Object;
 
 namespace Scripts.Buildable_Components
 {
     public class ResourceCollector : Buildable, IClickable
     {
-        public ResourceTypes ResourceType;
-        public Texture tex;
-        public GameObject Gatherer;
-
-        public int CollectionRadius;
-        public List<ResourceNode> Nodes;
         private readonly List<ResourceGatherer> Gatherers = new List<ResourceGatherer>();
         private GameObject _range;
 
+        public int CollectionRadius;
+
 
         private ResourceNode CurrentNode;
+        public GameObject Gatherer;
+        public List<ResourceNode> Nodes;
+        public ResourceTypes ResourceType;
+        public Texture tex;
+
+        public override void Focus()
+        {
+            base.Focus();
+
+            _range = Instantiate(UnityEngine.Resources.Load<GameObject>("Prefabs/Map Objects/RangeShower"), transform);
+            _range.transform.localScale = new Vector3(CollectionRadius * 2, 5, CollectionRadius * 2);
+
+
+            var omg = ObjectMenuGroupComponent.Instance;
+            omg.SetButton(1, "Respawn", SpawnNew);
+            omg.SetButtonImage(1, tex);
+        }
+
+        public override void LostFocus()
+        {
+            HasFocus = false;
+            Object.Destroy(_range);
+        }
 
         public override void Start()
         {
@@ -37,28 +54,24 @@ namespace Scripts.Buildable_Components
 
         public void OnDestroy()
         {
-            if (CurrentNode != null)
-            {
-                CurrentNode.Collectors.Remove(this);
-            }
+            if (CurrentNode != null) CurrentNode.Collectors.Remove(this);
         }
 
         private void GetResourceInRange()
         {
-            var overlaps = Physics.OverlapSphere(transform.position, CollectionRadius, 1 << LayerMask.NameToLayer("Resource"));
+            var overlaps = Physics.OverlapSphere(transform.position, CollectionRadius,
+                1 << LayerMask.NameToLayer("Resource"));
 
             Nodes = new List<ResourceNode>();
             foreach (var overlap in overlaps)
             {
                 var node = overlap.GetComponent<ResourceNode>();
                 if (node != null)
-                {
                     if (node.Type == ResourceType)
                     {
                         Nodes.Add(node);
                         node.Collectors.Add(this);
                     }
-                }
             }
         }
 
@@ -67,7 +80,7 @@ namespace Scripts.Buildable_Components
             var prefab = UnityEngine.Resources.Load<GameObject>("Prefabs/Entities/Friendlies/Gatherer");
             prefab.transform.position = transform.forward * -2.5f;
 
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 var obj = Instantiate(prefab, transform);
                 obj.GetComponent<NavMeshAgent>().enabled = true;
@@ -94,39 +107,18 @@ namespace Scripts.Buildable_Components
                 minDist = dist;
             }
         }
+
         public void NotifyNodeDestroy(ResourceNode node)
         {
             Nodes.Remove(node);
             if (CurrentNode != node) return;
             GetClosestNode();
-            foreach (var gatherer in Gatherers)
-            {
-                gatherer.Node = CurrentNode;
-            }
+            foreach (var gatherer in Gatherers) gatherer.Node = CurrentNode;
         }
 
         public void OnMouseDown()
         {
             CoreController.MouseController.SetFocus(this);
-        }
-
-        public override void Focus()
-        {
-            base.Focus();
-
-            _range = Instantiate(UnityEngine.Resources.Load<GameObject>("Prefabs/Map Objects/RangeShower"), transform);
-            _range.transform.localScale = new Vector3(CollectionRadius * 2, 5, CollectionRadius * 2);
-
-
-            var omg = ObjectMenuGroupComponent.Instance;
-            omg.SetButton(1, "Respawn", SpawnNew);
-            omg.SetButtonImage(1, tex);
-        }
-
-        public override void LostFocus()
-        {
-            HasFocus = false;
-            Object.Destroy(_range);
         }
 
         private void SpawnNew()
@@ -136,14 +128,11 @@ namespace Scripts.Buildable_Components
             ResourceController.AddResource(ResourceTypes.Gold, -2);
             StartCoroutine(SpawnGatherer(1));
         }
+
         public override void Destroy()
         {
-            foreach (var gatherer in Gatherers)
-            {
-                Destroy(gatherer.gameObject);
-            }
+            foreach (var gatherer in Gatherers) Destroy(gatherer.gameObject);
             base.Destroy(true);
         }
-        
     }
 }

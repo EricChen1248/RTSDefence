@@ -182,7 +182,7 @@ MonoBehaviour:
   Parent: {fileID: 0}
   Damage: 2
   Type: 2
-  Speed: 5
+  Speed: 10
 --- !u!198 &198793251836617476
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -1,0 +1,263 @@
+fileFormatVersion: 2
+guid: 36b622c6ab7226a48be0403fe68372f4
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Arrow
+    100004: blend_root
+    100006: body_armature
+    100008: Bone
+    100010: Bone.001
+    100012: Bone.001_end
+    100014: Bone.002
+    100016: Bone.003
+    100018: Bone.004
+    100020: Bone.004_end
+    100022: Bone.005
+    100024: Bone.006
+    100026: Bone.006_end
+    100028: Bone.007
+    100030: Bone.007_end
+    100032: Bone.009
+    100034: Bone.010
+    100036: Bone.010_end
+    100038: Camera
+    100040: Cube.008
+    100042: Cylinder
+    100044: Hat
+    100046: Head
+    100048: Lamp
+    100050: Lefthand
+    100052: Righthand
+    400000: //RootNode
+    400002: Arrow
+    400004: blend_root
+    400006: body_armature
+    400008: Bone
+    400010: Bone.001
+    400012: Bone.001_end
+    400014: Bone.002
+    400016: Bone.003
+    400018: Bone.004
+    400020: Bone.004_end
+    400022: Bone.005
+    400024: Bone.006
+    400026: Bone.006_end
+    400028: Bone.007
+    400030: Bone.007_end
+    400032: Bone.009
+    400034: Bone.010
+    400036: Bone.010_end
+    400038: Camera
+    400040: Cube.008
+    400042: Cylinder
+    400044: Hat
+    400046: Head
+    400048: Lamp
+    400050: Lefthand
+    400052: Righthand
+    2000000: Camera
+    2100000: Material__Axe_png0001_png
+    2100002: Material.006
+    2100004: Material.007
+    2100006: Material.008
+    2100008: Material.009
+    2100010: Material.010
+    2100012: Material.011
+    2100014: Material.012
+    2100016: Material.004
+    2100018: Material.005
+    2100020: Material.013
+    2100022: "\u6750\u8CEA.002"
+    2100024: "\u6750\u8CEA.003"
+    2100026: "\u6750\u8CEA"
+    2100028: "\u6750\u8CEA.004"
+    2100030: "\u6750\u8CEA.001"
+    2300000: Cube.008
+    3300000: Cube.008
+    4300000: Cube.008
+    4300002: Arrow
+    4300004: Lefthand
+    4300006: Righthand
+    4300008: Cylinder
+    4300010: Hat
+    4300012: Head
+    7400000: body_armature|body_armatureAction
+    7400002: body_armature|Cube.008|Default Take|Layer0
+    7400004: Cube.008|Cube.008|Default Take|Layer0
+    9500000: //RootNode
+    10800000: Lamp
+    13700000: Arrow
+    13700002: Cylinder
+    13700004: Hat
+    13700006: Head
+    13700008: Lefthand
+    13700010: Righthand
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: body_armature|body_armatureAction
+      takeName: body_armature|body_armatureAction
+      firstFrame: 0
+      lastFrame: 19
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: body_armature|Cube.008|Default Take|Layer0
+      takeName: body_armature|Cube.008|Default Take|Layer0
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Cube.008|Cube.008|Default Take|Layer0
+      takeName: Cube.008|Cube.008|Default Take|Layer0
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,13 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEditor;
 using UnityEngine;
 
-public class ClickOnQuit : MonoBehaviour {
-    public void Quit()
+namespace Scripts.GUI
+{
+    public class ClickOnQuit : MonoBehaviour
     {
+        public void Quit()
+        {
 #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
+            EditorApplication.isPlaying = false;
 #endif
-        Application.Quit();
+            Application.Quit();
+        }
     }
 }

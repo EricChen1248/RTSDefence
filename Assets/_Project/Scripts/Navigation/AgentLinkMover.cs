@@ -16,8 +16,8 @@ namespace Scripts.Navigation
     [RequireComponent(typeof(NavMeshAgent))]
     public class AgentLinkMover : MonoBehaviour
     {
-        public OffMeshLinkMoveMethod MMethod = OffMeshLinkMoveMethod.Parabola;
         public AnimationCurve MCurve = new AnimationCurve();
+        public OffMeshLinkMoveMethod MMethod = OffMeshLinkMoveMethod.Parabola;
 
         private IEnumerator Start()
         {
@@ -46,6 +46,7 @@ namespace Scripts.Navigation
 
                     agent.CompleteOffMeshLink();
                 }
+
                 yield return null;
             }
         }
@@ -56,7 +57,8 @@ namespace Scripts.Navigation
             var endPos = data.endPos + Vector3.up * agent.baseOffset;
             while (agent.transform.position != endPos)
             {
-                agent.transform.position = Vector3.MoveTowards(agent.transform.position, endPos, agent.speed * Time.deltaTime);
+                agent.transform.position =
+                    Vector3.MoveTowards(agent.transform.position, endPos, agent.speed * Time.deltaTime);
                 yield return null;
             }
         }

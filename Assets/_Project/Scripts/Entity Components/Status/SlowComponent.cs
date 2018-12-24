@@ -1,6 +1,4 @@
 using System.Collections;
-using Scripts.Entity_Components.Misc;
-using Scripts.Entity_Components.Friendlies;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,11 +6,12 @@ namespace Scripts.Entity_Components.Status
 {
     public class SlowComponent : MonoBehaviour
     {
+        public int Duration = 5;
+
         public float Slow = 2.0f;
 
-        public int Duration = 5;
         // Use this for initialization
-        private void Start ()
+        private void Start()
         {
             StartCoroutine(SlowDown());
         }

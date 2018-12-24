@@ -2,16 +2,16 @@
 
 namespace Scripts.Controllers
 {
-    public class AIController : MonoBehaviour {
-
+    public class AIController : MonoBehaviour
+    {
         // Use this for initialization
-        private void Start () {
-		
+        private void Start()
+        {
         }
-	
+
         // Update is called once per frame
-        private void Update () {
-		
+        private void Update()
+        {
         }
     }
 }

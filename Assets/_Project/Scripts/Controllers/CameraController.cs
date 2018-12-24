@@ -6,17 +6,18 @@ namespace Scripts.Controllers
     [DefaultExecutionOrder(0)]
     public class CameraController : MonoBehaviour
     {
-        public GameObject MainCamHolder;
-        public Camera MinimapCamera;
-
-        public Camera MainCamera { get; private set; }
+        private const float MovementChange = 10;
 
         private Vector3 _lastMouse;
         private bool _middleButtonDown;
-        
-        private const float MovementChange = 10;
-        public Vector3 MinimumHeight = new Vector3(0, 1, 0);
+
+        private IEnumerator _moveAnimator;
+        public GameObject MainCamHolder;
         public float MaximumHeight = 10f;
+        public Camera MinimapCamera;
+        public Vector3 MinimumHeight = new Vector3(0, 1, 0);
+
+        public Camera MainCamera { get; private set; }
 
         public void Start()
         {
@@ -27,7 +28,7 @@ namespace Scripts.Controllers
         public void FixedUpdate()
         {
             // Mouse middle click 
-            if (_middleButtonDown) 
+            if (_middleButtonDown)
             {
                 var change = Input.mousePosition - _lastMouse;
                 transform.RotateAround(transform.position, Vector3.up, change.x);
@@ -45,7 +46,8 @@ namespace Scripts.Controllers
             // Mouse scroll
             var scrollChange = Input.mouseScrollDelta.y * -2f;
             // Clamp to top and bottom angle
-            if (MainCamHolder.transform.eulerAngles.x + scrollChange <= 80 && MainCamHolder.transform.eulerAngles.x + scrollChange >= 25)
+            if (MainCamHolder.transform.eulerAngles.x + scrollChange <= 80 &&
+                MainCamHolder.transform.eulerAngles.x + scrollChange >= 25)
             {
                 MainCamHolder.transform.RotateAround(transform.position, transform.right, scrollChange);
                 MainCamera.orthographicSize += scrollChange;
@@ -58,35 +60,21 @@ namespace Scripts.Controllers
         private Vector3 GetBaseInput()
         {
             var pVelocity = new Vector3();
-            if (Input.GetKey(KeyCode.D))
-            {
-                pVelocity += transform.right;
-            }
-            if (Input.GetKey(KeyCode.A))
-            {
-                pVelocity -= transform.right;
-            }
+            if (Input.GetKey(KeyCode.D)) pVelocity += transform.right;
+            if (Input.GetKey(KeyCode.A)) pVelocity -= transform.right;
 
             if (Input.GetKey(KeyCode.W))
-            {
                 pVelocity += Vector3.Normalize(transform.forward - new Vector3(0, transform.forward.y, 0)) * 2;
-            }
 
             if (Input.GetKey(KeyCode.S))
-            {
                 pVelocity -= Vector3.Normalize(transform.forward - new Vector3(0, transform.forward.y, 0)) * 2;
-            }
 
             return pVelocity;
         }
 
-        private IEnumerator _moveAnimator;
         public void MoveCam(float xChange, float yChange)
         {
-            if (_moveAnimator != null)
-            {
-                StopCoroutine(_moveAnimator);
-            }
+            if (_moveAnimator != null) StopCoroutine(_moveAnimator);
 
             _moveAnimator = MoveEnumerator(xChange, yChange);
             StartCoroutine(_moveAnimator);
@@ -120,6 +108,5 @@ namespace Scripts.Controllers
         {
             StartCoroutine(MoveEnumerator(location));
         }
-        
     }
 }

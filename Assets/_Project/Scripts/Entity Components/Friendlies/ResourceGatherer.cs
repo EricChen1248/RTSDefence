@@ -1,144 +1,141 @@
-﻿using Scripts.Buildable_Components;
+﻿using System;
+using System.Collections;
+using Scripts.Buildable_Components;
 using Scripts.Controllers;
 using Scripts.Resources;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
-public class ResourceGatherer : MonoBehaviour
+namespace Scripts.Entity_Components.Friendlies
 {
-
-    public ResourceCollector Collector;
-    public ResourceNode Node;
-
-    private Animator _animator;
-    private IEnumerator _collectionRoutine;
-    private GameObject Holders;
-    private int resourceMask;
-    private int collectorMask;
-
-    private Resource resource = new Resource();
-
-    private bool _delivering = false;
-    // Use this for initialization
-    public void Start()
+    [RequireComponent(typeof(NavMeshAgent))]
+    public class ResourceGatherer : MonoBehaviour
     {
-        _collectionRoutine = Collect();
-        _animator = GetComponent<Animator>();
+        private Animator _animator;
+        private IEnumerator _collectionRoutine;
 
-        resourceMask = 1 << LayerMask.NameToLayer("Resource");
-        collectorMask = 1 << LayerMask.NameToLayer("Resource Collection");
-    }
+        private bool _delivering;
 
-    private IEnumerator Collect()
-    {
-        var agent = GetComponent<NavMeshAgent>();
-        var holder = Resources.Load<GameObject>("Prefabs/Entities/Resource Holder");
+        public ResourceCollector Collector;
+        private int collectorMask;
+        private GameObject Holders;
+        public ResourceNode Node;
 
-        while (Node != null)
+        private Resource resource;
+
+        private int resourceMask;
+
+        // Use this for initialization
+        public void Start()
         {
-            if (!_delivering)
+            _collectionRoutine = Collect();
+            _animator = GetComponent<Animator>();
+
+            resourceMask = 1 << LayerMask.NameToLayer("Resource");
+            collectorMask = 1 << LayerMask.NameToLayer("Resource Collection");
+        }
+
+        private IEnumerator Collect()
+        {
+            var agent = GetComponent<NavMeshAgent>();
+            var holder = UnityEngine.Resources.Load<GameObject>("Prefabs/Entities/Resource Holder");
+
+            while (Node != null)
             {
-                agent.isStopped = false;
-                _animator.SetBool("Walking", true);
-                agent.destination = Node.transform.position;
-                var oldNode = Node;
-                while (Node != null)
+                if (!_delivering)
                 {
-                    if (AtResourceNode()) break;
-                    if (oldNode != Node) agent.destination = Node.transform.position;
-                    yield return new WaitForFixedUpdate();
+                    agent.isStopped = false;
+                    _animator.SetBool("Walking", true);
+                    agent.destination = Node.transform.position;
+                    var oldNode = Node;
+                    while (Node != null)
+                    {
+                        if (AtResourceNode()) break;
+                        if (oldNode != Node) agent.destination = Node.transform.position;
+                        yield return new WaitForFixedUpdate();
+                    }
+
+                    if (Node != null)
+                    {
+                        resource = Node.GetResource();
+                        Holders = Instantiate(holder, transform);
+                        Holders.transform.localPosition = Vector3.up * 0.5f + Vector3.forward * 0.5f;
+                        Holders.GetComponent<ResourceHolderComponent>().ChangeResources(resource.Type, resource.Count);
+                        agent.isStopped = true;
+                        _animator.SetBool("Walking", false);
+                        _delivering = true;
+                    }
                 }
+
                 if (Node != null)
                 {
-                    resource = Node.GetResource();
-                    Holders = Instantiate(holder, transform);
-                    Holders.transform.localPosition = Vector3.up * 0.5f + Vector3.forward * 0.5f;
-                    Holders.GetComponent<ResourceHolderComponent>().ChangeResources(resource.Type, resource.Count);
+                    yield return new WaitForSeconds(1);
+                    agent.isStopped = false;
+                    _animator.SetBool("Walking", true);
+                    agent.destination = Collector.transform.position;
+
+                    while (true)
+                    {
+                        if (AtCollector()) break;
+                        yield return new WaitForFixedUpdate();
+                    }
+
                     agent.isStopped = true;
                     _animator.SetBool("Walking", false);
-                    _delivering = true;
+                    _delivering = false;
+                    ResourceController.AddResource(resource.Type, resource.Count);
+
+                    yield return new WaitForSeconds(1);
+                    Destroy(Holders);
+                    Holders = null;
+
+                    yield return new WaitForSeconds(1);
                 }
             }
-            if (Node != null)
+
+            agent.isStopped = false;
+            _animator.SetBool("Walking", true);
+            agent.destination = Collector.transform.position;
+
+            while (true)
             {
-                yield return new WaitForSeconds(1);
-                agent.isStopped = false;
-                _animator.SetBool("Walking", true);
-                agent.destination = Collector.transform.position;
-
-                while (true)
-                {
-                    if (AtCollector()) break;
-                    yield return new WaitForFixedUpdate();
-                }
-
-                agent.isStopped = true;
-                _animator.SetBool("Walking", false);
-                _delivering = false;
-                ResourceController.AddResource(resource.Type, resource.Count);
-
-                yield return new WaitForSeconds(1);
-                Destroy(Holders);
-                Holders = null;
-
-                yield return new WaitForSeconds(1);
+                if (AtCollector()) break;
+                yield return new WaitForFixedUpdate();
             }
+
+            _animator.SetBool("Walking", false);
+            agent.isStopped = true;
         }
 
-        agent.isStopped = false;
-        _animator.SetBool("Walking", true);
-        agent.destination = Collector.transform.position;
-
-        while (true)
+        public void GatherNewResource()
         {
-            if (AtCollector()) break;
-            yield return new WaitForFixedUpdate();
+            StartCoroutine(_collectionRoutine);
         }
 
-        _animator.SetBool("Walking", false);
-        agent.isStopped = true;
-    }
-
-    public void GatherNewResource()
-    {
-        StartCoroutine(_collectionRoutine);
-    }
-
-    private bool AtResourceNode()
-    {
-        try
+        private bool AtResourceNode()
         {
-            var overlaps = Physics.OverlapSphere(transform.position, 1.5f, resourceMask);
-            foreach (var col in overlaps)
+            try
             {
-                if (col.GetComponent<ResourceNode>() == Node)
-                {
-                    return true;
-                }
+                var overlaps = Physics.OverlapSphere(transform.position, 1.5f, resourceMask);
+                foreach (var col in overlaps)
+                    if (col.GetComponent<ResourceNode>() == Node)
+                        return true;
+                return false;
             }
-            return false;
-        }
-        catch (Exception)
-        {
-            // Resource Node is gone, return true
-            return true;
-        }
-    }
-
-    private bool AtCollector()
-    {
-        var overlaps = Physics.OverlapSphere(transform.position, 1f, collectorMask);
-        foreach (var col in overlaps)
-        {
-            if (col.GetComponent<ResourceCollector>() == Collector)
+            catch (Exception)
             {
+                // Resource Node is gone, return true
                 return true;
             }
         }
-        return false;
+
+        private bool AtCollector()
+        {
+            var overlaps = Physics.OverlapSphere(transform.position, 1f, collectorMask);
+            foreach (var col in overlaps)
+                if (col.GetComponent<ResourceCollector>() == Collector)
+                    return true;
+            return false;
+        }
     }
 }

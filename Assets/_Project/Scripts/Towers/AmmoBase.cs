@@ -4,10 +4,10 @@ namespace Scripts.Towers
 {
     public abstract class AmmoBase : MonoBehaviour
     {
-        public Transform Target;
+        public int Damage;
         public LayerMask Layer;
         public Transform Parent;
-        public int Damage;
+        public Transform Target;
         public abstract void Fire();
     }
 }

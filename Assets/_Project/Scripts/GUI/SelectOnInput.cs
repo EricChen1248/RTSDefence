@@ -1,28 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SelectOnInput : MonoBehaviour
+namespace Scripts.GUI
 {
-    public EventSystem eventSystem;
-    public GameObject selectedObject;
-
-    private bool buttonSelected;
-  
-    void Update()
+    public class SelectOnInput : MonoBehaviour
     {
-        if(Input.GetAxisRaw("Vertical") != 0 && buttonSelected == false)
+        private bool buttonSelected;
+        public EventSystem eventSystem;
+        public GameObject selectedObject;
+
+        private void Update()
         {
-            eventSystem.SetSelectedGameObject(selectedObject);
-            buttonSelected = true;
+            if (Input.GetAxisRaw("Vertical") != 0 && buttonSelected == false)
+            {
+                eventSystem.SetSelectedGameObject(selectedObject);
+                buttonSelected = true;
+            }
+        }
+
+        private void OnDisable()
+        {
+            buttonSelected = false;
         }
     }
-
-    private void OnDisable()
-    {
-        buttonSelected = false;
-    }
-    
-
 }

@@ -8,18 +8,14 @@ namespace Scripts.Entity_Components
     [DefaultExecutionOrder(-2)]
     public class GroupComponent : MonoBehaviour
     {
+        private GroupDataProperty _groupProperty;
         public GroupData Data;
 
         //Member is modified by GroupFinder, not by GroupComponent itself.
         public HashSet<Transform> Member;
 
-        public class GroupDataProperty{
-            public List<String> Characteristics;
-        }
-
-        private GroupDataProperty _groupProperty;
-
-        public List<String> Characteristics(){
+        public List<string> Characteristics()
+        {
             return _groupProperty.Characteristics;
         }
 
@@ -36,28 +32,27 @@ namespace Scripts.Entity_Components
             return true;
         }
 
-        public void ApplyFunc<T>(System.Func<Transform, T> func)
+        public void ApplyFunc<T>(Func<Transform, T> func)
         {
             //func cannot modify Member
-            foreach (var member in Member)
-            {
-                func(member);
-            }
+            foreach (var member in Member) func(member);
         }
 
         public void ClearMember()
         {
             //make a copy MemberList so that KickedOut() can modify Member
             var memberList = new List<Transform>(Member);
-            foreach (var member in memberList)
-            {
-                member.GetComponent<GroupFinder>().KickedOut();
-            }
+            foreach (var member in memberList) member.GetComponent<GroupFinder>().KickedOut();
         }
 
         private void OnDestroy()
         {
             //ClearMember(); //only call from GroupFinder
+        }
+
+        public class GroupDataProperty
+        {
+            public List<string> Characteristics;
         }
     }
 }

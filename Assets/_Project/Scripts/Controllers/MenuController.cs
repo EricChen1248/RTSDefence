@@ -3,12 +3,13 @@ using UnityEngine;
 
 namespace Scripts.Controllers
 {
-    public class MenuController : MonoBehaviour {
-
-        public static MenuController Instance { get; private set; }
+    public class MenuController : MonoBehaviour
+    {
         private MenuButton _currentMenu;
 
-        private void Start ()
+        public static MenuController Instance { get; private set; }
+
+        private void Start()
         {
             Instance = this;
         }
@@ -26,6 +27,5 @@ namespace Scripts.Controllers
             if (_currentMenu != null) _currentMenu.Animate();
             _currentMenu = null;
         }
-
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Scripts.Helpers
 {
@@ -30,6 +31,6 @@ namespace Scripts.Helpers
             return Mathf.Clamp(value, Min, Max);
         }
 
-        public float RandomValue => UnityEngine.Random.Range(Min, Max);
+        public float RandomValue => Random.Range(Min, Max);
     }
 }
