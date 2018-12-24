@@ -86,7 +86,6 @@ GameObject:
   - component: {fileID: 114744732351458012}
   - component: {fileID: 114906979861464472}
   - component: {fileID: 95026750117323314}
-  - component: {fileID: 54927106177101668}
   m_Layer: 10
   m_Name: Scout
   m_TagString: Untagged
@@ -1823,21 +1822,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1857449664050202}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54927106177101668
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1080053786728032}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &65427787701664410
 BoxCollider:
   m_ObjectHideFlags: 1
