@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79c16c28ee67174aa844ff357c6fa73, type: 3}
   m_Name: Bomb Tower Turret
   m_EditorClassIdentifier: 
-  Ammo: {fileID: 1019541406015898, guid: a458641e8b7b45d4db1cfab20b28df29, type: 2}
-  Range: 5
-  FireRate: 4
-  FieldOfView: 360
   AiState: 0
+  Ammo: {fileID: 1019541406015898, guid: a458641e8b7b45d4db1cfab20b28df29, type: 2}
+  FieldOfView: 60
+  FireRate: 4
+  Range: 5
   Rotates: 1

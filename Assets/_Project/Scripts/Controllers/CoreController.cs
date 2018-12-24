@@ -7,8 +7,9 @@ namespace Scripts.Controllers
     public class CoreController : MonoBehaviour
     {
         public static Dictionary<string, List<GameObject>> EntityDictionary;
-
+        [HideInInspector]
         public GameObject CoreGameObject;
+        [HideInInspector]
         public GameObject GroupsGameObject;
         public static CoreController Instance { get; private set; }
         public static BuildController BuildController { get; private set; }

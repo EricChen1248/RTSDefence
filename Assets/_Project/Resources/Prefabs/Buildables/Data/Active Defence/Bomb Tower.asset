@@ -11,16 +11,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 584233384e22c2c42bafa39ac866ae61, type: 3}
   m_Name: Bomb Tower
   m_EditorClassIdentifier: 
-  Name: Bomb Tower
-  GhostModel: {fileID: 1115011073446234, guid: a43ca9a9b224744f896ead5a97a930d2, type: 2}
-  Health: 900
-  Offset: {x: 0, y: 0.5, z: 0}
-  Size: {x: 1, y: 3, z: 1}
-  ColliderOffset: {x: 0, y: 1, z: 0}
+  BuildTime: 150
   CanRotateHorizontal: 1
   CanRotateVertical: 0
+  ColliderOffset: {x: 0, y: 1, z: 0}
+  GhostModel: {fileID: 1404815243725332, guid: a1e311192690d9b4c8197c79e3d243d6, type: 2}
+  Health: 900
+  Name: Bomb Tower
+  Offset: {x: 0, y: 0.5, z: 0}
   Points: 100
-  BuildTime: 150
   Recipe:
   - Resource: 0
     Amount: 50
@@ -28,4 +27,5 @@ MonoBehaviour:
     Amount: 30
   - Resource: 2
     Amount: 50
+  Size: {x: 1, y: 3, z: 1}
   Types: 

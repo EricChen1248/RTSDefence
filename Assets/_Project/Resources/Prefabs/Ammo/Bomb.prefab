@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4527458258627594}
   - component: {fileID: 114458690803910726}
   - component: {fileID: 114988955340732456}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4580735463398108}
   - component: {fileID: 33434611884481882}
   - component: {fileID: 23061439878949374}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Grenade_Body_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4872395021583820}
   - component: {fileID: 33262563181592878}
   - component: {fileID: 23116772253432246}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Grenade_Hinge_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 4957937351043232}
   - component: {fileID: 33286520718467736}
   - component: {fileID: 23562183450170122}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Grenade_Pin_pin_coil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 4994269761542170}
   - component: {fileID: 33884221672208204}
   - component: {fileID: 23357131214909646}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Grenade_Pin_Cylinder_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,8 +103,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1019541406015898}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.028015137, y: 0.30835435, z: -11.285866}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4580735463398108}
   - {fileID: 4872395021583820}
@@ -344,15 +344,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0902449c458390545a89ccbc9da4cd88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
+  Damage: 0
   Layer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 3072
   Parent: {fileID: 0}
-  Damage: 0
-  Height: 2
+  Target: {fileID: 0}
   Acceleration: 0.01
-  Type: 2
+  Height: 2
+  Type: 3
 --- !u!114 &114988955340732456
 MonoBehaviour:
   m_ObjectHideFlags: 1

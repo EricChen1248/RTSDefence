@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 114691872737206128}
   - component: {fileID: 65362302041500382}
   m_Layer: 13
-  m_Name: Lightning
+  m_Name: Lightning Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

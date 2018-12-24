@@ -11,16 +11,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 584233384e22c2c42bafa39ac866ae61, type: 3}
   m_Name: Fire Arrow Tower
   m_EditorClassIdentifier: 
-  Name: Archer Tower
-  GhostModel: {fileID: 1321205004436844, guid: 880689be85e1442789af5c6e989f20e1, type: 2}
-  Health: 800
-  Offset: {x: 0, y: 0.5, z: 0}
-  Size: {x: 2, y: 2, z: 2}
-  ColliderOffset: {x: 0, y: 1, z: 0}
+  BuildTime: 100
   CanRotateHorizontal: 1
   CanRotateVertical: 0
+  ColliderOffset: {x: 0, y: 1, z: 0}
+  GhostModel: {fileID: 1580521080667094, guid: 49f9a743845b341c299d5869bbc17772, type: 2}
+  Health: 800
+  Name: Archer Tower
+  Offset: {x: 0, y: 0.5, z: 0}
   Points: 100
-  BuildTime: 100
   Recipe:
   - Resource: 1
     Amount: 30
@@ -28,4 +27,5 @@ MonoBehaviour:
     Amount: 30
   - Resource: 2
     Amount: 30
+  Size: {x: 2, y: 2, z: 2}
   Types: 0400000001000000

@@ -29,7 +29,7 @@ namespace Scripts.GUI
                 comp.AssignImage(ResourceController.Instance.SpriteDictionary[resourceType]);
             }
 
-            ResourceController.UpdateGUI();
+            ResourceController.UpdateGui();
         }
 
         public void UpdateGui(Dictionary<ResourceTypes, int> resourceCount)

@@ -895,12 +895,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738fb9a7b13688445b9bd6afc1c9cbc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 3.5
   Animator: {fileID: 0}
+  Agent: {fileID: 0}
   DoingJob: 0
-  ResourceCount: 0
-  Radius: 10
+  ResourceCount: 3
+  Speed: 3.5
   Damage: 10
+  Radius: 10
   ReloadTime: 0.775
   Ammo: {fileID: 1993374003617124, guid: 5b1d0c6c6f01b4d45bec448d0b84bfc2, type: 2}
 --- !u!114 &114118656854479982
@@ -925,8 +926,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9901572aad2848741955aeeaa549593e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthBarComponent: {fileID: 0}
   Health: 100
+  HealthBarComponent: {fileID: 0}
 --- !u!114 &114931802295975372
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 4969925536145236}
   - component: {fileID: 114562351524391874}
   - component: {fileID: 96049486221048848}
+  - component: {fileID: 114849233568353656}
   m_Layer: 22
   m_Name: Lightning
   m_TagString: Untagged
@@ -111,13 +112,13 @@ TrailRenderer:
   m_Time: 0.5
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 1
+    widthMultiplier: 0.1
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.07792282
+        value: 0.30624962
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -175,14 +176,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59b0a60baaf48e40bd7d01c1e0d1647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
+  Damage: 5
   Layer:
     serializedVersion: 2
     m_Bits: 3072
   Parent: {fileID: 0}
-  Damage: 2
+  Target: {fileID: 0}
+  Speed: 20
   Type: 2
-  Speed: 10
+--- !u!114 &114849233568353656
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1993374003617124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a93b164a542b85645b0d60a006124ff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NumberOfOtherVictim: 2
+  Range: 5
 --- !u!198 &198793251836617476
 ParticleSystem:
   m_ObjectHideFlags: 1

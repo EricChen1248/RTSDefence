@@ -16,14 +16,13 @@ namespace Scripts.Controllers
         }
 
         public static AudioController Instance;
+        [SerializeField] public AudioFile[] Files;
+
         private AudioState _state;
 
+        private readonly Dictionary<string, AudioClip> _audioDictionary = new Dictionary<string, AudioClip>();
+        private AudioSource _audioSource;
 
-        private readonly Dictionary<string, AudioClip> audioDictionary = new Dictionary<string, AudioClip>();
-
-        private AudioSource audioSource;
-
-        [SerializeField] public AudioFile[] Files;
 
         public AudioState State
         {
@@ -39,9 +38,9 @@ namespace Scripts.Controllers
         private void Start()
         {
             Instance = this;
-            audioSource = GetComponent<AudioSource>();
+            _audioSource = GetComponent<AudioSource>();
 
-            foreach (var file in Files) audioDictionary[file.Name] = file.Clip;
+            foreach (var file in Files) _audioDictionary[file.Name] = file.Clip;
         }
 
         // Update is called once per frame
@@ -57,56 +56,56 @@ namespace Scripts.Controllers
                         switch (Random.Range(0, 3))
                         {
                             case 0:
-                                StartCoroutine(FadeSound(audioDictionary["victory"]));
+                                StartCoroutine(FadeSound(_audioDictionary["victory"]));
                                 break;
                             case 1:
-                                StartCoroutine(FadeSound(audioDictionary["epic"]));
+                                StartCoroutine(FadeSound(_audioDictionary["epic"]));
                                 break;
                             case 2:
-                                StartCoroutine(FadeSound(audioDictionary["newdawn"]));
+                                StartCoroutine(FadeSound(_audioDictionary["newdawn"]));
                                 break;
+                            default:
+                                throw new ArgumentOutOfRangeException();
                         }
                     break;
 
                 case AudioState.Fight:
-                    if (State == AudioState.Fight) StartCoroutine(FadeSound(audioDictionary["instinct"]));
+                    StartCoroutine(FadeSound(_audioDictionary["instinct"]));
                     break;
-
                 case AudioState.Lose:
-                    if (State == AudioState.Lose) StartCoroutine(FadeSound(audioDictionary["losing"]));
+                    StartCoroutine(FadeSound(_audioDictionary["losing"]));
                     break;
-
                 default:
                     if (State == AudioState.Normal)
-                        if (!audioSource.isPlaying)
-                            StartCoroutine(FadeSound(audioDictionary["victory"]));
+                        if (!_audioSource.isPlaying)
+                            StartCoroutine(FadeSound(_audioDictionary["victory"]));
                     break;
             }
 
-            if (Input.GetKeyDown(KeyCode.Space)) StartCoroutine(FadeSound(audioDictionary["victory"]));
+            if (Input.GetKeyDown(KeyCode.Space)) StartCoroutine(FadeSound(_audioDictionary["victory"]));
         }
 
         private IEnumerator FadeSound(AudioClip clip)
         {
-            while (audioSource.volume > 0)
+            while (_audioSource.volume > 0)
             {
-                audioSource.volume -= 0.5f * Time.deltaTime;
+                _audioSource.volume -= 0.5f * Time.deltaTime;
                 yield return null;
             }
 
-            audioSource.clip = clip;
-            audioSource.Play();
+            _audioSource.clip = clip;
+            _audioSource.Play();
 
-            while (audioSource.volume < 1)
+            while (_audioSource.volume < 1)
             {
-                audioSource.volume += 0.5f * Time.deltaTime;
+                _audioSource.volume += 0.5f * Time.deltaTime;
                 yield return null;
             }
         }
 
         public void Update()
         {
-            if (!audioSource.isPlaying) ChangeAudio();
+            if (!_audioSource.isPlaying) ChangeAudio();
         }
 
         [Serializable]

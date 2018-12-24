@@ -178,11 +178,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ResouceHolderPrefab: {fileID: 1815704334279178, guid: bd585c28612326342acd108e2172bb0c,
     type: 2}
+  ResourceGroup: {fileID: 0}
   ModelLinks:
   - Resource: 0
-    Model: {fileID: 153888, guid: 6591aa4bc57a0014dbb3c668abd53e63, type: 2}
+    Model: {fileID: 1508462627879880, guid: d1ef1842f07bc214186afcb8a5e9fecd, type: 2}
   - Resource: 1
-    Model: {fileID: 0}
+    Model: {fileID: 135476, guid: 02d87de426565834b96470e3dfe49caf, type: 2}
+  - Resource: 2
+    Model: {fileID: 1953674693378280, guid: 6591aa4bc57a0014dbb3c668abd53e63, type: 2}
+  - Resource: 3
+    Model: {fileID: 1833839629050914, guid: 37dcc1db801dce64a9ab673e85df8508, type: 2}
   ResourceLinks:
   - Type: 0
     Obj: {fileID: 21300000, guid: e2be3294d416b40878fdafd520f2b0d0, type: 3}
@@ -194,7 +199,17 @@ MonoBehaviour:
     Obj: {fileID: 21300000, guid: d71294ca19b7e4f2280353c860931b2d, type: 3}
   - Type: 4
     Obj: {fileID: 21300000, guid: a588bed2269124aceb2dd6229a31daae, type: 3}
-  ResourceGroup: {fileID: 0}
+  StartCounts:
+  - Type: 0
+    Count: 100
+  - Type: 1
+    Count: 100
+  - Type: 2
+    Count: 0
+  - Type: 3
+    Count: 5
+  - Type: 4
+    Count: 0
 --- !u!114 &114490995274481308
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -230,7 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e0252ec0f2f59544ab199d5dd0f66a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NoGhost: 1
+  NoGhost: 0
   ActiveDefences: []
   StaticDefences: []
   Structure: []
@@ -246,13 +261,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e28df387235fdd42af5d2ca7dff5f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Indicator: {fileID: 0}
+  StartingWave: 1
   EnemiesLookup:
   - {fileID: 1080053786728032, guid: 80e5c571ec9b53c4483d3b5bbfc69b44, type: 2}
   - {fileID: 1577830386131466, guid: 29f761fdb9a6be24bab4d18a83823ccd, type: 2}
   - {fileID: 1192795003958166, guid: 4a2d56d1a7920da4a8ea6876c71753d6, type: 2}
   - {fileID: 1503692535146870, guid: f382f51f1f099a14089176273f8c397f, type: 2}
   - {fileID: 1549815823365482, guid: 7ba8a6f6272d535448de65fcf28c20d2, type: 2}
+  Indicator: {fileID: 0}
 --- !u!114 &114943725802021552
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -275,5 +291,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d0ad7f9ddb402a4c87e1138d680da8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RectangleColor: {r: 0.8, g: 0.8, b: 0.95, a: 0.2509804}
   BorderColor: {r: 0.8, g: 0.8, b: 0.95, a: 1}
+  RectangleColor: {r: 0.8, g: 0.8, b: 0.95, a: 0.2509804}

@@ -815,8 +815,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9901572aad2848741955aeeaa549593e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthBarComponent: {fileID: 0}
   Health: 100
+  HealthBarComponent: {fileID: 0}
 --- !u!114 &114333944425301100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -828,10 +828,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebae32eebe257c64eb946295de4c562e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 3.5
   Animator: {fileID: 0}
+  Agent: {fileID: 0}
   DoingJob: 0
-  ResourceCount: 0
+  ResourceCount: 1
+  Speed: 3.5
 --- !u!114 &114358738771139716
 MonoBehaviour:
   m_ObjectHideFlags: 1

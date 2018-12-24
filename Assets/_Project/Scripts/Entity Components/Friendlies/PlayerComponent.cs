@@ -11,21 +11,26 @@ namespace Scripts.Entity_Components.Friendlies
     [DefaultExecutionOrder(-1)]
     public class PlayerComponent : MonoBehaviour, IClickable
     {
-        protected string _type = "player";
+        [HideInInspector]
         public Animator Animator;
+        [HideInInspector]
+        public NavMeshAgent Agent;
 
         public Job CurrentJob;
 
+
         protected IEnumerator DestinationRoutine;
+
+        [HideInInspector]
         public bool DoingJob;
-
         public int ResourceCount;
-        protected GameObject SelectionCircle;
-
-        protected GameObject SelectionCirclePrefab;
         public float Speed = 3.5f;
-        public NavMeshAgent Agent { get; private set; }
-        public string Type => _type;
+
+        protected GameObject SelectionCircle;
+        protected GameObject SelectionCirclePrefab;
+
+        public string Type => BackingType;
+        protected string BackingType = "player";
 
         public void MoveToLocationOnGrid(Vector3 target)
         {

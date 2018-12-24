@@ -85,8 +85,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4810719617222254}
   - component: {fileID: 95688681203413250}
-  - component: {fileID: 195284415765835544}
   - component: {fileID: 136949512845555976}
+  - component: {fileID: 195284415765835544}
   - component: {fileID: 114720927209219732}
   - component: {fileID: 114479915078912174}
   m_Layer: 9
@@ -833,12 +833,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bff1566e4ccee48ba1d41498afa706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 3.5
   Animator: {fileID: 0}
+  Agent: {fileID: 0}
   DoingJob: 0
-  ResourceCount: 0
-  Radius: 5
+  ResourceCount: 4
+  Speed: 3.5
   Damage: 20
+  Radius: 5
   ReloadTime: 2
 --- !u!114 &114715568141955960
 MonoBehaviour:
@@ -863,8 +864,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9901572aad2848741955aeeaa549593e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthBarComponent: {fileID: 0}
   Health: 100
+  HealthBarComponent: {fileID: 0}
 --- !u!114 &114822553544842068
 MonoBehaviour:
   m_ObjectHideFlags: 1

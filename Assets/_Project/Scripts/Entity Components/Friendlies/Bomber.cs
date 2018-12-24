@@ -11,7 +11,7 @@ namespace Scripts.Entity_Components.Friendlies
         public override void Start()
         {
             base.Start();
-            _type = "Bomber";
+            BackingType = "Bomber";
         }
 
         protected override IEnumerator CheckCollision()

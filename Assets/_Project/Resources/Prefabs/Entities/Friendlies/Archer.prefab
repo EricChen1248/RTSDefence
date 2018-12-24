@@ -39,8 +39,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4446953158447760}
   - component: {fileID: 95747527525526492}
-  - component: {fileID: 195682571680806484}
   - component: {fileID: 136565798038506236}
+  - component: {fileID: 195682571680806484}
   - component: {fileID: 114170050038506772}
   - component: {fileID: 114674533080780860}
   m_Layer: 9
@@ -1080,8 +1080,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9901572aad2848741955aeeaa549593e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthBarComponent: {fileID: 0}
   Health: 100
+  HealthBarComponent: {fileID: 0}
 --- !u!114 &114653038913591980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1104,12 +1104,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738fb9a7b13688445b9bd6afc1c9cbc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 3.5
   Animator: {fileID: 0}
+  Agent: {fileID: 0}
   DoingJob: 0
-  ResourceCount: 0
-  Radius: 5
+  ResourceCount: 2
+  Speed: 3.5
   Damage: 2
+  Radius: 5
   ReloadTime: 1.2
   Ammo: {fileID: 1130948403366240, guid: 33675a15a1c125e4bb38f9f73523d78a, type: 2}
 --- !u!114 &114931678965090854

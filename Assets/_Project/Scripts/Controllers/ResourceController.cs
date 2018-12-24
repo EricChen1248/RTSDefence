@@ -11,17 +11,16 @@ namespace Scripts.Controllers
     {
         public static ResourceController Instance;
 
-        [SerializeField] public ModelLink[] ModelLinks;
-
         public GameObject ResouceHolderPrefab;
 
         public ResourceGroupComponent ResourceGroup;
 
+        [SerializeField] public ModelLink[] ModelLinks;
         [SerializeField] public ResourceLink[] ResourceLinks;
+        [SerializeField] public StartCount[] StartCounts;
 
-        public static Dictionary<ResourceTypes, GameObject> ModelDictionary { get; private set; }
         public Dictionary<ResourceTypes, Sprite> SpriteDictionary { get; private set; }
-
+        public static Dictionary<ResourceTypes, GameObject> ModelDictionary { get; private set; }
         public static Dictionary<ResourceTypes, int> ResourceCount { get; private set; }
 
         public void Start()
@@ -37,8 +36,10 @@ namespace Scripts.Controllers
             SpriteDictionary = new Dictionary<ResourceTypes, Sprite>();
             foreach (var resourceLink in ResourceLinks) SpriteDictionary[resourceLink.Type] = resourceLink.Obj;
 
-            ResourceCount[ResourceTypes.Wood] = 100;
-            ResourceCount[ResourceTypes.Rock] = 50;
+            foreach (var startCount in StartCounts)
+            {
+                ResourceCount[startCount.Type] = startCount.Count;
+            }
         }
 
         public static void AddResource(ResourceTypes type, int count)
@@ -47,7 +48,7 @@ namespace Scripts.Controllers
             Instance.ResourceGroup.UpdateGui(ResourceCount);
         }
 
-        public static void UpdateGUI()
+        public static void UpdateGui()
         {
             Instance.ResourceGroup.UpdateGui(ResourceCount);
         }
@@ -64,6 +65,13 @@ namespace Scripts.Controllers
         {
             public ResourceTypes Type;
             public Sprite Obj;
+        }
+
+        [Serializable]
+        public struct StartCount
+        {
+            public ResourceTypes Type;
+            public int Count;
         }
     }
 }

@@ -66,7 +66,7 @@ namespace Scripts.Entity_Components.Ais
                     distanceToTarget = (transform.position - Agent.destination).sqrMagnitude;
                 }
 
-                WaveController.Instance.AddScore(1000);
+                WaveController.Instance.AddScore(100);
                 Destroy(gameObject);
             }
         }

@@ -80,11 +80,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4012351111010086}
-  - component: {fileID: 195901963287202838}
   - component: {fileID: 95532612978435600}
   - component: {fileID: 136493321751392948}
-  - component: {fileID: 114674248138202166}
+  - component: {fileID: 195901963287202838}
   - component: {fileID: 114104520653619862}
+  - component: {fileID: 114674248138202166}
   m_Layer: 0
   m_Name: Swordman
   m_TagString: Untagged
@@ -863,8 +863,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9901572aad2848741955aeeaa549593e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthBarComponent: {fileID: 0}
   Health: 200
+  HealthBarComponent: {fileID: 0}
 --- !u!114 &114660769553461310
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -887,12 +887,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f853ab97bf32d1f48baf30768c11dfec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 3.5
   Animator: {fileID: 0}
+  Agent: {fileID: 0}
   DoingJob: 0
-  ResourceCount: 0
-  Radius: 2
+  ResourceCount: 2
+  Speed: 3.5
   Damage: 3
+  Radius: 2
   ReloadTime: 0.65
 --- !u!114 &114779496053352070
 MonoBehaviour:
@@ -1255,7 +1256,7 @@ NavMeshAgent:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1161086785405452}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5

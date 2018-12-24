@@ -71,20 +71,20 @@ namespace Scripts.Controllers
 
                 var center = Vector3.zero;
                 foreach (var item in FocusedItem)
-                    center += (item as MonoBehaviour).transform.position / FocusedItem.Count;
+                    center += ((MonoBehaviour) item).transform.position / FocusedItem.Count;
                 clickPos -= center;
                 foreach (var item in FocusedItem)
                 {
-                    var pos = (item as MonoBehaviour).transform.position + clickPos;
+                    var pos = ((MonoBehaviour) item).transform.position + clickPos;
                     item?.RightClick(pos);
                 }
 
                 return;
             }
 
-            if (Input.GetMouseButtonDown(0))
-                if (!EventSystem.current.IsPointerOverGameObject())
-                    MenuController.Instance.MenuLowered();
+            if (!Input.GetMouseButtonDown(0)) return;
+            if (!EventSystem.current.IsPointerOverGameObject())
+                MenuController.Instance.MenuLowered();
         }
 
         #region Left Clicks
