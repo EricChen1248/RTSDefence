@@ -890,9 +890,10 @@ MonoBehaviour:
   Speed: 3.5
   Animator: {fileID: 0}
   DoingJob: 0
+  ResourceCount: 0
   Radius: 2
   Damage: 20
-  ReloadTime: 1
+  ReloadTime: 0.65
 --- !u!114 &114779496053352070
 MonoBehaviour:
   m_ObjectHideFlags: 1
