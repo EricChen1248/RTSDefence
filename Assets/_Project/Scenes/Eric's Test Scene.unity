@@ -1337,9 +1337,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WorldTerrain: {fileID: 0}
-  TerrainLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1001 &2015096865
 Prefab:
   m_ObjectHideFlags: 0
