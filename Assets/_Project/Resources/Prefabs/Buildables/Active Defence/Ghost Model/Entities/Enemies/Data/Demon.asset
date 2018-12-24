@@ -18,7 +18,7 @@ MonoBehaviour:
   TargetLayers:
     serializedVersion: 2
     m_Bits: 799232
-  ReloadTime: 1
+  ReloadTime: 0.475
   FindGroup: 0
   Points: 400
   Types: 0000000004000000
