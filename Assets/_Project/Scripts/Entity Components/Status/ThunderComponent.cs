@@ -9,8 +9,8 @@ namespace Scripts.Entity_Components.Status
     {
         public bool Immediate = true;
         public int Duration;
-        public int Damage;
-        public int Range;
+        public int Damage = 20;
+        public int Range = 5;
 
         public void Start () {
             if(Immediate){
