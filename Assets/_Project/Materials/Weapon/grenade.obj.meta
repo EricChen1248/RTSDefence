@@ -1,0 +1,135 @@
+fileFormatVersion: 2
+guid: 33a543b4b54a54226998c94e575e20f3
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Grenade_Body_1
+    100004: Grenade_Hinge_1
+    100006: Grenade_Pin_Cylinder_4
+    100008: Grenade_Pin_pin_coil
+    400000: //RootNode
+    400002: Grenade_Body_1
+    400004: Grenade_Hinge_1
+    400006: Grenade_Pin_Cylinder_4
+    400008: Grenade_Pin_pin_coil
+    2100000: Grenade_Body_1Mat
+    2100002: Grenade_Hinge_1Mat
+    2100004: Grenade_Pin_Cylinder_4Mat
+    2100006: Grenade_Pin_pin_coilMat
+    2300000: Grenade_Body_1
+    2300002: Grenade_Hinge_1
+    2300004: Grenade_Pin_Cylinder_4
+    2300006: Grenade_Pin_pin_coil
+    3300000: Grenade_Body_1
+    3300002: Grenade_Hinge_1
+    3300004: Grenade_Pin_Cylinder_4
+    3300006: Grenade_Pin_pin_coil
+    4300000: Grenade_Body_1
+    4300002: Grenade_Hinge_1
+    4300004: Grenade_Pin_Cylinder_4
+    4300006: Grenade_Pin_pin_coil
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grenade_Body_1Mat
+    second: {fileID: 2100000, guid: e45ecfbc523606c46ae2d05e44a62f04, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grenade_Hinge_1Mat
+    second: {fileID: 2100008, guid: 2fee42fd9e36c86459c5357fc83e0acc, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grenade_Pin_Cylinder_4Mat
+    second: {fileID: 2100008, guid: 7f7c983e2ba6a1b4687f8bbe2917c3ef, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grenade_Pin_pin_coilMat
+    second: {fileID: 2100000, guid: 18ddf35caf55246438e067bd135cea11, type: 3}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.003
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
