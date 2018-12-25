@@ -19,8 +19,6 @@ namespace Scripts.Entity_Components.Jobs
         private BuildJobPhase _currentPhase;
         private GameObject _resourceHolder;
 
-        public bool AtDestination;
-
         public BuildJob(GhostModelScript ghost)
         {
             _ghost = ghost;
@@ -64,7 +62,7 @@ namespace Scripts.Entity_Components.Jobs
 
         private IEnumerator DeliveringResource()
         {
-            Worker.Agent.destination = _ghost.transform.position;
+            Worker.Agent.SetDestination(_ghost.transform.position);
             var collider = _ghost.GetComponent<Collider>();
             while (true)
             {
@@ -75,7 +73,7 @@ namespace Scripts.Entity_Components.Jobs
                 yield return new WaitForFixedUpdate();
             }
 
-            Worker.Agent.isStopped = true;
+            Worker.Agent.SetDestination(Worker.transform.position);
             yield return new WaitForSeconds(1);
 
             var comp = _resourceHolder.GetComponent<ResourceHolderComponent>();
@@ -100,6 +98,7 @@ namespace Scripts.Entity_Components.Jobs
 
                     JobController.AddJob(this);
                     Worker.CompleteJob();
+                    Worker = null;
                     yield break;
                 }
 
@@ -107,7 +106,6 @@ namespace Scripts.Entity_Components.Jobs
                 ResourceController.AddResource(res.Resource, -res.Amount);
 
                 Worker.Agent.SetDestination(CoreController.Instance.CoreGameObject.transform.position);
-                Worker.Agent.isStopped = false;
                 while (true)
                 {
                     var colliders = Physics.OverlapSphere(Worker.transform.position, 2f,
@@ -116,14 +114,14 @@ namespace Scripts.Entity_Components.Jobs
                     yield return new WaitForFixedUpdate();
                 }
 
+                Worker.Agent.SetDestination(Worker.transform.position);
                 yield return new WaitForSeconds(1);
-
 
                 _resourceHolder =
                     Object.Instantiate(UnityEngine.Resources.Load<GameObject>("Prefabs/Entities/Resource Holder"),
                         Worker.transform);
-                _resourceHolder.GetComponent<ResourceHolderComponent>().ChangeResources(res.Resource, res.Amount);
 
+                _resourceHolder.GetComponent<ResourceHolderComponent>().ChangeResources(res.Resource, res.Amount);
 
                 _resourceHolder.transform.localPosition = Vector3.up * 0.5f + Vector3.forward * 0.5f;
             }
@@ -134,7 +132,7 @@ namespace Scripts.Entity_Components.Jobs
 
         private IEnumerator Build()
         {
-            Worker.Agent.isStopped = true;
+            Worker.Agent.SetDestination(Worker.transform.position);
             Worker.GetComponent<Animator>().SetBool("Building", true);
             if (_resourceHolder != null)
             {
@@ -151,7 +149,6 @@ namespace Scripts.Entity_Components.Jobs
             CoreController.BuildController.Build(_ghost.transform.gameObject);
             CompleteJob();
             Worker.GetComponent<Animator>().SetBool("Building", false);
-            Worker.Agent.isStopped = false;
         }
 
         #endregion

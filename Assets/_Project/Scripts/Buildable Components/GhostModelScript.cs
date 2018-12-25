@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Scripts.Controllers;
 using Scripts.Entity_Components.Jobs;
 using Scripts.GUI;
@@ -88,8 +89,7 @@ namespace Scripts.Buildable_Components
         {
             var overlap = Physics.OverlapBox(transform.position + Data.ColliderOffset, Data.Size / 2f * 0.9f,
                 transform.rotation, RaycastHelper.LayerMaskDictionary["Non Buildables"]);
-            foreach (var item in overlap) return false;
-            return true;
+            return !overlap.Any();
         }
 
         public void Cancel()
@@ -104,10 +104,5 @@ namespace Scripts.Buildable_Components
             JobController.Prioritize(_job);
         }
 
-        public void OnTriggerEnter(Collider other)
-        {
-            Debug.Log(other);
-            if (other.gameObject == _job.Worker.gameObject) _job.AtDestination = true;
-        }
     }
 }

@@ -24,18 +24,9 @@ namespace Scripts.Entity_Components.Friendlies
 
         public void CompleteJob()
         {
-            var job = JobController.GetJob();
-
-            if (job == null)
-            {
-                JobController.FreeWorker(this);
-
-                // Return to core
-                Agent.destination = CoreController.Instance.CoreGameObject.transform.position;
-                return;
-            }
-
-            DoWork(job);
+            JobController.FreeWorker(this);
+            Agent.isStopped = false;
+            Agent.SetDestination(CoreController.Instance.CoreGameObject.transform.position);
         }
     }
 }
