@@ -21,7 +21,7 @@ namespace Scripts.Entity_Components.Ais
             StopTemp = false;
             Data = EnemyComponent.Data;
             StartCoroutine(CheckCollision());
-
+            GetComponent<HealthComponent>().OnDeath += sender => Destroy(gameObject);
             Ammo.transform.position = Vector3.up + Vector3.forward;
         }
 
