@@ -122,8 +122,8 @@ namespace Scripts.Entity_Components.Jobs
                 _resourceHolder =
                     Object.Instantiate(UnityEngine.Resources.Load<GameObject>("Prefabs/Entities/Resource Holder"),
                         Worker.transform);
-
                 _resourceHolder.GetComponent<ResourceHolderComponent>().ChangeResources(res.Resource, res.Amount);
+
 
                 _resourceHolder.transform.localPosition = Vector3.up * 0.5f + Vector3.forward * 0.5f;
             }

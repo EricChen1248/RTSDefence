@@ -11,14 +11,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d251784dc9511fe47a52c48510fc1d2e, type: 3}
   m_Name: Boss
   m_EditorClassIdentifier: 
-  Health: 100
-  Radius: 2
-  MovementSpeed: 4
   Damage: 20
+  FindGroup: 0
+  Health: 100
+  MovementSpeed: 2.5
+  Points: 1000
+  Radius: 3
+  ReloadTime: 2
   TargetLayers:
     serializedVersion: 2
     m_Bits: 799232
-  ReloadTime: 2
-  FindGroup: 0
-  Points: 1000
   Types: 

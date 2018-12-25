@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4578471690941902}
   - component: {fileID: 65928369588473634}
   - component: {fileID: 114717769335259078}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Magic Tower Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4778267271583316}
   - component: {fileID: 33329925243937672}
   - component: {fileID: 23032872179002080}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Tower Magic Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}

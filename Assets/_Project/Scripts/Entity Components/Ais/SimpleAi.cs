@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Linq;
 using Scripts.Buildable_Components;
 using Scripts.Entity_Components.Misc;
@@ -41,13 +42,16 @@ namespace Scripts.Entity_Components.Ais
 
         protected virtual IEnumerator CheckCollision()
         {
+            var colliders = new Collider[100];
             while (true)
             {
-                var colliders = Physics.OverlapSphere(transform.position, Data.Radius, Data.TargetLayers);
+                var count = Physics.OverlapSphereNonAlloc(transform.position, Data.Radius, colliders, Data.TargetLayers);
 
-                if (colliders.Length > 0)
-                    foreach (var collider in colliders)
+                if (count > 0)
+                {
+                    for (int i = 0; i < count; i++)
                     {
+                        var collider = colliders[i];
                         var buildable = collider.gameObject.GetComponent<Buildable>();
                         if (buildable != null)
                             if (buildable.Data.Types.Contains(DefenceType.Wall))
@@ -69,23 +73,29 @@ namespace Scripts.Entity_Components.Ais
                         StartCoroutine(Attack());
                         yield break;
                     }
+                }
 
-                for (var i = 0; i < 10; i++) yield return new WaitForFixedUpdate();
+                for (var i = 0; i < 10; i++)
+                {
+                    yield return new WaitForFixedUpdate();
+                }
             }
         }
 
         private IEnumerator Attack()
         {
             var rotate = RotateToTarget();
+
             StartCoroutine(rotate);
 
-            var health = TempTarget.GetComponent<HealthComponent>();
-            health.OnDeath += OnTargetDeath;
             Animator.SetBool("Attacking", true);
+            var health = TempTarget.GetComponent<HealthComponent>();
             var targetCollider = TempTarget.GetComponent<Collider>();
+
             var radius = Data.Radius;
             radius *= radius;
-            while (health.Health > 0 && health != null)
+
+            while (health != null && health.Health > 0)
             {
                 yield return new WaitForSeconds(ReloadTime);
 
@@ -95,6 +105,7 @@ namespace Scripts.Entity_Components.Ais
 
                 health.Damage(Data.Damage);
             }
+            yield return new WaitForFixedUpdate();
 
             StopCoroutine(rotate);
             StartCoroutine(CheckCollision());
@@ -121,10 +132,6 @@ namespace Scripts.Entity_Components.Ais
 
                 yield return new WaitForFixedUpdate();
             }
-        }
-
-        private void OnTargetDeath(HealthComponent target)
-        {
         }
     }
 }

@@ -37,7 +37,7 @@ namespace Scripts.Controllers
         public IEnumerator WaitForWave()
         {
             yield return new WaitForEndOfFrame();
-            var time = (int) (60 / Mathf.Log10(CurrentWave * 10));
+            var time = (int) (180 / Mathf.Log10(CurrentWave * 10));
             for (var i = time - 1; i >= 0; i--)
             {
                 Indicator.text = $"Next Wave: {i / 60:D2}:{i % 60:D2}";
@@ -61,10 +61,17 @@ namespace Scripts.Controllers
                 var scout = Instantiate(EnemiesLookup[0]);
                 var pos = Random.insideUnitSphere;
                 pos.y = 0;
-                scout.transform.position = pos.normalized * 125f;
+                scout.transform.position = pos.normalized * 120f;
                 Enemies.Add(scout);
             }
 
+            yield return new WaitForEndOfFrame();
+            foreach (var enemy in Enemies)
+            {
+                enemy.GetComponent<ScoutAi>().FindTarget();
+            }
+
+            Indicator.text = "Scouting Phase";
             yield return new WaitUntil(() => Enemies.Count == 0);
             StartCoroutine(StartNewWave());
         }
@@ -105,7 +112,7 @@ namespace Scripts.Controllers
             else
             {
                 var currentScore = _score;
-                var currentMaxIndex = 1;
+                var currentMaxIndex = CurrentWave > 4 ? 4 : CurrentWave;
                 var maxPoints = EnemiesLookup[currentMaxIndex].GetComponent<EnemyComponent>().Data.Points;
 
                 while (currentMaxIndex > 0)
@@ -121,13 +128,13 @@ namespace Scripts.Controllers
                     Enemies.Add(enemy);
                     var pos = Random.insideUnitSphere;
                     pos.y = 0;
-                    enemy.transform.position = pos.normalized * 125f;
+                    enemy.transform.position = pos.normalized * 120f;
                     currentScore -= enemy.GetComponent<EnemyComponent>().Data.Points;
                 }
 
 
                 // Wait for an update to start controlling enemy.
-                yield return new WaitForFixedUpdate();
+                yield return new WaitForEndOfFrame();
 
                 // Start assigning target
                 foreach (var enemy in Enemies)
@@ -143,6 +150,7 @@ namespace Scripts.Controllers
 
             print($"attacking with enemies: {Enemies.Count}");
             yield return new WaitUntil(() => Enemies.Count == 0);
+            print("Wave over");
             CurrentWave++;
             StartCoroutine(WaitForWave());
         }

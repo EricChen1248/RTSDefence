@@ -890,7 +890,7 @@ MonoBehaviour:
   Animator: {fileID: 0}
   Agent: {fileID: 0}
   DoingJob: 0
-  ResourceCount: 2
+  ResourceCount: 4
   Speed: 3.5
   Damage: 3
   Radius: 2

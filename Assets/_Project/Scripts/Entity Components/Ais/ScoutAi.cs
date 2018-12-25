@@ -70,5 +70,11 @@ namespace Scripts.Entity_Components.Ais
                 Destroy(gameObject);
             }
         }
+
+        public override void OnDestroy()
+        {
+            base.OnDestroy();
+            WaveController.Instance.Enemies.Remove(gameObject);
+        }
     }
 }

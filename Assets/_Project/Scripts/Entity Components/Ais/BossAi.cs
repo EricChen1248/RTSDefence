@@ -20,6 +20,7 @@ namespace Scripts.Entity_Components.Ais
         private IEnumerator Spawn()
         {
             yield return new WaitForSeconds(6.5f);
+            print("attacking");
             TargetTo(Target, true);
             Animator.SetBool("Walking", true);
             Agent.isStopped = false;

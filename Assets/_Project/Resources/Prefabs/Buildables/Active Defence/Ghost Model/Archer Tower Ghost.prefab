@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4035423650281594}
   - component: {fileID: 65796023107101396}
   - component: {fileID: 114311159140967956}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Archer Tower Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4828281803733666}
   - component: {fileID: 33346704870560102}
   - component: {fileID: 23468159256018642}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Archer Tower Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -346,11 +346,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: bafa22b60aac71941a6e4b89a7dd7b71, type: 2}
   ID: 0
-  ResourceType: 0
-  tex: {fileID: 2800000, guid: 3f07543aa0169457fa6fab0faac74b3a, type: 3}
-  Gatherer: {fileID: 0}
+  Tex: {fileID: 0}
   CollectionRadius: 25
-  Nodes: []
+  ResourceType: 000000000200000003000000
 --- !u!114 &114412157242031910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -362,8 +360,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9901572aad2848741955aeeaa549593e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthBarComponent: {fileID: 0}
   Health: 100
+  HealthBarComponent: {fileID: 0}
 --- !u!114 &114819322542295446
 MonoBehaviour:
   m_ObjectHideFlags: 1

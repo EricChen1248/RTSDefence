@@ -2007,6 +2007,7 @@ GameObject:
   - component: {fileID: 195711615024990198}
   - component: {fileID: 114198755588084492}
   - component: {fileID: 114568796452876082}
+  - component: {fileID: 114088935956534588}
   m_Layer: 10
   m_Name: Boss
   m_TagString: Untagged
@@ -5519,6 +5520,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114088935956534588
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1990730001384326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e71d56a959534ea43b7eddaac6e14d96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 11400000, guid: bb33adca0a85b064c90d2053d2016e68, type: 2}
+  Radius: 0
 --- !u!114 &114198755588084492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5577,7 +5591,7 @@ NavMeshAgent:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1990730001384326}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5

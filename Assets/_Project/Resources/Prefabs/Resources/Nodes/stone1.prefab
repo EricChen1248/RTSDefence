@@ -299,10 +299,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c4c35109e57966459172b47109942a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 0
-  count: 30
-  PerCollection: 3
   Collectors: []
+  count: 20
+  PerCollection: 3
+  Type: 0
 --- !u!114 &114941175956736184
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -314,10 +314,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2a8ba49042948a40b2d77f5771e51d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResourceType: 0
-  HarvestTime: 0.5
   AvailableResource: 10
   CollectionRadius: 3.5
+  HarvestTime: 0.5
+  ResourceType: 0
 --- !u!135 &135494023030558968
 SphereCollider:
   m_ObjectHideFlags: 1

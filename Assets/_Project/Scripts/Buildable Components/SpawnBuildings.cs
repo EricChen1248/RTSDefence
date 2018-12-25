@@ -84,7 +84,8 @@ namespace Scripts.Buildable_Components
                     if (ResourceController.ResourceCount[ResourceTypes.Gold] < p.ResourceCount) return;
                     ResourceController.AddResource(ResourceTypes.Gold, -p.ResourceCount);
                     _spawnList.Enqueue(obj);
-                    _spawnCount[obj]++;
+                    var count = _spawnCount[obj];
+                    _spawnCount[obj] = count + 1;
                     UpdateGui();
                     if (!_spawning) StartCoroutine(StartSpawn());
                 });

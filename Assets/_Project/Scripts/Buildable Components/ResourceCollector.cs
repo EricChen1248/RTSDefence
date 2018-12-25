@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Scripts.Controllers;
 using Scripts.Entity_Components.Friendlies;
 using Scripts.GUI;
@@ -10,19 +11,18 @@ using UnityEngine.AI;
 
 namespace Scripts.Buildable_Components
 {
-    public class ResourceCollector : Buildable, IClickable
+    public class ResourceCollector : Buildable
     {
-        private readonly List<ResourceGatherer> Gatherers = new List<ResourceGatherer>();
-        private GameObject _range;
-
+        public Texture Tex;
         public int CollectionRadius;
 
+        public ResourceTypes[] ResourceType;
 
-        private ResourceNode CurrentNode;
-        public GameObject Gatherer;
-        public List<ResourceNode> Nodes;
-        public ResourceTypes ResourceType;
-        public Texture tex;
+        private GameObject _range;
+        private ResourceNode _currentNode;
+        private List<ResourceNode> _nodes;
+        private readonly List<ResourceGatherer> _gatherers = new List<ResourceGatherer>();
+
 
         public override void Focus()
         {
@@ -34,7 +34,7 @@ namespace Scripts.Buildable_Components
 
             var omg = ObjectMenuGroupComponent.Instance;
             omg.SetButton(1, "Respawn", SpawnNew);
-            omg.SetButtonImage(1, tex);
+            omg.SetButtonImage(1, Tex);
         }
 
         public override void LostFocus()
@@ -54,7 +54,7 @@ namespace Scripts.Buildable_Components
 
         public void OnDestroy()
         {
-            if (CurrentNode != null) CurrentNode.Collectors.Remove(this);
+            if (_currentNode != null) _currentNode.Collectors.Remove(this);
         }
 
         private void GetResourceInRange()
@@ -62,16 +62,14 @@ namespace Scripts.Buildable_Components
             var overlaps = Physics.OverlapSphere(transform.position, CollectionRadius,
                 1 << LayerMask.NameToLayer("Resource"));
 
-            Nodes = new List<ResourceNode>();
+            _nodes = new List<ResourceNode>();
             foreach (var overlap in overlaps)
             {
                 var node = overlap.GetComponent<ResourceNode>();
-                if (node != null)
-                    if (node.Type == ResourceType)
-                    {
-                        Nodes.Add(node);
-                        node.Collectors.Add(this);
-                    }
+                if (node == null) continue;
+                if (!ResourceType.Contains(node.Type)) continue;
+                _nodes.Add(node);
+                node.Collectors.Add(this);
             }
         }
 
@@ -85,12 +83,12 @@ namespace Scripts.Buildable_Components
                 var obj = Instantiate(prefab, transform);
                 obj.GetComponent<NavMeshAgent>().enabled = true;
                 var gatherer = obj.GetComponent<ResourceGatherer>();
-                Gatherers.Add(gatherer);
+                _gatherers.Add(gatherer);
 
                 yield return new WaitForSeconds(1);
 
                 gatherer.Collector = this;
-                gatherer.Node = CurrentNode;
+                gatherer.Node = _currentNode;
                 gatherer.GatherNewResource();
                 yield return new WaitForSeconds(1);
             }
@@ -99,21 +97,21 @@ namespace Scripts.Buildable_Components
         private void GetClosestNode()
         {
             var minDist = float.MaxValue;
-            foreach (var node in Nodes)
+            foreach (var node in _nodes)
             {
                 var dist = (node.transform.position - transform.position).sqrMagnitude;
                 if (!(dist < minDist)) continue;
-                CurrentNode = node;
+                _currentNode = node;
                 minDist = dist;
             }
         }
 
         public void NotifyNodeDestroy(ResourceNode node)
         {
-            Nodes.Remove(node);
-            if (CurrentNode != node) return;
+            _nodes.Remove(node);
+            if (_currentNode != node) return;
             GetClosestNode();
-            foreach (var gatherer in Gatherers) gatherer.Node = CurrentNode;
+            foreach (var gatherer in _gatherers) gatherer.Node = _currentNode;
         }
 
         public void OnMouseDown()
@@ -123,7 +121,7 @@ namespace Scripts.Buildable_Components
 
         private void SpawnNew()
         {
-            if (Gatherers.Count >= 3) return;
+            if (_gatherers.Count >= 3) return;
             if (ResourceController.ResourceCount[ResourceTypes.Gold] <= 2) return;
             ResourceController.AddResource(ResourceTypes.Gold, -2);
             StartCoroutine(SpawnGatherer(1));
@@ -131,7 +129,7 @@ namespace Scripts.Buildable_Components
 
         public override void Destroy()
         {
-            foreach (var gatherer in Gatherers) Destroy(gatherer.gameObject);
+            foreach (var gatherer in _gatherers) Destroy(gatherer.gameObject);
             base.Destroy(true);
         }
     }

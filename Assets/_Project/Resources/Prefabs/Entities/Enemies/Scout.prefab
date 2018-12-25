@@ -1900,8 +1900,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9901572aad2848741955aeeaa549593e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthBarComponent: {fileID: 0}
   Health: 100
+  HealthBarComponent: {fileID: 0}
 --- !u!114 &114906979861464472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1913,8 +1913,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22445ab0ec0e8d6429e3f97af1cf6c54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
   ReloadTime: 0
+  Target: {fileID: 0}
   TargetingLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2035,7 +2035,7 @@ NavMeshAgent:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1080053786728032}
   m_Enabled: 0
-  m_AgentTypeID: -1372625422
+  m_AgentTypeID: -334000983
   m_Radius: 0.5
   m_Speed: 7
   m_Acceleration: 8
