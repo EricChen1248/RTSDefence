@@ -13,10 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 20
   FindGroup: 0
-  Health: 100
+  Health: 5000
   MovementSpeed: 2.5
   Points: 1000
-  Radius: 3
+  Radius: 5
   ReloadTime: 2
   TargetLayers:
     serializedVersion: 2

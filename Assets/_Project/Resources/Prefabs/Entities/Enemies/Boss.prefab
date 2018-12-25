@@ -2003,11 +2003,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4288741892734064}
   - component: {fileID: 95193637695315294}
-  - component: {fileID: 64555821204628638}
   - component: {fileID: 195711615024990198}
   - component: {fileID: 114198755588084492}
   - component: {fileID: 114568796452876082}
   - component: {fileID: 114088935956534588}
+  - component: {fileID: 136556849131844124}
   m_Layer: 10
   m_Name: Boss
   m_TagString: Untagged
@@ -2571,7 +2571,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1990730001384326}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.6101074, y: 0.12352355, z: -15.891823}
+  m_LocalPosition: {x: 4.4312286, y: 0.12352358, z: -37.712334}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4805728104872070}
@@ -5464,20 +5464,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1692012885425894}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!64 &64555821204628638
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1990730001384326}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 0}
 --- !u!65 &65104244834574092
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -5544,7 +5530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9901572aad2848741955aeeaa549593e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 100
+  Health: 5000
   HealthBarComponent: {fileID: 0}
 --- !u!114 &114269068163722794
 MonoBehaviour:
@@ -5585,6 +5571,19 @@ MonoBehaviour:
   TargetingLayers:
     serializedVersion: 2
     m_Bits: 0
+--- !u!136 &136556849131844124
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1990730001384326}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!195 &195711615024990198
 NavMeshAgent:
   m_ObjectHideFlags: 1

@@ -59,7 +59,7 @@ namespace Scripts.Entity_Components.Ais
             var radius = Data.Radius;
             radius *= radius;
 
-            while (health.Health > 0 && health != null)
+            while (health != null && health.Health > 0)
             {
                 yield return new WaitForSeconds(ReloadTime);
                 // If target no longer in range

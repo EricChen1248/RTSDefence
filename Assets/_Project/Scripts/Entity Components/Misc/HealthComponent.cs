@@ -42,7 +42,6 @@ namespace Scripts.Entity_Components.Misc
         private void Death()
         {
             // Kill off object;
-
             foreach (var coll in GetComponentsInParent<Collider>()) coll.enabled = false;
             OnDeath?.Invoke(this);
         }

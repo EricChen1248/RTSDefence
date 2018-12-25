@@ -86,6 +86,7 @@ namespace Scripts.Controllers
 
             // TODO : Set target of wave
             var target = CoreController.Instance.CoreGameObject;
+            Boss.GetComponent<BossAi>().Target = target;
             if (CurrentWave % 10 == 0)
             {
                 for (var i = 0; i < CurrentWave / 10; i++)
@@ -96,17 +97,16 @@ namespace Scripts.Controllers
                     boss.transform.position = pos.normalized * 50f;
                     Enemies.Add(Boss);
 
-                    // Wait for an update to start controlling enemy.
-                    yield return new WaitForFixedUpdate();
+                }
+                // Wait for an update to start controlling enemy.
+                yield return new WaitForFixedUpdate();
 
-                    // Start assigning target
-                    foreach (var enemy in Enemies)
-                    {
-                        var ai = enemy.GetComponent<BossAi>();
+                // Start assigning target
+                foreach (var enemy in Enemies)
+                {
+                    var ai = enemy.GetComponent<BossAi>();
+                    ai.TargetTo(target, true);
 
-                        ai.Target = target;
-                        ai.FindTarget();
-                    }
                 }
             }
             else
