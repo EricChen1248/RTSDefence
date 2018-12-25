@@ -26,7 +26,7 @@ namespace Scripts.Entity_Components.Ais
         }
 
 
-        private IEnumerator CheckCollision()
+        protected override IEnumerator CheckCollision()
         {
             while (true)
             {

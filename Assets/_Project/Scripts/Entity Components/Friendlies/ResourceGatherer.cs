@@ -12,28 +12,38 @@ namespace Scripts.Entity_Components.Friendlies
     [RequireComponent(typeof(NavMeshAgent))]
     public class ResourceGatherer : MonoBehaviour
     {
+        public ResourceCollector Collector;
+        public bool SpawnedFromCollector;
+
         private Animator _animator;
         private IEnumerator _collectionRoutine;
 
         private bool _delivering;
 
-        public ResourceCollector Collector;
-        private int collectorMask;
-        private GameObject Holders;
+        private int _collectorMask;
+        private GameObject _holders;
         public ResourceNode Node;
 
-        private Resource resource;
+        private Resource _resource;
 
-        private int resourceMask;
+        private int _resourceMask;
 
         // Use this for initialization
         public void Start()
         {
+            if (!SpawnedFromCollector)
+            {
+                Collector = GetComponentInParent<ResourceCollector>();
+                Collector.Add(this);
+            }
+
+            GetComponent<NavMeshAgent>().enabled = true;
+
             _collectionRoutine = Collect();
             _animator = GetComponent<Animator>();
 
-            resourceMask = 1 << LayerMask.NameToLayer("Resource");
-            collectorMask = 1 << LayerMask.NameToLayer("Resource Collection");
+            _resourceMask = 1 << LayerMask.NameToLayer("Resource");
+            _collectorMask = 1 << LayerMask.NameToLayer("Resource Collection");
         }
 
         private IEnumerator Collect()
@@ -58,10 +68,10 @@ namespace Scripts.Entity_Components.Friendlies
 
                     if (Node != null)
                     {
-                        resource = Node.GetResource();
-                        Holders = Instantiate(holder, transform);
-                        Holders.transform.localPosition = Vector3.up * 0.5f + Vector3.forward * 0.5f;
-                        Holders.GetComponent<ResourceHolderComponent>().ChangeResources(resource.Type, resource.Count);
+                        _resource = Node.GetResource();
+                        _holders = Instantiate(holder, transform);
+                        _holders.transform.localPosition = Vector3.up * 0.5f + Vector3.forward * 0.5f;
+                        _holders.GetComponent<ResourceHolderComponent>().ChangeResources(_resource.Type, _resource.Count);
                         agent.isStopped = true;
                         _animator.SetBool("Walking", false);
                         _delivering = true;
@@ -83,11 +93,11 @@ namespace Scripts.Entity_Components.Friendlies
                 agent.isStopped = true;
                 _animator.SetBool("Walking", false);
                 _delivering = false;
-                ResourceController.AddResource(resource.Type, resource.Count);
+                ResourceController.AddResource(_resource.Type, _resource.Count);
 
                 yield return new WaitForSeconds(1);
-                Destroy(Holders);
-                Holders = null;
+                Destroy(_holders);
+                _holders = null;
 
                 yield return new WaitForSeconds(1);
             }
@@ -115,7 +125,7 @@ namespace Scripts.Entity_Components.Friendlies
         {
             try
             {
-                var overlaps = Physics.OverlapSphere(transform.position, 1.5f, resourceMask);
+                var overlaps = Physics.OverlapSphere(transform.position, 1f, _resourceMask);
                 return overlaps.Any(col => col.GetComponent<ResourceNode>() == Node);
             }
             catch (Exception)
@@ -127,7 +137,7 @@ namespace Scripts.Entity_Components.Friendlies
 
         private bool AtCollector()
         {
-            var overlaps = Physics.OverlapSphere(transform.position, 1f, collectorMask);
+            var overlaps = Physics.OverlapSphere(transform.position, 1f, _collectorMask);
             return overlaps.Any(col => col.GetComponent<ResourceCollector>() == Collector);
         }
     }

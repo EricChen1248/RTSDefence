@@ -17,11 +17,11 @@ namespace Scripts.Buildable_Components
         public int CollectionRadius;
 
         public ResourceTypes[] ResourceType;
+        public readonly List<ResourceGatherer> Gatherers = new List<ResourceGatherer>();
 
         private GameObject _range;
         private ResourceNode _currentNode;
         private List<ResourceNode> _nodes;
-        private readonly List<ResourceGatherer> _gatherers = new List<ResourceGatherer>();
 
 
         public override void Focus()
@@ -80,10 +80,10 @@ namespace Scripts.Buildable_Components
 
             for (var i = 0; i < count; i++)
             {
+                prefab.GetComponent<ResourceGatherer>().SpawnedFromCollector = true;
                 var obj = Instantiate(prefab, transform);
-                obj.GetComponent<NavMeshAgent>().enabled = true;
                 var gatherer = obj.GetComponent<ResourceGatherer>();
-                _gatherers.Add(gatherer);
+                Gatherers.Add(gatherer);
 
                 yield return new WaitForSeconds(1);
 
@@ -106,12 +106,20 @@ namespace Scripts.Buildable_Components
             }
         }
 
+        public void Add(ResourceGatherer gatherer)
+        {
+            Gatherers.Add(gatherer);
+            gatherer.Collector = this;
+            gatherer.Node = _currentNode;
+            gatherer.GatherNewResource();
+        }
+
         public void NotifyNodeDestroy(ResourceNode node)
         {
             _nodes.Remove(node);
             if (_currentNode != node) return;
             GetClosestNode();
-            foreach (var gatherer in _gatherers) gatherer.Node = _currentNode;
+            foreach (var gatherer in Gatherers) gatherer.Node = _currentNode;
         }
 
         public void OnMouseDown()
@@ -121,7 +129,7 @@ namespace Scripts.Buildable_Components
 
         private void SpawnNew()
         {
-            if (_gatherers.Count >= 3) return;
+            if (Gatherers.Count >= 3) return;
             if (ResourceController.ResourceCount[ResourceTypes.Gold] <= 2) return;
             ResourceController.AddResource(ResourceTypes.Gold, -2);
             StartCoroutine(SpawnGatherer(1));
@@ -129,7 +137,7 @@ namespace Scripts.Buildable_Components
 
         public override void Destroy()
         {
-            foreach (var gatherer in _gatherers) Destroy(gatherer.gameObject);
+            foreach (var gatherer in Gatherers) Destroy(gatherer.gameObject);
             base.Destroy(true);
         }
     }

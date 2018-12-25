@@ -54,15 +54,15 @@ namespace Scripts.Entity_Components.Ais
                         var collider = colliders[i];
                         var buildable = collider.gameObject.GetComponent<Buildable>();
                         if (buildable != null)
+                        {
                             if (buildable.Data.Types.Contains(DefenceType.Wall))
                             {
                                 if ((collider.transform.position - transform.position).sqrMagnitude > 1f)
                                 {
                                     continue;
                                 }
-
-                                if ((collider.transform.position - transform.position).sqrMagnitude > 2) continue;
                             }
+                        }
 
                         Agent.SetDestination(collider.transform.position);
                         Animator.SetBool("Walking", false);
@@ -75,7 +75,7 @@ namespace Scripts.Entity_Components.Ais
                     }
                 }
 
-                for (var i = 0; i < 10; i++)
+                for (var i = 0; i < 5; i++)
                 {
                     yield return new WaitForFixedUpdate();
                 }
