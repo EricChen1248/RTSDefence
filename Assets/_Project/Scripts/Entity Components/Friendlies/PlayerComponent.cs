@@ -43,7 +43,7 @@ namespace Scripts.Entity_Components.Friendlies
 
         public virtual void MoveToLocation(Vector3 target)
         {
-            Agent.destination = target;
+            Agent.SetDestination(target);
             Animator.SetBool("Walking", true);
             Agent.isStopped = false;
 

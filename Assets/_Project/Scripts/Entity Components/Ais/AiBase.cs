@@ -41,10 +41,10 @@ namespace Scripts.Entity_Components.Ais
         {
             var x = 125 - Math.Abs(transform.position.x);
             var z = 125 - Math.Abs(transform.position.z);
-            Agent.destination =
+            Agent.SetDestination(
                 x > z
                     ? new Vector3(transform.position.x > 0 ? 125 : -125, 0, transform.position.z)
-                    : new Vector3(transform.position.x, 0, transform.position.z > 0 ? 125 : -125);
+                    : new Vector3(transform.position.x, 0, transform.position.z > 0 ? 125 : -125));
         }
 
         public virtual void OnDestroy()

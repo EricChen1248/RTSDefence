@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using Scripts.Buildable_Components;
 using Scripts.Controllers;
 using Scripts.Resources;
@@ -46,12 +47,12 @@ namespace Scripts.Entity_Components.Friendlies
                 {
                     agent.isStopped = false;
                     _animator.SetBool("Walking", true);
-                    agent.destination = Node.transform.position;
+                    agent.SetDestination(Node.transform.position);
                     var oldNode = Node;
                     while (Node != null)
                     {
                         if (AtResourceNode()) break;
-                        if (oldNode != Node) agent.destination = Node.transform.position;
+                        if (oldNode != Node) agent.SetDestination(Node.transform.position);
                         yield return new WaitForFixedUpdate();
                     }
 
@@ -67,35 +68,33 @@ namespace Scripts.Entity_Components.Friendlies
                     }
                 }
 
-                if (Node != null)
+                if (Node == null) continue;
+                yield return new WaitForSeconds(1);
+                agent.isStopped = false;
+                _animator.SetBool("Walking", true);
+                agent.SetDestination(Collector.transform.position);
+
+                while (true)
                 {
-                    yield return new WaitForSeconds(1);
-                    agent.isStopped = false;
-                    _animator.SetBool("Walking", true);
-                    agent.destination = Collector.transform.position;
-
-                    while (true)
-                    {
-                        if (AtCollector()) break;
-                        yield return new WaitForFixedUpdate();
-                    }
-
-                    agent.isStopped = true;
-                    _animator.SetBool("Walking", false);
-                    _delivering = false;
-                    ResourceController.AddResource(resource.Type, resource.Count);
-
-                    yield return new WaitForSeconds(1);
-                    Destroy(Holders);
-                    Holders = null;
-
-                    yield return new WaitForSeconds(1);
+                    if (AtCollector()) break;
+                    yield return new WaitForFixedUpdate();
                 }
+
+                agent.isStopped = true;
+                _animator.SetBool("Walking", false);
+                _delivering = false;
+                ResourceController.AddResource(resource.Type, resource.Count);
+
+                yield return new WaitForSeconds(1);
+                Destroy(Holders);
+                Holders = null;
+
+                yield return new WaitForSeconds(1);
             }
 
             agent.isStopped = false;
             _animator.SetBool("Walking", true);
-            agent.destination = Collector.transform.position;
+            agent.SetDestination(Collector.transform.position);
 
             while (true)
             {
@@ -117,10 +116,7 @@ namespace Scripts.Entity_Components.Friendlies
             try
             {
                 var overlaps = Physics.OverlapSphere(transform.position, 1.5f, resourceMask);
-                foreach (var col in overlaps)
-                    if (col.GetComponent<ResourceNode>() == Node)
-                        return true;
-                return false;
+                return overlaps.Any(col => col.GetComponent<ResourceNode>() == Node);
             }
             catch (Exception)
             {
@@ -132,10 +128,7 @@ namespace Scripts.Entity_Components.Friendlies
         private bool AtCollector()
         {
             var overlaps = Physics.OverlapSphere(transform.position, 1f, collectorMask);
-            foreach (var col in overlaps)
-                if (col.GetComponent<ResourceCollector>() == Collector)
-                    return true;
-            return false;
+            return overlaps.Any(col => col.GetComponent<ResourceCollector>() == Collector);
         }
     }
 }

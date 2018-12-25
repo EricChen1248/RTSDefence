@@ -25,7 +25,7 @@ namespace Scripts.Entity_Components.Ais
             {
                 case NavMeshPathStatus.PathComplete:
                 case NavMeshPathStatus.PathInvalid:
-                    _agent.destination = GetNextPatrol();
+                    _agent.SetDestination(GetNextPatrol());
                     break;
                 case NavMeshPathStatus.PathPartial:
                     break;

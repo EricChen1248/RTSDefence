@@ -37,7 +37,7 @@ namespace Scripts.Controllers
         public IEnumerator WaitForWave()
         {
             yield return new WaitForEndOfFrame();
-            var time = (int) (180 / Mathf.Log10(CurrentWave * 10));
+            var time = (int) ((CurrentWave == 1 ? 120 : 0) + 60 / Mathf.Log10(CurrentWave * 10));
             for (var i = time - 1; i >= 0; i--)
             {
                 Indicator.text = $"Next Wave: {i / 60:D2}:{i % 60:D2}";
@@ -150,7 +150,6 @@ namespace Scripts.Controllers
 
             print($"attacking with enemies: {Enemies.Count}");
             yield return new WaitUntil(() => Enemies.Count == 0);
-            print("Wave over");
             CurrentWave++;
             StartCoroutine(WaitForWave());
         }

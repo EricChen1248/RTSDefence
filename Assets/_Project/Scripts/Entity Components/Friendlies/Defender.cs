@@ -20,7 +20,7 @@ namespace Scripts.Entity_Components.Friendlies
             if (CheckingDistance != null) StopCoroutine(CheckingDistance);
             if (CheckingCollision != null) StopCoroutine(CheckingCollision);
 
-            Agent.destination = target;
+            Agent.SetDestination(target);
             CheckingDistance = CheckDistanceRoutine();
             StartCoroutine(CheckingDistance);
 

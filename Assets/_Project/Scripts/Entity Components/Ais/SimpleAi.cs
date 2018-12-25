@@ -49,7 +49,7 @@ namespace Scripts.Entity_Components.Ais
 
                 if (count > 0)
                 {
-                    for (int i = 0; i < count; i++)
+                    for (var i = 0; i < count; i++)
                     {
                         var collider = colliders[i];
                         var buildable = collider.gameObject.GetComponent<Buildable>();
@@ -64,7 +64,7 @@ namespace Scripts.Entity_Components.Ais
                                 if ((collider.transform.position - transform.position).sqrMagnitude > 2) continue;
                             }
 
-                        Agent.isStopped = true;
+                        Agent.SetDestination(collider.transform.position);
                         Animator.SetBool("Walking", false);
 
                         TempTarget = collider.gameObject;
@@ -118,7 +118,7 @@ namespace Scripts.Entity_Components.Ais
             // Wait for animation to stop
             yield return new WaitForSeconds(1);
 
-            Agent.isStopped = false;
+            Agent.SetDestination(Target.transform.position);
         }
 
         protected IEnumerator RotateToTarget()

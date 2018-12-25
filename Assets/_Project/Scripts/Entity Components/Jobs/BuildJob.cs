@@ -66,7 +66,7 @@ namespace Scripts.Entity_Components.Jobs
             var collider = _ghost.GetComponent<Collider>();
             while (true)
             {
-                var colliders = Physics.OverlapSphere(Worker.transform.position, 2f,
+                var colliders = Physics.OverlapSphere(Worker.transform.position, 1.5f,
                     1 << LayerMask.NameToLayer("GhostModel"));
                 if (colliders.Contains(collider)) break;
 
@@ -108,7 +108,7 @@ namespace Scripts.Entity_Components.Jobs
                 Worker.Agent.SetDestination(CoreController.Instance.CoreGameObject.transform.position);
                 while (true)
                 {
-                    var colliders = Physics.OverlapSphere(Worker.transform.position, 2f,
+                    var colliders = Physics.OverlapSphere(Worker.transform.position, 1.5f,
                         1 << LayerMask.NameToLayer("Core"));
                     if (colliders.Length > 0) break;
                     yield return new WaitForFixedUpdate();

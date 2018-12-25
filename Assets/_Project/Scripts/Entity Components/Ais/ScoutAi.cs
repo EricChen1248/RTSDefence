@@ -38,7 +38,7 @@ namespace Scripts.Entity_Components.Ais
 
             _previousDirection = dir <= _previousDirection ? 3 : 0;
 
-            Agent.destination = transform.position + direction / 2 + cross;
+            Agent.SetDestination(transform.position + direction / 2 + cross);
             StartCoroutine(CheckDistance());
         }
 

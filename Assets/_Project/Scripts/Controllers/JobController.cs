@@ -25,7 +25,6 @@ namespace Scripts.Controllers
         private void FixedUpdate()
         {
             if (_workers.Count <= 0 || _jobQueue.Count <= 0) return;
-            print("assigning job");
             var worker = _workers.Dequeue();
             var job = _jobQueue.First.Value;
             _jobQueue.RemoveFirst();

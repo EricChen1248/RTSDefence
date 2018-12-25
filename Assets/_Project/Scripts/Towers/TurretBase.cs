@@ -164,8 +164,12 @@ namespace Scripts.Towers
                 targetHealth = health;
             }
 
-            if (curTarget == null) return;
             if (_currentTarget == curTarget) return;
+            if (curTarget == null)
+            {
+                _currentTarget = null;
+                return;
+            }
 
             StopCoroutine(_shootingRoutine);
             _currentTarget = curTarget;
@@ -188,10 +192,11 @@ namespace Scripts.Towers
                     var go = TurretData.SpawnAmmo(FireSpot.transform);
                     var ammo = go.GetComponent<AmmoBase>();
                     go.transform.position = FireSpot.transform.position;
+                    go.transform.parent = null;
                     ammo.Layer = RaycastHelper.LayerMaskDictionary["Enemies"];
                     ammo.Target = _currentTarget.transform;
                     ammo.Fire();
-                }
+            }
 
 
                 yield return new WaitForSeconds(TurretData.FireRate);
