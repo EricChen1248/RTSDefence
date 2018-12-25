@@ -11,14 +11,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d251784dc9511fe47a52c48510fc1d2e, type: 3}
   m_Name: Elf Archer
   m_EditorClassIdentifier: 
-  Health: 100
-  Radius: 5
-  MovementSpeed: 4
   Damage: 5
+  FindGroup: 0
+  Health: 100
+  MovementSpeed: 4
+  Points: 150
+  Radius: 10
+  ReloadTime: 0.975
   TargetLayers:
     serializedVersion: 2
     m_Bits: 799232
-  ReloadTime: 0.975
-  FindGroup: 0
-  Points: 150
   Types: 

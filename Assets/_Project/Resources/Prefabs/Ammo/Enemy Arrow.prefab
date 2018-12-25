@@ -810,12 +810,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0902449c458390545a89ccbc9da4cd88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
+  Damage: 8
   Layer:
     serializedVersion: 2
     m_Bits: 799232
   Parent: {fileID: 0}
-  Damage: 5
-  Height: 2
+  Target: {fileID: 0}
   Acceleration: 0.01
+  Height: 2
   Type: 0

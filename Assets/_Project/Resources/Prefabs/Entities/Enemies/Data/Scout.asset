@@ -11,14 +11,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d251784dc9511fe47a52c48510fc1d2e, type: 3}
   m_Name: Scout
   m_EditorClassIdentifier: 
-  Health: 100
-  Radius: 1
+  Damage: 0
+  FindGroup: 0
+  Health: 20
   MovementSpeed: 7
-  Damage: 10
+  Points: 0
+  Radius: 0
+  ReloadTime: 100
   TargetLayers:
     serializedVersion: 2
     m_Bits: 0
-  ReloadTime: 0
-  FindGroup: 0
-  Points: 0
   Types: 00000000

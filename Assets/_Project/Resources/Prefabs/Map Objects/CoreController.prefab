@@ -268,7 +268,9 @@ MonoBehaviour:
   - {fileID: 1192795003958166, guid: 4a2d56d1a7920da4a8ea6876c71753d6, type: 2}
   - {fileID: 1503692535146870, guid: f382f51f1f099a14089176273f8c397f, type: 2}
   - {fileID: 1549815823365482, guid: 7ba8a6f6272d535448de65fcf28c20d2, type: 2}
+  Boss: {fileID: 1990730001384326, guid: 2c29dcd1e16aec4468a5cf73a2bc87e1, type: 2}
   Indicator: {fileID: 0}
+  GameOverGo: {fileID: 0}
 --- !u!114 &114943725802021552
 MonoBehaviour:
   m_ObjectHideFlags: 1
