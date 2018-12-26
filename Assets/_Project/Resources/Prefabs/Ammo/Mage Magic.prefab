@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4969925536145236}
   - component: {fileID: 114562351524391874}
   m_Layer: 22
-  m_Name: Magic
+  m_Name: Mage Magic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,14 +82,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59b0a60baaf48e40bd7d01c1e0d1647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
+  Damage: 20
   Layer:
     serializedVersion: 2
     m_Bits: 1024
   Parent: {fileID: 0}
-  Damage: 20
-  Type: 0
+  Target: {fileID: 0}
   Speed: 2
+  Type: 0
 --- !u!198 &198793251836617476
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -5,16 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Project/Scenes/MainMenu.unity
     guid: a140e5c10fb304854bed2d770221c748
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Project/Scenes/Eric's Test Scene.unity
     guid: ef0f55cdf15e25148a377cd282830209
   - enabled: 1
     path: Assets/_Project/Scenes/Demo 1.unity
     guid: 8be1a037514cabd4aaca2e1e21386e86
-  - enabled: 0
+  - enabled: 1
+    path: Assets/_Project/Scenes/pppppp's Test Scene.unity
+    guid: 71e1d4841133cdc41902b951de944044
+  - enabled: 1
+    path: Assets/_Project/Scenes/HaveSomeMoneyAndStone.unity
+    guid: 5295f3f949fdf46499a4f618b5b6116f
+  - enabled: 1
     path: Assets/_Project/Scenes/boss demo.unity
     guid: 8fb53f4e825d90c428c2d00570fcc734
   m_configObjects: {}
