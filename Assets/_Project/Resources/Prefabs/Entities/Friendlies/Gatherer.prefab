@@ -837,6 +837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Collector: {fileID: 0}
+  SpawnedFromCollector: 1
   Node: {fileID: 0}
 --- !u!114 &114938902390701138
 MonoBehaviour:

@@ -27,7 +27,7 @@ namespace Scripts.Entity_Components.Attacks
                 transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 10 * Speed);
                 transform.Translate(Vector3.forward * Time.deltaTime * Speed);
             }
-            catch (MissingReferenceException)
+            catch (Exception)
             {
                 Destroy(gameObject);
             }
